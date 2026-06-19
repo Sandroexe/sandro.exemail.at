@@ -56,7 +56,10 @@
 <script>
 (function() {
     // ACTIVE NAV LINK
-    var path = window.location.pathname.split('/').pop().replace('.html','') || 'index';
+    var path = window.location.pathname.split('/').filter(Boolean).pop() || 'index';
+    if (path === '') path = 'index';
+    path = path.replace('.html', '');
+    
     document.querySelectorAll('.nav-link[data-page]').forEach(function(a) {
         if (a.dataset.page === path) a.classList.add('active');
     });
