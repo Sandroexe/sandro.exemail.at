@@ -1,0 +1,159 @@
+# ══════════════════════════════════════════════════════════════════════════
+#  SPRACHKATALOG · Deutsch   (Standardsprache)
+#  Gegenstück: _data/locales/en.yml  ·  gleiche Schlüssel!
+#  Zugriff:  {% include t.html key="hero.about_title" %}   (rendert <span data-de data-en>)
+#  Der Client-Umschalter (assets/js/main.js) tauscht data-de <-> data-en.
+# ══════════════════════════════════════════════════════════════════════════
+
+# ── UI / Chrome ──────────────────────────────────────────────────────────
+ui.skip:        "Zum Inhalt springen"
+ui.menu:        "Menü umschalten"
+ui.lang:        "Sprache wechseln"
+ui.to_top:      "Nach oben scrollen"
+ui.back:        "Zurück"
+ui.back_home:   "Zur Startseite"
+ui.details_soon: "Details folgen"
+ui.verify:      "Verifizieren"
+ui.active:      "Aktiv"
+ui.done:        "Abgeschlossen"
+
+footer.tagline: "Elektronik · Netzwerktechnik · Schwoich, Tirol"
+
+# ── GitHub-Aktivität (Komponente) ───────────────────────────────────────
+gh.title:       "GitHub-Aktivität"
+gh.sub:         "@Sandroexe · letztes Jahr"
+gh.loading:     "Verbinde mit GitHub …"
+gh.less:        "weniger"
+gh.more:        "mehr"
+gh.badge_suffix: "Contributions im letzten Jahr"
+gh.stat_contributions: "Contributions"
+gh.stat_streak: "Max. Streak"
+gh.stat_days:   "Aktive Tage"
+gh.stat_avg:    "Ø pro Tag"
+
+# ── Startseite ──────────────────────────────────────────────────────────
+home.role_prefix: "Ich bin"
+home.about_title: "Über mich"
+home.about_p1: "Als Regionalvorstand für das Tiroler Unterland bei der Schülerunion Österreich setze ich mich aktiv für die Anliegen von Schüler:innen ein und bringe meine Kompetenzen in Kommunikation und Konfliktlösung ein. Parallel dazu vertrete ich als Schülervertreter an der HTBLVA Anichstraße die Interessen von etwa 1600 Schüler:innen im Schulgemeinschaftsausschuss."
+home.about_p2: "Neben meiner organisatorischen Tätigkeit leite ich den „HTL-Incubator“, einen Open Maker Space, in dem ich Mitschüler bei der Nutzung moderner Technologien unterstütze. Mein technisches Wissen vertiefe ich durch meine Ausbildung in Elektronik und Technischer Informatik sowie durch meine CCNA-Zertifizierung."
+home.stack_title: "Tech Stack"
+home.edu_title: "Schullaufbahn"
+home.work_title: "Beruf & Engagement"
+home.desc: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerktechniker, Linux-Enthusiast und Schülervertreter aus Tirol."
+
+home.roles:
+  - "Elektroniker"
+  - "Netzwerktechniker"
+  - "Oldtimerliebhaber"
+  - "Schülervertreter"
+  - "Autoliebhaber"
+
+home.skills:
+  - { label: "Linux / Debian &amp; CachyOS",   badge: "Fortgeschritten",   value: "88%" }
+  - { label: "Netzwerktechnik (CCNA)",         badge: "Zertifiziert &#10003;", value: "92%" }
+  - { label: "IoT &amp; Elektronik",           badge: "Erfahren",          value: "75%" }
+  - { label: "Chatbot &amp; Python",           badge: "Fortgeschritten",   value: "80%" }
+  - { label: "Hardware / Maker",               badge: "Erfahren",          value: "72%" }
+
+home.edu:
+  - { date: "Seit 09/2022", title: "Elektronik &amp; Techn. Informatik", org: "HTBLVA Anichstraße, Innsbruck", desc: "Ausbildung zum Elektroniker &amp; Netzwerktechniker. Fokus auf Hardware, Software und Mechanik." }
+  - { date: "2018 – 2022", title: "Mittelschule 2 Kufstein", org: "Allgemeinbildung", desc: "Abschluss der Unterstufe mit fundierter Allgemeinbildung." }
+  - { date: "2014 – 2018", title: "Volksschule Schwoich", org: "Primarausbildung", desc: "Grundschulausbildung in meiner Heimatgemeinde." }
+
+home.work:
+  - { date: "Okt 2025 – heute", title: "Regionalvorstand Tiroler Unterland", org: "Schülerunion Österreich", desc: "Einsatz für Schüleranliegen, Kommunikation und Konfliktlösung." }
+  - { date: "Okt 2025 – heute", title: "Gewählte Schülervertretung", org: "HTBLVA Anichstraße", desc: "Interessenvertretung von ~1600 Schüler:innen im Schulgemeinschaftsausschuss." }
+  - { date: "Jun 2025 – heute", title: "Leitung HTL-Incubator", org: "HTBLVA Anichstraße", desc: "Open Maker Space – Unterstützung bei modernen Technologien und eigenen Projekten." }
+  - { date: "Jul 2024 – Aug 2024", title: "Praktikum WörglWeb", org: "Stadtwerke Wörgl GmbH", desc: "Installation &amp; Wartung Netzwerkinfrastruktur, Außendienst, Fehlerbehebung, Hardware-Vorkonfiguration." }
+
+# ── Terminal ────────────────────────────────────────────────────────────
+term.intro: "Willkommen! Klick auf einen Chip oder tippe einen Befehl."
+term.open: "Terminal öffnen"
+
+# ── Projekte ────────────────────────────────────────────────────────────
+projects.head: "Self-Hosting, Netzwerk-Infrastruktur, Smart Home und Web – laufend erweitert."
+projects.notice: "Diese Seite wird laufend erweitert – neue Projekte kommen bald dazu."
+projects.desc: "Projekte von Sandro Exenberger – Self-Hosting, Netzwerktechnik, Smart Home, IoT und Web."
+
+# ── Zertifikate ─────────────────────────────────────────────────────────
+certs.head: "Verifizierte Nachweise aus Netzwerktechnik, Linux, KI und Kommunikation."
+certs.desc: "Zertifikate und Kurse von Sandro Exenberger – Cisco CCNA, Linux (LPIC-1), IoT, KI und Soft Skills."
+certs.sec_net: "Networking & Security"
+certs.sec_linux: "Linux & Open Source"
+certs.sec_ai: "KI & Technologie"
+certs.sec_soft: "Soft Skills & Management"
+
+# ── Lab ─────────────────────────────────────────────────────────────────
+lab.head: "Workstation, Betriebssystem und Toolchain – womit ich täglich arbeite und lerne."
+lab.desc: "Der Arbeitsplatz von Sandro Exenberger – Ryzen 7 9800X3D, RTX 5070, CachyOS. Hardware- und Software-Setup im Detail."
+lab.photo_alt: "Sandros Workstation"
+lab.core: "Kernkomponenten"
+lab.hw: "Hardware Components"
+lab.sw: "Software Environment"
+lab.summary_title: "&gt; System_Summary.txt"
+lab.summary: "Bei der Konfiguration dieses PCs habe ich sehr viel Wert auf Preis/Leistung und Optik gelegt. Der AMD Ryzen 7 9800X3D ist durch seinen riesigen 3D-V-Cache eine der besten Gaming-CPUs auf dem Markt. Die RTX 5070 in der ASUS TUF OC Edition bietet mit DLSS 4 und Frame Generation Top-Performance bei moderatem Stromverbrauch. CachyOS als primäres OS liefert durch den optimierten BORE/EEVDF-Kernel spürbar mehr Systemresponsivität im Alltag und beim Coden."
+
+# ── Links / Visitenkarte ────────────────────────────────────────────────
+links.desc: "Alle Profile, Kontaktwege und die digitale Visitenkarte von Sandro Exenberger auf einen Blick."
+links.div_contact: "Kontakt"
+links.div_card: "Visitenkarte"
+links.div_portfolio: "Portfolio"
+links.div_social: "Social"
+links.vcard_title: "Kontakt speichern"
+links.vcard_sub: "Visitenkarte (.vcf) herunterladen"
+
+# ── Kontakt ─────────────────────────────────────────────────────────────
+contact.desc: "Schreib Sandro Exenberger eine Nachricht – sie landet direkt auf dem Smartphone."
+contact.title: "Schreib mir eine Nachricht"
+contact.head: "Ich antworte schnellstmöglich – deine Nachricht landet direkt auf meinem Smartphone."
+contact.f_name: "Name"
+contact.f_name_ph: "Wie heißt du?"
+contact.f_name_err: "Name ist erforderlich"
+contact.f_email: "E-Mail"
+contact.f_email_ph: "deine@email.at"
+contact.f_email_err: "Gültige E-Mail erforderlich"
+contact.f_phone: "Telefon (optional)"
+contact.f_phone_err: "Ungültiges Telefon-Format"
+contact.f_msg: "Nachricht"
+contact.f_msg_ph: "Was möchtest du mir mitteilen?"
+contact.f_msg_err: "Nachricht ist erforderlich"
+contact.submit: "Nachricht senden"
+contact.sending: "Wird gesendet …"
+contact.sent: "Nachricht erfolgreich gesendet. Danke dir!"
+contact.err_generic: "Server aktuell nicht erreichbar."
+contact.alt_title: "Alternative Kontaktwege"
+contact.alt_links: "Zu allen Links →"
+
+# ── 404 ─────────────────────────────────────────────────────────────────
+e404.title: "404 – Seite nicht gefunden"
+e404.alert: "> SYSTEM ALERT: resource unreachable"
+e404.text: "Diese Seite existiert nicht oder wurde verschoben."
+
+# ── Impressum ───────────────────────────────────────────────────────────
+imp.title: "Impressum"
+imp.intro: "Informationspflicht laut § 5 E-Commerce-Gesetz, § 14 Unternehmensgesetzbuch, § 63 Gewerbeordnung und Offenlegungspflicht laut § 25 Mediengesetz."
+imp.h_operator: "Betreiber der Webseite"
+imp.h_contact: "Kontakt"
+imp.h_purpose: "Zweck der Webseite"
+imp.p_purpose: "Persönliches Portfolio, Bereitstellung von Informationen über IT- und Elektronik-Projekte sowie Kontaktaufnahme."
+imp.h_liability: "Haftung für Inhalte"
+imp.p_liability: "Ich bemühe mich, korrekte und aktuelle Informationen bereitzustellen. Für die Korrektheit aller Inhalte kann keine Haftung übernommen werden. Sollten Ihnen problematische oder rechtswidrige Inhalte auffallen, bitte ich um umgehende Kontaktaufnahme."
+imp.h_copyright: "Urheberrechtshinweis"
+imp.p_copyright: "Alle Inhalte dieser Webseite unterliegen dem Urheberrecht. Die unerlaubte Nutzung wird rechtlich verfolgt."
+
+# ── Datenschutz ─────────────────────────────────────────────────────────
+ds.title: "Datenschutzerklärung"
+ds.desc: "Datenschutzerklärung gemäß DSGVO für sandro.exemail.at."
+ds.h1: "1. Grundlegendes"
+ds.p1: "Der Schutz Ihrer persönlichen Daten ist mir ein besonderes Anliegen. Ich verarbeite Ihre Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG 2003)."
+ds.h2: "2. Hosting durch GitHub Pages"
+ds.p2: "Diese Website wird bei GitHub Pages gehostet (GitHub Inc., San Francisco, USA). Beim Besuch erfasst GitHub IP-Adressen zu Sicherheitszwecken."
+ds.h3: "3. Kontaktaufnahme"
+ds.p3: "Wenn Sie das Kontaktformular oder E-Mail nutzen, werden Ihre Angaben (Name, E-Mail-Adresse, ggf. Telefonnummer, Nachricht) zwecks Bearbeitung der Anfrage verarbeitet. Das Formular übermittelt die Daten an api.exemail.at. Die Daten werden nicht ohne Ihre Einwilligung weitergegeben."
+ds.h4: "4. Externe Dienste"
+ds.p4: "Es können Inhalte externer Dienste eingebunden sein: Google Fonts (Schriftauslieferung) sowie eine GitHub-Contributions-API zur Anzeige der Commit-Aktivität. Dabei kann Ihre IP-Adresse an die jeweiligen Anbieter übermittelt werden."
+ds.h5: "5. Cookies"
+ds.p5: "Diese Website verwendet keine zustimmungspflichtigen Tracking- oder Werbe-Cookies. Lediglich die gewählte Sprache wird lokal im Browser (localStorage) gespeichert."
+ds.h6: "6. Ihre Rechte"
+ds.p6: "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch. Bei Verstößen können Sie sich an die österreichische Datenschutzbehörde wenden."
+ds.responsible: "Verantwortlich:"

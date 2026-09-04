@@ -9,32 +9,33 @@ description: "Datenschutzerklärung gemäß DSGVO für sandro.exemail.at."
 
 <div class="container container--narrow">
   <div style="margin-bottom:18px;">
-    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} Zur Startseite</a>
+    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} {% include t.html key="ui.back_home" %}</a>
   </div>
 
   <article class="card prose reveal">
-    <h1>Datenschutzerklärung</h1>
+    {% include t.html key="ds.title" tag="h1" %}
 
-    <h2>1. Grundlegendes</h2>
-    <p>Der Schutz Ihrer persönlichen Daten ist mir ein besonderes Anliegen. Ich verarbeite Ihre Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG 2003).</p>
+    {% include t.html key="ds.h1" tag="h2" %}
+    {% include t.html key="ds.p1" tag="p" %}
 
-    <h2>2. Hosting durch GitHub Pages</h2>
-    <p>Diese Website wird bei <strong>GitHub Pages</strong> gehostet (GitHub Inc., San Francisco, USA). Beim Besuch erfasst GitHub IP-Adressen zu Sicherheitszwecken. Weitere Infos: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub-Datenschutzerklärung</a>.</p>
+    {% include t.html key="ds.h2" tag="h2" %}
+    {% include t.html key="ds.p2" tag="p" %}
+    <p><a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement ↗</a></p>
 
-    <h2>3. Kontaktaufnahme</h2>
-    <p>Wenn Sie das Kontaktformular oder E-Mail nutzen, werden Ihre Angaben (Name, E-Mail-Adresse, ggf. Telefonnummer, Nachricht) zwecks Bearbeitung der Anfrage verarbeitet. Das Formular übermittelt die Daten an <strong>api.exemail.at</strong>. Die Daten werden nicht ohne Ihre Einwilligung weitergegeben.</p>
+    {% include t.html key="ds.h3" tag="h2" %}
+    {% include t.html key="ds.p3" tag="p" %}
 
-    <h2>4. Externe Dienste</h2>
-    <p>Es können Inhalte externer Dienste eingebunden sein: <strong>Google Fonts</strong> (Schriftauslieferung) sowie eine <strong>GitHub-Contributions-API</strong> zur Anzeige der Commit-Aktivität. Dabei kann Ihre IP-Adresse an die jeweiligen Anbieter übermittelt werden.</p>
+    {% include t.html key="ds.h4" tag="h2" %}
+    {% include t.html key="ds.p4" tag="p" %}
 
-    <h2>5. Cookies</h2>
-    <p>Diese Website verwendet keine zustimmungspflichtigen Tracking- oder Werbe-Cookies. Lediglich die gewählte Sprache wird lokal im Browser (localStorage) gespeichert.</p>
+    {% include t.html key="ds.h5" tag="h2" %}
+    {% include t.html key="ds.p5" tag="p" %}
 
-    <h2>6. Ihre Rechte</h2>
-    <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch. Bei Verstößen können Sie sich an die österreichische Datenschutzbehörde wenden.</p>
+    {% include t.html key="ds.h6" tag="h2" %}
+    {% include t.html key="ds.p6" tag="p" %}
 
     <div class="prose__foot">
-      <strong>Verantwortlich:</strong> {{ p.name }}<br>
+      <strong>{% include t.html key="ds.responsible" mode="raw" %}</strong> {{ p.name }}<br>
       E-Mail: <a href="mailto:{{ p.email }}">{{ p.email }}</a>
     </div>
   </article>

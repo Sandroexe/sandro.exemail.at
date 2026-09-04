@@ -8,17 +8,15 @@ description: "Projekte von Sandro Exenberger – Self-Hosting, Netzwerktechnik, 
 <div class="container">
   <div class="page-head">
     <h1>[<span class="br">PROJECT_ARCHIVE</span>]</h1>
-    <p data-de="Self-Hosting, Netzwerk-Infrastruktur, Smart Home und Web – laufend erweitert."
-       data-en="Self-hosting, network infrastructure, smart home and web – continuously growing.">Self-Hosting, Netzwerk-Infrastruktur, Smart Home und Web – laufend erweitert.</p>
-    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} <span data-de="Zur&uuml;ck" data-en="Back">Zur&uuml;ck</span></a>
+    {% include t.html key="projects.head" tag="p" %}
+    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} {% include t.html key="ui.back" %}</a>
   </div>
 
   {% include github-activity.html %}
 
   <div class="notice reveal" style="margin:24px 0 28px;">
     <span aria-hidden="true">🚧</span>
-    <span data-de="Diese Seite wird laufend erweitert – neue Projekte kommen bald dazu."
-          data-en="This page is continuously updated – new projects coming soon.">Diese Seite wird laufend erweitert – neue Projekte kommen bald dazu.</span>
+    {% include t.html key="projects.notice" %}
   </div>
 
   <div class="grid-auto">
@@ -30,7 +28,8 @@ description: "Projekte von Sandro Exenberger – Self-Hosting, Netzwerktechnik, 
         <p class="tile__text" data-de="{{ pr.desc }}" data-en="{{ pr.desc_en }}">{{ pr.desc }}</p>
         <div class="tags">{% for t in pr.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
         {% if pr.url == "" %}
-          <span class="tile__link" style="opacity:.45;cursor:default;">{{ pr.url_label }}</span>
+          <span class="tile__link" style="opacity:.45;cursor:default;"
+                data-de="{{ site.data.locales.de['ui.details_soon'] }}" data-en="{{ site.data.locales.en['ui.details_soon'] }}">{{ site.data.locales.de['ui.details_soon'] }}</span>
         {% elsif pr.url contains "mailto:" %}
           <a href="{{ pr.url }}" class="tile__link">{% include icon.html name="mail" %} {{ pr.url_label }}</a>
         {% else %}

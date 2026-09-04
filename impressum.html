@@ -9,29 +9,29 @@ description: "Impressum und Offenlegung gemäß § 5 ECG und § 25 MedienG."
 
 <div class="container container--narrow">
   <div style="margin-bottom:18px;">
-    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} Zur Startseite</a>
+    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} {% include t.html key="ui.back_home" %}</a>
   </div>
 
   <article class="card prose reveal">
-    <h1>Impressum</h1>
-    <p>Informationspflicht laut § 5 E-Commerce-Gesetz, § 14 Unternehmensgesetzbuch, § 63 Gewerbeordnung und Offenlegungspflicht laut § 25 Mediengesetz.</p>
+    {% include t.html key="imp.title" tag="h1" %}
+    {% include t.html key="imp.intro" tag="p" %}
 
-    <h2>Betreiber der Webseite</h2>
+    {% include t.html key="imp.h_operator" tag="h2" %}
     <p><strong>{{ p.name }}</strong><br>{{ p.zip_city }}<br>{{ p.country }}</p>
 
-    <h2>Kontakt</h2>
+    {% include t.html key="imp.h_contact" tag="h2" %}
     <p>
-      Telefon: <a href="tel:{{ p.phone_href }}">{{ p.phone }}</a><br>
+      Telefon / Phone: <a href="tel:{{ p.phone_href }}">{{ p.phone }}</a><br>
       E-Mail: <a href="mailto:{{ p.email }}">{{ p.email }}</a>
     </p>
 
-    <h2>Zweck der Webseite</h2>
-    <p>Persönliches Portfolio, Bereitstellung von Informationen über IT- und Elektronik-Projekte sowie Kontaktaufnahme.</p>
+    {% include t.html key="imp.h_purpose" tag="h2" %}
+    {% include t.html key="imp.p_purpose" tag="p" %}
 
-    <h2>Haftung für Inhalte</h2>
-    <p>Ich bemühe mich, korrekte und aktuelle Informationen bereitzustellen. Für die Korrektheit aller Inhalte kann keine Haftung übernommen werden. Sollten Ihnen problematische oder rechtswidrige Inhalte auffallen, bitte ich um umgehende Kontaktaufnahme.</p>
+    {% include t.html key="imp.h_liability" tag="h2" %}
+    {% include t.html key="imp.p_liability" tag="p" %}
 
-    <h2>Urheberrechtshinweis</h2>
-    <p>Alle Inhalte dieser Webseite unterliegen dem Urheberrecht. Die unerlaubte Nutzung wird rechtlich verfolgt.</p>
+    {% include t.html key="imp.h_copyright" tag="h2" %}
+    {% include t.html key="imp.p_copyright" tag="p" %}
   </article>
 </div>

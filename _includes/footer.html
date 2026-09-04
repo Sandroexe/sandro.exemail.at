@@ -5,7 +5,7 @@
 
     <div class="footer__brand">
       <a href="/index.html" class="footer__logo">sandro<span>.exe</span></a>
-      <p class="footer__tag">{{ p.role }} · {{ p.location }}</p>
+      {% include t.html key="footer.tagline" tag="p" class="footer__tag" %}
     </div>
 
     {% include social-links.html group="footer" style="icons" %}

@@ -8,23 +8,22 @@ description: "Der Arbeitsplatz von Sandro Exenberger – Ryzen 7 9800X3D, RTX 50
 <div class="container">
   <div class="page-head">
     <h1>[<span class="br">NODE_LAB_INFO</span>]</h1>
-    <p data-de="Workstation, Betriebssystem und Toolchain – womit ich täglich arbeite und lerne."
-       data-en="Workstation, operating system and toolchain – what I work and learn with every day.">Workstation, Betriebssystem und Toolchain – womit ich täglich arbeite und lerne.</p>
-    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} <span data-de="Zur&uuml;ck" data-en="Back">Zur&uuml;ck</span></a>
+    {% include t.html key="lab.head" tag="p" %}
+    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} {% include t.html key="ui.back" %}</a>
   </div>
 
   <figure class="lab-photo reveal">
-    <img src="/pc-setup.jpg" alt="Sandros Workstation" loading="lazy">
+    <img src="/pc-setup.jpg" alt="Sandros Workstation" {% include t.html key="lab.photo_alt" mode="attr" %} loading="lazy">
   </figure>
 
-  <div class="eyebrow reveal">Kernkomponenten</div>
+  <div class="eyebrow reveal">{% include t.html key="lab.core" %}</div>
   <div class="grid-auto reveal" style="margin-bottom:30px;">
     <article class="spec" style="--c:#ed1c24;">
       <span class="spec__title" style="color:#ff6b6b;">CPU</span>
       <h3 class="tile__title" style="margin-bottom:10px;">AMD Ryzen 7 9800X3D</h3>
       <dl style="margin:0;">
-        <div class="spec__row"><dt>Kerne / Threads</dt><dd>8 / 16</dd></div>
-        <div class="spec__row"><dt>Architektur</dt><dd>Zen 4</dd></div>
+        <div class="spec__row"><dt data-de="Kerne / Threads" data-en="Cores / threads">Kerne / Threads</dt><dd>8 / 16</dd></div>
+        <div class="spec__row"><dt data-de="Architektur" data-en="Architecture">Architektur</dt><dd>Zen 4</dd></div>
         <div class="spec__row"><dt>L3 V-Cache</dt><dd>96 MB</dd></div>
         <div class="spec__row"><dt>Boost</dt><dd>5.2 GHz</dd></div>
         <div class="spec__row"><dt>TDP</dt><dd>120 W</dd></div>
@@ -35,9 +34,9 @@ description: "Der Arbeitsplatz von Sandro Exenberger – Ryzen 7 9800X3D, RTX 50
       <h3 class="tile__title" style="margin-bottom:10px;">RTX 5070 ASUS TUF OC</h3>
       <dl style="margin:0;">
         <div class="spec__row"><dt>VRAM</dt><dd>12 GB GDDR7</dd></div>
-        <div class="spec__row"><dt>Architektur</dt><dd>Blackwell GB205</dd></div>
+        <div class="spec__row"><dt data-de="Architektur" data-en="Architecture">Architektur</dt><dd>Blackwell GB205</dd></div>
         <div class="spec__row"><dt>Feature</dt><dd>DLSS 4 / Frame Gen</dd></div>
-        <div class="spec__row"><dt>Kühlung</dt><dd>Triple-Fan TUF</dd></div>
+        <div class="spec__row"><dt data-de="Kühlung" data-en="Cooling">Kühlung</dt><dd>Triple-Fan TUF</dd></div>
         <div class="spec__row"><dt>TDP</dt><dd>220 W</dd></div>
       </dl>
     </article>
@@ -45,10 +44,10 @@ description: "Der Arbeitsplatz von Sandro Exenberger – Ryzen 7 9800X3D, RTX 50
       <span class="spec__title" style="color:#d98fff;">RAM</span>
       <h3 class="tile__title" style="margin-bottom:10px;">32 GB DDR5 Corsair</h3>
       <dl style="margin:0;">
-        <div class="spec__row"><dt>Frequenz</dt><dd>6000 MHz</dd></div>
-        <div class="spec__row"><dt>Latenz</dt><dd>CL30</dd></div>
-        <div class="spec__row"><dt>Modell</dt><dd>Vengeance RGB</dd></div>
-        <div class="spec__row"><dt>Profil</dt><dd>AMD EXPO / XMP 3.0</dd></div>
+        <div class="spec__row"><dt data-de="Frequenz" data-en="Frequency">Frequenz</dt><dd>6000 MHz</dd></div>
+        <div class="spec__row"><dt data-de="Latenz" data-en="Latency">Latenz</dt><dd>CL30</dd></div>
+        <div class="spec__row"><dt data-de="Modell" data-en="Model">Modell</dt><dd>Vengeance RGB</dd></div>
+        <div class="spec__row"><dt data-de="Profil" data-en="Profile">Profil</dt><dd>AMD EXPO / XMP 3.0</dd></div>
       </dl>
     </article>
   </div>
@@ -76,8 +75,7 @@ description: "Der Arbeitsplatz von Sandro Exenberger – Ryzen 7 9800X3D, RTX 50
   </div>
 
   <section class="card reveal" style="margin-top:22px;">
-    <h2 style="font-family:var(--mono);font-size:1.15rem;">&gt; System_Summary.txt</h2>
-    <p data-de="Bei der Konfiguration dieses PCs habe ich sehr viel Wert auf Preis/Leistung und Optik gelegt. Der AMD Ryzen 7 9800X3D ist durch seinen riesigen 3D-V-Cache eine der besten Gaming-CPUs auf dem Markt. Die RTX 5070 in der ASUS TUF OC Edition bietet mit DLSS 4 und Frame Generation Top-Performance bei moderatem Stromverbrauch. CachyOS als primäres OS liefert durch den optimierten BORE/EEVDF-Kernel spürbar mehr Systemresponsivität im Alltag und beim Coden."
-       data-en="When configuring this PC I placed great emphasis on price/performance and aesthetics. The AMD Ryzen 7 9800X3D is one of the best gaming CPUs on the market thanks to its huge 3D V-Cache. The RTX 5070 in the ASUS TUF OC edition delivers top performance with DLSS 4 and Frame Generation at moderate power draw. CachyOS as the primary OS noticeably improves system responsiveness in daily use and coding thanks to its optimised BORE/EEVDF kernel.">Bei der Konfiguration dieses PCs habe ich sehr viel Wert auf Preis/Leistung und Optik gelegt. Der AMD Ryzen 7 9800X3D ist durch seinen riesigen 3D-V-Cache eine der besten Gaming-CPUs auf dem Markt. Die RTX 5070 in der ASUS TUF OC Edition bietet mit DLSS 4 und Frame Generation Top-Performance bei moderatem Stromverbrauch. CachyOS als primäres OS liefert durch den optimierten BORE/EEVDF-Kernel spürbar mehr Systemresponsivität im Alltag und beim Coden.</p>
+    {% include t.html key="lab.summary_title" tag="h2" %}
+    {% include t.html key="lab.summary" tag="p" %}
   </section>
 </div>

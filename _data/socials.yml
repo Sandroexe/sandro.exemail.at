@@ -30,8 +30,11 @@ contact_api: "https://api.exemail.at/api/contact"
 #  icon:    Schlüssel für _includes/icon.html
 channels:
   - name:     "Kontaktformular"
+    name_en:  "Contact form"
     subtitle: "Nachricht direkt aufs Smartphone"
+    subtitle_en: "Message straight to my phone"
     value:    "Nachricht senden"
+    value_en: "Send a message"
     url:      "/contact/"
     icon:     "message"
     color:    "#007aff"
@@ -46,6 +49,7 @@ channels:
     groups:   [contact, altcontact, footer]
 
   - name:     "Telefon"
+    name_en:  "Phone"
     subtitle: "+43 676 7406799"
     value:    "+43 676 7406799"
     url:      "tel:+436767406799"
@@ -80,6 +84,7 @@ channels:
   - name:     "XING"
     subtitle: "Sandro Exenberger"
     value:    "Profil ansehen"
+    value_en: "View profile"
     url:      "https://www.xing.com/profile/Sandro_Exenberger/web_profiles?nwt_nav=profile"
     icon:     "xing"
     color:    "#0698a0"
@@ -103,7 +108,9 @@ channels:
 
   - name:     "Credly"
     subtitle: "Verifizierte Badges"
+    subtitle_en: "Verified badges"
     value:    "Badges ansehen"
+    value_en: "View badges"
     url:      "https://www.credly.com/users/sandro-exenberger"
     icon:     "credly"
     color:    "#ff6b35"

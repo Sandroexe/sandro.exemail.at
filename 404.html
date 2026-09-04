@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 404 – Seite nicht gefunden
+title: 404
 description: "Diese Seite existiert nicht oder wurde verschoben."
 permalink: /404.html
 ---
@@ -8,8 +8,8 @@ permalink: /404.html
 <div class="container container--tight" style="text-align:center;padding-top:80px;">
   <div class="card reveal" style="padding:44px 32px;">
     <div style="font-family:var(--mono);font-size:clamp(3rem,14vw,5rem);font-weight:800;color:var(--err);text-shadow:0 0 30px rgba(255,95,86,0.4);line-height:1;">404</div>
-    <p style="font-family:var(--mono);color:var(--accent-bright);margin:18px 0 6px;">&gt; SYSTEM ALERT: resource unreachable</p>
-    <p style="color:var(--text-dim);">Diese Seite existiert nicht oder wurde verschoben.</p>
+    {% include t.html key="e404.alert" tag="p" class="mono-alert" %}
+    {% include t.html key="e404.text" tag="p" %}
     <div style="display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-top:24px;">
       <a href="/index.html" class="btn btn--primary">~/home</a>
       <a href="/links.html" class="btn">~/links</a>
@@ -17,3 +17,7 @@ permalink: /404.html
     </div>
   </div>
 </div>
+
+<style>
+  .mono-alert { font-family: var(--mono); color: var(--accent-bright); margin: 18px 0 6px; }
+</style>

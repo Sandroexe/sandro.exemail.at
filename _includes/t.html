@@ -1,0 +1,21 @@
+{%- comment -%}
+  Übersetzungs-Helfer · zentrale Quelle: _data/locales/{de,en}.yml
+
+  {% include t.html key="home.about_title" %}              → <span data-de data-en>Deutsch</span>
+  {% include t.html key="home.about_title" tag="h2" class="x" %}
+  {% include t.html key="ui.back" mode="raw" %}            → nur der deutsche String (kein Umschalten)
+  {% include t.html key="contact.f_name_ph" mode="attr" %} → data-de="…" data-en="…"  (für Attribute)
+
+  Der Client-Umschalter (assets/js/main.js) tauscht data-de <-> data-en zur Laufzeit.
+{%- endcomment -%}
+{%- assign _k = include.key -%}
+{%- assign _de = site.data.locales.de[_k] -%}
+{%- assign _en = site.data.locales.en[_k] | default: _de -%}
+{%- if include.mode == "attr" -%}
+data-de="{{ _de | escape_once }}" data-en="{{ _en | escape_once }}"
+{%- elsif include.mode == "raw" -%}
+{{ _de }}
+{%- else -%}
+{%- assign _tag = include.tag | default: "span" -%}
+<{{ _tag }}{% if include.class %} class="{{ include.class }}"{% endif %}{% if include.attrs %} {{ include.attrs }}{% endif %} data-de="{{ _de | escape_once }}" data-en="{{ _en | escape_once }}">{{ _de }}</{{ _tag }}>
+{%- endif -%}

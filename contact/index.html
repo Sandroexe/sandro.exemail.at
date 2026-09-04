@@ -5,46 +5,47 @@ title: Kontakt
 description: "Schreib Sandro Exenberger eine Nachricht – sie landet direkt auf dem Smartphone."
 ---
 
+{% assign L = site.data.locales %}
+
 <div class="container container--tight">
   <div class="page-head">
-    <h1 data-de="Schreib mir eine Nachricht" data-en="Send me a message">Schreib mir eine Nachricht</h1>
-    <p data-de="Ich antworte schnellstmöglich – deine Nachricht landet direkt auf meinem Smartphone."
-       data-en="I reply as soon as possible – your message goes straight to my phone.">Ich antworte schnellstmöglich – deine Nachricht landet direkt auf meinem Smartphone.</p>
+    {% include t.html key="contact.title" tag="h1" %}
+    {% include t.html key="contact.head" tag="p" %}
   </div>
 
   <section class="card reveal">
     <form id="contactForm" novalidate>
       <div class="field">
-        <label for="name" data-de="Name" data-en="Name">Name</label>
-        <input type="text" id="name" name="name" required placeholder="Wie heißt du?" data-de="Wie heißt du?" data-en="Your name?">
-        <span class="field__err" data-de="Name ist erforderlich" data-en="Name is required">Name ist erforderlich</span>
+        {% include t.html key="contact.f_name" tag="label" attrs='for="name"' %}
+        <input type="text" id="name" name="name" required {% include t.html key="contact.f_name_ph" mode="attr" %} placeholder="Name">
+        {% include t.html key="contact.f_name_err" class="field__err" %}
       </div>
       <div class="field">
-        <label for="email" data-de="E-Mail" data-en="E-Mail">E-Mail</label>
-        <input type="email" id="email" name="email" required placeholder="deine@email.at" data-de="deine@email.at" data-en="your@email.com">
-        <span class="field__err" data-de="Gültige E-Mail erforderlich" data-en="Valid email required">Gültige E-Mail erforderlich</span>
+        {% include t.html key="contact.f_email" tag="label" attrs='for="email"' %}
+        <input type="email" id="email" name="email" required {% include t.html key="contact.f_email_ph" mode="attr" %} placeholder="E-Mail">
+        {% include t.html key="contact.f_email_err" class="field__err" %}
       </div>
       <div class="field">
-        <label for="phone" data-de="Telefon (optional)" data-en="Phone (optional)">Telefon (optional)</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9 ()+/\-]{6,}" placeholder="+43 676 …" data-de="+43 676 …" data-en="+43 676 …">
-        <span class="field__err" data-de="Ungültiges Telefon-Format" data-en="Invalid phone format">Ungültiges Telefon-Format</span>
+        {% include t.html key="contact.f_phone" tag="label" attrs='for="phone"' %}
+        <input type="tel" id="phone" name="phone" pattern="[0-9 ()+/\-]{6,}" placeholder="+43 676 …">
+        {% include t.html key="contact.f_phone_err" class="field__err" %}
       </div>
       <div class="field">
-        <label for="message" data-de="Nachricht" data-en="Message">Nachricht</label>
-        <textarea id="message" name="message" required placeholder="Was möchtest du mir mitteilen?" data-de="Was möchtest du mir mitteilen?" data-en="What would you like to tell me?"></textarea>
-        <span class="field__err" data-de="Nachricht ist erforderlich" data-en="Message is required">Nachricht ist erforderlich</span>
+        {% include t.html key="contact.f_msg" tag="label" attrs='for="message"' %}
+        <textarea id="message" name="message" required {% include t.html key="contact.f_msg_ph" mode="attr" %} placeholder="Nachricht"></textarea>
+        {% include t.html key="contact.f_msg_err" class="field__err" %}
       </div>
       <button type="submit" id="submitBtn" class="btn btn--primary" style="width:100%;justify-content:center;"
-              data-de="Nachricht senden" data-en="Send message">Nachricht senden</button>
+              data-de="{{ L.de['contact.submit'] }}" data-en="{{ L.en['contact.submit'] }}">{{ L.de['contact.submit'] }}</button>
     </form>
     <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
   </section>
 
   <section class="card reveal" style="margin-top:22px;">
-    <h2 data-de="Alternative Kontaktwege" data-en="Alternative ways to reach me">Alternative Kontaktwege</h2>
+    {% include t.html key="contact.alt_title" tag="h2" %}
     {% include social-links.html group="altcontact" style="list" %}
     <a href="/links.html" class="btn" style="width:100%;justify-content:center;margin-top:16px;"
-       data-de="Zu allen Links →" data-en="All my links →">Zu allen Links →</a>
+       data-de="{{ L.de['contact.alt_links'] }}" data-en="{{ L.en['contact.alt_links'] }}">{{ L.de['contact.alt_links'] }}</a>
   </section>
 </div>
 
@@ -55,16 +56,19 @@ description: "Schreib Sandro Exenberger eine Nachricht – sie landet direkt auf
   var btn = document.getElementById('submitBtn');
   var fields = form.querySelectorAll('input, textarea');
   var ENDPOINT = {{ site.data.socials.contact_api | jsonify }};
+  var I18N = {
+    de: { sending: {{ L.de['contact.sending'] | jsonify }}, sent: {{ L.de['contact.sent'] | jsonify }}, err: {{ L.de['contact.err_generic'] | jsonify }} },
+    en: { sending: {{ L.en['contact.sending'] | jsonify }}, sent: {{ L.en['contact.sent'] | jsonify }}, err: {{ L.en['contact.err_generic'] | jsonify }} }
+  };
+  function t() { return I18N[(window.siteLang && window.siteLang()) === 'en' ? 'en' : 'de']; }
 
-  fields.forEach(function (f) {
-    f.addEventListener('invalid', function (e) { e.preventDefault(); });
-  });
+  fields.forEach(function (f) { f.addEventListener('invalid', function (e) { e.preventDefault(); }); });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var ok = true;
     fields.forEach(function (f) { if (!f.checkValidity()) ok = false; });
-    if (!ok) { form.reportValidity && form.reportValidity(); return; }
+    if (!ok) { if (form.reportValidity) form.reportValidity(); return; }
 
     var payload = {
       name: document.getElementById('name').value.trim(),
@@ -75,7 +79,7 @@ description: "Schreib Sandro Exenberger eine Nachricht – sie landet direkt auf
 
     btn.disabled = true;
     status.className = 'form-status is-loading';
-    status.textContent = window.siteLang && window.siteLang() === 'en' ? 'Sending…' : 'Wird gesendet…';
+    status.textContent = t().sending;
 
     fetch(ENDPOINT, {
       method: 'POST',
@@ -86,18 +90,16 @@ description: "Schreib Sandro Exenberger eine Nachricht – sie landet direkt auf
       .then(function (res) {
         if (res.ok && res.j && res.j.success) {
           status.className = 'form-status is-ok';
-          status.textContent = window.siteLang && window.siteLang() === 'en'
-            ? 'Message sent — thank you!' : 'Nachricht erfolgreich gesendet. Danke dir!';
+          status.textContent = t().sent;
           form.reset();
         } else {
           status.className = 'form-status is-err';
-          status.textContent = 'Fehler: ' + ((res.j && res.j.error) || 'Unbekannter Fehler');
+          status.textContent = 'Fehler / Error: ' + ((res.j && res.j.error) || '?');
         }
       })
       .catch(function () {
         status.className = 'form-status is-err';
-        status.textContent = window.siteLang && window.siteLang() === 'en'
-          ? 'Server currently unreachable.' : 'Server aktuell nicht erreichbar.';
+        status.textContent = t().err;
       })
       .finally(function () { btn.disabled = false; });
   });

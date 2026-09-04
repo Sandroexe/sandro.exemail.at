@@ -1,9 +1,9 @@
 {%- comment -%}
-  Wiederverwendbare Ausgabe der Kanäle aus _data/socials.yml
+  Wiederverwendbare Ausgabe der Kanäle aus _data/socials.yml (zweisprachig)
 
   Parameter:
-    group  – Filter auf channel.groups  (contact | social | footer)  · Pflicht
-    style  – icons | buttons | list                                  · Default: icons
+    group  – Filter auf channel.groups  (contact | altcontact | social | footer)  · Pflicht
+    style  – icons | buttons | list                                              · Default: icons
 
   Beispiele:
     {% include social-links.html group="footer" style="icons" %}
@@ -29,12 +29,14 @@
 <div class="link-stack">
   {%- for c in _items -%}
   {%- assign _ext = c.url | slice: 0, 4 -%}
+  {%- assign _name_en = c.name_en | default: c.name -%}
+  {%- assign _sub_en = c.subtitle_en | default: c.subtitle -%}
   <a href="{{ c.url }}" class="link-card" style="--ch:{{ c.color }};"
      {% if _ext == "http" %}target="_blank" rel="noopener"{% endif %}>
     <span class="link-card__glyph">{% include icon.html name=c.icon %}</span>
     <span class="link-card__body">
-      <span class="link-card__title">{{ c.name }}</span>
-      <span class="link-card__sub">{{ c.subtitle }}</span>
+      <span class="link-card__title" data-de="{{ c.name | escape_once }}" data-en="{{ _name_en | escape_once }}">{{ c.name }}</span>
+      <span class="link-card__sub" data-de="{{ c.subtitle | escape_once }}" data-en="{{ _sub_en | escape_once }}">{{ c.subtitle }}</span>
     </span>
     <span class="link-card__arrow">{% include icon.html name="arrow" %}</span>
   </a>
@@ -45,12 +47,14 @@
 <ul class="channel-list">
   {%- for c in _items -%}
   {%- assign _ext = c.url | slice: 0, 4 -%}
+  {%- assign _name_en = c.name_en | default: c.name -%}
+  {%- assign _val_en = c.value_en | default: c.value -%}
   <li class="channel-list__item" style="--ch:{{ c.color }};">
     <a href="{{ c.url }}"{% if _ext == "http" %} target="_blank" rel="noopener"{% endif %}>
       <span class="channel-list__glyph">{% include icon.html name=c.icon %}</span>
       <span class="channel-list__text">
-        <span class="channel-list__label">{{ c.name }}</span>
-        <span class="channel-list__value">{{ c.value }}</span>
+        <span class="channel-list__label" data-de="{{ c.name | escape_once }}" data-en="{{ _name_en | escape_once }}">{{ c.name }}</span>
+        <span class="channel-list__value" data-de="{{ c.value | escape_once }}" data-en="{{ _val_en | escape_once }}">{{ c.value }}</span>
       </span>
       <span class="channel-list__arrow">{% include icon.html name="arrow" %}</span>
     </a>

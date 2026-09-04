@@ -213,12 +213,15 @@ svg { display: block; }
 .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 .lang-switch {
-  margin-left: 8px; display: inline-flex; border: 1px solid var(--border-strong);
-  border-radius: 999px; overflow: hidden; background: transparent; cursor: pointer;
+  margin-left: 10px; display: inline-flex; align-items: center; gap: 2px;
+  border: 1px solid var(--border-strong); border-radius: 999px; padding: 2px;
+  background: var(--surface-2); cursor: pointer;
   font-family: var(--mono); font-size: 0.7rem; font-weight: 700;
 }
-.lang-switch span { padding: 4px 9px; color: var(--text-mute); transition: all 0.18s var(--ease); }
+.lang-switch:hover { border-color: var(--accent); }
+.lang-switch span { padding: 3px 8px; border-radius: 999px; color: var(--text-mute); transition: all 0.18s var(--ease); }
 .lang-switch span.is-on { background: var(--accent); color: #fff; }
+.lang-switch__sep { color: var(--border-strong); padding: 0 !important; }
 
 @media (max-width: 720px) {
   .nav__toggle { display: flex; }
@@ -508,6 +511,7 @@ svg { display: block; }
 /* ── GITHUB ACTIVITY ───────────────────────────────────────────────────── */
 .gh { }
 .gh__head { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; justify-content: space-between; margin-bottom: 22px; }
+.gh__head p { font-family: var(--mono); font-size: 0.8rem; color: var(--text-mute); margin: 4px 0 0; padding-left: 16px; }
 .gh__badge {
   font-family: var(--mono); font-size: 0.78rem; color: var(--accent-bright);
   background: var(--accent-soft); border: 1px solid var(--border); padding: 6px 14px; border-radius: 999px; white-space: nowrap;

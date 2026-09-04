@@ -1,4 +1,4 @@
-/* GitHub-Aktivitäts-Heatmap · gehört zu _includes/github-activity.html */
+/* GitHub-Aktivitäts-Heatmap · gehört zu _includes/github-activity.html · zweisprachig */
 (function () {
   'use strict';
   var box = document.querySelector('[data-gh-user]');
@@ -8,7 +8,16 @@
   var badge = box.querySelector('[data-gh-badge]');
   var body = box.querySelector('[data-gh-body]');
   var tip = document.querySelector('[data-gh-tip]');
-  var MONTHS = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+
+  var I18N = { de: {}, en: {} };
+  try { I18N.de = JSON.parse(box.getAttribute('data-gh-i18n-de')); } catch (e) {}
+  try { I18N.en = JSON.parse(box.getAttribute('data-gh-i18n-en')); } catch (e) {}
+  function t() {
+    var l = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'de';
+    return I18N[l] || I18N.de;
+  }
+
+  var LAST = null; // { map, total }
 
   function weeks() {
     var out = [], today = new Date();
@@ -50,21 +59,27 @@
     return map;
   }
 
-  function render(map, total) {
+  function stat(num, label) {
+    return '<div class="stat"><span class="stat__num">' + num + '</span><span class="stat__label">' + label + '</span></div>';
+  }
+
+  function render() {
+    if (!LAST) return;
+    var map = LAST.map, total = LAST.total, s = t();
     var cols = weeks();
-    badge.textContent = total + ' Contributions im letzten Jahr';
+    badge.textContent = total + ' ' + s.badge;
 
     var active = 0;
     Object.keys(map).forEach(function (k) { if (map[k] > 0) active++; });
     var avg = total > 0 ? (total / 365).toFixed(1) : '0.0';
 
-    var grid = '<div class="gh__grid" role="img" aria-label="' + total + ' GitHub Contributions im letzten Jahr">';
+    var grid = '<div class="gh__grid" role="img" aria-label="' + total + ' GitHub Contributions">';
     cols.forEach(function (col) {
       grid += '<div class="gh__week">';
       col.forEach(function (date) {
         if (!date) { grid += '<div class="gh__cell" style="visibility:hidden"></div>'; return; }
         var c = map[date] || 0;
-        var label = new Date(date).toLocaleDateString('de-AT', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+        var label = new Date(date).toLocaleDateString(s.locale, { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
         grid += '<div class="gh__cell" data-lvl="' + level(c) + '" data-info="' + c + ' · ' + label + '"></div>';
       });
       grid += '</div>';
@@ -72,25 +87,23 @@
     grid += '</div>';
 
     grid += '<div class="stat-row" style="margin-top:20px;">' +
-      stat(total, 'Contributions') + stat(streak(map), 'Max. Streak') +
-      stat(active, 'Aktive Tage') + stat(avg, 'Ø pro Tag') + '</div>';
+      stat(total, s.contributions) + stat(streak(map), s.streak) +
+      stat(active, s.days) + stat(avg, s.avg) + '</div>';
 
     body.innerHTML = grid;
 
     body.querySelectorAll('.gh__cell[data-info]').forEach(function (cell) {
-      cell.addEventListener('mousemove', function (e) {
+      cell.addEventListener('mousemove', function (ev) {
         tip.textContent = cell.getAttribute('data-info');
         tip.style.display = 'block';
-        tip.style.left = (e.clientX + 14) + 'px';
-        tip.style.top = (e.clientY - 34) + 'px';
+        tip.style.left = (ev.clientX + 14) + 'px';
+        tip.style.top = (ev.clientY - 34) + 'px';
       });
       cell.addEventListener('mouseleave', function () { tip.style.display = 'none'; });
     });
   }
 
-  function stat(num, label) {
-    return '<div class="stat"><span class="stat__num">' + num + '</span><span class="stat__label">' + label + '</span></div>';
-  }
+  window.addEventListener('langchange', render);
 
   fetch('https://github-contributions-api.jogruber.de/v4/' + USER + '?y=last', { signal: AbortSignal.timeout ? AbortSignal.timeout(6000) : undefined })
     .then(function (r) { if (!r.ok) throw 0; return r.json(); })
@@ -98,11 +111,13 @@
       if (!json.contributions) throw 0;
       var map = {}, total = 0;
       json.contributions.forEach(function (c) { map[c.date] = c.count; total += c.count; });
-      render(map, total);
+      LAST = { map: map, total: total };
+      render();
     })
     .catch(function () {
       var map = fallback(), total = 0;
       Object.keys(map).forEach(function (k) { total += map[k]; });
-      render(map, total);
+      LAST = { map: map, total: total };
+      render();
     });
 })();

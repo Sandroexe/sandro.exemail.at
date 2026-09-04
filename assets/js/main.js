@@ -36,26 +36,46 @@
   }
 
   /* ── SPRACHE (DE / EN) ────────────────────────────────────────────────── */
+  var LANG_KEY = 'preferred_language';
   var langBtn = document.getElementById('langSwitch');
-  var lang = 'de';
-  try { lang = localStorage.getItem('lang') || 'de'; } catch (e) {}
+  var root = document.documentElement;
 
-  function applyLang(l) {
+  // Ausgangssprache: von _includes/lang-init.html gesetzt (data-lang) → sonst
+  // Speicher → sonst Browsersprache.
+  var lang = root.getAttribute('data-lang');
+  if (lang !== 'de' && lang !== 'en') {
+    try { lang = localStorage.getItem(LANG_KEY); } catch (e) {}
+  }
+  if (lang !== 'de' && lang !== 'en') {
+    lang = (navigator.language || 'en').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+  }
+
+  function applyLang(l, persist) {
     lang = l;
-    try { localStorage.setItem('lang', l); } catch (e) {}
-    document.documentElement.lang = l;
+    if (persist) { try { localStorage.setItem(LANG_KEY, l); } catch (e) {} }
+    root.lang = l;
+    root.setAttribute('data-lang', l);
     document.querySelectorAll('[data-lang-opt]').forEach(function (s) {
       s.classList.toggle('is-on', s.getAttribute('data-lang-opt') === l);
     });
     document.querySelectorAll('[data-de]').forEach(function (el) {
       var val = l === 'en' ? (el.getAttribute('data-en') || el.getAttribute('data-de')) : el.getAttribute('data-de');
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = val;
+      if (val == null) return;
+      var tag = el.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') el.placeholder = val;
+      else if (tag === 'IMG') el.alt = val;
       else el.innerHTML = val;
     });
+    window.dispatchEvent(new CustomEvent('langchange', { detail: l }));
   }
+
   window.siteLang = function () { return lang; };
-  if (langBtn) langBtn.addEventListener('click', function () { applyLang(lang === 'de' ? 'en' : 'de'); });
-  applyLang(lang);
+  window.setSiteLang = function (l) { if (l === 'de' || l === 'en') applyLang(l, true); };
+
+  if (langBtn) {
+    langBtn.addEventListener('click', function () { applyLang(lang === 'de' ? 'en' : 'de', true); });
+  }
+  applyLang(lang, false);
 
   /* ── SCROLL REVEAL ───────────────────────────────────────────────────── */
   var reveal = document.querySelectorAll('.reveal');
@@ -85,26 +105,31 @@
   }
 
   /* ── TYPEWRITER (Hero) ───────────────────────────────────────────────── */
-  var tw = document.querySelector('[data-typewriter]');
+  var tw = document.querySelector('[data-typewriter-de]');
   if (tw) {
-    var words;
-    try { words = JSON.parse(tw.getAttribute('data-typewriter')); } catch (e) { words = []; }
-    if (words.length) {
-      if (reduceMotion) {
-        tw.textContent = words[0];
-      } else {
-        var wi = 0, ci = 0, del = false;
-        (function step() {
-          var w = words[wi];
-          tw.textContent = del ? w.slice(0, ci - 1) : w.slice(0, ci + 1);
-          del ? ci-- : ci++;
-          var d = del ? 45 : 95;
-          if (!del && ci === w.length) { d = 2000; del = true; }
-          else if (del && ci === 0) { del = false; wi = (wi + 1) % words.length; d = 400; }
-          setTimeout(step, d);
-        })();
-      }
+    var twTimer = null;
+    function twWords() {
+      var raw = (lang === 'en' && tw.getAttribute('data-typewriter-en')) || tw.getAttribute('data-typewriter-de');
+      try { return JSON.parse(raw); } catch (e) { return []; }
     }
+    function twStart() {
+      clearTimeout(twTimer);
+      var words = twWords();
+      if (!words.length) return;
+      if (reduceMotion) { tw.textContent = words[0]; return; }
+      var wi = 0, ci = 0, del = false;
+      (function step() {
+        var w = words[wi];
+        tw.textContent = del ? w.slice(0, ci - 1) : w.slice(0, ci + 1);
+        del ? ci-- : ci++;
+        var d = del ? 45 : 95;
+        if (!del && ci === w.length) { d = 2000; del = true; }
+        else if (del && ci === 0) { del = false; wi = (wi + 1) % words.length; d = 400; }
+        twTimer = setTimeout(step, d);
+      })();
+    }
+    twStart();
+    window.addEventListener('langchange', twStart);
   }
 
   /* ── TO-TOP ──────────────────────────────────────────────────────────── */

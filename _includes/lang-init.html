@@ -1,0 +1,21 @@
+{%- comment -%}
+  Blockierendes Mini-Skript im <head> – läuft VOR dem Rendern des Bodys.
+  1. localStorage('preferred_language') prüfen (de | en)
+  2. sonst Browsersprache: navigator.language beginnt mit "de" → de, sonst en
+  3. Ergebnis speichern und <html lang> / <html data-lang> setzen
+  Der eigentliche Text-Tausch (data-de ↔ data-en) passiert in assets/js/main.js.
+{%- endcomment -%}
+<script>
+(function () {
+  var KEY = 'preferred_language', lang;
+  try { lang = localStorage.getItem(KEY); } catch (e) {}
+  if (lang !== 'de' && lang !== 'en') {
+    var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    lang = nav.indexOf('de') === 0 ? 'de' : 'en';
+    try { localStorage.setItem(KEY, lang); } catch (e) {}
+  }
+  var el = document.documentElement;
+  el.lang = lang;
+  el.setAttribute('data-lang', lang);
+})();
+</script>

@@ -27,24 +27,24 @@ description: "Alle Profile, Kontaktwege und die digitale Visitenkarte von Sandro
   </div>
 
   <!-- KONTAKT -->
-  <div class="link-divider">Kontakt</div>
+  <div class="link-divider">{% include t.html key="links.div_contact" %}</div>
   {% include social-links.html group="contact" style="buttons" %}
 
   <!-- VISITENKARTE -->
-  <div class="link-divider">Visitenkarte</div>
+  <div class="link-divider">{% include t.html key="links.div_card" %}</div>
   <div class="link-stack">
     <a href="#" class="link-card" style="--ch:#2fcf6b;" id="vcardBtn">
       <span class="link-card__glyph">{% include icon.html name="user" %}</span>
       <span class="link-card__body">
-        <span class="link-card__title" data-de="Kontakt speichern" data-en="Save contact">Kontakt speichern</span>
-        <span class="link-card__sub" data-de="Visitenkarte (.vcf) herunterladen" data-en="Download vCard (.vcf)">Visitenkarte (.vcf) herunterladen</span>
+        {% include t.html key="links.vcard_title" class="link-card__title" %}
+        {% include t.html key="links.vcard_sub" class="link-card__sub" %}
       </span>
       <span class="link-card__arrow">{% include icon.html name="download" %}</span>
     </a>
   </div>
 
   <!-- PORTFOLIO -->
-  <div class="link-divider">Portfolio</div>
+  <div class="link-divider">{% include t.html key="links.div_portfolio" %}</div>
   <div class="link-stack">
     {% for item in site.data.navigation.primary %}
       {% unless item.key == "links" or item.key == "contact" %}
@@ -61,7 +61,7 @@ description: "Alle Profile, Kontaktwege und die digitale Visitenkarte von Sandro
   </div>
 
   <!-- SOCIAL -->
-  <div class="link-divider">Social</div>
+  <div class="link-divider">{% include t.html key="links.div_social" %}</div>
   {% include social-links.html group="social" style="buttons" %}
 
 </div>

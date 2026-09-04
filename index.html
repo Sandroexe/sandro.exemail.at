@@ -6,6 +6,8 @@ description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerkte
 ---
 
 {% assign p = site.data.socials.profile %}
+{% assign de = site.data.locales.de %}
+{% assign en = site.data.locales.en %}
 
 <div class="container">
 
@@ -15,7 +17,8 @@ description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerkte
          onerror="this.style.display='none'">
     <h1>Sandro Exenberger</h1>
     <p class="hero__role">
-      <span data-de="Ich bin " data-en="I'm a ">Ich bin </span><span data-typewriter='["Elektroniker","Netzwerktechniker","Oldtimerliebhaber","Schülervertreter","Autoliebhaber"]'></span><span class="caret"></span>
+      {% include t.html key="home.role_prefix" %}
+      <span data-typewriter-de='{{ de["home.roles"] | jsonify }}' data-typewriter-en='{{ en["home.roles"] | jsonify }}'></span><span class="caret"></span>
     </p>
     <div class="hero__cta">
       <a href="/projects.html" class="btn btn--primary">~/projects</a>
@@ -29,22 +32,24 @@ description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerkte
 
     <!-- ÜBER MICH -->
     <section class="card card--hover col-7 reveal">
-      <h2 data-de="&Uuml;ber mich" data-en="About me">&Uuml;ber mich</h2>
-      <p data-de="Als Regionalvorstand f&uuml;r das Tiroler Unterland bei der Sch&uuml;lerunion &Ouml;sterreich setze ich mich aktiv f&uuml;r die Anliegen von Sch&uuml;ler:innen ein und bringe meine Kompetenzen in Kommunikation und Konfliktl&ouml;sung ein. Parallel dazu vertrete ich als Sch&uuml;lervertreter an der HTBLVA Anichstra&szlig;e die Interessen von etwa 1600 Sch&uuml;ler:innen im Schulgemeinschaftsausschuss."
-         data-en="As Regional Chairman for the Tyrolean Unterland at the Student Union Austria, I actively advocate for students and contribute my skills in communication and conflict resolution. In parallel, I represent around 1600 students at HTBLVA Anichstra&szlig;e on the school community committee.">Als Regionalvorstand f&uuml;r das Tiroler Unterland bei der Sch&uuml;lerunion &Ouml;sterreich setze ich mich aktiv f&uuml;r die Anliegen von Sch&uuml;ler:innen ein und bringe meine Kompetenzen in Kommunikation und Konfliktl&ouml;sung ein. Parallel dazu vertrete ich als Sch&uuml;lervertreter an der HTBLVA Anichstra&szlig;e die Interessen von etwa 1600 Sch&uuml;ler:innen im Schulgemeinschaftsausschuss.</p>
-      <p data-de="Neben meiner organisatorischen T&auml;tigkeit leite ich den &bdquo;HTL-Incubator&ldquo;, einen Open Maker Space, in dem ich Mitsch&uuml;ler bei der Nutzung moderner Technologien unterst&uuml;tze. Mein technisches Wissen vertiefe ich durch meine Ausbildung in Elektronik und Technischer Informatik sowie durch meine CCNA-Zertifizierung."
-         data-en="Alongside my organisational work I run the &bdquo;HTL-Incubator&ldquo;, an open maker space where I help fellow students use modern technology. I deepen my technical knowledge through my training in electronics and technical computer science and my CCNA certification.">Neben meiner organisatorischen T&auml;tigkeit leite ich den &bdquo;HTL-Incubator&ldquo;, einen Open Maker Space, in dem ich Mitsch&uuml;ler bei der Nutzung moderner Technologien unterst&uuml;tze. Mein technisches Wissen vertiefe ich durch meine Ausbildung in Elektronik und Technischer Informatik sowie durch meine CCNA-Zertifizierung.</p>
+      {% include t.html key="home.about_title" tag="h2" %}
+      {% include t.html key="home.about_p1" tag="p" %}
+      {% include t.html key="home.about_p2" tag="p" %}
     </section>
 
     <!-- TECH STACK -->
     <section class="card card--hover col-5 reveal">
-      <h2>Tech Stack</h2>
-      {% assign skills = "Linux / Debian &amp; CachyOS|Fortgeschritten|88%,Netzwerktechnik (CCNA)|Zertifiziert &#10003;|92%,IoT &amp; Elektronik|Erfahren|75%,Chatbot &amp; Python|Fortgeschritten|80%,Hardware / Maker|Erfahren|72%" | split: "," %}
-      {% for s in skills %}
-        {% assign parts = s | split: "|" %}
+      {% include t.html key="home.stack_title" tag="h2" %}
+      {% assign skde = de["home.skills"] %}
+      {% assign sken = en["home.skills"] %}
+      {% for s in skde %}
+        {% assign se = sken[forloop.index0] %}
         <div class="skill">
-          <div class="skill__row"><span>{{ parts[0] }}</span><span class="skill__badge">{{ parts[1] }}</span></div>
-          <div class="skill__track"><div class="skill__fill" data-value="{{ parts[2] }}"></div></div>
+          <div class="skill__row">
+            <span data-de="{{ s.label }}" data-en="{{ se.label }}">{{ s.label }}</span>
+            <span class="skill__badge" data-de="{{ s.badge }}" data-en="{{ se.badge }}">{{ s.badge }}</span>
+          </div>
+          <div class="skill__track"><div class="skill__fill" data-value="{{ s.value }}"></div></div>
         </div>
       {% endfor %}
     </section>
@@ -55,65 +60,45 @@ description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerkte
     </div>
   </div>
 
-  <!-- CV TIMELINE -->
+  <!-- LEBENSLAUF -->
   <section class="timeline-grid reveal" style="margin-top:30px;">
     <div class="timeline">
-      <h2 data-de="Schullaufbahn" data-en="Education">Schullaufbahn</h2>
+      {% include t.html key="home.edu_title" tag="h2" %}
       <div class="timeline__col">
-        <div class="tl-item">
-          <span class="tl-date">Seit 09/2022</span>
-          <span class="tl-title">Elektronik &amp; Techn. Informatik</span>
-          <span class="tl-org">HTBLVA Anichstra&szlig;e, Innsbruck</span>
-          <p class="tl-desc">Ausbildung zum Elektroniker &amp; Netzwerktechniker. Fokus auf Hardware, Software und Mechanik.</p>
-        </div>
-        <div class="tl-item">
-          <span class="tl-date">2018 &ndash; 2022</span>
-          <span class="tl-title">Mittelschule 2 Kufstein</span>
-          <span class="tl-org">Allgemeinbildung</span>
-          <p class="tl-desc">Abschluss der Unterstufe mit fundierter Allgemeinbildung.</p>
-        </div>
-        <div class="tl-item">
-          <span class="tl-date">2014 &ndash; 2018</span>
-          <span class="tl-title">Volksschule Schwoich</span>
-          <span class="tl-org">Primarausbildung</span>
-          <p class="tl-desc">Grundschulausbildung in meiner Heimatgemeinde.</p>
-        </div>
+        {% assign edde = de["home.edu"] %}
+        {% assign eden = en["home.edu"] %}
+        {% for it in edde %}
+          {% assign ie = eden[forloop.index0] %}
+          <div class="tl-item">
+            <span class="tl-date" data-de="{{ it.date }}" data-en="{{ ie.date }}">{{ it.date }}</span>
+            <span class="tl-title" data-de="{{ it.title }}" data-en="{{ ie.title }}">{{ it.title }}</span>
+            <span class="tl-org" data-de="{{ it.org }}" data-en="{{ ie.org }}">{{ it.org }}</span>
+            <p class="tl-desc" data-de="{{ it.desc }}" data-en="{{ ie.desc }}">{{ it.desc }}</p>
+          </div>
+        {% endfor %}
       </div>
     </div>
     <div class="timeline">
-      <h2 data-de="Beruf &amp; Engagement" data-en="Work &amp; Engagement">Beruf &amp; Engagement</h2>
+      {% include t.html key="home.work_title" tag="h2" %}
       <div class="timeline__col">
-        <div class="tl-item">
-          <span class="tl-date">Okt 2025 &ndash; heute</span>
-          <span class="tl-title">Regionalvorstand Tiroler Unterland</span>
-          <span class="tl-org">Sch&uuml;lerunion &Ouml;sterreich</span>
-          <p class="tl-desc">Einsatz f&uuml;r Sch&uuml;leranliegen, Kommunikation und Konfliktl&ouml;sung.</p>
-        </div>
-        <div class="tl-item">
-          <span class="tl-date">Okt 2025 &ndash; heute</span>
-          <span class="tl-title">Gew&auml;hlte Sch&uuml;lervertretung</span>
-          <span class="tl-org">HTBLVA Anichstra&szlig;e</span>
-          <p class="tl-desc">Interessenvertretung von ~1600 Sch&uuml;ler:innen im Schulgemeinschaftsausschuss.</p>
-        </div>
-        <div class="tl-item">
-          <span class="tl-date">Jun 2025 &ndash; heute</span>
-          <span class="tl-title">Leitung HTL-Incubator</span>
-          <span class="tl-org">HTBLVA Anichstra&szlig;e</span>
-          <p class="tl-desc">Open Maker Space &ndash; Unterst&uuml;tzung bei modernen Technologien und eigenen Projekten.</p>
-        </div>
-        <div class="tl-item">
-          <span class="tl-date">Jul 2024 &ndash; Aug 2024</span>
-          <span class="tl-title">Praktikum W&ouml;rglWeb</span>
-          <span class="tl-org">Stadtwerke W&ouml;rgl GmbH</span>
-          <p class="tl-desc">Installation &amp; Wartung Netzwerkinfrastruktur, Au&szlig;endienst, Fehlerbehebung, Hardware-Vorkonfiguration.</p>
-        </div>
+        {% assign wde = de["home.work"] %}
+        {% assign wen = en["home.work"] %}
+        {% for it in wde %}
+          {% assign ie = wen[forloop.index0] %}
+          <div class="tl-item">
+            <span class="tl-date" data-de="{{ it.date }}" data-en="{{ ie.date }}">{{ it.date }}</span>
+            <span class="tl-title" data-de="{{ it.title }}" data-en="{{ ie.title }}">{{ it.title }}</span>
+            <span class="tl-org" data-de="{{ it.org }}" data-en="{{ ie.org }}">{{ it.org }}</span>
+            <p class="tl-desc" data-de="{{ it.desc }}" data-en="{{ ie.desc }}">{{ it.desc }}</p>
+          </div>
+        {% endfor %}
       </div>
     </div>
   </section>
 </div>
 
 <!-- ══ TERMINAL (Easter Egg) ══ -->
-<button class="term-open" id="termOpen" type="button" aria-label="Terminal öffnen">
+<button class="term-open" id="termOpen" type="button" aria-label="Terminal / open">
   {% include icon.html name="external" %} <span>_CMD</span>
 </button>
 
@@ -127,12 +112,13 @@ description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerkte
     </div>
     <div class="term-body" id="termBody">
       <div class="term-ascii">SandroOS v3.0 · Linux 6.x-cachyos · Tirol, Austria</div>
-      <p style="color:var(--text-mute);margin:0 0 10px;">Willkommen! Klick auf einen Chip oder tippe einen Befehl.</p>
+      {% include t.html key="term.intro" tag="p" %}
       <div class="term-chips" id="termChips"></div>
     </div>
     <div class="term-input">
       <span class="term-prompt">guest@sandro:~$</span>
-      <input type="text" id="termIn" autocomplete="off" spellcheck="false" placeholder="Befehl eingeben…">
+      <input type="text" id="termIn" autocomplete="off" spellcheck="false" placeholder="…"
+             data-de="Befehl eingeben…" data-en="Type a command…">
     </div>
   </div>
 </div>
@@ -163,6 +149,7 @@ description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerkte
   .term-bar__title { margin-left: 10px; color: var(--text-mute); font-size: 0.78rem; }
   .term-body { flex: 1; overflow-y: auto; padding: 16px 18px; color: #6fd08c; line-height: 1.6; }
   .term-ascii { color: var(--text-mute); font-size: 0.76rem; margin-bottom: 10px; }
+  .term-body > p { color: var(--text-mute); margin: 0 0 10px; }
   .term-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
   .term-chip { background: #111418; border: 1px solid var(--border); color: var(--accent-bright); padding: 4px 12px; border-radius: 999px; font-size: 0.76rem; cursor: pointer; transition: all 0.15s var(--ease); }
   .term-chip:hover { background: var(--accent); color: #fff; }
@@ -185,23 +172,23 @@ description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerkte
   if (!open) return;
   var CHIPS = ['help', 'whoami', 'skills', 'fetch', 'contact', 'clear', 'exit'];
 
-  function renderChips() {
-    chipWrap.innerHTML = '';
+  function mkChips(target) {
+    target.innerHTML = '';
     CHIPS.forEach(function (c) {
       var s = document.createElement('span');
       s.className = 'term-chip'; s.textContent = c;
       s.onclick = function () { run(c); };
-      chipWrap.appendChild(s);
+      target.appendChild(s);
     });
   }
-  renderChips();
+  mkChips(chipWrap);
 
   var CMDS = {
-    help: '<div class="term-out"><span class="k" style="color:var(--accent-bright)">whoami</span><span class="v">Wer ist Sandro?</span><br><span class="k" style="color:var(--accent-bright)">skills</span><span class="v">Tech-Skills &amp; Zertifikate</span><br><span class="k" style="color:var(--accent-bright)">fetch</span><span class="v">System-Info</span><br><span class="k" style="color:var(--accent-bright)">contact</span><span class="v">Kontaktdaten</span><br><span class="k" style="color:var(--accent-bright)">clear</span><span class="v">Terminal leeren</span><br><span class="k" style="color:var(--accent-bright)">exit</span><span class="v">Terminal schlie&szlig;en</span></div>',
-    whoami: '<div class="term-out"><span class="k">Rolle</span><span class="v">Elektroniker &amp; Netzwerktechniker</span><br><span class="k">Zertifikat</span><span class="v">Cisco CCNA</span><br><span class="k">Position</span><span class="v">Regionalvorstand Tiroler Unterland</span><br><span class="k">Schule</span><span class="v">HTBLVA Anichstra&szlig;e, Innsbruck</span><br><span class="k">Heimat</span><span class="v">Schwoich, Tirol</span></div>',
-    skills: '<div class="term-out"><span class="k">Linux / CachyOS</span><span class="v">88%</span><br><span class="k">CCNA Netzwerk</span><span class="v">ZERTIFIZIERT</span><br><span class="k">IoT / Elektronik</span><span class="v">75%</span><br><span class="k">Python / Bots</span><span class="v">80%</span><br><span class="k">Hardware</span><span class="v">72%</span></div>',
+    help: '<div class="term-out"><span class="k" style="color:var(--accent-bright)">whoami</span><span class="v">Wer ist Sandro? / Who is Sandro?</span><br><span class="k" style="color:var(--accent-bright)">skills</span><span class="v">Tech-Skills &amp; Zertifikate</span><br><span class="k" style="color:var(--accent-bright)">fetch</span><span class="v">System-Info</span><br><span class="k" style="color:var(--accent-bright)">contact</span><span class="v">Kontakt / contact</span><br><span class="k" style="color:var(--accent-bright)">clear</span><span class="v">Terminal leeren / clear</span><br><span class="k" style="color:var(--accent-bright)">exit</span><span class="v">schlie&szlig;en / close</span></div>',
+    whoami: '<div class="term-out"><span class="k">Rolle / Role</span><span class="v">Elektroniker &amp; Netzwerktechniker</span><br><span class="k">Zertifikat</span><span class="v">Cisco CCNA</span><br><span class="k">Position</span><span class="v">Regionalvorstand Tiroler Unterland</span><br><span class="k">Schule / School</span><span class="v">HTBLVA Anichstra&szlig;e, Innsbruck</span><br><span class="k">Heimat / Home</span><span class="v">Schwoich, Tirol</span></div>',
+    skills: '<div class="term-out"><span class="k">Linux / CachyOS</span><span class="v">88%</span><br><span class="k">CCNA</span><span class="v">CERTIFIED</span><br><span class="k">IoT / Elektronik</span><span class="v">75%</span><br><span class="k">Python / Bots</span><span class="v">80%</span><br><span class="k">Hardware</span><span class="v">72%</span></div>',
     fetch: '<div class="term-out"><span class="k">OS</span><span class="v">CachyOS + Windows 11 [Dual-Boot]</span><br><span class="k">CPU</span><span class="v">AMD Ryzen 7 9800X3D</span><br><span class="k">GPU</span><span class="v">ASUS TUF RTX 5070 OC</span><br><span class="k">RAM</span><span class="v">32 GB DDR5 @ 6000 MHz</span><br><span class="k">Storage</span><span class="v">2 TB NVMe PCIe 5.0</span><br><span class="k">Shell</span><span class="v">zsh + oh-my-zsh</span></div>',
-    contact: '<div class="term-out"><span class="k">E-Mail</span><span class="v"><a href="mailto:sandro@exemail.at">sandro@exemail.at</a></span><br><span class="k">Telefon</span><span class="v">+43 676 7406799</span><br><span class="k">Ort</span><span class="v">Schwoich, Tirol</span><br><span class="k">Web</span><span class="v"><a href="/links.html">sandro.exemail.at/links</a></span></div>'
+    contact: '<div class="term-out"><span class="k">E-Mail</span><span class="v"><a href="mailto:sandro@exemail.at">sandro@exemail.at</a></span><br><span class="k">Telefon / Phone</span><span class="v">+43 676 7406799</span><br><span class="k">Web</span><span class="v"><a href="/links.html">sandro.exemail.at/links</a></span></div>'
   };
 
   function line(cls, html) { var d = document.createElement('div'); d.className = cls; d.innerHTML = html; body.appendChild(d); body.scrollTop = body.scrollHeight; }
@@ -210,16 +197,11 @@ description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerkte
     var cmd = (raw || '').toLowerCase().trim();
     if (!cmd) return;
     line('term-echo', '<span class="term-prompt">guest@sandro:~$</span> ' + cmd);
-    if (cmd === 'clear') { body.innerHTML = ''; renderChipsInto(); return; }
+    if (cmd === 'clear') { body.innerHTML = ''; var w = document.createElement('div'); w.className = 'term-chips'; body.appendChild(w); mkChips(w); return; }
     if (cmd === 'exit') { close(); return; }
     if (CMDS[cmd]) line('', CMDS[cmd]);
     else line('term-out', '<span style="color:var(--err)">bash: ' + cmd + ': command not found</span>');
     input.value = '';
-  }
-  function renderChipsInto() {
-    var w = document.createElement('div'); w.className = 'term-chips';
-    CHIPS.forEach(function (c) { var s = document.createElement('span'); s.className = 'term-chip'; s.textContent = c; s.onclick = function () { run(c); }; w.appendChild(s); });
-    body.appendChild(w);
   }
 
   function openT() { overlay.hidden = false; setTimeout(function () { input.focus(); }, 30); }
@@ -229,10 +211,9 @@ description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerkte
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) close(); });
   input.addEventListener('keydown', function (e) { if (e.key === 'Enter') run(input.value); });
 
-  /* sandro-Sequenz → Akzent-Puls */
   var seq = '';
   document.addEventListener('keydown', function (e) {
-    seq = (seq + e.key.toLowerCase()).slice(-10);
+    seq = (seq + (e.key || '').toLowerCase()).slice(-10);
     if (seq.indexOf('sandro') !== -1) {
       document.querySelectorAll('.card').forEach(function (el) { el.style.borderColor = 'var(--accent)'; });
       seq = '';

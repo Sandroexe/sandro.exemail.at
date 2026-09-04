@@ -19,11 +19,16 @@ _data/
   navigation.yml       # Menüstruktur (Header + Footer)
   certificates.yml     # Zertifikate (Loop in certificates.html)
   projects.yml         # Projekte (Loop in projects.html)
+  locales/de.yml       # Sprachkatalog Deutsch  ┐ identische Schlüssel
+  locales/en.yml       # Sprachkatalog Englisch  ┘
 
 _includes/
   head.html            # Meta-Tags, OpenGraph, Fonts, CSS, JSON-LD
+  lang-init.html       # blockierendes Mini-Skript: Sprache erkennen (localStorage
+                       #   'preferred_language' → navigator.language) & <html lang> setzen
+  t.html               # Übersetzungs-Helfer  {% include t.html key="…" %}
   header.html          # Seitenkopf → bindet nav.html ein
-  nav.html             # Responsive Navigation (Blur, Mobile-Menü, Sprach-Umschalter)
+  nav.html             # Responsive Navigation (Blur, Mobile-Menü, DE|EN-Umschalter)
   footer.html          # Globaler Footer (Socials + Recht aus _data/)
   social-links.html    # Wiederverwendbare Link-Ausgabe (icons | buttons | list)
   icon.html            # Zentrale SVG-Icon-Bibliothek
@@ -50,6 +55,18 @@ assets/
 | `/contact/` | Kontaktformular (→ `api.exemail.at`) + Alternativwege |
 | `/impressum.html`, `/datenschutz.html` | Rechtliches |
 | `/404.html` | Fehlerseite |
+
+## 🌍 Zweisprachigkeit (DE / EN)
+
+- Alle Texte liegen zentral in `_data/locales/{de,en}.yml` (identische Schlüssel).
+- `t.html` rendert je String ein Element mit `data-de` **und** `data-en`; der
+  Client-Umschalter in `assets/js/main.js` tauscht den sichtbaren Text zur Laufzeit
+  (kein Reload, eine URL – gedruckte `links.html`-Links funktionieren immer).
+- **Automatik:** `lang-init.html` prüft beim Laden `localStorage('preferred_language')`,
+  fällt sonst auf `navigator.language` zurück (`de*` → Deutsch, sonst Englisch) und
+  setzt `<html lang>`.
+- **Manuell:** eleganter `DE | EN`-Schalter im Header; die Wahl wird sofort in
+  `localStorage` gespeichert.
 
 ## 🎨 Design
 

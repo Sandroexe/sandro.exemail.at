@@ -1,0 +1,157 @@
+# ══════════════════════════════════════════════════════════════════════════
+#  LANGUAGE CATALOG · English
+#  Counterpart: _data/locales/de.yml  ·  identical keys!
+# ══════════════════════════════════════════════════════════════════════════
+
+# ── UI / Chrome ──────────────────────────────────────────────────────────
+ui.skip:        "Skip to content"
+ui.menu:        "Toggle menu"
+ui.lang:        "Switch language"
+ui.to_top:      "Scroll to top"
+ui.back:        "Back"
+ui.back_home:   "Back to home"
+ui.details_soon: "Details coming soon"
+ui.verify:      "Verify"
+ui.active:      "Active"
+ui.done:        "Completed"
+
+footer.tagline: "Electronics · Networking · Schwoich, Tyrol"
+
+# ── GitHub activity (component) ─────────────────────────────────────────
+gh.title:       "GitHub Activity"
+gh.sub:         "@Sandroexe · last year"
+gh.loading:     "Connecting to GitHub …"
+gh.less:        "less"
+gh.more:        "more"
+gh.badge_suffix: "contributions in the last year"
+gh.stat_contributions: "Contributions"
+gh.stat_streak: "Max. streak"
+gh.stat_days:   "Active days"
+gh.stat_avg:    "Avg. / day"
+
+# ── Home ────────────────────────────────────────────────────────────────
+home.role_prefix: "I'm a"
+home.about_title: "About me"
+home.about_p1: "As Regional Chairman for the Tyrolean Unterland at the Student Union Austria, I actively advocate for students and contribute my skills in communication and conflict resolution. In parallel, I represent around 1600 students at HTBLVA Anichstraße on the school community committee."
+home.about_p2: "Alongside my organisational work I run the „HTL-Incubator“, an open maker space where I help fellow students use modern technology. I deepen my technical knowledge through my training in electronics and technical computer science and my CCNA certification."
+home.stack_title: "Tech Stack"
+home.edu_title: "Education"
+home.work_title: "Work & Engagement"
+home.desc: "Sandro Exenberger – electronics technician, CCNA-certified network engineer, Linux enthusiast and student representative from Tyrol."
+
+home.roles:
+  - "electronics technician"
+  - "network engineer"
+  - "classic-car enthusiast"
+  - "student representative"
+  - "car enthusiast"
+
+home.skills:
+  - { label: "Linux / Debian &amp; CachyOS",   badge: "Advanced",          value: "88%" }
+  - { label: "Networking (CCNA)",              badge: "Certified &#10003;", value: "92%" }
+  - { label: "IoT &amp; electronics",          badge: "Experienced",       value: "75%" }
+  - { label: "Chatbot &amp; Python",           badge: "Advanced",          value: "80%" }
+  - { label: "Hardware / maker",               badge: "Experienced",       value: "72%" }
+
+home.edu:
+  - { date: "Since 09/2022", title: "Electronics &amp; Technical Computer Science", org: "HTBLVA Anichstraße, Innsbruck", desc: "Training as an electronics technician &amp; network engineer. Focus on hardware, software and mechanics." }
+  - { date: "2018 – 2022", title: "Mittelschule 2 Kufstein", org: "General education", desc: "Completed lower secondary school with a solid general education." }
+  - { date: "2014 – 2018", title: "Volksschule Schwoich", org: "Primary education", desc: "Primary schooling in my home municipality." }
+
+home.work:
+  - { date: "Oct 2025 – present", title: "Regional Chairman Tyrolean Unterland", org: "Student Union Austria", desc: "Advocating for student concerns, communication and conflict resolution." }
+  - { date: "Oct 2025 – present", title: "Elected student representative", org: "HTBLVA Anichstraße", desc: "Representing ~1600 students on the school community committee." }
+  - { date: "Jun 2025 – present", title: "Head of the HTL-Incubator", org: "HTBLVA Anichstraße", desc: "Open maker space – supporting students with modern technology and their own projects." }
+  - { date: "Jul 2024 – Aug 2024", title: "Internship WörglWeb", org: "Stadtwerke Wörgl GmbH", desc: "Installation &amp; maintenance of network infrastructure, field service, troubleshooting, hardware pre-configuration." }
+
+# ── Terminal ────────────────────────────────────────────────────────────
+term.intro: "Welcome! Click a chip or type a command."
+term.open: "Open terminal"
+
+# ── Projects ────────────────────────────────────────────────────────────
+projects.head: "Self-hosting, network infrastructure, smart home and web – continuously growing."
+projects.notice: "This page is continuously updated – new projects coming soon."
+projects.desc: "Projects by Sandro Exenberger – self-hosting, networking, smart home, IoT and web."
+
+# ── Certificates ────────────────────────────────────────────────────────
+certs.head: "Verified credentials in networking, Linux, AI and communication."
+certs.desc: "Certificates and courses by Sandro Exenberger – Cisco CCNA, Linux (LPIC-1), IoT, AI and soft skills."
+certs.sec_net: "Networking & Security"
+certs.sec_linux: "Linux & Open Source"
+certs.sec_ai: "AI & Technology"
+certs.sec_soft: "Soft Skills & Management"
+
+# ── Lab ─────────────────────────────────────────────────────────────────
+lab.head: "Workstation, operating system and toolchain – what I work and learn with every day."
+lab.desc: "Sandro Exenberger's workstation – Ryzen 7 9800X3D, RTX 5070, CachyOS. Hardware and software setup in detail."
+lab.photo_alt: "Sandro's workstation"
+lab.core: "Core components"
+lab.hw: "Hardware Components"
+lab.sw: "Software Environment"
+lab.summary_title: "&gt; System_Summary.txt"
+lab.summary: "When configuring this PC I placed great emphasis on price/performance and aesthetics. The AMD Ryzen 7 9800X3D is one of the best gaming CPUs on the market thanks to its huge 3D V-Cache. The RTX 5070 in the ASUS TUF OC edition delivers top performance with DLSS 4 and Frame Generation at moderate power draw. CachyOS as the primary OS noticeably improves system responsiveness in daily use and coding thanks to its optimised BORE/EEVDF kernel."
+
+# ── Links / business card ──────────────────────────────────────────────
+links.desc: "All profiles, contact channels and the digital business card of Sandro Exenberger at a glance."
+links.div_contact: "Contact"
+links.div_card: "Business card"
+links.div_portfolio: "Portfolio"
+links.div_social: "Social"
+links.vcard_title: "Save contact"
+links.vcard_sub: "Download business card (.vcf)"
+
+# ── Contact ─────────────────────────────────────────────────────────────
+contact.desc: "Send Sandro Exenberger a message – it goes straight to his phone."
+contact.title: "Send me a message"
+contact.head: "I reply as soon as possible – your message goes straight to my phone."
+contact.f_name: "Name"
+contact.f_name_ph: "Your name?"
+contact.f_name_err: "Name is required"
+contact.f_email: "E-Mail"
+contact.f_email_ph: "your@email.com"
+contact.f_email_err: "Valid email required"
+contact.f_phone: "Phone (optional)"
+contact.f_phone_err: "Invalid phone format"
+contact.f_msg: "Message"
+contact.f_msg_ph: "What would you like to tell me?"
+contact.f_msg_err: "Message is required"
+contact.submit: "Send message"
+contact.sending: "Sending …"
+contact.sent: "Message sent — thank you!"
+contact.err_generic: "Server currently unreachable."
+contact.alt_title: "Alternative ways to reach me"
+contact.alt_links: "All my links →"
+
+# ── 404 ─────────────────────────────────────────────────────────────────
+e404.title: "404 – Page not found"
+e404.alert: "> SYSTEM ALERT: resource unreachable"
+e404.text: "This page does not exist or has been moved."
+
+# ── Legal notice (Impressum) ───────────────────────────────────────────
+imp.title: "Legal Notice"
+imp.intro: "Information obligation under § 5 of the Austrian E-Commerce Act, § 14 of the Company Code, § 63 of the Trade Regulation Act and disclosure obligation under § 25 of the Media Act."
+imp.h_operator: "Website operator"
+imp.h_contact: "Contact"
+imp.h_purpose: "Purpose of the website"
+imp.p_purpose: "Personal portfolio, providing information about IT and electronics projects, and enabling contact."
+imp.h_liability: "Liability for content"
+imp.p_liability: "I strive to provide correct and up-to-date information. No liability can be assumed for the accuracy of all content. If you notice problematic or unlawful content, please contact me immediately."
+imp.h_copyright: "Copyright notice"
+imp.p_copyright: "All content on this website is subject to copyright. Unauthorised use will be prosecuted."
+
+# ── Privacy policy (Datenschutz) ───────────────────────────────────────
+ds.title: "Privacy Policy"
+ds.desc: "GDPR privacy policy for sandro.exemail.at."
+ds.h1: "1. Basics"
+ds.p1: "The protection of your personal data is particularly important to me. I process your data exclusively on the basis of the statutory provisions (GDPR, Austrian TKG 2003)."
+ds.h2: "2. Hosting via GitHub Pages"
+ds.p2: "This website is hosted by GitHub Pages (GitHub Inc., San Francisco, USA). When you visit, GitHub records IP addresses for security purposes."
+ds.h3: "3. Getting in touch"
+ds.p3: "If you use the contact form or email, your details (name, email address, phone number if provided, message) are processed to handle your request. The form submits the data to api.exemail.at. The data is not shared without your consent."
+ds.h4: "4. External services"
+ds.p4: "Content from external services may be embedded: Google Fonts (font delivery) and a GitHub contributions API to display commit activity. Your IP address may be transmitted to the respective providers."
+ds.h5: "5. Cookies"
+ds.p5: "This website uses no consent-requiring tracking or advertising cookies. Only the selected language is stored locally in the browser (localStorage)."
+ds.h6: "6. Your rights"
+ds.p6: "You have the right to information, correction, deletion, restriction, data portability, revocation and objection. In case of violations you can contact the Austrian Data Protection Authority."
+ds.responsible: "Responsible:"
