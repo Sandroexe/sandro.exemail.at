@@ -1,0 +1,33 @@
+# ══════════════════════════════════════════════════════════════════════════
+#  ZENTRALE MENÜSTRUKTUR  ·  navigation.yml
+#  Wird von _includes/nav.html (Header) und _includes/footer.html genutzt.
+#  key   → wird mit page.nav / dem URL-Slug abgeglichen (aktiver Zustand)
+#  label → Anzeigetext (Terminal-Stil)
+#  url   → absolute Route (Dateinamen sind fix, siehe README)
+# ══════════════════════════════════════════════════════════════════════════
+
+primary:
+  - key: home
+    label: "~/home"
+    url: "/index.html"
+  - key: projects
+    label: "~/projects"
+    url: "/projects.html"
+  - key: certificates
+    label: "~/certs"
+    url: "/certificates.html"
+  - key: lab
+    label: "~/lab"
+    url: "/lab.html"
+  - key: links
+    label: "~/links"
+    url: "/links.html"
+  - key: contact
+    label: "~/contact"
+    url: "/contact/"
+
+legal:
+  - label: "Impressum"
+    url: "/impressum.html"
+  - label: "Datenschutz"
+    url: "/datenschutz.html"

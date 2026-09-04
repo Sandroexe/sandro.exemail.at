@@ -1,0 +1,35 @@
+{%- comment -%}
+  Wiederverwendbare GitHub-Aktivitäts-Heatmap (index.html & projects.html).
+  Daten: github-contributions-api.jogruber.de  ·  Fallback: pseudozufällig.
+  Script: /assets/js/github-activity.js
+{%- endcomment -%}
+<section class="card card--hover gh reveal" data-gh-user="Sandroexe">
+  <div class="gh__head">
+    <div>
+      <h2>GitHub&nbsp;Aktivität</h2>
+      <p style="font-family:var(--mono);font-size:0.8rem;color:var(--text-mute);margin:0;padding-left:16px;">@Sandroexe · letztes Jahr</p>
+    </div>
+    <span class="gh__badge" data-gh-badge>● lädt…</span>
+  </div>
+
+  <div data-gh-body>
+    <div class="gh__loading"><i></i><i></i><i></i><span>Verbinde mit GitHub…</span></div>
+  </div>
+
+  <div class="gh__legend">
+    <span>weniger</span>
+    <i style="background:var(--surface-2);"></i>
+    <i style="background:rgba(47,131,255,0.24);"></i>
+    <i style="background:rgba(47,131,255,0.46);"></i>
+    <i style="background:rgba(47,131,255,0.72);"></i>
+    <i style="background:var(--accent);"></i>
+    <span>mehr</span>
+  </div>
+
+  <a href="https://github.com/Sandroexe" target="_blank" rel="noopener"
+     style="display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-family:var(--mono);font-size:0.78rem;color:var(--text-mute);">
+    {% include icon.html name="github" %} github.com/Sandroexe
+  </a>
+</section>
+
+<div class="gh__tip" data-gh-tip></div>

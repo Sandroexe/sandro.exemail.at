@@ -1,0 +1,110 @@
+# ══════════════════════════════════════════════════════════════════════════
+#  ZENTRALE DATENQUELLE  ·  socials.yml
+#  Alle Kontaktdaten, sozialen Profile, Icons & Farben an EINER Stelle.
+#  Ändere einen Wert hier → er aktualisiert sich auf der GESAMTEN Website
+#  (Footer, Links-Seite, social-links-Komponente, Kontaktseite, vCard).
+# ══════════════════════════════════════════════════════════════════════════
+
+# ── Persönliche Basisdaten ────────────────────────────────────────────────
+profile:
+  name:      "Sandro Exenberger"
+  handle:    "@Sandroexe"
+  role:      "Elektronik · Netzwerktechnik"
+  domain:    "exemail.at"
+  location:  "Schwoich, Tirol"
+  zip_city:  "6334 Schwoich"
+  country:   "Österreich"
+  email:     "sandro@exemail.at"
+  phone:         "+43 676 7406799"   # Anzeige-Format
+  phone_href:    "+436767406799"     # tel:-Format
+  avatar:    "/profile.jpg"
+
+# ── Kontaktformular-Backend ───────────────────────────────────────────────
+contact_api: "https://api.exemail.at/api/contact"
+
+# ── Kanäle ───────────────────────────────────────────────────────────────
+#  groups:  contact  → primäre Kontaktwege
+#           social   → soziale Netzwerke
+#           portfolio→ interne Portfolio-Seiten (nur links.html)
+#           footer   → Icon-Reihe im globalen Footer
+#  icon:    Schlüssel für _includes/icon.html
+channels:
+  - name:     "Kontaktformular"
+    subtitle: "Nachricht direkt aufs Smartphone"
+    value:    "Nachricht senden"
+    url:      "/contact/"
+    icon:     "message"
+    color:    "#007aff"
+    groups:   [contact]
+
+  - name:     "E-Mail"
+    subtitle: "sandro@exemail.at"
+    value:    "sandro@exemail.at"
+    url:      "mailto:sandro@exemail.at"
+    icon:     "mail"
+    color:    "#007aff"
+    groups:   [contact, altcontact, footer]
+
+  - name:     "Telefon"
+    subtitle: "+43 676 7406799"
+    value:    "+43 676 7406799"
+    url:      "tel:+436767406799"
+    icon:     "phone"
+    color:    "#27c93f"
+    groups:   [contact, altcontact, footer]
+
+  - name:     "LinkedIn"
+    subtitle: "sandro-exenberger"
+    value:    "in/sandro-exenberger-1a5486315"
+    url:      "https://www.linkedin.com/in/sandro-exenberger-1a5486315/"
+    icon:     "linkedin"
+    color:    "#0a66c2"
+    groups:   [social, footer]
+
+  - name:     "GitHub"
+    subtitle: "@Sandroexe"
+    value:    "@Sandroexe"
+    url:      "https://github.com/Sandroexe"
+    icon:     "github"
+    color:    "#e6e6e6"
+    groups:   [social, footer]
+
+  - name:     "Instagram"
+    subtitle: "@sandro_exe_2008"
+    value:    "@sandro_exe_2008"
+    url:      "https://instagram.com/sandro_exe_2008"
+    icon:     "instagram"
+    color:    "#e1306c"
+    groups:   [social, footer]
+
+  - name:     "XING"
+    subtitle: "Sandro Exenberger"
+    value:    "Profil ansehen"
+    url:      "https://www.xing.com/profile/Sandro_Exenberger/web_profiles?nwt_nav=profile"
+    icon:     "xing"
+    color:    "#0698a0"
+    groups:   [social]
+
+  - name:     "Reddit"
+    subtitle: "u/Sandro_exe08"
+    value:    "u/Sandro_exe08"
+    url:      "https://www.reddit.com/user/Sandro_exe08/"
+    icon:     "reddit"
+    color:    "#ff4500"
+    groups:   [social]
+
+  - name:     "Stack Overflow"
+    subtitle: "sandro-exenberger"
+    value:    "sandro-exenberger"
+    url:      "https://stackoverflow.com/users/32745248/sandro-exenberger"
+    icon:     "stackoverflow"
+    color:    "#f48024"
+    groups:   [social]
+
+  - name:     "Credly"
+    subtitle: "Verifizierte Badges"
+    value:    "Badges ansehen"
+    url:      "https://www.credly.com/users/sandro-exenberger"
+    icon:     "credly"
+    color:    "#ff6b35"
+    groups:   [social]

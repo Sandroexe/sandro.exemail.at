@@ -1,0 +1,63 @@
+# Projekte · Quelle für projects.html (Loop, keine Duplikate)
+- title: "sandro.exemail.at – Portfolio"
+  title_en: "sandro.exemail.at – Portfolio"
+  icon: "🌐"
+  desc: "Diese Website. Aufgebaut mit Jekyll &amp; GitHub Pages: modulare _data/_includes-Architektur, Partikel-Hintergrund, interaktives Terminal, Timeline-CV und responsives Bento-Layout."
+  desc_en: "This website. Built with Jekyll &amp; GitHub Pages: modular _data/_includes architecture, particle background, interactive terminal, timeline CV and a responsive bento layout."
+  tags: ["HTML/CSS", "JavaScript", "Jekyll", "GitHub Pages"]
+  url: "https://github.com/Sandroexe"
+  url_label: "github.com/Sandroexe"
+
+- title: "Eigene Domain &amp; E-Mail (@exemail.at)"
+  title_en: "Custom Domain &amp; E-Mail (@exemail.at)"
+  icon: "📧"
+  desc: "Einrichtung einer eigenen E-Mail-Domain (@exemail.at) für professionelles Hosting und Kommunikation, inklusive DNS-, SPF-, DKIM- und DMARC-Konfiguration."
+  desc_en: "Setup of a custom email domain (@exemail.at) for professional hosting and communication, including DNS, SPF, DKIM and DMARC configuration."
+  tags: ["DNS", "Domain", "E-Mail Hosting"]
+  url: ""
+  url_label: "Details folgen"
+
+- title: "Home Assistant Energie-Dashboard"
+  title_en: "Home Assistant Energy Dashboard"
+  icon: "⚡"
+  desc: "Aufbau eines zentralen Smart-Home-Dashboards zur Überwachung und Optimierung des Energieverbrauchs."
+  desc_en: "Building a central smart-home dashboard for monitoring and optimising energy consumption."
+  tags: ["Home Assistant", "Smart Home", "IoT"]
+  url: ""
+  url_label: "Details folgen"
+
+- title: "AdGuard Home DNS-Server"
+  title_en: "AdGuard Home DNS Server"
+  icon: "🛡️"
+  desc: "Ein privater DNS-Server für netzwerkweites Ad-Blocking, Tracking-Schutz und mehr Privatsphäre."
+  desc_en: "A private DNS server for network-wide ad blocking, tracking protection and more privacy."
+  tags: ["DNS", "AdGuard", "Security"]
+  url: ""
+  url_label: "Details folgen"
+
+- title: "Eigener DynDNS (LXC)"
+  title_en: "Custom DynDNS (LXC)"
+  icon: "🔃"
+  desc: "Ein eigener Dynamic-DNS-Dienst, isoliert in einem LXC-Container auf Proxmox betrieben – für dauerhaften Fernzugriff."
+  desc_en: "A custom dynamic DNS service, running isolated in an LXC container on Proxmox for persistent remote access."
+  tags: ["LXC", "Proxmox", "Networking"]
+  url: ""
+  url_label: "Details folgen"
+
+- title: "Mediathek (Jellyfin &amp; Plex)"
+  title_en: "Media Library (Jellyfin &amp; Plex)"
+  icon: "🎬"
+  desc: "Eine selbst gehostete Media-Server-Lösung mit Jellyfin und Plex zur Verwaltung und zum Streaming von Serien und Filmen."
+  desc_en: "A self-hosted media server solution with Jellyfin and Plex for managing and streaming shows and movies."
+  tags: ["Jellyfin", "Plex", "Self-Hosted"]
+  url: ""
+  url_label: "Details folgen"
+
+- title: "Nächstes Projekt"
+  title_en: "Next project"
+  icon: "➕"
+  desc: "Schreib mir, wenn du Ideen hast oder zusammenarbeiten möchtest. Ich freue mich über Herausforderungen an der Schnittstelle von Hardware, Software und Netzwerken."
+  desc_en: "Write me if you have ideas or want to collaborate. I enjoy challenges at the intersection of hardware, software and networking."
+  tags: ["IoT", "Linux", "Networking"]
+  url: "mailto:sandro@exemail.at"
+  url_label: "sandro@exemail.at"

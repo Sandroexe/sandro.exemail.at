@@ -1,234 +1,83 @@
 ---
 layout: default
-title: "Lab & Setup"
+nav: lab
+title: Lab & Setup
+description: "Der Arbeitsplatz von Sandro Exenberger – Ryzen 7 9800X3D, RTX 5070, CachyOS. Hardware- und Software-Setup im Detail."
 ---
 
-<style>
-    :root {
-        --gpu-color: #76b900;
-        --cpu-color: #ed1c24;
-        --ram-color: #cc44ff;
-        --os-color: #007aff;
-    }
-
-    .setup-visualizer {
-        position: relative;
-        width: 100%;
-        max-width: 960px;
-        margin: 0 auto 120px auto;
-        border-radius: 20px;
-        border: 1px solid var(--border);
-        background: rgba(12,12,12,0.8);
-        overflow: visible;
-        transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .setup-visualizer:hover {
-        border-color: var(--accent);
-        box-shadow: 0 10px 40px var(--accent-glow);
-    }
-
-    .setup-image-wrapper { position: relative; width: 100%; border-radius: 20px; overflow: visible; }
-
-    .main-img {
-        width: 100%; height: auto; display: block;
-        border-radius: 19px; filter: brightness(0.88);
-    }
-
-    /* HOTSPOTS */
-    .hotspot {
-        position: absolute; width: 12px; height: 12px;
-        border-radius: 50%; z-index: 100;
-        transform: translate(-50%, -50%);
-        cursor: pointer;
-    }
-    .hotspot::after {
-        content: ''; position: absolute;
-        top: -8px; left: -8px; right: -8px; bottom: -8px;
-        border-radius: 50%; border: 2px solid currentColor;
-        animation: pulse 2.5s infinite;
-    }
-    @keyframes pulse {
-        0% { transform: scale(0.6); opacity: 1; }
-        100% { transform: scale(2.4); opacity: 0; }
-    }
-
-    /* CONNECTOR LINES */
-    .connector-group { position: absolute; z-index: 50; pointer-events: none; }
-    .line-segment { position: absolute; height: 2px; filter: blur(0.3px); opacity: 0.65; transform-origin: left center; }
-
-    /* HW LABELS */
-    .hw-label {
-        position: absolute;
-        background: rgba(8,8,8,0.95);
-        backdrop-filter: blur(20px);
-        border-radius: 12px; padding: 14px;
-        width: 230px; border: 1px solid #222;
-        z-index: 110;
-        transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.7);
-        cursor: help; pointer-events: auto;
-        overflow: hidden; max-height: 80px;
-    }
-    .hw-label:hover {
-        max-height: 360px; border-color: var(--accent);
-        transform: translateY(-4px);
-    }
-    .hw-label h3 { margin: 0 0 4px 0; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
-    .hw-label p.summary { margin: 0; font-size: 0.92rem; color: #d0d0d0; line-height: 1.5; }
-    .extra-details { margin-top: 12px; padding-top: 10px; border-top: 1px solid #242424; font-size: 0.85rem; color: #888; opacity: 0; transition: opacity 0.3s ease; }
-    .hw-label:hover .extra-details { opacity: 1; }
-    .detail-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
-    .highlight-val { font-weight: 600; color: #f0f0f0; }
-
-    /* SPEC TABLES */
-    .spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 24px; }
-
-    .spec-group {
-        background: var(--card-bg);
-        padding: 24px; border-radius: 14px;
-        border: 1px solid var(--border);
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
-    .spec-group:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 40px var(--accent-glow); }
-
-    .spec-title { color: var(--accent); font-weight: bold; margin-bottom: 14px; display: block; font-family: 'Courier New', monospace; font-size: 0.88rem; letter-spacing: 1px; }
-    .spec-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #111; padding: 9px 0; }
-    .spec-item:last-child { border-bottom: none; }
-    .spec-label { color: #999; font-size: 0.92rem; }
-    .spec-val { color: #e8e8e8; font-size: 0.92rem; text-align: right; font-weight: 500; }
-    .badge { background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
-    .badge-green { background: #27c93f; }
-    .badge-yellow { background: #ffbd2e; color: #000; }
-
-    .summary-box {
-        background: var(--card-bg);
-        padding: 28px; border-radius: 14px;
-        border: 1px solid var(--border);
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
-    .summary-box:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 40px var(--accent-glow); }
-    .summary-box h2 { color: var(--accent); margin-top: 0; font-family: 'Courier New', monospace; border-left: none; padding-left: 0; font-size: 1.3rem; }
-    .summary-box p { color: #b8b8b8; line-height: 1.85; margin: 0; font-size: 1.02rem; }
-
-    @media (max-width: 900px) {
-        .hw-label { position: relative !important; width: 100% !important; top: auto !important; left: auto !important; margin-bottom: 16px; max-height: none !important; }
-        .connector-group, .hotspot { display: none; }
-        .setup-visualizer { margin-bottom: 40px; }
-        .labels-mobile { display: flex; flex-direction: column; gap: 12px; padding: 20px; }
-    }
-    .labels-mobile { display: none; }
-    @media (max-width: 900px) { .labels-mobile { display: flex; } }
-</style>
-
 <div class="container">
-    <div class="page-header">
-        <h1 data-de="[NODE_LAB_INFO]" data-en="[NODE_LAB_INFO]">[NODE_LAB_INFO]</h1>
-        <a href="index.html" class="back-link">&#8592; TERMINATE_SESSION</a>
+  <div class="page-head">
+    <h1>[<span class="br">NODE_LAB_INFO</span>]</h1>
+    <p data-de="Workstation, Betriebssystem und Toolchain – womit ich täglich arbeite und lerne."
+       data-en="Workstation, operating system and toolchain – what I work and learn with every day.">Workstation, Betriebssystem und Toolchain – womit ich täglich arbeite und lerne.</p>
+    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} <span data-de="Zur&uuml;ck" data-en="Back">Zur&uuml;ck</span></a>
+  </div>
+
+  <figure class="lab-photo reveal">
+    <img src="/pc-setup.jpg" alt="Sandros Workstation" loading="lazy">
+  </figure>
+
+  <div class="eyebrow reveal">Kernkomponenten</div>
+  <div class="grid-auto reveal" style="margin-bottom:30px;">
+    <article class="spec" style="--c:#ed1c24;">
+      <span class="spec__title" style="color:#ff6b6b;">CPU</span>
+      <h3 class="tile__title" style="margin-bottom:10px;">AMD Ryzen 7 9800X3D</h3>
+      <dl style="margin:0;">
+        <div class="spec__row"><dt>Kerne / Threads</dt><dd>8 / 16</dd></div>
+        <div class="spec__row"><dt>Architektur</dt><dd>Zen 4</dd></div>
+        <div class="spec__row"><dt>L3 V-Cache</dt><dd>96 MB</dd></div>
+        <div class="spec__row"><dt>Boost</dt><dd>5.2 GHz</dd></div>
+        <div class="spec__row"><dt>TDP</dt><dd>120 W</dd></div>
+      </dl>
+    </article>
+    <article class="spec" style="--c:#76b900;">
+      <span class="spec__title" style="color:#8fd400;">GPU</span>
+      <h3 class="tile__title" style="margin-bottom:10px;">RTX 5070 ASUS TUF OC</h3>
+      <dl style="margin:0;">
+        <div class="spec__row"><dt>VRAM</dt><dd>12 GB GDDR7</dd></div>
+        <div class="spec__row"><dt>Architektur</dt><dd>Blackwell GB205</dd></div>
+        <div class="spec__row"><dt>Feature</dt><dd>DLSS 4 / Frame Gen</dd></div>
+        <div class="spec__row"><dt>Kühlung</dt><dd>Triple-Fan TUF</dd></div>
+        <div class="spec__row"><dt>TDP</dt><dd>220 W</dd></div>
+      </dl>
+    </article>
+    <article class="spec" style="--c:#cc44ff;">
+      <span class="spec__title" style="color:#d98fff;">RAM</span>
+      <h3 class="tile__title" style="margin-bottom:10px;">32 GB DDR5 Corsair</h3>
+      <dl style="margin:0;">
+        <div class="spec__row"><dt>Frequenz</dt><dd>6000 MHz</dd></div>
+        <div class="spec__row"><dt>Latenz</dt><dd>CL30</dd></div>
+        <div class="spec__row"><dt>Modell</dt><dd>Vengeance RGB</dd></div>
+        <div class="spec__row"><dt>Profil</dt><dd>AMD EXPO / XMP 3.0</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <div class="spec-grid reveal">
+    <div class="spec">
+      <span class="spec__title">&gt; Hardware Components</span>
+      <dl style="margin:0;">
+        <div class="spec__row"><dt>CPU</dt><dd>AMD Ryzen 7 9800X3D</dd></div>
+        <div class="spec__row"><dt>GPU</dt><dd>NVIDIA RTX 5070 ASUS TUF OC</dd></div>
+        <div class="spec__row"><dt>RAM</dt><dd>32 GB DDR5 @ 6000 MHz</dd></div>
+        <div class="spec__row"><dt>Storage</dt><dd>2 TB NVMe PCIe 5.0</dd></div>
+      </dl>
     </div>
-
-    <div class="setup-visualizer reveal" id="visualizer">
-        <div class="setup-image-wrapper">
-            <img src="pc-setup.jpg" alt="Sandro's Workstation" class="main-img">
-
-            <div class="connector-group" style="top:34%;left:32%;">
-                <div class="hotspot" style="background:var(--cpu-color);color:var(--cpu-color);box-shadow:0 0 14px var(--cpu-color);"></div>
-                <div class="line-segment" style="width:80px;transform:rotate(210deg);background:var(--cpu-color);box-shadow:0 0 8px var(--cpu-color);"></div>
-                <div class="line-segment" style="left:-70px;top:-40px;width:100px;transform:rotate(180deg);background:var(--cpu-color);"></div>
-                <div class="hw-label" style="top:-88px;left:-330px;">
-                    <h3 style="color:var(--cpu-color);">CPU</h3>
-                    <p class="summary">AMD Ryzen 7 <strong>9800X3D</strong></p>
-                    <div class="extra-details">
-                        <div class="detail-row"><span>Kerne / Threads</span><span class="highlight-val">8 / 16</span></div>
-                        <div class="detail-row"><span>Architektur</span><span class="highlight-val">Zen 4</span></div>
-                        <div class="detail-row"><span>L3 V-Cache</span><span class="highlight-val">96 MB</span></div>
-                        <div class="detail-row"><span>Boost</span><span class="highlight-val">5.2 GHz</span></div>
-                        <div class="detail-row"><span>TDP</span><span class="highlight-val">120W</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="connector-group" style="top:66%;left:48%;">
-                <div class="hotspot" style="background:var(--gpu-color);color:var(--gpu-color);box-shadow:0 0 14px var(--gpu-color);"></div>
-                <div class="line-segment" style="width:60px;transform:rotate(45deg);background:var(--gpu-color);box-shadow:0 0 8px var(--gpu-color);"></div>
-                <div class="line-segment" style="left:42px;top:42px;width:120px;background:var(--gpu-color);"></div>
-                <div class="hw-label" style="top:30px;left:160px;">
-                    <h3 style="color:var(--gpu-color);">GPU</h3>
-                    <p class="summary">RTX <strong>5070 ASUS TUF OC</strong></p>
-                    <div class="extra-details">
-                        <div class="detail-row"><span>VRAM</span><span class="highlight-val">12 GB GDDR7</span></div>
-                        <div class="detail-row"><span>Architektur</span><span class="highlight-val">Blackwell GB205</span></div>
-                        <div class="detail-row"><span>Feature</span><span class="highlight-val">DLSS 4 / Frame Gen</span></div>
-                        <div class="detail-row"><span>K&uuml;hlung</span><span class="highlight-val">Triple-Fan TUF</span></div>
-                        <div class="detail-row"><span>TDP</span><span class="highlight-val">220W</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="connector-group" style="top:28%;left:48.5%;">
-                <div class="hotspot" style="background:var(--ram-color);color:var(--ram-color);box-shadow:0 0 14px var(--ram-color);"></div>
-                <div class="line-segment" style="width:50px;transform:rotate(-45deg);background:var(--ram-color);box-shadow:0 0 8px var(--ram-color);"></div>
-                <div class="line-segment" style="left:35px;top:-35px;width:150px;background:var(--ram-color);"></div>
-                <div class="hw-label" style="top:-63px;left:185px;">
-                    <h3 style="color:var(--ram-color);">RAM</h3>
-                    <p class="summary"><strong>32 GB DDR5</strong> Corsair</p>
-                    <div class="extra-details">
-                        <div class="detail-row"><span>Frequenz</span><span class="highlight-val">6000 MHz</span></div>
-                        <div class="detail-row"><span>Latenz</span><span class="highlight-val">CL30</span></div>
-                        <div class="detail-row"><span>Modell</span><span class="highlight-val">Vengeance RGB</span></div>
-                        <div class="detail-row"><span>Profil</span><span class="highlight-val">AMD EXPO / XMP 3.0</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="labels-mobile">
-            <div class="hw-label" style="position:relative;width:100%;max-height:none;">
-                <h3 style="color:var(--cpu-color);">CPU - AMD Ryzen 7 9800X3D</h3>
-                <div class="extra-details" style="opacity:1;">
-                    <div class="detail-row"><span>Kerne</span><span class="highlight-val">8C/16T</span></div>
-                    <div class="detail-row"><span>Cache</span><span class="highlight-val">96 MB L3</span></div>
-                    <div class="detail-row"><span>Boost</span><span class="highlight-val">5.2 GHz</span></div>
-                </div>
-            </div>
-            <div class="hw-label" style="position:relative;width:100%;max-height:none;">
-                <h3 style="color:var(--gpu-color);">GPU - RTX 5070 ASUS TUF OC</h3>
-                <div class="extra-details" style="opacity:1;">
-                    <div class="detail-row"><span>VRAM</span><span class="highlight-val">12 GB GDDR7</span></div>
-                    <div class="detail-row"><span>Feature</span><span class="highlight-val">DLSS 4</span></div>
-                </div>
-            </div>
-            <div class="hw-label" style="position:relative;width:100%;max-height:none;">
-                <h3 style="color:var(--ram-color);">RAM - 32 GB DDR5 Corsair</h3>
-                <div class="extra-details" style="opacity:1;">
-                    <div class="detail-row"><span>Frequenz</span><span class="highlight-val">6000 MHz</span></div>
-                    <div class="detail-row"><span>Profil</span><span class="highlight-val">AMD EXPO / XMP 3.0</span></div>
-                </div>
-            </div>
-        </div>
+    <div class="spec">
+      <span class="spec__title">&gt; Software Environment</span>
+      <dl style="margin:0;">
+        <div class="spec__row"><dt>Primary OS</dt><dd><span class="badge badge--ok">CachyOS (Arch)</span></dd></div>
+        <div class="spec__row"><dt>Secondary OS</dt><dd>Windows 11 Pro</dd></div>
+        <div class="spec__row"><dt>Boot</dt><dd><span class="badge badge--warn">Dual-Boot</span></dd></div>
+        <div class="spec__row"><dt>Shell</dt><dd>ZSH + Oh-My-Zsh</dd></div>
+        <div class="spec__row"><dt>Kernel</dt><dd>Linux BORE / EEVDF</dd></div>
+      </dl>
     </div>
+  </div>
 
-    <div class="spec-grid reveal">
-        <div class="spec-group">
-            <span class="spec-title">> Hardware Components</span>
-            <div class="spec-item"><span class="spec-label">CPU</span><span class="spec-val">AMD Ryzen 7 9800X3D</span></div>
-            <div class="spec-item"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA RTX 5070 ASUS TUF OC</span></div>
-            <div class="spec-item"><span class="spec-label">RAM</span><span class="spec-val">32 GB DDR5 @ 6000 MHz</span></div>
-            <div class="spec-item"><span class="spec-label">Storage</span><span class="spec-val">2 TB NVMe PCIe 5.0</span></div>
-        </div>
-        <div class="spec-group">
-            <span class="spec-title">> Software Environment</span>
-            <div class="spec-item"><span class="spec-label">Primary OS</span><span class="spec-val"><span class="badge badge-green">CachyOS (Arch)</span></span></div>
-            <div class="spec-item"><span class="spec-label">Secondary OS</span><span class="spec-val">Windows 11 Pro</span></div>
-            <div class="spec-item"><span class="spec-label">Boot</span><span class="spec-val"><span class="badge badge-yellow">Dual-Boot</span></span></div>
-            <div class="spec-item"><span class="spec-label">Shell</span><span class="spec-val">ZSH + Oh-My-Zsh</span></div>
-            <div class="spec-item"><span class="spec-label">Kernel</span><span class="spec-val">Linux BORE/EEVDF</span></div>
-        </div>
-    </div>
-
-    <div class="summary-box reveal">
-        <h2>&gt; System_Summary.txt</h2>
-        <p data-de="Bei der Konfiguration dieses PCs habe ich sehr viel Wert auf Preis/Leistung und Optik gelegt. Der AMD Ryzen 7 9800X3D ist durch seinen riesigen 3D V-Cache eine der besten Gaming-CPUs auf dem Markt. Die RTX 5070 in der ASUS TUF OC Edition bietet mit DLSS 4 und Frame Generation absolute Top-Performance bei moderatem Stromverbrauch. CachyOS als prim&auml;res OS liefert durch den optimierten BORE/EEVDF-Kernel sp&uuml;rbar mehr Systemresponsivit&auml;t im Alltag und beim Coden." data-en="When configuring this PC I placed great emphasis on price/performance and aesthetics. The AMD Ryzen 7 9800X3D is one of the best gaming CPUs on the market thanks to its massive 3D V-Cache. The RTX 5070 in the ASUS TUF OC Edition delivers absolute top performance with DLSS 4 and Frame Generation at moderate power consumption. CachyOS as the primary OS delivers noticeably better system responsiveness in daily use and coding through its optimized BORE/EEVDF kernel.">Bei der Konfiguration dieses PCs habe ich sehr viel Wert auf Preis/Leistung und Optik gelegt. Der AMD Ryzen 7 9800X3D ist durch seinen riesigen 3D V-Cache eine der besten Gaming-CPUs auf dem Markt. Die RTX 5070 in der ASUS TUF OC Edition bietet mit DLSS 4 und Frame Generation absolute Top-Performance bei moderatem Stromverbrauch. CachyOS als prim&auml;res OS liefert durch den optimierten BORE/EEVDF-Kernel sp&uuml;rbar mehr Systemresponsivit&auml;t im Alltag und beim Coden.</p>
-    </div>
+  <section class="card reveal" style="margin-top:22px;">
+    <h2 style="font-family:var(--mono);font-size:1.15rem;">&gt; System_Summary.txt</h2>
+    <p data-de="Bei der Konfiguration dieses PCs habe ich sehr viel Wert auf Preis/Leistung und Optik gelegt. Der AMD Ryzen 7 9800X3D ist durch seinen riesigen 3D-V-Cache eine der besten Gaming-CPUs auf dem Markt. Die RTX 5070 in der ASUS TUF OC Edition bietet mit DLSS 4 und Frame Generation Top-Performance bei moderatem Stromverbrauch. CachyOS als primäres OS liefert durch den optimierten BORE/EEVDF-Kernel spürbar mehr Systemresponsivität im Alltag und beim Coden."
+       data-en="When configuring this PC I placed great emphasis on price/performance and aesthetics. The AMD Ryzen 7 9800X3D is one of the best gaming CPUs on the market thanks to its huge 3D V-Cache. The RTX 5070 in the ASUS TUF OC edition delivers top performance with DLSS 4 and Frame Generation at moderate power draw. CachyOS as the primary OS noticeably improves system responsiveness in daily use and coding thanks to its optimised BORE/EEVDF kernel.">Bei der Konfiguration dieses PCs habe ich sehr viel Wert auf Preis/Leistung und Optik gelegt. Der AMD Ryzen 7 9800X3D ist durch seinen riesigen 3D-V-Cache eine der besten Gaming-CPUs auf dem Markt. Die RTX 5070 in der ASUS TUF OC Edition bietet mit DLSS 4 und Frame Generation Top-Performance bei moderatem Stromverbrauch. CachyOS als primäres OS liefert durch den optimierten BORE/EEVDF-Kernel spürbar mehr Systemresponsivität im Alltag und beim Coden.</p>
+  </section>
 </div>

@@ -1,493 +1,91 @@
 ---
 layout: default
-title: Links & Kontakt
-description: Alle sozialen Profile, Kontaktmöglichkeiten und die digitale Visitenkarte von Sandro Exenberger auf einen Blick.
+nav: links
+title: Links
+description: "Alle Profile, Kontaktwege und die digitale Visitenkarte von Sandro Exenberger auf einen Blick."
 ---
 
-<style>
-    .links-page {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        max-width: 520px;
-        margin: 0 auto;
-        padding: 20px 0 60px;
-    }
+{% assign p = site.data.socials.profile %}
 
-    /* ── PROFILE CARD ── */
-    .profile-card {
-        width: 100%;
-        background: linear-gradient(135deg, rgba(0,122,255,0.06) 0%, rgba(18,18,18,0.95) 60%);
-        border: 1px solid rgba(0,122,255,0.2);
-        border-radius: 24px;
-        padding: 36px 32px 28px;
-        text-align: center;
-        margin-bottom: 28px;
-        position: relative;
-        overflow: hidden;
-        backdrop-filter: blur(20px);
-        box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
-    }
+<div class="container container--tight">
 
-    /* subtle grid pattern overlay */
-    .profile-card::before {
-        content: '';
-        position: absolute; inset: 0;
-        background-image:
-            linear-gradient(rgba(0,122,255,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,122,255,0.04) 1px, transparent 1px);
-        background-size: 32px 32px;
-        pointer-events: none;
-    }
-
-    /* glowing top accent line */
-    .profile-card::after {
-        content: '';
-        position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
-        background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    }
-
-    .profile-avatar-wrap {
-        position: relative;
-        display: inline-block;
-        margin-bottom: 18px;
-    }
-
-    .profile-avatar {
-        width: 100px; height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid rgba(0,122,255,0.4);
-        display: block;
-        box-shadow: 0 0 0 6px rgba(0,122,255,0.06), 0 0 40px rgba(0,122,255,0.15);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .profile-avatar:hover {
-        transform: scale(1.06);
-        box-shadow: 0 0 0 8px rgba(0,122,255,0.1), 0 0 60px rgba(0,122,255,0.25);
-    }
-
-    /* online indicator */
-    .avatar-status {
-        position: absolute; bottom: 4px; right: 4px;
-        width: 16px; height: 16px; border-radius: 50%;
-        background: #27c93f;
-        border: 2px solid #050505;
-        box-shadow: 0 0 8px #27c93f;
-        animation: status-pulse 2.5s infinite;
-    }
-    @keyframes status-pulse {
-        0%, 100% { box-shadow: 0 0 8px #27c93f; }
-        50% { box-shadow: 0 0 18px #27c93f, 0 0 30px rgba(39,201,63,0.4); }
-    }
-
-    .profile-name {
-        font-size: 1.38rem; font-weight: 800;
-        color: #ffffff; margin-bottom: 6px;
-        letter-spacing: -0.3px;
-    }
-
-    .profile-handle {
-        font-family: 'Courier New', monospace;
-        font-size: 0.78rem; color: var(--accent);
-        margin-bottom: 14px; letter-spacing: 0.5px;
-    }
-
-    .profile-tags {
-        display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
-    }
-    .profile-tag {
-        background: rgba(0,122,255,0.1);
-        border: 1px solid rgba(0,122,255,0.2);
-        color: #888; font-family: 'Courier New', monospace;
-        font-size: 0.72rem; padding: 3px 10px; border-radius: 20px;
-    }
-
-    /* ── LINK BUTTONS ── */
-    .links-list {
-        width: 100%;
-        display: flex; flex-direction: column; gap: 10px;
-    }
-
-    .link-btn {
-        display: flex; align-items: center; gap: 16px;
-        padding: 15px 20px;
-        border-radius: 14px;
-        text-decoration: none;
-        border: 1px solid var(--border);
-        background: rgba(12,12,12,0.8);
-        backdrop-filter: blur(10px);
-        transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 2px 12px rgba(0,0,0,0.4);
-        position: relative; overflow: hidden;
-        opacity: 0; transform: translateY(16px);
-        animation: slide-in 0.4s ease forwards;
-    }
-
-    @keyframes slide-in {
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* staggered entrance */
-    .link-btn:nth-child(1) { animation-delay: 0.05s; }
-    .link-btn:nth-child(2) { animation-delay: 0.12s; }
-    .link-btn:nth-child(3) { animation-delay: 0.19s; }
-    .link-btn:nth-child(4) { animation-delay: 0.26s; }
-    .link-btn:nth-child(5) { animation-delay: 0.33s; }
-    .link-btn:nth-child(6) { animation-delay: 0.40s; }
-    .link-btn:nth-child(7) { animation-delay: 0.47s; }
-    .link-btn:nth-child(8) { animation-delay: 0.54s; }
-    .link-btn:nth-child(9) { animation-delay: 0.61s; }
-    .link-btn:nth-child(10) { animation-delay: 0.68s; }
-
-    /* shine sweep on hover */
-    .link-btn::before {
-        content: '';
-        position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
-        transition: left 0.4s ease;
-        pointer-events: none;
-    }
-    .link-btn:hover::before { left: 150%; }
-
-    .link-btn:hover {
-        transform: translateY(-3px) scale(1.01);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px var(--btn-color, var(--accent));
-        border-color: var(--btn-color, var(--accent));
-    }
-
-    /* colored left accent bar */
-    .link-btn-bar {
-        position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-        background: var(--btn-color, var(--accent));
-        border-radius: 14px 0 0 14px;
-        opacity: 0.7;
-        transition: opacity 0.2s;
-    }
-    .link-btn:hover .link-btn-bar { opacity: 1; }
-
-    .link-icon-wrap {
-        width: 38px; height: 38px; border-radius: 10px;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.06);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.15rem; flex-shrink: 0;
-        transition: background 0.2s, border-color 0.2s;
-    }
-    .link-btn:hover .link-icon-wrap {
-        background: rgba(var(--btn-color-rgb, 0,122,255), 0.12);
-        border-color: var(--btn-color, var(--accent));
-    }
-
-    .link-text { flex: 1; }
-    .link-title {
-        font-weight: 700; font-size: 0.92rem;
-        color: #eeeeee; display: block;
-        transition: color 0.2s;
-        font-family: 'Courier New', monospace;
-        letter-spacing: 0.3px;
-    }
-    .link-btn:hover .link-title { color: #fff; }
-    .link-subtitle {
-        font-size: 0.78rem; color: #666;
-        display: block; margin-top: 2px;
-        font-family: 'Courier New', monospace;
-        transition: color 0.2s;
-    }
-    .link-btn:hover .link-subtitle { color: #666; }
-
-    .link-arrow {
-        color: #2a2a2a; font-size: 1rem;
-        transition: color 0.2s, transform 0.2s;
-        flex-shrink: 0;
-    }
-    .link-btn:hover .link-arrow {
-        color: var(--btn-color, var(--accent));
-        transform: translateX(3px);
-    }
-
-    /* section divider */
-    .links-divider {
-        width: 100%; text-align: center;
-        font-family: 'Courier New', monospace;
-        font-size: 0.7rem; color: #2a2a2a;
-        letter-spacing: 2px; margin: 6px 0 4px;
-        display: flex; align-items: center; gap: 10px;
-    }
-    .links-divider::before, .links-divider::after {
-        content: ''; flex: 1; height: 1px; background: #111;
-    }
-
-    /* ── RESPONSIVE MOBILE ── */
-    @media (max-width: 640px) {
-        .links-page {
-            padding: 10px 16px 40px;
-        }
-        .profile-card {
-            padding: 24px 20px 18px;
-            margin-bottom: 20px;
-        }
-        .profile-avatar {
-            width: 80px;
-            height: 80px;
-        }
-        .profile-name {
-            font-size: 1.2rem;
-        }
-        .profile-handle {
-            font-size: 0.7rem;
-        }
-        .profile-tags {
-            gap: 6px;
-        }
-        .profile-tag {
-            font-size: 0.65rem;
-            padding: 2px 8px;
-        }
-        .link-btn {
-            padding: 12px 16px;
-            gap: 12px;
-        }
-        .link-icon-wrap {
-            width: 32px;
-            height: 32px;
-            font-size: 1rem;
-        }
-        .link-title {
-            font-size: 0.85rem;
-        }
-        .link-subtitle {
-            font-size: 0.7rem;
-        }
-    }
-</style>
-
-<div class="container" style="padding-top:20px;">
-    <div class="links-page">
-
-        <!-- PROFILE CARD -->
-        <div class="profile-card reveal">
-            <div class="profile-avatar-wrap">
-                <img src="profile.jpg" alt="Sandro Exenberger" class="profile-avatar"
-                     onerror="this.src='https://placehold.co/100x100/111/007aff?text=SE'">
-                <div class="avatar-status"></div>
-            </div>
-            <div class="profile-name">Sandro Exenberger</div>
-            <div class="profile-handle">@Sandroexe &nbsp;·&nbsp; exemail.at</div>
-            <div class="profile-tags">
-                <span class="profile-tag">CCNA &#10003;</span>
-                <span class="profile-tag">Linux</span>
-                <span class="profile-tag">IoT</span>
-                <span class="profile-tag">Tirol, AT</span>
-            </div>
-        </div>
-
-        <!-- LINKS -->
-        <div class="links-list">
-
-            <div class="links-divider">KONTAKT</div>
-
-            <a href="/contact/" class="link-btn" style="--btn-color:#007aff; --btn-color-rgb:0,122,255;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">💬</div>
-                <div class="link-text">
-                    <span class="link-title" data-de="Kontaktformular" data-en="Contact Form">Kontaktformular</span>
-                    <span class="link-subtitle" data-de="Nachricht senden" data-en="Send message">Nachricht senden</span>
-                </div>
-                <span class="link-arrow">→</span>
-            </a>
-
-            <a href="mailto:sandro@exemail.at" class="link-btn" style="--btn-color:#007aff; --btn-color-rgb:0,122,255;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">✉️</div>
-                <div class="link-text">
-                    <span class="link-title" data-de="E-Mail" data-en="E-Mail">E-Mail</span>
-                    <span class="link-subtitle">sandro@exemail.at</span>
-                </div>
-                <span class="link-arrow">→</span>
-            </a>
-
-            <a href="tel:+436767406799" class="link-btn" style="--btn-color:#27c93f; --btn-color-rgb:39,201,63;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">📱</div>
-                <div class="link-text">
-                    <span class="link-title" data-de="Anrufen" data-en="Call">Anrufen</span>
-                    <span class="link-subtitle">+43 676 7406799</span>
-                </div>
-                <span class="link-arrow">→</span>
-            </a>
-
-            <div class="links-divider">VISITENKARTE</div>
-
-            <a href="#" class="link-btn" id="vcard-btn" style="--btn-color:#27c93f; --btn-color-rgb:39,201,63;" onclick="downloadVCard(event)">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">👤</div>
-                <div class="link-text">
-                    <span class="link-title" data-de="Kontakt speichern" data-en="Save Contact">Kontakt speichern</span>
-                    <span class="link-subtitle" data-de="Visitenkarte (.vcf) herunterladen" data-en="Download business card (.vcf)">Visitenkarte (.vcf) herunterladen</span>
-                </div>
-                <span class="link-arrow">↓</span>
-            </a>
-
-            <div class="links-divider">PORTFOLIO</div>
-
-            <a href="/index.html" class="link-btn" style="--btn-color:#007aff; --btn-color-rgb:0,122,255;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">🏠</div>
-                <div class="link-text">
-                    <span class="link-title" data-de="Startseite" data-en="Home">Startseite</span>
-                    <span class="link-subtitle">exemail.at</span>
-                </div>
-                <span class="link-arrow">→</span>
-            </a>
-
-            <a href="/projects.html" class="link-btn" style="--btn-color:#007aff; --btn-color-rgb:0,122,255;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">🛠️</div>
-                <div class="link-text">
-                    <span class="link-title" data-de="Projekte" data-en="Projects">Projekte</span>
-                    <span class="link-subtitle">~/projects</span>
-                </div>
-                <span class="link-arrow">→</span>
-            </a>
-
-            <a href="/certificates.html" class="link-btn" style="--btn-color:#007aff; --btn-color-rgb:0,122,255;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">🏅</div>
-                <div class="link-text">
-                    <span class="link-title" data-de="Zertifikate" data-en="Certificates">Zertifikate</span>
-                    <span class="link-subtitle">CCNA &amp; LinkedIn Learning</span>
-                </div>
-                <span class="link-arrow">→</span>
-            </a>
-
-            <div class="links-divider">SOCIAL</div>
-
-            <a href="https://www.linkedin.com/in/sandro-exenberger-1a5486315/" target="_blank" rel="noopener" class="link-btn" style="--btn-color:#0077b5; --btn-color-rgb:0,119,181;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">💼</div>
-                <div class="link-text">
-                    <span class="link-title">LinkedIn</span>
-                    <span class="link-subtitle">sandro-exenberger-1a5486315</span>
-                </div>
-                <span class="link-arrow">↗</span>
-            </a>
-
-            <a href="https://github.com/Sandroexe" target="_blank" rel="noopener" class="link-btn" style="--btn-color:#e0e0e0; --btn-color-rgb:224,224,224;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">🐙</div>
-                <div class="link-text">
-                    <span class="link-title">GitHub</span>
-                    <span class="link-subtitle">@Sandroexe</span>
-                </div>
-                <span class="link-arrow">↗</span>
-            </a>
-
-            <a href="https://instagram.com/sandro_exe_2008" target="_blank" rel="noopener" class="link-btn" style="--btn-color:#e1306c; --btn-color-rgb:225,48,108;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">📸</div>
-                <div class="link-text">
-                    <span class="link-title">Instagram</span>
-                    <span class="link-subtitle">@sandro_exe_2008</span>
-                </div>
-                <span class="link-arrow">↗</span>
-            </a>
-
-            <a href="https://www.xing.com/profile/Sandro_Exenberger/web_profiles?nwt_nav=profile" target="_blank" rel="noopener" class="link-btn" style="--btn-color:#006494; --btn-color-rgb:0,100,148;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">💻</div>
-                <div class="link-text">
-                    <span class="link-title">XING</span>
-                    <span class="link-subtitle">Profil anschauen</span>
-                </div>
-                <span class="link-arrow">↗</span>
-            </a>
-
-            <a href="https://www.reddit.com/user/Sandro_exe08/" target="_blank" rel="noopener" class="link-btn" style="--btn-color:#ff4500; --btn-color-rgb:255,69,0;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">🤖</div>
-                <div class="link-text">
-                    <span class="link-title">Reddit</span>
-                    <span class="link-subtitle">@Sandro_exe08</span>
-                </div>
-                <span class="link-arrow">↗</span>
-            </a>
-
-            <a href="https://www.credly.com/users/sandro-exenberger/edit#credly" target="_blank" rel="noopener" class="link-btn" style="--btn-color:#FF6B35; --btn-color-rgb:255,107,53;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">🏆</div>
-                <div class="link-text">
-                    <span class="link-title">Credly</span>
-                    <span class="link-subtitle">Zertifikate ansehen</span>
-                </div>
-                <span class="link-arrow">↗</span>
-            </a>
-
-            <a href="https://stackoverflow.com/users/32745248/sandro-exenberger" target="_blank" rel="noopener" class="link-btn" style="--btn-color:#F48024; --btn-color-rgb:244,128,36;">
-                <div class="link-btn-bar"></div>
-                <div class="link-icon-wrap">📚</div>
-                <div class="link-text">
-                    <span class="link-title">Stack Overflow</span>
-                    <span class="link-subtitle">sandro-exenberger</span>
-                </div>
-                <span class="link-arrow">↗</span>
-            </a>
-
-        </div>
+  <!-- PROFIL -->
+  <div class="profile reveal">
+    <div class="profile__avatar-wrap">
+      <img src="{{ p.avatar }}" alt="Sandro Exenberger" class="profile__avatar" width="104" height="104"
+           onerror="this.src='https://placehold.co/104x104/0e1116/2f83ff?text=SE'">
+      <span class="profile__status" aria-hidden="true"></span>
     </div>
+    <div class="profile__name">{{ p.name }}</div>
+    <div class="profile__handle">{{ p.handle }} · {{ p.domain }}</div>
+    <div class="chips">
+      <span class="chip">CCNA &#10003;</span>
+      <span class="chip">Linux</span>
+      <span class="chip">IoT</span>
+      <span class="chip">Tirol, AT</span>
+    </div>
+  </div>
+
+  <!-- KONTAKT -->
+  <div class="link-divider">Kontakt</div>
+  {% include social-links.html group="contact" style="buttons" %}
+
+  <!-- VISITENKARTE -->
+  <div class="link-divider">Visitenkarte</div>
+  <div class="link-stack">
+    <a href="#" class="link-card" style="--ch:#2fcf6b;" id="vcardBtn">
+      <span class="link-card__glyph">{% include icon.html name="user" %}</span>
+      <span class="link-card__body">
+        <span class="link-card__title" data-de="Kontakt speichern" data-en="Save contact">Kontakt speichern</span>
+        <span class="link-card__sub" data-de="Visitenkarte (.vcf) herunterladen" data-en="Download vCard (.vcf)">Visitenkarte (.vcf) herunterladen</span>
+      </span>
+      <span class="link-card__arrow">{% include icon.html name="download" %}</span>
+    </a>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <div class="link-divider">Portfolio</div>
+  <div class="link-stack">
+    {% for item in site.data.navigation.primary %}
+      {% unless item.key == "links" or item.key == "contact" %}
+      <a href="{{ item.url }}" class="link-card" style="--ch:#2f83ff;">
+        <span class="link-card__glyph">{% include icon.html name="folder" %}</span>
+        <span class="link-card__body">
+          <span class="link-card__title">{{ item.label }}</span>
+          <span class="link-card__sub">{{ item.url | replace: '/index.html', '/' }}</span>
+        </span>
+        <span class="link-card__arrow">{% include icon.html name="arrow" %}</span>
+      </a>
+      {% endunless %}
+    {% endfor %}
+  </div>
+
+  <!-- SOCIAL -->
+  <div class="link-divider">Social</div>
+  {% include social-links.html group="social" style="buttons" %}
+
 </div>
 
-<!-- stagger delays updated for all buttons -->
-<style>
-    .link-btn:nth-child(1) { animation-delay: 0.00s; }
-    .link-btn:nth-child(2) { animation-delay: 0.07s; }
-    .link-btn:nth-child(3) { animation-delay: 0.14s; }
-    .link-btn:nth-child(4) { animation-delay: 0.21s; }
-    .link-btn:nth-child(5) { animation-delay: 0.28s; }
-    .link-btn:nth-child(6) { animation-delay: 0.35s; }
-    .link-btn:nth-child(7) { animation-delay: 0.42s; }
-    .link-btn:nth-child(8) { animation-delay: 0.49s; }
-    .link-btn:nth-child(9) { animation-delay: 0.56s; }
-    .link-btn:nth-child(10) { animation-delay: 0.63s; }
-    .link-btn:nth-child(11) { animation-delay: 0.70s; }
-    .link-btn:nth-child(12) { animation-delay: 0.77s; }
-    .link-btn:nth-child(13) { animation-delay: 0.84s; }
-    .link-btn:nth-child(14) { animation-delay: 0.91s; }
-    .link-btn:nth-child(15) { animation-delay: 0.98s; }
-</style>
-
 <script>
-function downloadVCard(e) {
-    e.preventDefault();
-    var vcard = [
-        'BEGIN:VCARD',
-        'VERSION:3.0',
-        'FN:Sandro Exenberger',
-        'N:Exenberger;Sandro;;;',
-        'TITLE:',
-        'ORG:',
-        'TEL;TYPE=CELL:+436767406799',
-        'EMAIL;TYPE=INTERNET:sandro@exemail.at',
-        'URL:https://sandro.exemail.at',
-        'X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/sandro-exenberger-1a5486315/',
-        'X-SOCIALPROFILE;TYPE=instagram:https://instagram.com/sandro_exe_2008',
-        'X-SOCIALPROFILE;TYPE=github:https://github.com/Sandroexe',
-        'X-SOCIALPROFILE;TYPE=xing:https://www.xing.com/profile/Sandro_Exenberger/web_profiles?nwt_nav=profile',
-        'X-SOCIALPROFILE;TYPE=reddit:https://www.reddit.com/user/Sandro_exe08/',
-        'X-SOCIALPROFILE;TYPE=stackoverflow:https://stackoverflow.com/users/32745248/sandro-exenberger',
-        'ADR;TYPE=HOME:;;Schwoich;Tirol;;Austria',
-        'NOTE:',
-        'END:VCARD'
-    ].join('\r\n');
-    var blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'Sandro_Exenberger.vcf';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
+document.getElementById('vcardBtn').addEventListener('click', function (e) {
+  e.preventDefault();
+  var vcf = [
+    'BEGIN:VCARD', 'VERSION:3.0',
+    'FN:Sandro Exenberger', 'N:Exenberger;Sandro;;;',
+    'TEL;TYPE=CELL:{{ p.phone_href }}',
+    'EMAIL;TYPE=INTERNET:{{ p.email }}',
+    'URL:{{ "/" | absolute_url }}',
+    {% assign socs = site.data.socials.channels | where_exp: "c", "c.groups contains 'social'" -%}
+    {% for c in socs -%}
+    'X-SOCIALPROFILE;TYPE={{ c.name | downcase | replace: " ", "" }}:{{ c.url }}',
+    {% endfor -%}
+    'ADR;TYPE=HOME:;;{{ p.zip_city }};Tirol;;{{ p.country }}',
+    'END:VCARD'
+  ].join('\r\n');
+  var url = URL.createObjectURL(new Blob([vcf], { type: 'text/vcard;charset=utf-8' }));
+  var a = document.createElement('a');
+  a.href = url; a.download = 'Sandro_Exenberger.vcf';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
 </script>

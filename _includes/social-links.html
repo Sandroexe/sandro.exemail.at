@@ -1,0 +1,60 @@
+{%- comment -%}
+  Wiederverwendbare Ausgabe der Kanäle aus _data/socials.yml
+
+  Parameter:
+    group  – Filter auf channel.groups  (contact | social | footer)  · Pflicht
+    style  – icons | buttons | list                                  · Default: icons
+
+  Beispiele:
+    {% include social-links.html group="footer" style="icons" %}
+    {% include social-links.html group="social" style="buttons" %}
+{%- endcomment -%}
+{%- assign _group = include.group -%}
+{%- assign _style = include.style | default: "icons" -%}
+{%- assign _items = site.data.socials.channels | where_exp: "c", "c.groups contains _group" -%}
+
+{%- if _style == "icons" -%}
+<div class="social-row">
+  {%- for c in _items -%}
+  {%- assign _ext = c.url | slice: 0, 4 -%}
+  <a href="{{ c.url }}" class="social-row__link" style="--ch:{{ c.color }};"
+     title="{{ c.name }}"{% if _ext == "http" %} target="_blank" rel="noopener"{% endif %}>
+    {% include icon.html name=c.icon class="social-row__icon" %}
+    <span class="sr-only">{{ c.name }}</span>
+  </a>
+  {%- endfor -%}
+</div>
+
+{%- elsif _style == "buttons" -%}
+<div class="link-stack">
+  {%- for c in _items -%}
+  {%- assign _ext = c.url | slice: 0, 4 -%}
+  <a href="{{ c.url }}" class="link-card" style="--ch:{{ c.color }};"
+     {% if _ext == "http" %}target="_blank" rel="noopener"{% endif %}>
+    <span class="link-card__glyph">{% include icon.html name=c.icon %}</span>
+    <span class="link-card__body">
+      <span class="link-card__title">{{ c.name }}</span>
+      <span class="link-card__sub">{{ c.subtitle }}</span>
+    </span>
+    <span class="link-card__arrow">{% include icon.html name="arrow" %}</span>
+  </a>
+  {%- endfor -%}
+</div>
+
+{%- elsif _style == "list" -%}
+<ul class="channel-list">
+  {%- for c in _items -%}
+  {%- assign _ext = c.url | slice: 0, 4 -%}
+  <li class="channel-list__item" style="--ch:{{ c.color }};">
+    <a href="{{ c.url }}"{% if _ext == "http" %} target="_blank" rel="noopener"{% endif %}>
+      <span class="channel-list__glyph">{% include icon.html name=c.icon %}</span>
+      <span class="channel-list__text">
+        <span class="channel-list__label">{{ c.name }}</span>
+        <span class="channel-list__value">{{ c.value }}</span>
+      </span>
+      <span class="channel-list__arrow">{% include icon.html name="arrow" %}</span>
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>
+{%- endif -%}

@@ -1,778 +1,244 @@
 ---
-layout: null
+layout: default
+nav: home
+title: Home
+description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerktechniker, Linux-Enthusiast und Schülervertreter aus Tirol."
 ---
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandro Exenberger | Elektronik, Netzwerktechnik & IT-Portfolio</title>
-    
-    <meta name="description" content="Portfolio von Sandro Exenberger: Elektroniker, CCNA-zertifizierter Netzwerktechniker und engagierter Schülervertreter aus Tirol.">
-    <meta name="keywords" content="Sandro Exenberger, HTL Anichstraße, Netzwerktechnik, Elektronik, Portfolio, Tirol, Schwoich">
-    <meta name="author" content="Sandro Exenberger">
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Sandro Exenberger | Elektroniker & Netzwerktechniker">
-    <meta property="og:description" content="Portfolio von Sandro Exenberger: CCNA zertifiziert, Linux-Enthusiast und Regionalvorstand der Schülerunion.">
-    <meta property="og:image" content="https://sandro.exemail.at/profile.jpg">
-    <meta property="og:url" content="https://sandro.exemail.at">
-    
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Sandro Exenberger | Portfolio">
-    <meta name="twitter:description" content="Elektronik & Netzwerktechnik Portfolio.">
-    <meta name="twitter:image" content="https://sandro.exemail.at/profile.jpg">
+{% assign p = site.data.socials.profile %}
 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<div class="container">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Sandro Exenberger",
-      "url": "https://sandro.exemail.at",
-      "jobTitle": "Elektronik & Netzwerktechnik",
-      "alumniOf": {
-        "@type": "Organization",
-        "name": "HTBLVA Anichstraße"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/sandro-exenberger-1a5486315/",
-        "https://github.com/Sandroexe",
-        "https://www.instagram.com/sandro_exe_2008/"
-      ]
+  <!-- HERO -->
+  <header class="hero">
+    <img src="{{ p.avatar }}" alt="Sandro Exenberger" class="hero__avatar" width="128" height="128"
+         onerror="this.style.display='none'">
+    <h1>Sandro Exenberger</h1>
+    <p class="hero__role">
+      <span data-de="Ich bin " data-en="I'm a ">Ich bin </span><span data-typewriter='["Elektroniker","Netzwerktechniker","Oldtimerliebhaber","Schülervertreter","Autoliebhaber"]'></span><span class="caret"></span>
+    </p>
+    <div class="hero__cta">
+      <a href="/projects.html" class="btn btn--primary">~/projects</a>
+      <a href="/certificates.html" class="btn">~/certs</a>
+      <a href="/lab.html" class="btn">~/lab</a>
+      <a href="/links.html" class="btn">~/links</a>
+    </div>
+  </header>
+
+  <div class="bento" style="margin-top:20px;">
+
+    <!-- ÜBER MICH -->
+    <section class="card card--hover col-7 reveal">
+      <h2 data-de="&Uuml;ber mich" data-en="About me">&Uuml;ber mich</h2>
+      <p data-de="Als Regionalvorstand f&uuml;r das Tiroler Unterland bei der Sch&uuml;lerunion &Ouml;sterreich setze ich mich aktiv f&uuml;r die Anliegen von Sch&uuml;ler:innen ein und bringe meine Kompetenzen in Kommunikation und Konfliktl&ouml;sung ein. Parallel dazu vertrete ich als Sch&uuml;lervertreter an der HTBLVA Anichstra&szlig;e die Interessen von etwa 1600 Sch&uuml;ler:innen im Schulgemeinschaftsausschuss."
+         data-en="As Regional Chairman for the Tyrolean Unterland at the Student Union Austria, I actively advocate for students and contribute my skills in communication and conflict resolution. In parallel, I represent around 1600 students at HTBLVA Anichstra&szlig;e on the school community committee.">Als Regionalvorstand f&uuml;r das Tiroler Unterland bei der Sch&uuml;lerunion &Ouml;sterreich setze ich mich aktiv f&uuml;r die Anliegen von Sch&uuml;ler:innen ein und bringe meine Kompetenzen in Kommunikation und Konfliktl&ouml;sung ein. Parallel dazu vertrete ich als Sch&uuml;lervertreter an der HTBLVA Anichstra&szlig;e die Interessen von etwa 1600 Sch&uuml;ler:innen im Schulgemeinschaftsausschuss.</p>
+      <p data-de="Neben meiner organisatorischen T&auml;tigkeit leite ich den &bdquo;HTL-Incubator&ldquo;, einen Open Maker Space, in dem ich Mitsch&uuml;ler bei der Nutzung moderner Technologien unterst&uuml;tze. Mein technisches Wissen vertiefe ich durch meine Ausbildung in Elektronik und Technischer Informatik sowie durch meine CCNA-Zertifizierung."
+         data-en="Alongside my organisational work I run the &bdquo;HTL-Incubator&ldquo;, an open maker space where I help fellow students use modern technology. I deepen my technical knowledge through my training in electronics and technical computer science and my CCNA certification.">Neben meiner organisatorischen T&auml;tigkeit leite ich den &bdquo;HTL-Incubator&ldquo;, einen Open Maker Space, in dem ich Mitsch&uuml;ler bei der Nutzung moderner Technologien unterst&uuml;tze. Mein technisches Wissen vertiefe ich durch meine Ausbildung in Elektronik und Technischer Informatik sowie durch meine CCNA-Zertifizierung.</p>
+    </section>
+
+    <!-- TECH STACK -->
+    <section class="card card--hover col-5 reveal">
+      <h2>Tech Stack</h2>
+      {% assign skills = "Linux / Debian &amp; CachyOS|Fortgeschritten|88%,Netzwerktechnik (CCNA)|Zertifiziert &#10003;|92%,IoT &amp; Elektronik|Erfahren|75%,Chatbot &amp; Python|Fortgeschritten|80%,Hardware / Maker|Erfahren|72%" | split: "," %}
+      {% for s in skills %}
+        {% assign parts = s | split: "|" %}
+        <div class="skill">
+          <div class="skill__row"><span>{{ parts[0] }}</span><span class="skill__badge">{{ parts[1] }}</span></div>
+          <div class="skill__track"><div class="skill__fill" data-value="{{ parts[2] }}"></div></div>
+        </div>
+      {% endfor %}
+    </section>
+
+    <!-- GITHUB -->
+    <div class="col-12">
+      {% include github-activity.html %}
+    </div>
+  </div>
+
+  <!-- CV TIMELINE -->
+  <section class="timeline-grid reveal" style="margin-top:30px;">
+    <div class="timeline">
+      <h2 data-de="Schullaufbahn" data-en="Education">Schullaufbahn</h2>
+      <div class="timeline__col">
+        <div class="tl-item">
+          <span class="tl-date">Seit 09/2022</span>
+          <span class="tl-title">Elektronik &amp; Techn. Informatik</span>
+          <span class="tl-org">HTBLVA Anichstra&szlig;e, Innsbruck</span>
+          <p class="tl-desc">Ausbildung zum Elektroniker &amp; Netzwerktechniker. Fokus auf Hardware, Software und Mechanik.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">2018 &ndash; 2022</span>
+          <span class="tl-title">Mittelschule 2 Kufstein</span>
+          <span class="tl-org">Allgemeinbildung</span>
+          <p class="tl-desc">Abschluss der Unterstufe mit fundierter Allgemeinbildung.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">2014 &ndash; 2018</span>
+          <span class="tl-title">Volksschule Schwoich</span>
+          <span class="tl-org">Primarausbildung</span>
+          <p class="tl-desc">Grundschulausbildung in meiner Heimatgemeinde.</p>
+        </div>
+      </div>
+    </div>
+    <div class="timeline">
+      <h2 data-de="Beruf &amp; Engagement" data-en="Work &amp; Engagement">Beruf &amp; Engagement</h2>
+      <div class="timeline__col">
+        <div class="tl-item">
+          <span class="tl-date">Okt 2025 &ndash; heute</span>
+          <span class="tl-title">Regionalvorstand Tiroler Unterland</span>
+          <span class="tl-org">Sch&uuml;lerunion &Ouml;sterreich</span>
+          <p class="tl-desc">Einsatz f&uuml;r Sch&uuml;leranliegen, Kommunikation und Konfliktl&ouml;sung.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Okt 2025 &ndash; heute</span>
+          <span class="tl-title">Gew&auml;hlte Sch&uuml;lervertretung</span>
+          <span class="tl-org">HTBLVA Anichstra&szlig;e</span>
+          <p class="tl-desc">Interessenvertretung von ~1600 Sch&uuml;ler:innen im Schulgemeinschaftsausschuss.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Jun 2025 &ndash; heute</span>
+          <span class="tl-title">Leitung HTL-Incubator</span>
+          <span class="tl-org">HTBLVA Anichstra&szlig;e</span>
+          <p class="tl-desc">Open Maker Space &ndash; Unterst&uuml;tzung bei modernen Technologien und eigenen Projekten.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Jul 2024 &ndash; Aug 2024</span>
+          <span class="tl-title">Praktikum W&ouml;rglWeb</span>
+          <span class="tl-org">Stadtwerke W&ouml;rgl GmbH</span>
+          <p class="tl-desc">Installation &amp; Wartung Netzwerkinfrastruktur, Au&szlig;endienst, Fehlerbehebung, Hardware-Vorkonfiguration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══ TERMINAL (Easter Egg) ══ -->
+<button class="term-open" id="termOpen" type="button" aria-label="Terminal öffnen">
+  {% include icon.html name="external" %} <span>_CMD</span>
+</button>
+
+<div class="term-overlay" id="termOverlay" hidden>
+  <div class="term-window" role="dialog" aria-label="Terminal">
+    <div class="term-bar">
+      <span class="term-dot" data-close style="background:#ff5f56;cursor:pointer;"></span>
+      <span class="term-dot" style="background:#ffbd2e;"></span>
+      <span class="term-dot" style="background:#27c93f;"></span>
+      <span class="term-bar__title">sandro@sandroOS — bash</span>
+    </div>
+    <div class="term-body" id="termBody">
+      <div class="term-ascii">SandroOS v3.0 · Linux 6.x-cachyos · Tirol, Austria</div>
+      <p style="color:var(--text-mute);margin:0 0 10px;">Willkommen! Klick auf einen Chip oder tippe einen Befehl.</p>
+      <div class="term-chips" id="termChips"></div>
+    </div>
+    <div class="term-input">
+      <span class="term-prompt">guest@sandro:~$</span>
+      <input type="text" id="termIn" autocomplete="off" spellcheck="false" placeholder="Befehl eingeben…">
+    </div>
+  </div>
+</div>
+
+<style>
+  .term-open {
+    position: fixed; right: 22px; bottom: 74px; z-index: 90;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-weight: 700; font-size: 0.82rem;
+    padding: 9px 15px; border-radius: 999px; cursor: pointer;
+    color: var(--accent-bright); background: var(--surface-solid); border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow); transition: all 0.22s var(--ease);
+  }
+  .term-open:hover { background: var(--accent); color: #fff; transform: translateY(-2px); }
+  .term-open .icon { width: 15px; }
+  .term-overlay {
+    position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center;
+    background: rgba(0, 0, 0, 0.86); backdrop-filter: blur(6px); padding: 20px;
+  }
+  .term-window {
+    width: 100%; max-width: 720px; height: min(560px, 82vh);
+    display: flex; flex-direction: column; overflow: hidden;
+    background: #08090c; border: 1px solid var(--border-strong); border-radius: 14px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9); font-family: var(--mono); font-size: 0.9rem;
+  }
+  .term-bar { display: flex; align-items: center; gap: 7px; padding: 12px 15px; background: #101216; border-bottom: 1px solid var(--border); }
+  .term-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .term-bar__title { margin-left: 10px; color: var(--text-mute); font-size: 0.78rem; }
+  .term-body { flex: 1; overflow-y: auto; padding: 16px 18px; color: #6fd08c; line-height: 1.6; }
+  .term-ascii { color: var(--text-mute); font-size: 0.76rem; margin-bottom: 10px; }
+  .term-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .term-chip { background: #111418; border: 1px solid var(--border); color: var(--accent-bright); padding: 4px 12px; border-radius: 999px; font-size: 0.76rem; cursor: pointer; transition: all 0.15s var(--ease); }
+  .term-chip:hover { background: var(--accent); color: #fff; }
+  .term-echo { color: #fff; margin: 8px 0 4px; }
+  .term-out { color: var(--text-dim); margin-bottom: 10px; }
+  .term-out .k { color: var(--text-mute); display: inline-block; min-width: 130px; }
+  .term-out .v { color: var(--text); }
+  .term-input { display: flex; align-items: center; gap: 10px; padding: 11px 18px; border-top: 1px solid var(--border); background: #08090c; }
+  .term-prompt { color: var(--accent-bright); white-space: nowrap; font-size: 0.85rem; }
+  #termIn { flex: 1; background: none; border: none; outline: none; color: #fff; font: inherit; }
+</style>
+
+<script>
+(function () {
+  var open = document.getElementById('termOpen'),
+      overlay = document.getElementById('termOverlay'),
+      body = document.getElementById('termBody'),
+      input = document.getElementById('termIn'),
+      chipWrap = document.getElementById('termChips');
+  if (!open) return;
+  var CHIPS = ['help', 'whoami', 'skills', 'fetch', 'contact', 'clear', 'exit'];
+
+  function renderChips() {
+    chipWrap.innerHTML = '';
+    CHIPS.forEach(function (c) {
+      var s = document.createElement('span');
+      s.className = 'term-chip'; s.textContent = c;
+      s.onclick = function () { run(c); };
+      chipWrap.appendChild(s);
+    });
+  }
+  renderChips();
+
+  var CMDS = {
+    help: '<div class="term-out"><span class="k" style="color:var(--accent-bright)">whoami</span><span class="v">Wer ist Sandro?</span><br><span class="k" style="color:var(--accent-bright)">skills</span><span class="v">Tech-Skills &amp; Zertifikate</span><br><span class="k" style="color:var(--accent-bright)">fetch</span><span class="v">System-Info</span><br><span class="k" style="color:var(--accent-bright)">contact</span><span class="v">Kontaktdaten</span><br><span class="k" style="color:var(--accent-bright)">clear</span><span class="v">Terminal leeren</span><br><span class="k" style="color:var(--accent-bright)">exit</span><span class="v">Terminal schlie&szlig;en</span></div>',
+    whoami: '<div class="term-out"><span class="k">Rolle</span><span class="v">Elektroniker &amp; Netzwerktechniker</span><br><span class="k">Zertifikat</span><span class="v">Cisco CCNA</span><br><span class="k">Position</span><span class="v">Regionalvorstand Tiroler Unterland</span><br><span class="k">Schule</span><span class="v">HTBLVA Anichstra&szlig;e, Innsbruck</span><br><span class="k">Heimat</span><span class="v">Schwoich, Tirol</span></div>',
+    skills: '<div class="term-out"><span class="k">Linux / CachyOS</span><span class="v">88%</span><br><span class="k">CCNA Netzwerk</span><span class="v">ZERTIFIZIERT</span><br><span class="k">IoT / Elektronik</span><span class="v">75%</span><br><span class="k">Python / Bots</span><span class="v">80%</span><br><span class="k">Hardware</span><span class="v">72%</span></div>',
+    fetch: '<div class="term-out"><span class="k">OS</span><span class="v">CachyOS + Windows 11 [Dual-Boot]</span><br><span class="k">CPU</span><span class="v">AMD Ryzen 7 9800X3D</span><br><span class="k">GPU</span><span class="v">ASUS TUF RTX 5070 OC</span><br><span class="k">RAM</span><span class="v">32 GB DDR5 @ 6000 MHz</span><br><span class="k">Storage</span><span class="v">2 TB NVMe PCIe 5.0</span><br><span class="k">Shell</span><span class="v">zsh + oh-my-zsh</span></div>',
+    contact: '<div class="term-out"><span class="k">E-Mail</span><span class="v"><a href="mailto:sandro@exemail.at">sandro@exemail.at</a></span><br><span class="k">Telefon</span><span class="v">+43 676 7406799</span><br><span class="k">Ort</span><span class="v">Schwoich, Tirol</span><br><span class="k">Web</span><span class="v"><a href="/links.html">sandro.exemail.at/links</a></span></div>'
+  };
+
+  function line(cls, html) { var d = document.createElement('div'); d.className = cls; d.innerHTML = html; body.appendChild(d); body.scrollTop = body.scrollHeight; }
+
+  function run(raw) {
+    var cmd = (raw || '').toLowerCase().trim();
+    if (!cmd) return;
+    line('term-echo', '<span class="term-prompt">guest@sandro:~$</span> ' + cmd);
+    if (cmd === 'clear') { body.innerHTML = ''; renderChipsInto(); return; }
+    if (cmd === 'exit') { close(); return; }
+    if (CMDS[cmd]) line('', CMDS[cmd]);
+    else line('term-out', '<span style="color:var(--err)">bash: ' + cmd + ': command not found</span>');
+    input.value = '';
+  }
+  function renderChipsInto() {
+    var w = document.createElement('div'); w.className = 'term-chips';
+    CHIPS.forEach(function (c) { var s = document.createElement('span'); s.className = 'term-chip'; s.textContent = c; s.onclick = function () { run(c); }; w.appendChild(s); });
+    body.appendChild(w);
+  }
+
+  function openT() { overlay.hidden = false; setTimeout(function () { input.focus(); }, 30); }
+  function close() { overlay.hidden = true; }
+  open.addEventListener('click', openT);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay || e.target.hasAttribute('data-close')) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) close(); });
+  input.addEventListener('keydown', function (e) { if (e.key === 'Enter') run(input.value); });
+
+  /* sandro-Sequenz → Akzent-Puls */
+  var seq = '';
+  document.addEventListener('keydown', function (e) {
+    seq = (seq + e.key.toLowerCase()).slice(-10);
+    if (seq.indexOf('sandro') !== -1) {
+      document.querySelectorAll('.card').forEach(function (el) { el.style.borderColor = 'var(--accent)'; });
+      seq = '';
     }
-    </script>
-
-    <style>
-        :root {
-            --accent: #007aff;
-            --accent-glow: rgba(0, 122, 255, 0.25);
-            --bg: #080808;
-            --card-bg: rgba(16, 16, 16, 0.98);
-            --border: #242424;
-            --text: #c8c8c8;
-            --muted: #888;
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg);
-            color: #fff;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0; padding: 0;
-            display: flex; flex-direction: column; align-items: center;
-            overflow-x: hidden; scroll-behavior: smooth;
-        }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
-
-        /* NAV */
-        .top-nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(5,5,5,0.85); backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 0 24px; height: 56px;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .nav-logo { font-family: 'Courier New', monospace; font-weight: 700; color: var(--accent); text-decoration: none; font-size: 1rem; letter-spacing: 1px; }
-        .nav-logo span { color: #fff; }
-        .nav-links { display: flex; gap: 4px; align-items: center; }
-        .nav-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-family: 'Courier New', monospace; padding: 6px 12px; border-radius: 6px; transition: all 0.2s ease; }
-        .nav-link:hover, .nav-link.active { color: var(--accent); background: rgba(0,122,255,0.08); }
-        .nav-mobile-toggle { display: none; background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 1rem; }
-        @media (max-width: 640px) {
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: rgba(5,5,5,0.98); border-bottom: 1px solid var(--border); padding: 12px; gap: 4px; }
-            .nav-links.open { display: flex; }
-            .nav-mobile-toggle { display: block; }
-            .nav-link { padding: 10px 14px; }
-        }
-
-        #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.35; pointer-events: none; }
-
-        .container { max-width: 900px; width: 100%; text-align: center; position: relative; z-index: 2; padding: 100px 20px 40px; }
-
-        /* HERO */
-        .hero { padding: 40px 0 20px; display: flex; flex-direction: column; align-items: center; width: 100%; text-align: center; }
-        .profile-wrap { display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 24px; }
-        .profile-ring {
-            width: 130px; height: 130px; border-radius: 50%;
-            border: 3px solid var(--accent);
-            object-fit: cover;
-            box-shadow: 0 0 0 6px rgba(0,122,255,0.1), 0 0 30px var(--accent-glow);
-            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-            display: block;
-            margin: 0 auto;
-        }
-        .profile-ring:hover { box-shadow: 0 0 0 6px rgba(0,122,255,0.2), 0 0 50px var(--accent-glow); transform: scale(1.05); }
-
-        h1 {
-            font-size: 2.8rem; margin-bottom: 0.5rem; font-weight: 700; letter-spacing: -1px;
-            position: relative; display: inline-block; cursor: default;
-        }
-        h1:hover { animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite; color: var(--accent); }
-        @keyframes glitch {
-            0%  { transform: translate(0) }
-            20% { transform: translate(-2px, 2px) }
-            40% { transform: translate(-2px, -2px) }
-            60% { transform: translate(2px, 2px) }
-            80% { transform: translate(2px, -2px) }
-            100%{ transform: translate(0) }
-        }
-
-        .subtitle { color: var(--accent); font-size: 1.2rem; margin-bottom: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; min-height: 1.5em; }
-        .cursor { display: inline-block; width: 2px; height: 1em; background-color: #fff; vertical-align: middle; animation: blink 1s step-end infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* CTA */
-        .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 20px 0 40px; }
-        .cta-btn { text-decoration: none; font-family: 'Courier New', monospace; font-size: 0.85rem; padding: 10px 20px; border-radius: 8px; transition: all 0.25s ease; font-weight: 600; background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-        .cta-btn:hover { background: var(--accent); color: #fff; box-shadow: 0 6px 20px var(--accent-glow); transform: translateY(-2px); }
-        .cta-primary { }
-        .cta-secondary { }
-
-        /* REVEAL */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* CONTENT BOX */
-        .content-box { margin-top: 30px; text-align: left; padding: 30px; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.4); backdrop-filter: blur(10px); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
-        .content-box:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 12px 40px var(--accent-glow); }
-        .content-box h2 { border-left: 4px solid var(--accent); padding-left: 15px; font-size: 1.5rem; margin-bottom: 20px; color: #fff; margin-top: 0; }
-        .content-box p { color: var(--text); line-height: 1.8; font-size: 1.05rem; margin-bottom: 0.8em; }
-        .content-box p:last-child { margin-bottom: 0; }
-
-        /* SKILL BARS */
-        .skill-item { margin-bottom: 16px; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; color: #e8e8e8; }
-        .skill-badge { font-size: 0.75rem; background: rgba(0,122,255,0.15); color: var(--accent); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(0,122,255,0.2); }
-        .progress-bg { background: #1c1c1c; border-radius: 10px; height: 7px; width: 100%; overflow: hidden; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #00c6ff); border-radius: 10px; width: 0%; transition: width 1.5s ease-in-out; }
-
-        /* GITHUB */
-        .github-compact-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 12px; }
-        .github-compact-img { height: 120px; width: auto; max-width: 100%; border-radius: 8px; border: 1px solid var(--border); background: rgba(10,10,10,0.6); }
-        .github-profile-link { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; font-family: 'Courier New', monospace; font-size: 0.82rem; padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; transition: all 0.2s; }
-        .github-profile-link:hover { color: var(--accent); border-color: var(--accent); background: rgba(0,122,255,0.06); }
-
-        /* TIMELINE */
-        .cv-grid { display: flex; gap: 30px; margin-top: 30px; text-align: left; }
-        .cv-column { flex: 1; position: relative; }
-        .cv-column h2 { font-size: 1.45rem; color: #fff; margin-bottom: 28px; border-bottom: 1px solid #282828; padding-bottom: 10px; border-left: none; padding-left: 0; }
-        .cv-column::before { content: ''; position: absolute; top: 55px; bottom: 0; left: 7px; width: 2px; background: var(--border); }
-        .cv-item { margin-bottom: 36px; position: relative; padding-left: 32px; transition: transform 0.25s ease; }
-        .cv-item::before { content: ''; position: absolute; left: 0; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); transition: all 0.3s ease; z-index: 2; }
-        .cv-item:hover { transform: translateX(5px); }
-        .cv-item:hover::before { background: var(--accent); box-shadow: 0 0 12px var(--accent); }
-        .cv-date { color: var(--accent); font-size: 0.78rem; font-weight: 700; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
-        .cv-title { font-weight: 700; font-size: 1.1rem; display: block; color: #fff; margin-bottom: 2px; }
-        .cv-org { color: #b0b0b0; font-size: 0.97rem; display: block; font-weight: 600; margin-bottom: 4px; }
-        .cv-desc { color: #999; font-size: 0.92rem; line-height: 1.65; }
-        @media (max-width: 768px) { .cv-grid { flex-direction: column; } }
-
-
-        /* LANG TOGGLE */
-        .lang-toggle { display: flex; align-items: center; gap: 0; background: rgba(0,122,255,0.08); border: 1px solid rgba(0,122,255,0.2); border-radius: 20px; padding: 3px; cursor: pointer; font-family: 'Courier New', monospace; font-size: 0.75rem; transition: all 0.2s; user-select: none; margin-left: 8px; }
-        .lang-toggle:hover { border-color: var(--accent); }
-        .lang-opt { padding: 2px 8px; border-radius: 12px; transition: all 0.2s; color: var(--muted); }
-        .lang-opt.active { background: var(--accent); color: #fff; }
-
-        /* SCROLL TO TOP */
-        .scroll-top-btn { position: fixed; bottom: 90px; right: 24px; width: 40px; height: 40px; border-radius: 50%; background: var(--card-bg); border: 1px solid var(--border); color: var(--accent); cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; opacity: 0; pointer-events: none; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(0,0,0,0.5); }
-        .scroll-top-btn.visible { opacity: 1; pointer-events: auto; }
-        .scroll-top-btn:hover { background: var(--accent); color: #fff; transform: translateY(-3px); box-shadow: 0 8px 20px var(--accent-glow); }
-
-        /* ── 3D CITY / GITHUB ── */
-        .city-box {
-            margin-top: 0; text-align: left; padding: 30px 36px;
-            background: var(--card-bg); border-radius: 18px; border: 1px solid var(--border);
-            box-shadow: 0 4px 24px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            margin-bottom: 28px;
-        }
-        .city-box:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 12px 40px var(--accent-glow); }
-        .city-box h2 { border-left: 4px solid var(--accent); padding-left: 15px; font-size: 1.55rem; margin-bottom: 8px; color: #fff; margin-top: 0; }
-        .city-box .city-sub {
-            color: #888; font-size: 0.9rem; margin-bottom: 18px; padding-left: 19px;
-            font-family: 'Courier New', monospace;
-        }
-        .city-canvas-wrap {
-            width: 100%; height: 420px; border-radius: 12px;
-            border: 1px solid var(--border); overflow: hidden;
-            background: #050510; position: relative; cursor: grab;
-        }
-        .city-canvas-wrap:active { cursor: grabbing; }
-        #city-canvas { width: 100%; height: 100%; display: block; }
-        .city-hud {
-            position: absolute; bottom: 12px; right: 14px;
-            font-family: 'Courier New', monospace; font-size: 0.7rem;
-            color: rgba(0,122,255,0.6); pointer-events: none; line-height: 1.6;
-            text-align: right;
-        }
-        .city-hud span { color: var(--accent); }
-        .city-tooltip {
-            position: absolute; top: 12px; left: 14px;
-            font-family: 'Courier New', monospace; font-size: 0.78rem;
-            color: #ccc; pointer-events: none; line-height: 1.5;
-            background: rgba(0,0,0,0.75); padding: 8px 12px;
-            border-radius: 8px; border: 1px solid rgba(0,122,255,0.3);
-            display: none;
-        }
-        .city-tooltip strong { color: var(--accent); }
-        .city-stats {
-            display: flex; gap: 0;
-            border-top: 1px solid var(--border);
-            margin-top: 18px;
-        }
-        .city-stat {
-            flex: 1; text-align: center; padding: 14px 8px 4px;
-            border-right: 1px solid var(--border);
-        }
-        .city-stat:last-child { border-right: none; }
-        .city-stat-num {
-            font-family: 'Courier New', monospace; font-size: 1.5rem;
-            font-weight: 700; color: var(--accent); display: block; line-height: 1.1;
-        }
-        .city-stat-label {
-            font-family: 'Courier New', monospace; font-size: 0.7rem;
-            color: #666; text-transform: uppercase; letter-spacing: 1.5px;
-            display: block; margin-top: 5px;
-        }
-
-
-        /* FOOTER */
-        .footer-container { margin-top: 60px; padding: 40px 20px; border-top: 1px solid var(--border); width: 100%; text-align: center; position: relative; z-index: 2; }
-        .social-icons { display: flex; justify-content: center; gap: 28px; margin-bottom: 20px; flex-wrap: wrap; }
-        .social-icon { width: 30px; height: 30px; transition: transform 0.3s ease, filter 0.3s ease; }
-        .icon-linkedin { fill: #0077b5; } .icon-instagram { fill: #E4405F; } .icon-github { fill: #ffffff; } .icon-mail { fill: var(--accent); } .icon-phone { fill: #4caf50; }
-        .social-icons a:hover .social-icon { transform: scale(1.3); filter: drop-shadow(0 0 8px currentColor); }
-        .legal-links { font-size: 0.85rem; color: #444; margin-top: 16px; }
-        .legal-links a { color: var(--muted); margin: 0 10px; text-decoration: none; transition: color 0.2s; }
-        .legal-links a:hover { color: #aaa; }
-        .footer-nav { margin: 16px 0 8px; font-size: 0.9rem; }
-        .footer-nav a { color: var(--muted); margin: 0 10px; text-decoration: none; font-weight: 600; transition: color 0.2s; }
-        .footer-nav a:hover { color: var(--accent); }
-
-        /* TERMINAL */
-        .terminal-toggle { position: fixed; bottom: 24px; right: 24px; background: var(--card-bg); border: 1px solid var(--border); color: var(--accent); padding: 11px 18px; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.6); display: flex; align-items: center; gap: 8px; font-family: 'Courier New', monospace; font-weight: bold; transition: 0.25s; z-index: 1000; font-size: 0.9rem; }
-        .terminal-toggle:hover { background: var(--accent); color: white; transform: translateY(-3px); box-shadow: 0 8px 25px var(--accent-glow); }
-        .terminal-toggle svg { width: 18px; fill: currentColor; }
-        .terminal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 2000; opacity: 0; transition: opacity 0.25s; }
-        .terminal-overlay.open { display: flex; opacity: 1; }
-        .terminal-window { width: 90%; max-width: 740px; height: 580px; background: #0a0a0a; border-radius: 12px; box-shadow: 0 25px 70px rgba(0,0,0,0.95), 0 0 0 1px #1e1e1e; display: flex; flex-direction: column; font-family: 'Courier New', monospace; font-size: 0.92rem; overflow: hidden; }
-        .terminal-header { background: #141414; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e1e1e; flex-shrink: 0; }
-        .terminal-dots { display: flex; gap: 7px; align-items: center; }
-        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; transition: filter 0.2s; }
-        .terminal-dot:hover { filter: brightness(1.4); }
-        .dot-red { background: #ff5f56; } .dot-yellow { background: #ffbd2e; } .dot-green { background: #27c93f; }
-        .terminal-title-text { color: #444; font-size: 0.82rem; }
-        .terminal-body { flex: 1; padding: 16px 20px; color: #4caf50; overflow-y: auto; text-align: left; line-height: 1.65; }
-        .terminal-body::-webkit-scrollbar { width: 5px; }
-        .terminal-body::-webkit-scrollbar-track { background: transparent; }
-        .terminal-body::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
-        .cmd-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; margin-bottom: 4px; }
-        .cmd-chip { background: #111; border: 1px solid #2a2a2a; color: var(--accent); padding: 4px 13px; border-radius: 20px; font-size: 0.78rem; cursor: pointer; transition: all 0.18s; font-family: 'Courier New', monospace; user-select: none; }
-        .cmd-chip:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-1px); }
-        .out-section { color: #ccc; margin-bottom: 12px; }
-        .out-table { border-left: 2px solid #1e1e1e; padding-left: 12px; margin: 6px 0; }
-        .out-table .row { display: flex; gap: 12px; margin: 3px 0; }
-        .out-table .key { color: #555; min-width: 140px; font-size: 0.86rem; }
-        .out-table .val { color: #ddd; font-size: 0.86rem; }
-        .terminal-input-area { border-top: 1px solid #141414; background: #0a0a0a; flex-shrink: 0; }
-        .terminal-input-line { display: flex; padding: 10px 20px; align-items: center; }
-        .prompt { color: var(--accent); margin-right: 10px; white-space: nowrap; font-size: 0.88rem; }
-        #terminal-input { background: transparent; border: none; color: #fff; flex: 1; font-family: 'Courier New', monospace; font-size: 0.92rem; outline: none; }
-        .cmd { color: #fff; font-weight: bold; }
-    </style>
-</head>
-<body>
-
-    <canvas id="network-canvas"></canvas>
-
-    <!-- NAV (zentral verwaltet) -->
-    {% include nav.html %}
-
-    <div class="container">
-
-        <!-- HERO -->
-        <div class="hero">
-            <div class="profile-wrap">
-                <img src="profile.jpg" alt="Sandro Exenberger" class="profile-ring" onerror="this.style.display='none'">
-            </div>
-            <h1>Sandro Exenberger</h1>
-            <div class="subtitle">
-                Ich bin <span id="typewriter"></span><span class="cursor"></span>
-            </div>
-            <div class="cta-row">
-                <a href="projects.html" class="cta-btn cta-primary">~/projects</a>
-                <a href="certificates.html" class="cta-btn cta-secondary">~/certs</a>
-                <a href="lab.html" class="cta-btn cta-secondary">~/lab</a>
-                <a href="links.html" class="cta-btn cta-secondary">~/links</a>
-            </div>
-        </div>
-
-        <!-- UEBER MICH -->
-        <div class="content-box reveal">
-            <h2 data-de="&#220;ber mich" data-en="About me">&#220;ber mich</h2>
-            <p data-de="Als Regionalvorstand f&#252;r das Tiroler Unterland bei der Sch&#252;lerunion &#214;sterreich setze ich mich aktiv f&#252;r die Anliegen von Sch&#252;ler:innen ein und bringe meine Kompetenzen in Kommunikation und Konfliktl&#246;sung ein. Parallel dazu vertrete ich als Sch&#252;lervertreter an der HTBLVA Anichstra&#223;e die Interessen von etwa 1600 Sch&#252;ler:innen im Schulgemeinschaftsausschuss." data-en="As Regional Chairman for the Tyrolean Unterland at the Student Union Austria, I actively advocate for students and bring my skills in communication and conflict resolution. In parallel, I represent approximately 1600 students at HTBLVA Anichstra&#223;e in the school community committee.">Als Regionalvorstand f&#252;r das Tiroler Unterland bei der Sch&#252;lerunion &#214;sterreich setze ich mich aktiv f&#252;r die Anliegen von Sch&#252;ler:innen ein und bringe meine Kompetenzen in Kommunikation und Konfliktl&#246;sung ein. Parallel dazu vertrete ich als Sch&#252;lervertreter an der HTBLVA Anichstra&#223;e die Interessen von etwa 1600 Sch&#252;ler:innen im Schulgemeinschaftsausschuss.</p>
-            <p>Neben meiner organisatorischen T&#228;tigkeit leite ich den "HTL-Incubator", einen Open Maker Space, in dem ich Mitsch&#252;ler bei der Nutzung moderner Technologien unterst&#252;tze. Mein technisches Wissen vertiefe ich durch meine Ausbildung in Elektronik und Technischer Informatik sowie durch meine CCNA-Zertifizierung.</p>
-        </div>
-
-        <!-- TECH STACK -->
-        <div class="content-box reveal">
-            <h2 data-de="Tech Stack" data-en="Tech Stack">Tech Stack</h2>
-            <div class="skill-item">
-                <div class="skill-info"><span>&#127999; Linux / Debian &amp; CachyOS</span><span class="skill-badge">Fortgeschritten</span></div>
-                <div class="progress-bg"><div class="progress-bar" data-width="88%"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-info"><span>&#127760; Netzwerktechnik (CCNA)</span><span class="skill-badge">Zertifiziert &#10003;</span></div>
-                <div class="progress-bg"><div class="progress-bar" data-width="90%"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-info"><span>&#128225; IoT &amp; Elektronik</span><span class="skill-badge">Erfahren</span></div>
-                <div class="progress-bg"><div class="progress-bar" data-width="75%"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-info"><span>&#129302; Chatbot &amp; Python</span><span class="skill-badge">Fortgeschritten</span></div>
-                <div class="progress-bg"><div class="progress-bar" data-width="80%"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-info"><span>&#128295; Hardware / Maker</span><span class="skill-badge">Erfahren</span></div>
-                <div class="progress-bg"><div class="progress-bar" data-width="72%"></div></div>
-            </div>
-        </div>
-
-
-
-        <div class="city-box reveal">
-            <h2 data-de="GitHub Aktivit&#228;t" data-en="GitHub Activity">GitHub Aktivit&#228;t</h2>
-            <div class="city-sub" data-de="3D-Visualisierung meiner Commit-Aktivit&#228;t (letztes Jahr) &mdash; LMT drehen &bull; RMT verschieben &bull; Scroll zoomen." data-en="3D visualization of my commit activity (last year) &mdash; LMB rotate &bull; RMB pan &bull; scroll zoom.">3D-Visualisierung meiner Commit-Aktivit&#228;t (letztes Jahr) &mdash; LMT drehen &bull; RMT verschieben &bull; Scroll zoomen.</div>
-            <div class="city-canvas-wrap" style="height:460px;">
-                <div id="city-3d" style="width:100%;height:100%;"></div>
-                <div class="city-hud">TARGET: <span>@Sandroexe</span> | SYS_STATUS: <span>ONLINE</span></div>
-                <div class="city-tooltip" id="city-tooltip"></div>
-            </div>
-            <div class="city-stats" id="city-stats">
-                <div class="city-stat"><span class="city-stat-num" id="cs-total">-</span><span class="city-stat-label">Commits</span></div>
-                <div class="city-stat"><span class="city-stat-num" id="cs-streak">-</span><span class="city-stat-label">Max Streak</span></div>
-                <div class="city-stat"><span class="city-stat-num" id="cs-days">-</span><span class="city-stat-label">Aktive Tage</span></div>
-                <div class="city-stat"><span class="city-stat-num" id="cs-avg">-</span><span class="city-stat-label">&#216; / Tag</span></div>
-            </div>
-        </div>
-
-        <!-- CV TIMELINE -->
-        <div class="cv-grid reveal">
-            <div class="cv-column">
-                <h2>Schullaufbahn</h2>
-                <div class="cv-item">
-                    <span class="cv-date">Seit 09/2022</span>
-                    <span class="cv-title">Elektronik &amp; Techn. Informatik</span>
-                    <span class="cv-org">HTBLVA Anichstra&#223;e, Innsbruck</span>
-                    <div class="cv-desc">Ausbildung zum Elektroniker &amp; Netzwerktechniker. Fokus auf Hardware, Software und Mechanik.</div>
-                </div>
-                <div class="cv-item">
-                    <span class="cv-date">2018 - 2022</span>
-                    <span class="cv-title">Mittelschule 2 Kufstein</span>
-                    <span class="cv-org">Allgemeinbildung</span>
-                    <div class="cv-desc">Abschluss der Unterstufe mit fundierter Allgemeinbildung.</div>
-                </div>
-                <div class="cv-item">
-                    <span class="cv-date">2014 - 2018</span>
-                    <span class="cv-title">Volksschule Schwoich</span>
-                    <span class="cv-org">Primarausbildung</span>
-                    <div class="cv-desc">Grundschulausbildung in meiner Heimatgemeinde.</div>
-                </div>
-            </div>
-            <div class="cv-column">
-                <h2>Beruf &amp; Engagement</h2>
-                <div class="cv-item">
-                    <span class="cv-date">Okt 2025 - Heute</span>
-                    <span class="cv-title">Regionalvorstand Tiroler Unterland</span>
-                    <span class="cv-org">Sch&#252;lerunion &#214;sterreich</span>
-                    <div class="cv-desc">Einsatz f&#252;r Sch&#252;leranliegen, Kommunikation und Konfliktl&#246;sung.</div>
-                </div>
-                <div class="cv-item">
-                    <span class="cv-date">Okt 2025 - Heute</span>
-                    <span class="cv-title">Gew&#228;hlte Sch&#252;lervertretung</span>
-                    <span class="cv-org">HTBLVA Anichstra&#223;e</span>
-                    <div class="cv-desc">Interessenvertretung von ~1600 Sch&#252;ler:innen im Schulgemeinschaftsausschuss.</div>
-                </div>
-                <div class="cv-item">
-                    <span class="cv-date">Jun 2025 - Heute</span>
-                    <span class="cv-title">Leitung HTL-Incubator</span>
-                    <span class="cv-org">HTBLVA Anichstra&#223;e</span>
-                    <div class="cv-desc">Open Maker Space - Unterst&#252;tzung bei modernen Technologien und eigenen Projekten.</div>
-                </div>
-                <div class="cv-item">
-                    <span class="cv-date">Jul 2024 - Aug 2024</span>
-                    <span class="cv-title">Praktikum W&#246;rglWeb</span>
-                    <span class="cv-org">Stadtwerke W&#246;rgl GmbH</span>
-                    <div class="cv-desc">Installation &amp; Wartung Netzwerkinfrastruktur, Au&#223;endienst, Fehlerbehebung, Hardware-Vorkonfiguration.</div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- FOOTER (zentral verwaltet via _includes/footer.html) -->
-    {% include footer.html %}
-
-    <!-- TERMINAL -->
-    <div class="terminal-toggle" onclick="toggleTerminal()" title="Terminal oeffnen">
-        <svg viewBox="0 0 24 24"><path d="M7.5 17l-1.41-1.41L9.67 12 6.09 8.41 7.5 7l5 5-5 5zM18 17h-6v-2h6v2z"/></svg>
-        <span>_CMD</span>
-    </div>
-
-    <div id="terminal-overlay" class="terminal-overlay">
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <div class="terminal-dot dot-red" onclick="toggleTerminal()" title="Schliessen"></div>
-                    <div class="terminal-dot dot-yellow"></div>
-                    <div class="terminal-dot dot-green"></div>
-                </div>
-                <span class="terminal-title-text">sandro@sandroOS - bash</span>
-                <span style="width:52px;"></span>
-            </div>
-            <div class="terminal-body" id="terminal-output">
-                <div style="color:#007aff; font-family:monospace; font-size:0.78rem; line-height:1.3; margin-bottom:6px; opacity:0.7;">
- ___  _   _  _  ___  _  __  ___  ___ <br>
-/ __|| | | || ||   \| ||  \/ _ \/ __| <br>
-\__ \| |_| || || |) | || |  |_| \__ \ <br>
-|___/ \___/ |_||___/|_||_|\___/|___/ <br>
-                </div>
-                <div style="color:#333; font-size:0.78rem; margin-bottom:14px;">SandroOS v2.0 - Linux 6.x-cachyos - Tirol, Austria</div>
-                <div style="color:#666; margin-bottom:4px;">Willkommen! Klick auf einen Chip oder tippe einen Befehl.</div>
-                <div class="cmd-chips">
-                    <span class="cmd-chip" onclick="runCommand('help')">help</span>
-                    <span class="cmd-chip" onclick="runCommand('whoami')">whoami</span>
-                    <span class="cmd-chip" onclick="runCommand('skills')">skills</span>
-                    <span class="cmd-chip" onclick="runCommand('fetch')">fetch</span>
-                    <span class="cmd-chip" onclick="runCommand('contact')">contact</span>
-                    <span class="cmd-chip" onclick="runCommand('clear')">clear</span>
-                    <span class="cmd-chip" onclick="runCommand('exit')">exit</span>
-                </div>
-            </div>
-            <div class="terminal-input-area">
-                <div class="terminal-input-line">
-                    <span class="prompt">guest@sandro:~$</span>
-                    <input type="text" id="terminal-input" autocomplete="off" placeholder="Befehl eingeben...">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // TYPEWRITER
-        const textEl = document.getElementById('typewriter');
-        const phrases = ["Elektroniker", "Netzwerktechniker", "Oldtimerliebhaber", "Schulervertreter", "Autoliebhaber"];
-        let pi = 0, ci = 0, del = false;
-        function type() {
-            const p = phrases[pi];
-            textEl.textContent = del ? p.substring(0, ci - 1) : p.substring(0, ci + 1);
-            del ? ci-- : ci++;
-            let speed = del ? 45 : 95;
-            if (!del && ci === p.length) { speed = 2200; del = true; }
-            else if (del && ci === 0) { del = false; pi = (pi + 1) % phrases.length; speed = 450; }
-            setTimeout(type, speed);
-        }
-
-        // SCROLL REVEAL
-        function reveal() {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
-            });
-        }
-
-        // SKILL BARS
-        setTimeout(() => {
-            document.querySelectorAll('.progress-bar').forEach(b => { b.style.width = b.dataset.width; });
-        }, 600);
-
-        // PARTICLES
-        const canvas = document.getElementById('network-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resizeCanvas); resizeCanvas();
-        class Particle {
-            constructor() { this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.vx=(Math.random()-.5)*.5; this.vy=(Math.random()-.5)*.5; this.size=Math.random()*1.5+.5; }
-            update() { this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width)this.vx*=-1; if(this.y<0||this.y>canvas.height)this.vy*=-1; }
-            draw() { ctx.fillStyle='rgba(255,255,255,0.5)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
-        }
-        function initP() { particles=[]; for(let i=0;i<75;i++)particles.push(new Particle()); }
-        function animP() {
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-            particles.forEach((p,i) => {
-                p.update(); p.draw();
-                for(let j=i+1;j<particles.length;j++) {
-                    const d=Math.hypot(p.x-particles[j].x,p.y-particles[j].y);
-                    if(d<120){ctx.strokeStyle=`rgba(0,122,255,${1-d/120})`;ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke();}
-                }
-            });
-            requestAnimationFrame(animP);
-        }
-        initP(); animP();
-
-        // TERMINAL
-        const overlay = document.getElementById('terminal-overlay');
-        const input = document.getElementById('terminal-input');
-        const output = document.getElementById('terminal-output');
-        function toggleTerminal() {
-            if(overlay.classList.contains('open')){overlay.classList.remove('open');setTimeout(()=>overlay.style.display='none',250);}
-            else{overlay.style.display='flex';setTimeout(()=>{overlay.classList.add('open');input.focus();},10);}
-        }
-        function appendOutput(html){const d=document.createElement('div');d.className='out-section';d.innerHTML=html;output.appendChild(d);output.scrollTop=output.scrollHeight;}
-        function appendEcho(cmd){const d=document.createElement('div');d.innerHTML=`<span class="prompt">guest@sandro:~$</span> <span class="cmd">${cmd}</span>`;d.style.marginBottom='6px';output.appendChild(d);}
-        const cmds = {
-            help: ()=>`<div style="color:#888;margin-bottom:8px;">Verfugbare Befehle:</div><div class="out-table"><div class="row"><span class="key" style="color:#007aff;">whoami</span><span class="val">Wer ist Sandro?</span></div><div class="row"><span class="key" style="color:#007aff;">skills</span><span class="val">Tech-Skills &amp; Zertifikate</span></div><div class="row"><span class="key" style="color:#007aff;">fetch</span><span class="val">System-Info</span></div><div class="row"><span class="key" style="color:#007aff;">contact</span><span class="val">Kontaktdaten</span></div><div class="row"><span class="key" style="color:#007aff;">clear</span><span class="val">Terminal leeren</span></div><div class="row"><span class="key" style="color:#007aff;">exit</span><span class="val">Terminal schliessen</span></div></div>`,
-            whoami: ()=>`<div style="color:#27c93f;font-weight:bold;margin-bottom:6px;">Sandro Exenberger</div><div class="out-table"><div class="row"><span class="key">Rolle</span><span class="val">Elektroniker &amp; Netzwerktechniker</span></div><div class="row"><span class="key">Zertifikat</span><span class="val">Cisco CCNA</span></div><div class="row"><span class="key">Position</span><span class="val">Regionalvorstand Tiroler Unterland</span></div><div class="row"><span class="key">Schule</span><span class="val">HTBLVA Anichstrasse, Innsbruck</span></div><div class="row"><span class="key">Leidenschaft</span><span class="val">Linux, Maker-Kultur, Netzwerke, IoT</span></div><div class="row"><span class="key">Heimat</span><span class="val">Schwoich, Tirol</span></div></div>`,
-            skills: ()=>`<div style="color:#555;margin-bottom:8px;">-- Tech Stack ---</div><div class="out-table"><div class="row"><span class="key">Linux/CachyOS</span><span class="val" style="color:#27c93f;">88%</span></div><div class="row"><span class="key">CCNA Netzwerk</span><span class="val" style="color:#27c93f;">ZERTIFIZIERT</span></div><div class="row"><span class="key">IoT/Elektronik</span><span class="val" style="color:#007aff;">75%</span></div><div class="row"><span class="key">Python/Bots</span><span class="val" style="color:#007aff;">80%</span></div><div class="row"><span class="key">Hardware</span><span class="val" style="color:#ffbd2e;">72%</span></div></div>`,
-            fetch: ()=>`<div class="out-table"><div class="row"><span class="key">OS</span><span class="val">CachyOS + Windows 11 [Dual-Boot]</span></div><div class="row"><span class="key">CPU</span><span class="val">AMD Ryzen 7 9800X3D</span></div><div class="row"><span class="key">GPU</span><span class="val">ASUS TUF RTX 5070 OC</span></div><div class="row"><span class="key">RAM</span><span class="val">32 GB Corsair DDR5 @ 6000MHz</span></div><div class="row"><span class="key">Storage</span><span class="val">2 TB NVMe PCIe 5.0</span></div><div class="row"><span class="key">Shell</span><span class="val">zsh + oh-my-zsh</span></div></div>`,
-            contact: ()=>`<div class="out-table"><div class="row"><span class="key">E-Mail</span><span class="val"><a href="mailto:sandro@exemail.at" style="color:#007aff;text-decoration:none;">sandro@exemail.at</a></span></div><div class="row"><span class="key">Telefon</span><span class="val">+43 676 7406799</span></div><div class="row"><span class="key">Ort</span><span class="val">Schwoich, Tirol</span></div><div class="row"><span class="key">LinkedIn</span><span class="val"><a href="https://linkedin.com/in/sandro-exenberger-1a5486315/" target="_blank" style="color:#007aff;text-decoration:none;">sandro-exenberger</a></span></div></div>`
-        };
-        function runCommand(cmd){
-            appendEcho(cmd);
-            const t=cmd.toLowerCase().trim();
-            if(t==='clear'){output.innerHTML='';const chips=document.createElement('div');chips.className='cmd-chips';chips.innerHTML=['help','whoami','skills','fetch','contact','clear','exit'].map(c=>`<span class="cmd-chip" onclick="runCommand('${c}')">${c}</span>`).join('');output.appendChild(chips);return;}
-            if(t==='exit'){toggleTerminal();return;}
-            if(cmds[t])appendOutput(cmds[t]());
-            else appendOutput(`<span style="color:#ff5f56;">bash: ${cmd}: command not found</span>`);
-            input.value='';output.scrollTop=output.scrollHeight;
-        }
-        input.addEventListener('keydown',e=>{if(e.key==='Enter'&&input.value.trim()){runCommand(input.value.trim());input.value='';}});
-        document.getElementById('terminal-overlay').addEventListener('click',e=>{if(e.target===overlay)toggleTerminal();});
-
-        // EASTER EGG
-        let seq='';
-        document.addEventListener('keydown',e=>{
-            seq+=e.key.toLowerCase();
-            if(seq.length>15)seq=seq.slice(-10);
-            if(seq.includes('sandro')){
-                const g='#00ff00';
-                document.querySelectorAll('.subtitle, h2').forEach(el=>{el.style.color=g;el.style.borderColor=g;});
-                document.querySelectorAll('.content-box').forEach(el=>{el.style.borderColor=g;el.style.boxShadow=`0 0 20px ${g}`;});
-                document.querySelectorAll('.progress-bar').forEach(el=>{el.style.background=g;});
-                seq='';alert('SYSTEM UNLOCKED: Welcome, Sandro!');
-            }
-        });
-
-
-        // LANG TOGGLE
-        (function() {
-            var currentLang = localStorage.getItem('lang') || 'de';
-            applyLang(currentLang);
-
-            function applyLang(lang) {
-                currentLang = lang;
-                localStorage.setItem('lang', lang);
-                var de = document.getElementById('lang-de');
-                var en = document.getElementById('lang-en');
-                if(de) de.classList.toggle('active', lang === 'de');
-                if(en) en.classList.toggle('active', lang === 'en');
-                document.documentElement.lang = lang === 'en' ? 'en' : 'de';
-                document.querySelectorAll('[data-de]').forEach(function(el) {
-                    el.innerHTML = lang === 'en' ? (el.dataset.en || el.dataset.de) : el.dataset.de;
-                });
-            }
-            window.toggleLang = function() { applyLang(currentLang === 'de' ? 'en' : 'de'); };
-            window.getCurrentLang = function() { return currentLang; };
-            document.addEventListener('DOMContentLoaded', function() { applyLang(currentLang); });
-
-            // SCROLL TO TOP
-            var btn = document.getElementById('scroll-top-btn');
-            if(btn) {
-                window.addEventListener('scroll', function() {
-                    btn.classList.toggle('visible', window.scrollY > 300);
-                });
-            }
-        })();
-
-        // ── 3D GITHUB CITY (Three.js) ───────────────────────────────
-        (function() {
-            var el = document.getElementById('city-3d');
-            if (!el) return;
-            var USERNAME = 'Sandroexe';
-            var tooltip  = document.getElementById('city-tooltip');
-
-            function loadScript(src, cb) {
-                var s = document.createElement('script');
-                s.src = src; s.onload = cb; document.head.appendChild(s);
-            }
-
-            loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', function() {
-                var W = el.clientWidth, H = el.clientHeight;
-                var scene = new THREE.Scene();
-                scene.background = new THREE.Color(0x07071a);
-                scene.fog = new THREE.FogExp2(0x07071a, 0.012);
-
-                var camera = new THREE.PerspectiveCamera(45, W/H, 0.1, 1000);
-                camera.position.set(28, 22, 28);
-                camera.lookAt(0,0,0);
-
-                var renderer = new THREE.WebGLRenderer({ antialias:true });
-                renderer.setSize(W, H);
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-                renderer.shadowMap.enabled = true;
-                renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-                el.appendChild(renderer.domElement);
-
-                scene.add(new THREE.AmbientLight(0x223366, 1.2));
-                var sun = new THREE.DirectionalLight(0x4488ff, 2.0);
-                sun.position.set(10,30,10); sun.castShadow=true;
-                sun.shadow.mapSize.set(2048,2048);
-                sun.shadow.camera.near=0.5; sun.shadow.camera.far=100;
-                sun.shadow.camera.left=sun.shadow.camera.bottom=-55;
-                sun.shadow.camera.right=sun.shadow.camera.top=55;
-                scene.add(sun);
-                var fill = new THREE.DirectionalLight(0x0033ff, 0.6);
-                fill.position.set(-10,5,-10); scene.add(fill);
-                var pointGlow = new THREE.PointLight(0x007aff, 3, 60);
-                pointGlow.position.set(0,8,0); scene.add(pointGlow);
-
-                var ground = new THREE.Mesh(new THREE.PlaneGeometry(60,12), new THREE.MeshStandardMaterial({color:0x080818,roughness:1,metalness:0}));
-                ground.rotation.x=-Math.PI/2; ground.receiveShadow=true; scene.add(ground);
-                var gridHelper = new THREE.GridHelper(60,54,0x112233,0x0d1a2e);
-                gridHelper.position.y=0.01; scene.add(gridHelper);
-
-                var LEVEL_COLORS = [
-                    null,
-                    {base:0x0d2540,emissive:0x061525,glow:null},
-                    {base:0x0e3d78,emissive:0x081e3c,glow:null},
-                    {base:0x1a6bcc,emissive:0x0e3d78,glow:0x2684ff},
-                    {base:0x007aff,emissive:0x1a4a99,glow:0x4db8ff},
-                ];
-                var HEIGHTS=[0,0.6,1.4,2.8,4.8];
-                var bars=[];
-                var barGeo=new THREE.BoxGeometry(1,1,1);
-                var WEEKS=52,DAYS=7,offX=(WEEKS-1)/2,offZ=(DAYS-1)/2;
-
-                function buildBars(data) {
-                    bars.forEach(function(b){scene.remove(b.mesh);}); bars.length=0;
-                    data.forEach(function(c) {
-                        if(c.level===0) return;
-                        var col=LEVEL_COLORS[c.level], h=HEIGHTS[c.level];
-                        var mat=new THREE.MeshStandardMaterial({color:col.base,emissive:col.emissive,emissiveIntensity:0.4,roughness:0.4,metalness:0.6});
-                        var mesh=new THREE.Mesh(barGeo,mat);
-                        mesh.scale.set(0.85,h,0.85);
-                        mesh.position.set(c.week-offX,h/2,c.day-offZ);
-                        mesh.castShadow=true; mesh.receiveShadow=true; mesh.userData=c;
-                        scene.add(mesh); bars.push({mesh:mesh,col:col,baseH:h});
-                        if(col.glow&&c.level===4){var pt=new THREE.PointLight(col.glow,1.5,4);pt.position.set(c.week-offX,h+0.5,c.day-offZ);scene.add(pt);}
-                    });
-                }
-
-                var isDragging=false,isRightDrag=false,lastX2=0,lastY2=0;
-                var spherical={theta:0.78,phi:0.88,radius:52};
-                var target=new THREE.Vector3(0,2,0);
-                var autoSpin=true;
-
-                function updateCamera() {
-                    var sinPhi=Math.sin(spherical.phi);
-                    camera.position.set(
-                        target.x+spherical.radius*sinPhi*Math.sin(spherical.theta),
-                        target.y+spherical.radius*Math.cos(spherical.phi),
-                        target.z+spherical.radius*sinPhi*Math.cos(spherical.theta)
-                    );
-                    camera.lookAt(target);
-                }
-                updateCamera();
-
-                var cvs=renderer.domElement;
-                cvs.addEventListener('contextmenu',function(e){e.preventDefault();});
-                cvs.addEventListener('mousedown',function(e){isDragging=true;isRightDrag=e.button===2;lastX2=e.clientX;lastY2=e.clientY;autoSpin=false;cvs.style.cursor=isRightDrag?'move':'grabbing';});
-                window.addEventListener('mouseup',function(){isDragging=false;cvs.style.cursor='grab';});
-                window.addEventListener('mousemove',function(e) {
-                    if(!isDragging) return;
-                    var dx=e.clientX-lastX2, dy=e.clientY-lastY2;
-                    if(isRightDrag){
-                        var panSpeed=spherical.radius*0.001;
-                        var right=new THREE.Vector3();
-                        right.crossVectors(camera.getWorldDirection(new THREE.Vector3()),new THREE.Vector3(0,1,0)).normalize();
-                        target.addScaledVector(right,-dx*panSpeed); target.y+=dy*panSpeed;
-                    } else {
-                        spherical.theta-=dx*0.005;
-                        spherical.phi=Math.max(0.1,Math.min(Math.PI*0.85,spherical.phi-dy*0.005));
-                    }
-                    lastX2=e.clientX;lastY2=e.clientY;updateCamera();
-                });
-                cvs.addEventListener('wheel',function(e){e.preventDefault();spherical.radius*=e.deltaY>0?1.08:0.93;spherical.radius=Math.max(5,Math.min(80,spherical.radius));autoSpin=false;updateCamera();},{passive:false});
-
-                var t0x2=0,t0y2=0,tDist2=0,tDown2=false;
-                cvs.addEventListener('touchstart',function(e){tDown2=true;autoSpin=false;if(e.touches.length===1){t0x2=e.touches[0].clientX;t0y2=e.touches[0].clientY;}if(e.touches.length===2)tDist2=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);e.preventDefault();},{passive:false});
-                cvs.addEventListener('touchend',function(){tDown2=false;},{passive:false});
-                cvs.addEventListener('touchmove',function(e){if(e.touches.length===1&&tDown2){spherical.theta-=(e.touches[0].clientX-t0x2)*0.005;spherical.phi=Math.max(0.1,Math.min(Math.PI*0.85,spherical.phi-(e.touches[0].clientY-t0y2)*0.005));t0x2=e.touches[0].clientX;t0y2=e.touches[0].clientY;updateCamera();}if(e.touches.length===2){var d2=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);spherical.radius*=tDist2/d2;spherical.radius=Math.max(5,Math.min(80,spherical.radius));tDist2=d2;updateCamera();}e.preventDefault();},{passive:false});
-
-                window.addEventListener('resize',function(){var w=el.clientWidth,h=el.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h);});
-
-                var raycaster=new THREE.Raycaster(), mouse=new THREE.Vector2(-9,-9), hoveredMesh=null;
-                cvs.addEventListener('mousemove',function(e){if(isDragging)return;var r=cvs.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;});
-                cvs.addEventListener('mouseleave',function(){mouse.set(-9,-9);tooltip.style.display='none';});
-
-                var clock=new THREE.Clock();
-                function animate() {
-                    requestAnimationFrame(animate);
-                    if(autoSpin){spherical.theta+=0.003;updateCamera();}
-                    raycaster.setFromCamera(mouse,camera);
-                    var hits=raycaster.intersectObjects(bars.map(function(b){return b.mesh;}));
-                    if(hoveredMesh){hoveredMesh.material.emissiveIntensity=0.4;hoveredMesh=null;tooltip.style.display='none';cvs.style.cursor=isDragging?'grabbing':'grab';}
-                    if(hits.length>0){
-                        hoveredMesh=hits[0].object; hoveredMesh.material.emissiveIntensity=1.2;
-                        var c=hoveredMesh.userData;
-                        var d=new Date(c.date);
-                        var lbl=d.toLocaleDateString('de-AT',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
-                        tooltip.innerHTML='<strong>'+c.count+' Commit'+(c.count!==1?'s':'')+'</strong><br>'+lbl;
-                        tooltip.style.display='block'; cvs.style.cursor='pointer';
-                    }
-                    pointGlow.intensity=2+Math.sin(clock.elapsedTime*1.5)*0.8;
-                    renderer.render(scene,camera);
-                }
-                animate();
-
-                var _seed=0xABCD1234;
-                function rand(){_seed=(_seed*1664525+1013904223)&0xffffffff;return(_seed>>>0)/0xffffffff;}
-                function makeData(map){
-                    var result=[],today=new Date(),WEEKS2=52;
-                    var start=new Date(today);start.setDate(today.getDate()-today.getDay()-WEEKS2*7);
-                    for(var w=0;w<=WEEKS2;w++)for(var d=0;d<7;d++){
-                        var dt=new Date(start);dt.setDate(start.getDate()+w*7+d);
-                        if(dt>today)continue;
-                        var key=dt.toISOString().split('T')[0];
-                        var count=(map&&map[key]!=null)?map[key]:(rand()>0.62?Math.floor(rand()*11)+1:0);
-                        var level=count===0?0:count<=2?1:count<=5?2:count<=9?3:4;
-                        result.push({date:key,count:count,level:level,week:w,day:d});
-                    }
-                    return result;
-                }
-                function computeStats(data){
-                    var total=data.reduce(function(s,c){return s+c.count;},0);
-                    var active=data.filter(function(c){return c.count>0;}).length;
-                    var sorted=data.slice().sort(function(a,b){return a.date.localeCompare(b.date);});
-                    var cur=0,best=0;
-                    sorted.forEach(function(c){if(c.count>0){cur++;if(cur>best)best=cur;}else cur=0;});
-                    var avg=total>0?(total/data.length).toFixed(1):'0.0';
-                    document.getElementById('cs-total').textContent=total;
-                    document.getElementById('cs-streak').textContent=best;
-                    document.getElementById('cs-days').textContent=active;
-                    document.getElementById('cs-avg').textContent=avg;
-                }
-                async function loadData(){
-                    var map=null;
-                    try{var res=await fetch('https://github-contributions-api.jogruber.de/v4/'+USERNAME+'?y=last',{signal:AbortSignal.timeout(6000)});if(res.ok){var json=await res.json();if(json.contributions){map={};json.contributions.forEach(function(c){map[c.date]=c.count;});}}}catch(e){}
-                    var data=makeData(map);buildBars(data);computeStats(data);
-                }
-                loadData();
-            });
-        })();
-        // ── END 3D GITHUB CITY ───────────────────────────────────────
-        document.addEventListener('DOMContentLoaded', type);
-        window.addEventListener('scroll', reveal);
-        reveal();
-    </script>
-</body>
-</html>
+  });
+})();
+</script>
+
+<script src="/assets/js/github-activity.js" defer></script>

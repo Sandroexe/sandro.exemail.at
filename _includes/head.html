@@ -1,0 +1,52 @@
+{%- assign p = site.data.socials.profile -%}
+{%- assign _title = page.title | default: p.role -%}
+{%- assign _desc = page.description | default: "Portfolio von Sandro Exenberger – Elektronik, Netzwerktechnik (CCNA), Linux & Maker aus Tirol." -%}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ _title }} · {{ p.name }}</title>
+  <meta name="description" content="{{ _desc }}">
+  <meta name="keywords" content="Sandro Exenberger, HTL Anichstraße, Netzwerktechnik, CCNA, Elektronik, Linux, Portfolio, Tirol, Schwoich">
+  <meta name="author" content="{{ p.name }}">
+  <meta name="theme-color" content="#07080a">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ p.name }}">
+  <meta property="og:title" content="{{ _title }} · {{ p.name }}">
+  <meta property="og:description" content="{{ _desc }}">
+  <meta property="og:image" content="{{ '/profile.jpg' | absolute_url }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ _title }} · {{ p.name }}">
+  <meta name="twitter:description" content="{{ _desc }}">
+  <meta name="twitter:image" content="{{ '/profile.jpg' | absolute_url }}">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ p.name }}",
+    "url": "{{ '/' | absolute_url }}",
+    "image": "{{ '/profile.jpg' | absolute_url }}",
+    "jobTitle": "Elektronik & Netzwerktechnik",
+    "email": "mailto:{{ p.email }}",
+    "address": { "@type": "PostalAddress", "addressLocality": "Schwoich", "addressRegion": "Tirol", "addressCountry": "AT" },
+    "alumniOf": { "@type": "Organization", "name": "HTBLVA Anichstraße, Innsbruck" },
+    "sameAs": [
+      {%- assign _sa = site.data.socials.channels | where_exp: "c", "c.groups contains 'social'" -%}
+      {%- for c in _sa -%}"{{ c.url }}"{%- unless forloop.last %}, {% endunless -%}{%- endfor -%}
+    ]
+  }
+  </script>
+</head>

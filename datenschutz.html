@@ -1,52 +1,41 @@
 ---
 layout: default
+nav: datenschutz
 title: Datenschutz
+description: "Datenschutzerklärung gemäß DSGVO für sandro.exemail.at."
 ---
 
-<style>
-    .legal-box {
-        background: var(--card-bg);
-        border-radius: 16px; border: 1px solid var(--border);
-        padding: 40px; max-width: 800px; margin: 0 auto;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
-    .legal-box h1 { color: var(--accent); font-size: 2rem; margin-top: 0; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 14px; }
-    .legal-box h2 { font-size: 1.15rem; color: #ddd; margin-top: 28px; margin-bottom: 8px; }
-    .legal-box p, .legal-box li { color: #888; line-height: 1.75; font-size: 0.95rem; }
-    .legal-box a { color: var(--accent); text-decoration: none; }
-    .legal-box a:hover { text-decoration: underline; }
-    .legal-box ul { padding-left: 20px; color: #888; }
-    .closing { margin-top: 36px; font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 18px; color: #666; }
-</style>
+{% assign p = site.data.socials.profile %}
 
-<div class="container">
-    <div style="max-width:800px;margin:0 auto 20px;">
-        <a href="index.html" style="color:var(--muted);text-decoration:none;font-family:'Courier New',monospace;font-size:0.85rem;transition:color 0.2s;" onmouseover="this.style.color='#007aff'" onmouseout="this.style.color=''">← Zurück zur Startseite</a>
+<div class="container container--narrow">
+  <div style="margin-bottom:18px;">
+    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} Zur Startseite</a>
+  </div>
+
+  <article class="card prose reveal">
+    <h1>Datenschutzerklärung</h1>
+
+    <h2>1. Grundlegendes</h2>
+    <p>Der Schutz Ihrer persönlichen Daten ist mir ein besonderes Anliegen. Ich verarbeite Ihre Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG 2003).</p>
+
+    <h2>2. Hosting durch GitHub Pages</h2>
+    <p>Diese Website wird bei <strong>GitHub Pages</strong> gehostet (GitHub Inc., San Francisco, USA). Beim Besuch erfasst GitHub IP-Adressen zu Sicherheitszwecken. Weitere Infos: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub-Datenschutzerklärung</a>.</p>
+
+    <h2>3. Kontaktaufnahme</h2>
+    <p>Wenn Sie das Kontaktformular oder E-Mail nutzen, werden Ihre Angaben (Name, E-Mail-Adresse, ggf. Telefonnummer, Nachricht) zwecks Bearbeitung der Anfrage verarbeitet. Das Formular übermittelt die Daten an <strong>api.exemail.at</strong>. Die Daten werden nicht ohne Ihre Einwilligung weitergegeben.</p>
+
+    <h2>4. Externe Dienste</h2>
+    <p>Es können Inhalte externer Dienste eingebunden sein: <strong>Google Fonts</strong> (Schriftauslieferung) sowie eine <strong>GitHub-Contributions-API</strong> zur Anzeige der Commit-Aktivität. Dabei kann Ihre IP-Adresse an die jeweiligen Anbieter übermittelt werden.</p>
+
+    <h2>5. Cookies</h2>
+    <p>Diese Website verwendet keine zustimmungspflichtigen Tracking- oder Werbe-Cookies. Lediglich die gewählte Sprache wird lokal im Browser (localStorage) gespeichert.</p>
+
+    <h2>6. Ihre Rechte</h2>
+    <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch. Bei Verstößen können Sie sich an die österreichische Datenschutzbehörde wenden.</p>
+
+    <div class="prose__foot">
+      <strong>Verantwortlich:</strong> {{ p.name }}<br>
+      E-Mail: <a href="mailto:{{ p.email }}">{{ p.email }}</a>
     </div>
-    <div class="legal-box reveal">
-        <h1>Datenschutzerklärung</h1>
-
-        <h2>1. Grundlegendes</h2>
-        <p>Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG 2003).</p>
-
-        <h2>2. Hosting durch GitHub Pages</h2>
-        <p>Diese Website wird bei <strong>GitHub Pages</strong> gehostet (GitHub Inc., San Francisco, USA). Beim Besuch erfasst GitHub IP-Adressen zu Sicherheitszwecken. Weitere Infos: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Datenschutzerklärung</a>.</p>
-
-        <h2>3. Kontaktaufnahme per E-Mail</h2>
-        <p>Wenn Sie per E-Mail Kontakt aufnehmen, werden Ihre Daten (E-Mail-Adresse, Name, Inhalt) zwecks Bearbeitung der Anfrage gespeichert. Diese Daten werden nicht ohne Ihre Einwilligung weitergegeben.</p>
-
-        <h2>4. Externe Dienste</h2>
-        <p>Auf dieser Website können Inhalte von externen Diensten (z.B. GitHub Stats via Vercel) eingebunden sein, wodurch Ihre IP-Adresse übermittelt werden kann.</p>
-
-        <h2>5. Cookies</h2>
-        <p>Diese Website verwendet keine zustimmungspflichtigen Tracking- oder Werbe-Cookies. Es handelt sich um eine statische Site (GitHub Pages).</p>
-
-        <h2>6. Ihre Rechte</h2>
-        <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch. Bei Verstößen können Sie sich an die österreichische Datenschutzbehörde wenden.</p>
-
-        <div class="closing">
-            <strong>Verantwortlich:</strong> Sandro Exenberger<br>
-            E-Mail: <a href="mailto:sandro@exemail.at">sandro@exemail.at</a>
-        </div>
-    </div>
+  </article>
 </div>

@@ -1,3 +1,17 @@
+title: "Sandro Exenberger"
+description: "Portfolio von Sandro Exenberger – Elektronik, Netzwerktechnik (CCNA), Linux & Maker aus Tirol."
+author: "Sandro Exenberger"
 url: "https://sandro.exemail.at"
+lang: de
+
 plugins:
   - jekyll-sitemap
+
+sass:
+  style: compressed
+
+exclude:
+  - README.md
+  - LICENSE
+  - .gitignore
+  - scratchpad

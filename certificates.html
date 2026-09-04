@@ -1,426 +1,54 @@
 ---
 layout: default
+nav: certificates
 title: Zertifikate
+description: "Zertifikate und Kurse von Sandro Exenberger – Cisco CCNA, Linux (LPIC-1), IoT, KI und Soft Skills."
 ---
 
-<style>
-    /* ── CERT GRID ── */
-    .cert-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 22px;
-        margin-top: 10px;
-    }
-
-    /* ── CERT CARD ── */
-    .cert-card {
-        background: var(--card-bg);
-        border-radius: 16px;
-        border: 1px solid var(--border);
-        padding: 0;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        position: relative;
-    }
-    .cert-card:hover {
-        transform: translateY(-6px);
-        border-color: var(--cert-color, var(--accent));
-        box-shadow: 0 14px 40px rgba(0,0,0,0.5), 0 0 0 1px var(--cert-color, var(--accent));
-    }
-
-    /* Farbiger Balken oben */
-    .cert-card-header {
-        height: 6px;
-        background: var(--cert-color, var(--accent));
-        flex-shrink: 0;
-    }
-
-    .cert-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
-
-    /* Issuer Badge + Icon */
-    .cert-issuer-row {
-        display: flex; align-items: center; gap: 12px;
-    }
-    .cert-issuer-icon {
-        width: 44px; height: 44px; border-radius: 10px;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid var(--border);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.4rem; flex-shrink: 0;
-    }
-    .cert-issuer-name { color: var(--muted); font-size: 0.8rem; font-family: 'Courier New', monospace; letter-spacing: 0.5px; }
-    .cert-issuer-sub { color: #333; font-size: 0.75rem; margin-top: 2px; }
-
-    .cert-title {
-        font-weight: 700; font-size: 1.05rem; color: #fff;
-        line-height: 1.35;
-    }
-
-    .cert-meta {
-        display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px;
-    }
-    .cert-meta-item {
-        font-size: 0.75rem; color: #555;
-        font-family: 'Courier New', monospace;
-        display: flex; align-items: center; gap: 4px;
-    }
-    .cert-meta-item::before { content: '//'; color: #2a2a2a; }
-
-    .cert-desc {
-        color: #777; font-size: 0.88rem;
-        line-height: 1.6; flex: 1;
-    }
-
-    .cert-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-    .cert-tag {
-        background: rgba(0,122,255,0.08);
-        color: var(--cert-color, var(--accent));
-        border: 1px solid rgba(0,122,255,0.15);
-        padding: 2px 9px; border-radius: 4px;
-        font-size: 0.72rem; font-family: 'Courier New', monospace;
-    }
-
-    .cert-footer {
-        padding: 14px 24px;
-        border-top: 1px solid var(--border);
-        display: flex; align-items: center; justify-content: space-between;
-        gap: 10px;
-    }
-
-    .cert-status {
-        display: flex; align-items: center; gap: 6px;
-        font-size: 0.78rem; font-family: 'Courier New', monospace;
-    }
-    .cert-status-dot {
-        width: 7px; height: 7px; border-radius: 50%;
-        background: #27c93f;
-        box-shadow: 0 0 6px #27c93f;
-        animation: pulse-dot 2s infinite;
-    }
-    .cert-status-dot.inactive { background: #555; box-shadow: none; animation: none; }
-    @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    .cert-status-text { color: #555; }
-
-    .cert-link {
-        display: inline-flex; align-items: center; gap: 5px;
-        color: var(--cert-color, var(--accent));
-        text-decoration: none;
-        font-size: 0.78rem; font-family: 'Courier New', monospace;
-        padding: 5px 12px; border-radius: 5px;
-        border: 1px solid var(--cert-color, var(--accent));
-        transition: all 0.2s;
-        white-space: nowrap;
-    }
-    .cert-link:hover {
-        background: var(--cert-color, var(--accent));
-        color: #fff;
-    }
-
-    /* ── COMING SOON CARD ── */
-    .cert-card.placeholder {
-        border-style: dashed;
-        opacity: 0.45;
-    }
-    .cert-card.placeholder .cert-card-header { background: #1e1e1e; }
-    .cert-card.placeholder:hover { transform: none; box-shadow: none; border-color: var(--border); opacity: 0.6; }
-
-    /* ── SECTION DIVIDER ── */
-    .cert-section-title {
-        font-family: 'Courier New', monospace;
-        font-size: 0.8rem; color: var(--muted);
-        letter-spacing: 2px; text-transform: uppercase;
-        margin: 36px 0 16px;
-        display: flex; align-items: center; gap: 12px;
-    }
-    .cert-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-    /* ── SUMMARY BAR ── */
-    .cert-summary {
-        display: flex; gap: 20px; flex-wrap: wrap;
-        margin-bottom: 32px;
-    }
-    .cert-summary-item {
-        background: var(--card-bg);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 14px 20px;
-        flex: 1; min-width: 120px;
-        text-align: center;
-        transition: border-color 0.2s, transform 0.2s;
-    }
-    .cert-summary-item:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .cert-summary-num { font-size: 1.8rem; font-weight: 700; color: var(--accent); font-family: 'Courier New', monospace; display: block; }
-    .cert-summary-label { font-size: 0.78rem; color: #aaa; margin-top: 2px; display: block; }
-
-    /* ── HOW TO ADD NOTE ── */
-    .add-cert-hint {
-        background: rgba(0,122,255,0.04);
-        border: 1px dashed rgba(0,122,255,0.2);
-        border-radius: 12px; padding: 20px 24px;
-        margin-top: 28px;
-        color: #444; font-family: 'Courier New', monospace; font-size: 0.82rem;
-        line-height: 1.7;
-    }
-    .add-cert-hint strong { color: var(--accent); }
-</style>
-
 <div class="container">
-    <div class="page-header">
-        <h1 data-de="[CERT_ARCHIVE]" data-en="[CERT_ARCHIVE]">[CERT_ARCHIVE]</h1>
-        <a href="index.html" class="back-link">← TERMINATE_SESSION</a>
-    </div>
+  <div class="page-head">
+    <h1>[<span class="br">CERT_ARCHIVE</span>]</h1>
+    <p data-de="Verifizierte Nachweise aus Netzwerktechnik, Linux, KI und Kommunikation."
+       data-en="Verified credentials in networking, Linux, AI and communication.">Verifizierte Nachweise aus Netzwerktechnik, Linux, KI und Kommunikation.</p>
+    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} <span data-de="Zur&uuml;ck" data-en="Back">Zur&uuml;ck</span></a>
+  </div>
 
-    <!-- SUMMARY -->
-    <div class="cert-summary reveal">
-        <div class="cert-summary-item">
-            <span class="cert-summary-num">6</span>
-            <span class="cert-summary-label" data-de="Zertifikate" data-en="Certificates">Zertifikate</span>
+  <div class="stat-row reveal" style="margin-bottom:30px;">
+    {% for s in site.data.certificates.summary %}
+    <div class="stat"><span class="stat__num">{{ s.num }}</span><span class="stat__label">{{ s.label }}</span></div>
+    {% endfor %}
+  </div>
+
+  {% assign groups = site.data.certificates.items | group_by: "section" %}
+  {% for g in groups %}
+  <div class="eyebrow reveal">{{ g.name }}</div>
+  <div class="grid-auto" style="margin-bottom:34px;">
+    {% for c in g.items %}
+    <article class="tile tile--hover cert reveal" style="--c:{{ c.color }};">
+      <div class="cert__top"></div>
+      <div class="tile__body">
+        <div class="cert__issuer">
+          <span class="cert__issuer-glyph">{{ c.glyph }}</span>
+          <span>
+            <span class="cert__issuer-name">{{ c.issuer }}</span><br>
+            <span class="cert__issuer-sub">{{ c.issuer_sub }}</span>
+          </span>
         </div>
-        <div class="cert-summary-item">
-            <span class="cert-summary-num">5</span>
-            <span class="cert-summary-label" data-de="LinkedIn Kurse" data-en="LinkedIn Courses">LinkedIn Kurse</span>
+        <h3 class="tile__title" style="font-size:1rem;line-height:1.35;">{{ c.title }}</h3>
+        <div class="cert__meta"><span>{{ c.date }}</span><span>{{ c.validity }}</span></div>
+        <p class="tile__text">{{ c.desc }}</p>
+        <div class="tags">
+          {% for t in c.tags %}<span class="tag">{{ t }}</span>{% endfor %}
         </div>
-        <div class="cert-summary-item">
-            <span class="cert-summary-num">100%</span>
-            <span class="cert-summary-label" data-de="Aktiv / G&uuml;ltig" data-en="Active / Valid">Aktiv / Gültig</span>
-        </div>
-    </div>
-
-    <!-- NETWORKING & SECURITY -->
-    <div class="cert-section-title reveal">Networking &amp; Security</div>
-    <div class="cert-grid">
-
-        <div class="cert-card reveal" style="--cert-color: #049fd9;">
-            <div class="cert-card-header"></div>
-            <div class="cert-card-body">
-                <div class="cert-issuer-row">
-                    <div class="cert-issuer-icon">🔵</div>
-                    <div>
-                        <div class="cert-issuer-name">Cisco Systems</div>
-                        <div class="cert-issuer-sub">HTBLVA Anichstrasse, Innsbruck</div>
-                    </div>
-                </div>
-                <div class="cert-title" data-de="Cisco Certified Network Associate (CCNA)" data-en="Cisco Certified Network Associate (CCNA)">Cisco Certified Network Associate (CCNA)</div>
-                <div class="cert-meta">
-                    <span class="cert-meta-item">Jun 2025</span>
-                    <span class="cert-meta-item">Gultig 3 Jahre</span>
-                </div>
-                <div class="cert-desc">Fundierte Kenntnisse in Netzwerktopologien, Routing &amp; Switching, IP-Adressierung, VLANs, STP, OSPF, ACLs und grundlegender Netzwerksicherheit.</div>
-                <div class="cert-tags">
-                    <span class="cert-tag">Routing</span>
-                    <span class="cert-tag">Switching</span>
-                    <span class="cert-tag">OSPF</span>
-                    <span class="cert-tag">VLANs</span>
-                    <span class="cert-tag">ACLs</span>
-                </div>
-            </div>
-            <div class="cert-footer">
-                <div class="cert-status">
-                    <div class="cert-status-dot"></div>
-                    <span class="cert-status-text">Aktiv</span>
-                </div>
-                <a href="https://www.linkedin.com/in/sandro-exenberger-1a5486315/details/certifications/1760347503848/single-media-viewer/?profileId=ACoAAE_7cY0B1XTNQsD3vsuJ9IIj0ZDft-8KAOA" target="_blank" rel="noopener" class="cert-link">
-                    <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- LINUX & OPEN SOURCE -->
-    <div class="cert-section-title reveal">Linux &amp; Open Source</div>
-    <div class="cert-grid">
-
-        <div class="cert-card reveal" style="--cert-color: #e95420;">
-            <div class="cert-card-header"></div>
-            <div class="cert-card-body">
-                <div class="cert-issuer-row">
-                    <div class="cert-issuer-icon">🐧</div>
-                    <div>
-                        <div class="cert-issuer-name">LinkedIn Learning</div>
-                        <div class="cert-issuer-sub">Feb. 2026</div>
-                    </div>
-                </div>
-                <div class="cert-title" data-de="Linux-Installation und -Paketverwaltung (LPIC-1 101)" data-en="Linux Installation and Package Management (LPIC-1 101)">Linux-Installation und -Paketverwaltung (LPIC-1 101)</div>
-                <div class="cert-meta">
-                    <span class="cert-meta-item">Feb. 2026</span>
-                    <span class="cert-meta-item">Abgeschlossen</span>
-                </div>
-                <div class="cert-desc">Installation und Konfiguration von Linux-Systemen, Paketverwaltung mit apt/yum/dnf und grundlegende Systemadministration als Vorbereitung auf LPIC-1.</div>
-                <div class="cert-tags">
-                    <span class="cert-tag">Linux</span>
-                    <span class="cert-tag">LPIC-1</span>
-                    <span class="cert-tag">Paketverwaltung</span>
-                    <span class="cert-tag">Sysadmin</span>
-                </div>
-            </div>
-            <div class="cert-footer">
-                <div class="cert-status">
-                    <div class="cert-status-dot"></div>
-                    <span class="cert-status-text">Abgeschlossen</span>
-                </div>
-                <a href="https://www.linkedin.com/learning/certificates/24b23a74face5621181ae08e6c3f86d867aecdcb79fc3f608d8e53521051656a" target="_blank" rel="noopener" class="cert-link">
-                    <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    Verifizieren
-                </a>
-            </div>
-        </div>
-
-        <div class="cert-card reveal" style="--cert-color: #e95420;">
-            <div class="cert-card-header"></div>
-            <div class="cert-card-body">
-                <div class="cert-issuer-row">
-                    <div class="cert-issuer-icon">🐧</div>
-                    <div>
-                        <div class="cert-issuer-name">LinkedIn Learning</div>
-                        <div class="cert-issuer-sub">Feb. 2026</div>
-                    </div>
-                </div>
-                <div class="cert-title" data-de="Einf&uuml;hrung und Einstieg in Linux" data-en="Introduction to Linux">Einfuhrung und Einstieg in Linux</div>
-                <div class="cert-meta">
-                    <span class="cert-meta-item">Feb. 2026</span>
-                    <span class="cert-meta-item">Abgeschlossen</span>
-                </div>
-                <div class="cert-desc">Grundlagen des Linux-Betriebssystems, Terminal-Bedienung, Dateisystem-Navigation und grundlegende Shell-Befehle fuer Einsteiger.</div>
-                <div class="cert-tags">
-                    <span class="cert-tag">Linux</span>
-                    <span class="cert-tag">Terminal</span>
-                    <span class="cert-tag">Shell</span>
-                </div>
-            </div>
-            <div class="cert-footer">
-                <div class="cert-status">
-                    <div class="cert-status-dot"></div>
-                    <span class="cert-status-text">Abgeschlossen</span>
-                </div>
-                <a href="https://www.linkedin.com/learning/certificates/183ace0ee3ecccc9eb57a20691117b291e0668baa38794de997adefe538c10a1?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BG9aF%2Fw6hR6qfcbAGe6xTLA%3D%3D" target="_blank" rel="noopener" class="cert-link">
-                    <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    Verifizieren
-                </a>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- KI & TECH -->
-    <div class="cert-section-title reveal">KI &amp; Technologie</div>
-    <div class="cert-grid">
-
-        <div class="cert-card reveal" style="--cert-color: #10a37f;">
-            <div class="cert-card-header"></div>
-            <div class="cert-card-body">
-                <div class="cert-issuer-row">
-                    <div class="cert-issuer-icon">🤖</div>
-                    <div>
-                        <div class="cert-issuer-name">LinkedIn Learning</div>
-                        <div class="cert-issuer-sub">Feb. 2026</div>
-                    </div>
-                </div>
-                <div class="cert-title" data-de="GPTs mit ChatGPT erstellen" data-en="Creating GPTs with ChatGPT">GPTs mit ChatGPT erstellen</div>
-                <div class="cert-meta">
-                    <span class="cert-meta-item">Feb. 2026</span>
-                    <span class="cert-meta-item">Abgeschlossen</span>
-                </div>
-                <div class="cert-desc">Erstellung und Konfiguration eigener GPT-Modelle mit ChatGPT, Prompt Engineering und praktischer Einsatz von KI-Tools fuer produktive Workflows.</div>
-                <div class="cert-tags">
-                    <span class="cert-tag">ChatGPT</span>
-                    <span class="cert-tag">GPT</span>
-                    <span class="cert-tag">KI</span>
-                    <span class="cert-tag">OpenAI</span>
-                    <span class="cert-tag">Chatbot</span>
-                </div>
-            </div>
-            <div class="cert-footer">
-                <div class="cert-status">
-                    <div class="cert-status-dot"></div>
-                    <span class="cert-status-text">Abgeschlossen</span>
-                </div>
-                <a href="https://www.linkedin.com/learning/certificates/4397f4e2191041b1a12ac5dd73b4487daf95641b56ddf8e0c90613d96cf9c130?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BG9aF%2Fw6hR6qfcbAGe6xTLA%3D%3D" target="_blank" rel="noopener" class="cert-link">
-                    <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-
-        <div class="cert-card reveal" style="--cert-color: #ff6b35;">
-            <div class="cert-card-header"></div>
-            <div class="cert-card-body">
-                <div class="cert-issuer-row">
-                    <div class="cert-issuer-icon">📡</div>
-                    <div>
-                        <div class="cert-issuer-name">LinkedIn Learning</div>
-                        <div class="cert-issuer-sub">Feb. 2026</div>
-                    </div>
-                </div>
-                <div class="cert-title" data-de="IoT-Grundlagen f&uuml;r Entwickler:innen - Elektronik-Basiswissen" data-en="IoT Fundamentals for Developers - Electronics Basics">IoT-Grundlagen fur Entwickler:innen - Elektronik-Basiswissen</div>
-                <div class="cert-meta">
-                    <span class="cert-meta-item">Feb. 2026</span>
-                    <span class="cert-meta-item">Abgeschlossen</span>
-                </div>
-                <div class="cert-desc">Grundlagen der Elektronik fuer IoT-Entwicklung: Schaltkreise, Sensoren, Mikrocontroller und praktische Hardware-Konzepte fuer vernetzte Geraete.</div>
-                <div class="cert-tags">
-                    <span class="cert-tag">IoT</span>
-                    <span class="cert-tag">Elektronik</span>
-                    <span class="cert-tag">Hardware</span>
-                    <span class="cert-tag">Mikrocontroller</span>
-                </div>
-            </div>
-            <div class="cert-footer">
-                <div class="cert-status">
-                    <div class="cert-status-dot"></div>
-                    <span class="cert-status-text">Abgeschlossen</span>
-                </div>
-                <a href="https://www.linkedin.com/learning/certificates/258d34aa5a0d75ca6b1bb6b9f4a95cad6b09fe18613a759b354c905793d88c5d?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BG9aF%2Fw6hR6qfcbAGe6xTLA%3D%3D" target="_blank" rel="noopener" class="cert-link">
-                    <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- SOFT SKILLS -->
-    <div class="cert-section-title reveal">Soft Skills &amp; Management</div>
-    <div class="cert-grid">
-
-        <div class="cert-card reveal" style="--cert-color: #8b5cf6;">
-            <div class="cert-card-header"></div>
-            <div class="cert-card-body">
-                <div class="cert-issuer-row">
-                    <div class="cert-issuer-icon">🤝</div>
-                    <div>
-                        <div class="cert-issuer-name">LinkedIn Learning</div>
-                        <div class="cert-issuer-sub">Feb. 2026</div>
-                    </div>
-                </div>
-                <div class="cert-title" data-de="Die 7 schlimmsten Verhandlungsfehler" data-en="The 7 Worst Negotiation Mistakes">Die 7 schlimmsten Verhandlungsfehler</div>
-                <div class="cert-meta">
-                    <span class="cert-meta-item">Feb. 2026</span>
-                    <span class="cert-meta-item">Abgeschlossen</span>
-                </div>
-                <div class="cert-desc">Typische Fehler in Verhandlungen erkennen und vermeiden. Praktische Techniken fuer erfolgreiche Kommunikation und Konfliktlosung im beruflichen Umfeld.</div>
-                <div class="cert-tags">
-                    <span class="cert-tag">Verhandlung</span>
-                    <span class="cert-tag">Kommunikation</span>
-                    <span class="cert-tag">Soft Skills</span>
-                </div>
-            </div>
-            <div class="cert-footer">
-                <div class="cert-status">
-                    <div class="cert-status-dot"></div>
-                    <span class="cert-status-text">Abgeschlossen</span>
-                </div>
-                <a href="https://www.linkedin.com/learning/certificates/9562762db2385660a0b08325ef794aaf4f2d9170bd6f5965a4c8cf1863afd26c?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BG9aF%2Fw6hR6qfcbAGe6xTLA%3D%3D" target="_blank" rel="noopener" class="cert-link">
-                    <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-
-    </div>
-
+      </div>
+      <div class="cert__foot">
+        <span class="status-dot">{{ c.status }}</span>
+        <a href="{{ c.url }}" target="_blank" rel="noopener" class="tile__link" style="--c:{{ c.color }};">
+          {% include icon.html name="external" %} {{ c.link_label }}
+        </a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% endfor %}
 </div>

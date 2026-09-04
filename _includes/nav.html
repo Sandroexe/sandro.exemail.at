@@ -1,109 +1,22 @@
-<style>
-    /* LANGUAGE TOGGLE */
-    .lang-toggle {
-        display: flex; align-items: center; gap: 0;
-        background: rgba(0,122,255,0.08); border: 1px solid rgba(0,122,255,0.2);
-        border-radius: 20px; padding: 3px; cursor: pointer;
-        font-family: 'Courier New', monospace; font-size: 0.75rem;
-        transition: all 0.2s; user-select: none; margin-left: 8px;
-    }
-    .lang-toggle:hover { border-color: var(--accent); }
-    .lang-opt {
-        padding: 2px 8px; border-radius: 12px; transition: all 0.2s;
-        color: var(--muted);
-    }
-    .lang-opt.active { background: var(--accent); color: #fff; }
+{%- comment -%} Zentrale Navigation · Quelle: _data/navigation.yml {%- endcomment -%}
+{%- assign _cur = page.nav -%}
+<nav class="nav" id="nav" aria-label="Hauptnavigation">
+  <div class="nav__inner">
+    <a href="/index.html" class="nav__logo">sandro<span>.exe</span></a>
 
-    /* SCROLL TO TOP */
-    .scroll-top-btn {
-        position: fixed; bottom: 90px; right: 24px;
-        width: 40px; height: 40px; border-radius: 50%;
-        background: var(--card-bg, rgba(18,18,18,0.96));
-        border: 1px solid var(--border, #1e1e1e);
-        color: var(--accent, #007aff); cursor: pointer; z-index: 999;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.3rem; opacity: 0; pointer-events: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-    }
-    .scroll-top-btn.visible { opacity: 1; pointer-events: auto; }
-    .scroll-top-btn:hover {
-        background: var(--accent, #007aff); color: #fff;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,122,255,0.3);
-    }
-</style>
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Menü umschalten">
+      <span></span><span></span><span></span>
+    </button>
 
-<nav class="top-nav">
-    <a href="/index.html" class="nav-logo">sandro<span>.exe</span></a>
-    <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
-    <div class="nav-links" id="main-nav-links">
-        <a href="/index.html"       class="nav-link" data-page="index"        data-de="~/home"     data-en="~/home">~/home</a>
-        <a href="/projects.html"    class="nav-link" data-page="projects"     data-de="~/projects" data-en="~/projects">~/projects</a>
-        <a href="/certificates.html" class="nav-link" data-page="certificates" data-de="~/certs"    data-en="~/certs">~/certs</a>
-        <a href="/lab.html"         class="nav-link" data-page="lab"          data-de="~/lab"      data-en="~/lab">~/lab</a>
-        <a href="/links.html"       class="nav-link" data-page="links"        data-de="~/links"    data-en="~/links">~/links</a>
-        <a href="/contact/"         class="nav-link" data-page="contact"      data-de="~/contact"  data-en="~/contact">~/contact</a>
+    <div class="nav__menu" id="navMenu">
+      {%- for item in site.data.navigation.primary -%}
+      <a href="{{ item.url }}" class="nav__link{% if item.key == _cur %} is-active{% endif %}"
+         data-nav="{{ item.key }}"{% if item.key == _cur %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {%- endfor -%}
+
+      <button class="lang-switch" id="langSwitch" type="button" aria-label="Sprache wechseln">
+        <span data-lang-opt="de">DE</span><span data-lang-opt="en">EN</span>
+      </button>
     </div>
-    <div class="lang-toggle" id="lang-toggle" onclick="toggleLang()">
-        <span class="lang-opt active" id="lang-de">DE</span>
-        <span class="lang-opt" id="lang-en">EN</span>
-    </div>
+  </div>
 </nav>
-
-<button class="scroll-top-btn" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Nach oben">&#8679;</button>
-
-<script>
-(function() {
-    // ACTIVE NAV LINK - Fixed for contact page with trailing slash
-    var pathname = window.location.pathname;
-    var pathSegments = pathname.split('/').filter(Boolean);
-    var page = pathSegments[pathSegments.length - 1] || 'index';
-    
-    // Remove .html extension if present
-    page = page.replace(/\.html$/, '');
-    
-    // If page is empty (root or just /), set to index
-    if (page === '') page = 'index';
-    
-    document.querySelectorAll('.nav-link[data-page]').forEach(function(a) {
-        if (a.dataset.page === page) {
-            a.classList.add('active');
-        }
-    });
-
-    // SCROLL TO TOP
-    var btn = document.getElementById('scroll-top-btn');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) { btn.classList.add('visible'); }
-        else { btn.classList.remove('visible'); }
-    });
-
-    // LANGUAGE TOGGLE
-    var currentLang = localStorage.getItem('lang') || 'de';
-    applyLang(currentLang, false);
-
-    function applyLang(lang, animate) {
-        currentLang = lang;
-        localStorage.setItem('lang', lang);
-        document.getElementById('lang-de').classList.toggle('active', lang === 'de');
-        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-        document.documentElement.lang = lang === 'en' ? 'en' : 'de';
-        document.querySelectorAll('[data-de]').forEach(function(el) {
-            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                el.placeholder = lang === 'en' ? (el.dataset.en || el.dataset.de) : el.dataset.de;
-            } else {
-                el.innerHTML = lang === 'en' ? (el.dataset.en || el.dataset.de) : el.dataset.de;
-            }
-        });
-    }
-
-    window.toggleLang = function() {
-        applyLang(currentLang === 'de' ? 'en' : 'de', true);
-    };
-
-    window.getCurrentLang = function() { return currentLang; };
-
-    document.addEventListener('DOMContentLoaded', function() { applyLang(currentLang, false); });
-})();
-</script>

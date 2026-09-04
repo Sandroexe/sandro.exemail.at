@@ -1,44 +1,66 @@
-# 🌐 sandro.exemail.at | Sandro Exenberger Portfolio
-
-![Status](https://img.shields.io/website?url=https%3A%2F%2Fexemail.at&label=Status&style=flat-square&color=success)
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
+# 🌐 sandro.exemail.at · Portfolio von Sandro Exenberger
 
 > **"All Systems Operational."** 🟢
 
-Willkommen im Quellcode-Repository meiner persönlichen Webseite. Diese Seite dient als digitales Portfolio, Visitenkarte und Showcase meiner Projekte aus den Bereichen **Netzwerktechnik (CCNA)**, **Linux**, **Elektronik** und **3D-Druck**.
+Digitales Portfolio, Visitenkarte und Projekt-Showcase aus den Bereichen
+**Netzwerktechnik (CCNA)**, **Linux**, **Elektronik** und **Self-Hosting**.
+Statisch generiert mit **Jekyll** und ausgeliefert über **GitHub Pages**.
 
-## 🚀 Features
+---
 
-Dieses Projekt setzt auf **High Performance** durch einen No-Framework-Ansatz (Vanilla JS), verwaltet durch Jekyll.
+## 🏗️ Architektur – modular, ohne Code-Duplikate
 
-* **💻 Cyber-Terminal UI:** Ein verstecktes, voll funktionsfähiges Web-Terminal (CachyOS Style) mit Befehlen wie `fetch`, `whoami` oder `skills`.
-* **🕸️ Neural Network Background:** Ein responsives HTML5 Canvas Partikel-System, das auf Mausbewegungen reagiert.
-* **⚡ Glitch & Neon UI:** Modernes Dark-Mode Design mit Blur-Effekten und Neon-Akzenten (`#007aff`).
-* **🏗️ Jekyll Architektur:** Modulare Struktur mit `_includes` für Footer und Header, nativ unterstützt durch GitHub Pages.
-* **🥚 Easter Eggs:** Tippe `sandro` auf der Tastatur, um den "Hacker Mode" zu aktivieren.
-
-## 🛠️ Tech Stack
-
-| Technologie | Beschreibung |
-| :--- | :--- |
-| ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) | Semantische Struktur & SEO |
-| ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) | Flexbox, Grid, Animationen, Variablen |
-| ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) | Terminal Logik, Canvas, DOM (Keine Frameworks) |
-| ![Jekyll](https://img.shields.io/badge/Jekyll-CC0000?style=flat-square&logo=jekyll&logoColor=white) | Static Site Generator (SSG) |
-
-## 📂 Repository Struktur
-
-Das Projekt nutzt Jekyll-Includes, um Code-Duplikate zu vermeiden und Komponenten zentral zu verwalten:
+Alle wiederkehrenden Inhalte liegen zentral. Eine Änderung propagiert
+automatisch auf die gesamte Website.
 
 ```text
-├── _includes/
-│   └── footer.html       # Zentraler Footer-Baustein
-├── _layouts/
-│   └── default.html      # Haupt-Layout
-├── assets/               # Bilder, Lebenslauf, CSS, JS
-├── index.html            # Haupt-Dashboard
-├── datenschutz.html      # Datenschutzerklärung
-├── impressum.html        # Impressum
-├── lab.html              # Hardware & Home-Lab Setup
-├── links.html            # Linktree-Alternative
-└── projects.html         # Projekt-Showcase
+_data/
+  socials.yml          # ALLE Kontaktdaten, Social-Links, Icons, Farben  ← single source of truth
+  navigation.yml       # Menüstruktur (Header + Footer)
+  certificates.yml     # Zertifikate (Loop in certificates.html)
+  projects.yml         # Projekte (Loop in projects.html)
+
+_includes/
+  head.html            # Meta-Tags, OpenGraph, Fonts, CSS, JSON-LD
+  header.html          # Seitenkopf → bindet nav.html ein
+  nav.html             # Responsive Navigation (Blur, Mobile-Menü, Sprach-Umschalter)
+  footer.html          # Globaler Footer (Socials + Recht aus _data/)
+  social-links.html    # Wiederverwendbare Link-Ausgabe (icons | buttons | list)
+  icon.html            # Zentrale SVG-Icon-Bibliothek
+  github-activity.html # Contribution-Heatmap (index + projects)
+
+_layouts/
+  default.html         # Globales Grundgerüst (Hintergrund, Header, Main, Footer)
+
+assets/
+  css/main.css         # Komplettes Design-System (Design-Tokens, Bento, Glas, Motion)
+  js/main.js           # Nav, Sprache, Scroll-Reveal, Partikel-Hintergrund, To-Top
+  js/github-activity.js # Datenabruf + Rendering der Heatmap
+```
+
+## 📄 Seiten (feste URLs – nicht umbenennen!)
+
+| Route | Inhalt |
+| :--- | :--- |
+| `/index.html` | Hero, Über mich, Tech-Stack, GitHub-Aktivität, Lebenslauf, Terminal |
+| `/projects.html` | Projekt-Showcase + Contribution-Heatmap |
+| `/certificates.html` | Zertifikate & Kurse (CCNA, LPIC-1, IoT, KI, Soft Skills) |
+| `/lab.html` | Workstation, Hardware- & Software-Setup |
+| `/links.html` | Digitale Visitenkarte / Linktree — **gedruckt auf Visitenkarten** |
+| `/contact/` | Kontaktformular (→ `api.exemail.at`) + Alternativwege |
+| `/impressum.html`, `/datenschutz.html` | Rechtliches |
+| `/404.html` | Fehlerseite |
+
+## 🎨 Design
+
+High-End-Tech-Ästhetik: Dark-Mode-first (tiefes Anthrazit), feiner
+Glasmorphismus, Bento-Grid, Partikel-Netzwerk-Hintergrund, dezente
+Motion (Scroll-Reveal, Hover-States) und `prefers-reduced-motion`-Support.
+Typografie: **Inter** + **JetBrains Mono** (Google Fonts).
+
+## 🛠️ Lokal bauen
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
