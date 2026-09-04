@@ -32,6 +32,8 @@ gh.stat_days:   "Aktive Tage"
 gh.stat_avg:    "Ø pro Tag"
 
 # ── Startseite ──────────────────────────────────────────────────────────
+home.status: "Verfügbar für Projekte"
+home.cta_contact: "Kontakt aufnehmen"
 home.role_prefix: "Ich bin"
 home.about_title: "Über mich"
 home.about_p1: "Als Regionalvorstand für das Tiroler Unterland bei der Schülerunion Österreich setze ich mich aktiv für die Anliegen von Schüler:innen ein und bringe meine Kompetenzen in Kommunikation und Konfliktlösung ein. Parallel dazu vertrete ich als Schülervertreter an der HTBLVA Anichstraße die Interessen von etwa 1600 Schüler:innen im Schulgemeinschaftsausschuss."

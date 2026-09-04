@@ -37,7 +37,7 @@ channels:
     value_en: "Send a message"
     url:      "/contact/"
     icon:     "message"
-    color:    "#007aff"
+    color:    "#5b8cff"
     groups:   [contact]
 
   - name:     "E-Mail"
@@ -45,7 +45,7 @@ channels:
     value:    "sandro@exemail.at"
     url:      "mailto:sandro@exemail.at"
     icon:     "mail"
-    color:    "#007aff"
+    color:    "#5b8cff"
     groups:   [contact, altcontact, footer]
 
   - name:     "Telefon"

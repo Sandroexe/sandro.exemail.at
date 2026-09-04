@@ -30,6 +30,8 @@ gh.stat_days:   "Active days"
 gh.stat_avg:    "Avg. / day"
 
 # ── Home ────────────────────────────────────────────────────────────────
+home.status: "Available for projects"
+home.cta_contact: "Get in touch"
 home.role_prefix: "I'm a"
 home.about_title: "About me"
 home.about_p1: "As Regional Chairman for the Tyrolean Unterland at the Student Union Austria, I actively advocate for students and contribute my skills in communication and conflict resolution. In parallel, I represent around 1600 students at HTBLVA Anichstraße on the school community committee."

@@ -13,17 +13,27 @@ description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerkte
 
   <!-- HERO -->
   <header class="hero">
-    <img src="{{ p.avatar }}" alt="Sandro Exenberger" class="hero__avatar" width="128" height="128"
+    <span class="status-badge">
+      <span class="status-badge__dot" aria-hidden="true"></span>
+      {% include t.html key="home.status" %}
+    </span>
+    <img src="{{ p.avatar }}" alt="Sandro Exenberger" class="hero__avatar" width="122" height="122"
          onerror="this.style.display='none'">
     <h1>Sandro Exenberger</h1>
     <p class="hero__role">
       {% include t.html key="home.role_prefix" %}
       <span data-typewriter-de='{{ de["home.roles"] | jsonify }}' data-typewriter-en='{{ en["home.roles"] | jsonify }}'></span><span class="caret"></span>
     </p>
+    <div class="chips">
+      <span class="chip">CCNA &#10003;</span>
+      <span class="chip">Linux</span>
+      <span class="chip">IoT</span>
+      <span class="chip">Maker</span>
+      <span class="chip">Tirol, AT</span>
+    </div>
     <div class="hero__cta">
-      <a href="/projects.html" class="btn btn--primary">~/projects</a>
-      <a href="/certificates.html" class="btn">~/certs</a>
-      <a href="/lab.html" class="btn">~/lab</a>
+      <a href="/contact/" class="btn btn--primary">{% include icon.html name="message" %} {% include t.html key="home.cta_contact" %}</a>
+      <a href="/projects.html" class="btn">~/projects</a>
       <a href="/links.html" class="btn">~/links</a>
     </div>
   </header>
