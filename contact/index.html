@@ -7,44 +7,49 @@ description: "Schreib Sandro Exenberger eine Nachricht – sie landet direkt auf
 
 {% assign L = site.data.locales %}
 
-<div class="container container--tight">
-  <div class="page-head">
-    {% include t.html key="contact.title" tag="h1" %}
-    {% include t.html key="contact.head" tag="p" %}
+<div class="mx-auto max-w-lg px-5 py-14">
+  <div class="text-center">
+    {% include t.html key="contact.title" tag="h1" class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl" %}
+    {% include t.html key="contact.head" tag="p" class="mx-auto mt-3 max-w-md text-slate-500" %}
   </div>
 
-  <section class="card reveal">
-    <form id="contactForm" novalidate>
-      <div class="field">
-        {% include t.html key="contact.f_name" tag="label" attrs='for="name"' %}
-        <input type="text" id="name" name="name" required {% include t.html key="contact.f_name_ph" mode="attr" %} placeholder="Name">
-        {% include t.html key="contact.f_name_err" class="field__err" %}
+  <section class="reveal mt-8 rounded-2xl border border-slate-200 bg-white p-7 shadow-card sm:p-8">
+    <form id="contactForm" novalidate class="flex flex-col gap-5">
+      <div class="flex flex-col">
+        {% include t.html key="contact.f_name" tag="label" attrs='for="name"' class="mb-2 font-mono text-xs font-semibold uppercase tracking-wide text-slate-500" %}
+        <input type="text" id="name" name="name" required placeholder="Name" {% include t.html key="contact.f_name_ph" mode="attr" %}
+               class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100">
+        {% include t.html key="contact.f_name_err" tag="span" class="peer mt-1 hidden font-mono text-[11px] uppercase text-red-500" %}
       </div>
-      <div class="field">
-        {% include t.html key="contact.f_email" tag="label" attrs='for="email"' %}
-        <input type="email" id="email" name="email" required {% include t.html key="contact.f_email_ph" mode="attr" %} placeholder="E-Mail">
-        {% include t.html key="contact.f_email_err" class="field__err" %}
+      <div class="flex flex-col">
+        {% include t.html key="contact.f_email" tag="label" attrs='for="email"' class="mb-2 font-mono text-xs font-semibold uppercase tracking-wide text-slate-500" %}
+        <input type="email" id="email" name="email" required placeholder="E-Mail" {% include t.html key="contact.f_email_ph" mode="attr" %}
+               class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100">
+        {% include t.html key="contact.f_email_err" tag="span" class="mt-1 hidden font-mono text-[11px] uppercase text-red-500" %}
       </div>
-      <div class="field">
-        {% include t.html key="contact.f_phone" tag="label" attrs='for="phone"' %}
-        <input type="tel" id="phone" name="phone" pattern="[0-9 ()+/\-]{6,}" placeholder="+43 676 …">
-        {% include t.html key="contact.f_phone_err" class="field__err" %}
+      <div class="flex flex-col">
+        {% include t.html key="contact.f_phone" tag="label" attrs='for="phone"' class="mb-2 font-mono text-xs font-semibold uppercase tracking-wide text-slate-500" %}
+        <input type="tel" id="phone" name="phone" pattern="[0-9 ()+/\-]{6,}" placeholder="+43 676 …"
+               class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100">
+        {% include t.html key="contact.f_phone_err" tag="span" class="mt-1 hidden font-mono text-[11px] uppercase text-red-500" %}
       </div>
-      <div class="field">
-        {% include t.html key="contact.f_msg" tag="label" attrs='for="message"' %}
-        <textarea id="message" name="message" required {% include t.html key="contact.f_msg_ph" mode="attr" %} placeholder="Nachricht"></textarea>
-        {% include t.html key="contact.f_msg_err" class="field__err" %}
+      <div class="flex flex-col">
+        {% include t.html key="contact.f_msg" tag="label" attrs='for="message"' class="mb-2 font-mono text-xs font-semibold uppercase tracking-wide text-slate-500" %}
+        <textarea id="message" name="message" required placeholder="Nachricht" {% include t.html key="contact.f_msg_ph" mode="attr" %}
+                  class="min-h-[140px] resize-y rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"></textarea>
+        {% include t.html key="contact.f_msg_err" tag="span" class="mt-1 hidden font-mono text-[11px] uppercase text-red-500" %}
       </div>
-      <button type="submit" id="submitBtn" class="btn btn--primary" style="width:100%;justify-content:center;"
+      <button type="submit" id="submitBtn"
+              class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3.5 font-mono text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
               data-de="{{ L.de['contact.submit'] }}" data-en="{{ L.en['contact.submit'] }}">{{ L.de['contact.submit'] }}</button>
     </form>
-    <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+    <div id="formStatus" role="status" aria-live="polite" class="mt-4 hidden rounded-xl border px-4 py-3 text-center text-sm"></div>
   </section>
 
-  <section class="card reveal" style="margin-top:22px;">
-    {% include t.html key="contact.alt_title" tag="h2" %}
+  <section class="reveal mt-6 rounded-2xl border border-slate-200 bg-white p-7 shadow-card">
+    {% include t.html key="contact.alt_title" tag="h2" class="mb-4 text-lg font-bold text-slate-900" %}
     {% include social-links.html group="altcontact" style="list" %}
-    <a href="/links.html" class="btn" style="width:100%;justify-content:center;margin-top:16px;"
+    <a href="/links.html" class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 font-mono text-sm font-semibold text-slate-700 transition hover:border-blue-300 hover:text-blue-600"
        data-de="{{ L.de['contact.alt_links'] }}" data-en="{{ L.en['contact.alt_links'] }}">{{ L.de['contact.alt_links'] }}</a>
   </section>
 </div>
@@ -62,13 +67,30 @@ description: "Schreib Sandro Exenberger eine Nachricht – sie landet direkt auf
   };
   function t() { return I18N[(window.siteLang && window.siteLang()) === 'en' ? 'en' : 'de']; }
 
-  fields.forEach(function (f) { f.addEventListener('invalid', function (e) { e.preventDefault(); }); });
+  fields.forEach(function (f) {
+    f.addEventListener('invalid', function (e) { e.preventDefault(); });
+    f.addEventListener('input', function () {
+      var err = f.parentElement.querySelector('span');
+      if (err) err.classList.toggle('hidden', f.checkValidity() || f.value.trim() === '');
+    });
+  });
+
+  function setStatus(kind, text) {
+    status.textContent = text;
+    status.className = 'mt-4 rounded-xl border px-4 py-3 text-center text-sm ' + ({
+      loading: 'border-blue-200 bg-blue-50 text-blue-700',
+      ok: 'border-green-200 bg-green-50 text-green-700',
+      err: 'border-red-200 bg-red-50 text-red-700'
+    }[kind]);
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var ok = true;
-    fields.forEach(function (f) { if (!f.checkValidity()) ok = false; });
-    if (!ok) { if (form.reportValidity) form.reportValidity(); return; }
+    fields.forEach(function (f) {
+      if (!f.checkValidity()) { ok = false; var er = f.parentElement.querySelector('span'); if (er) er.classList.remove('hidden'); }
+    });
+    if (!ok) return;
 
     var payload = {
       name: document.getElementById('name').value.trim(),
@@ -78,29 +100,15 @@ description: "Schreib Sandro Exenberger eine Nachricht – sie landet direkt auf
     };
 
     btn.disabled = true;
-    status.className = 'form-status is-loading';
-    status.textContent = t().sending;
+    setStatus('loading', t().sending);
 
-    fetch(ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
+    fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
       .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
-        if (res.ok && res.j && res.j.success) {
-          status.className = 'form-status is-ok';
-          status.textContent = t().sent;
-          form.reset();
-        } else {
-          status.className = 'form-status is-err';
-          status.textContent = 'Fehler / Error: ' + ((res.j && res.j.error) || '?');
-        }
+        if (res.ok && res.j && res.j.success) { setStatus('ok', t().sent); form.reset(); }
+        else { setStatus('err', 'Fehler / Error: ' + ((res.j && res.j.error) || '?')); }
       })
-      .catch(function () {
-        status.className = 'form-status is-err';
-        status.textContent = t().err;
-      })
+      .catch(function () { setStatus('err', t().err); })
       .finally(function () { btn.disabled = false; });
   });
 })();

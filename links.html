@@ -7,61 +7,72 @@ description: "Alle Profile, Kontaktwege und die digitale Visitenkarte von Sandro
 
 {% assign p = site.data.socials.profile %}
 
-<div class="container container--tight">
+<div class="mx-auto max-w-md px-5 py-12">
 
   <!-- PROFIL -->
-  <div class="profile reveal">
-    <div class="profile__avatar-wrap">
-      <img src="{{ p.avatar }}" alt="Sandro Exenberger" class="profile__avatar" width="104" height="104"
-           onerror="this.src='https://placehold.co/104x104/0e1116/2f83ff?text=SE'">
-      <span class="profile__status" aria-hidden="true"></span>
-    </div>
-    <div class="profile__name">{{ p.name }}</div>
-    <div class="profile__handle">{{ p.handle }} · {{ p.domain }}</div>
-    <div class="chips">
-      <span class="chip">CCNA &#10003;</span>
-      <span class="chip">Linux</span>
-      <span class="chip">IoT</span>
-      <span class="chip">Tirol, AT</span>
+  <div class="reveal relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 pt-9 text-center shadow-card">
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-blue-50 to-transparent"></div>
+    <div class="relative">
+      <div class="relative inline-block">
+        <img src="{{ p.avatar }}" alt="Sandro Exenberger" width="108" height="108"
+             onerror="this.src='https://placehold.co/108x108/eff6ff/2563eb?text=SE'"
+             class="h-[108px] w-[108px] rounded-full object-cover shadow-xl ring-4 ring-white">
+        <span class="absolute bottom-1.5 right-1.5 h-4 w-4 rounded-full bg-green-500 ring-4 ring-white"></span>
+      </div>
+      <h1 class="mt-4 text-2xl font-extrabold text-slate-900">{{ p.name }}</h1>
+      <p class="mt-1 font-mono text-xs text-blue-600">{{ p.handle }} · {{ p.domain }}</p>
+      <div class="mt-4 flex flex-wrap justify-center gap-2">
+        {% for c in "CCNA &#10003;|Linux|IoT|Tirol, AT" | split: "|" %}
+        <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-mono text-[11px] text-slate-500">{{ c }}</span>
+        {% endfor %}
+      </div>
     </div>
   </div>
 
   <!-- KONTAKT -->
-  <div class="link-divider">{% include t.html key="links.div_contact" %}</div>
+  <div class="mt-6 mb-1 flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+    <span class="h-px flex-1 bg-slate-200"></span>{% include t.html key="links.div_contact" %}<span class="h-px flex-1 bg-slate-200"></span>
+  </div>
   {% include social-links.html group="contact" style="buttons" %}
 
   <!-- VISITENKARTE -->
-  <div class="link-divider">{% include t.html key="links.div_card" %}</div>
-  <div class="link-stack">
-    <a href="#" class="link-card" style="--ch:#2fcf6b;" id="vcardBtn">
-      <span class="link-card__glyph">{% include icon.html name="user" %}</span>
-      <span class="link-card__body">
-        {% include t.html key="links.vcard_title" class="link-card__title" %}
-        {% include t.html key="links.vcard_sub" class="link-card__sub" %}
-      </span>
-      <span class="link-card__arrow">{% include icon.html name="download" %}</span>
-    </a>
+  <div class="mt-6 mb-1 flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+    <span class="h-px flex-1 bg-slate-200"></span>{% include t.html key="links.div_card" %}<span class="h-px flex-1 bg-slate-200"></span>
   </div>
+  <a href="#" id="vcardBtn"
+     class="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-cardhover">
+    <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-slate-50 text-[17px] text-green-600 ring-1 ring-slate-200">{% include icon.html name="user" %}</span>
+    <span class="min-w-0 flex-1">
+      {% include t.html key="links.vcard_title" class="block font-mono text-[14px] font-semibold text-slate-900" %}
+      {% include t.html key="links.vcard_sub" class="block truncate font-mono text-xs text-slate-400" %}
+    </span>
+    <i class="fa-solid fa-download shrink-0 text-slate-300 transition group-hover:text-green-600" aria-hidden="true"></i>
+  </a>
 
   <!-- PORTFOLIO -->
-  <div class="link-divider">{% include t.html key="links.div_portfolio" %}</div>
-  <div class="link-stack">
+  <div class="mt-6 mb-1 flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+    <span class="h-px flex-1 bg-slate-200"></span>{% include t.html key="links.div_portfolio" %}<span class="h-px flex-1 bg-slate-200"></span>
+  </div>
+  <div class="flex flex-col gap-2.5">
     {% for item in site.data.navigation.primary %}
-      {% unless item.key == "links" or item.key == "contact" %}
-      <a href="{{ item.url }}" class="link-card" style="--ch:#2f83ff;">
-        <span class="link-card__glyph">{% include icon.html name="folder" %}</span>
-        <span class="link-card__body">
-          <span class="link-card__title">{{ item.label }}</span>
-          <span class="link-card__sub">{{ item.url | replace: '/index.html', '/' }}</span>
-        </span>
-        <span class="link-card__arrow">{% include icon.html name="arrow" %}</span>
-      </a>
-      {% endunless %}
+    {% unless item.key == "links" or item.key == "contact" %}
+    <a href="{{ item.url }}"
+       class="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-cardhover">
+      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-slate-50 text-[17px] text-blue-600 ring-1 ring-slate-200">{% include icon.html name="folder" %}</span>
+      <span class="min-w-0 flex-1">
+        <span class="block font-mono text-[14px] font-semibold text-slate-900">{{ item.label }}</span>
+        <span class="block truncate font-mono text-xs text-slate-400">{{ item.url | replace: '/index.html', '/' }}</span>
+      </span>
+      <i class="fa-solid fa-arrow-right shrink-0 text-slate-300 transition group-hover:translate-x-1 group-hover:text-blue-600" aria-hidden="true"></i>
+    </a>
+    {% endunless %}
     {% endfor %}
   </div>
 
   <!-- SOCIAL -->
-  <div class="link-divider">{% include t.html key="links.div_social" %}</div>
+  <div class="mt-6 mb-1 flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+    <span class="h-px flex-1 bg-slate-200"></span>{% include t.html key="links.div_social" %}<span class="h-px flex-1 bg-slate-200"></span>
+  </div>
   {% include social-links.html group="social" style="buttons" %}
 
 </div>

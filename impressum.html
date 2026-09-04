@@ -7,31 +7,31 @@ description: "Impressum und Offenlegung gemäß § 5 ECG und § 25 MedienG."
 
 {% assign p = site.data.socials.profile %}
 
-<div class="container container--narrow">
-  <div style="margin-bottom:18px;">
-    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} {% include t.html key="ui.back_home" %}</a>
-  </div>
+<div class="mx-auto max-w-3xl px-5 py-14">
+  <a href="/index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 font-mono text-xs text-slate-500 shadow-sm transition hover:border-blue-200 hover:text-blue-600">
+    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {% include t.html key="ui.back_home" %}
+  </a>
 
-  <article class="card prose reveal">
-    {% include t.html key="imp.title" tag="h1" %}
-    {% include t.html key="imp.intro" tag="p" %}
+  <article class="reveal mt-5 rounded-2xl border border-slate-200 bg-white p-8 shadow-card sm:p-10">
+    {% include t.html key="imp.title" tag="h1" class="border-b border-slate-200 pb-4 text-2xl font-bold text-slate-900" %}
+    {% include t.html key="imp.intro" tag="p" class="mt-5 text-sm leading-relaxed text-slate-500" %}
 
-    {% include t.html key="imp.h_operator" tag="h2" %}
-    <p><strong>{{ p.name }}</strong><br>{{ p.zip_city }}<br>{{ p.country }}</p>
+    {% include t.html key="imp.h_operator" tag="h2" class="mt-7 text-base font-semibold text-slate-800" %}
+    <p class="mt-1 text-sm leading-relaxed text-slate-500"><strong class="text-slate-700">{{ p.name }}</strong><br>{{ p.zip_city }}<br>{{ p.country }}</p>
 
-    {% include t.html key="imp.h_contact" tag="h2" %}
-    <p>
-      Telefon / Phone: <a href="tel:{{ p.phone_href }}">{{ p.phone }}</a><br>
-      E-Mail: <a href="mailto:{{ p.email }}">{{ p.email }}</a>
+    {% include t.html key="imp.h_contact" tag="h2" class="mt-7 text-base font-semibold text-slate-800" %}
+    <p class="mt-1 text-sm leading-relaxed text-slate-500">
+      Telefon / Phone: <a href="tel:{{ p.phone_href }}" class="text-blue-600 hover:underline">{{ p.phone }}</a><br>
+      E-Mail: <a href="mailto:{{ p.email }}" class="text-blue-600 hover:underline">{{ p.email }}</a>
     </p>
 
-    {% include t.html key="imp.h_purpose" tag="h2" %}
-    {% include t.html key="imp.p_purpose" tag="p" %}
+    {% include t.html key="imp.h_purpose" tag="h2" class="mt-7 text-base font-semibold text-slate-800" %}
+    {% include t.html key="imp.p_purpose" tag="p" class="mt-1 text-sm leading-relaxed text-slate-500" %}
 
-    {% include t.html key="imp.h_liability" tag="h2" %}
-    {% include t.html key="imp.p_liability" tag="p" %}
+    {% include t.html key="imp.h_liability" tag="h2" class="mt-7 text-base font-semibold text-slate-800" %}
+    {% include t.html key="imp.p_liability" tag="p" class="mt-1 text-sm leading-relaxed text-slate-500" %}
 
-    {% include t.html key="imp.h_copyright" tag="h2" %}
-    {% include t.html key="imp.p_copyright" tag="p" %}
+    {% include t.html key="imp.h_copyright" tag="h2" class="mt-7 text-base font-semibold text-slate-800" %}
+    {% include t.html key="imp.p_copyright" tag="p" class="mt-1 text-sm leading-relaxed text-slate-500" %}
   </article>
 </div>

@@ -5,35 +5,47 @@ title: Projekte
 description: "Projekte von Sandro Exenberger – Self-Hosting, Netzwerktechnik, Smart Home, IoT und Web."
 ---
 
-<div class="container">
-  <div class="page-head">
-    <h1>[<span class="br">PROJECT_ARCHIVE</span>]</h1>
-    {% include t.html key="projects.head" tag="p" %}
-    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} {% include t.html key="ui.back" %}</a>
+{% assign L = site.data.locales %}
+
+<div class="mx-auto max-w-6xl px-5 py-14">
+  <div class="text-center">
+    <h1 class="font-mono text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">[<span class="text-blue-600">PROJECT_ARCHIVE</span>]</h1>
+    {% include t.html key="projects.head" tag="p" class="mx-auto mt-4 max-w-xl text-slate-500" %}
+    <a href="/index.html" class="mt-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 font-mono text-xs text-slate-500 shadow-sm transition hover:border-blue-200 hover:text-blue-600">
+      <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {% include t.html key="ui.back" %}
+    </a>
   </div>
 
-  {% include github-activity.html %}
+  <div class="mt-10">{% include github-activity.html %}</div>
 
-  <div class="notice reveal" style="margin:24px 0 28px;">
+  <div class="reveal mt-6 flex items-center gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 font-mono text-sm text-amber-800">
     <span aria-hidden="true">🚧</span>
     {% include t.html key="projects.notice" %}
   </div>
 
-  <div class="grid-auto">
+  <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
     {% for pr in site.data.projects %}
-    <article class="tile tile--hover reveal">
-      <div class="tile__cap"><span aria-hidden="true">{{ pr.icon }}</span></div>
-      <div class="tile__body">
-        <h3 class="tile__title" data-de="{{ pr.title }}" data-en="{{ pr.title_en }}">{{ pr.title }}</h3>
-        <p class="tile__text" data-de="{{ pr.desc }}" data-en="{{ pr.desc_en }}">{{ pr.desc }}</p>
-        <div class="tags">{% for t in pr.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+    <article class="reveal flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-cardhover">
+      <div class="grid h-36 place-items-center bg-gradient-to-br from-blue-50 to-indigo-50 text-4xl">
+        <span aria-hidden="true">{{ pr.icon }}</span>
+      </div>
+      <div class="flex flex-1 flex-col gap-2.5 p-6">
+        <h3 class="font-mono text-base font-semibold text-slate-900" data-de="{{ pr.title }}" data-en="{{ pr.title_en }}">{{ pr.title }}</h3>
+        <p class="flex-1 text-sm leading-relaxed text-slate-500" data-de="{{ pr.desc }}" data-en="{{ pr.desc_en }}">{{ pr.desc }}</p>
+        <div class="flex flex-wrap gap-1.5">
+          {% for tg in pr.tags %}<span class="rounded-md border border-blue-100 bg-blue-50 px-2 py-0.5 font-mono text-[11px] text-blue-700">{{ tg }}</span>{% endfor %}
+        </div>
         {% if pr.url == "" %}
-          <span class="tile__link" style="opacity:.45;cursor:default;"
-                data-de="{{ site.data.locales.de['ui.details_soon'] }}" data-en="{{ site.data.locales.en['ui.details_soon'] }}">{{ site.data.locales.de['ui.details_soon'] }}</span>
+        <span class="mt-1 self-start rounded-lg border border-slate-200 px-3 py-1.5 font-mono text-xs text-slate-300"
+              data-de="{{ L.de['ui.details_soon'] }}" data-en="{{ L.en['ui.details_soon'] }}">{{ L.de['ui.details_soon'] }}</span>
         {% elsif pr.url contains "mailto:" %}
-          <a href="{{ pr.url }}" class="tile__link">{% include icon.html name="mail" %} {{ pr.url_label }}</a>
+        <a href="{{ pr.url }}" class="mt-1 inline-flex items-center gap-2 self-start rounded-lg border border-slate-200 px-3 py-1.5 font-mono text-xs text-slate-500 transition hover:border-blue-200 hover:text-blue-600">
+          {% include icon.html name="mail" %} {{ pr.url_label }}
+        </a>
         {% else %}
-          <a href="{{ pr.url }}" target="_blank" rel="noopener" class="tile__link">{% include icon.html name="external" %} {{ pr.url_label }}</a>
+        <a href="{{ pr.url }}" target="_blank" rel="noopener" class="mt-1 inline-flex items-center gap-2 self-start rounded-lg border border-slate-200 px-3 py-1.5 font-mono text-xs text-slate-500 transition hover:border-blue-200 hover:text-blue-600">
+          {% include icon.html name="external" %} {{ pr.url_label }}
+        </a>
         {% endif %}
       </div>
     </article>
@@ -41,4 +53,4 @@ description: "Projekte von Sandro Exenberger – Self-Hosting, Netzwerktechnik, 
   </div>
 </div>
 
-<script src="/assets/js/github-activity.js" defer></script>
+<script src="/assets/js/github-activity.js?v=3" defer></script>

@@ -5,77 +5,82 @@ title: Lab & Setup
 description: "Der Arbeitsplatz von Sandro Exenberger – Ryzen 7 9800X3D, RTX 5070, CachyOS. Hardware- und Software-Setup im Detail."
 ---
 
-<div class="container">
-  <div class="page-head">
-    <h1>[<span class="br">NODE_LAB_INFO</span>]</h1>
-    {% include t.html key="lab.head" tag="p" %}
-    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} {% include t.html key="ui.back" %}</a>
+<div class="mx-auto max-w-6xl px-5 py-14">
+  <div class="text-center">
+    <h1 class="font-mono text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">[<span class="text-blue-600">NODE_LAB_INFO</span>]</h1>
+    {% include t.html key="lab.head" tag="p" class="mx-auto mt-4 max-w-xl text-slate-500" %}
+    <a href="/index.html" class="mt-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 font-mono text-xs text-slate-500 shadow-sm transition hover:border-blue-200 hover:text-blue-600">
+      <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {% include t.html key="ui.back" %}
+    </a>
   </div>
 
-  <figure class="lab-photo reveal">
-    <img src="/pc-setup.jpg" alt="Sandros Workstation" {% include t.html key="lab.photo_alt" mode="attr" %} loading="lazy">
+  <figure class="reveal mt-10 overflow-hidden rounded-2xl border border-slate-200 shadow-card">
+    <img src="/pc-setup.jpg" alt="Sandros Workstation" {% include t.html key="lab.photo_alt" mode="attr" %} loading="lazy" class="w-full">
   </figure>
 
-  <div class="eyebrow reveal">{% include t.html key="lab.core" %}</div>
-  <div class="grid-auto reveal" style="margin-bottom:30px;">
-    <article class="spec" style="--c:#ed1c24;">
-      <span class="spec__title" style="color:#dc2626;">CPU</span>
-      <h3 class="tile__title" style="margin-bottom:10px;">AMD Ryzen 7 9800X3D</h3>
-      <dl style="margin:0;">
-        <div class="spec__row"><dt data-de="Kerne / Threads" data-en="Cores / threads">Kerne / Threads</dt><dd>8 / 16</dd></div>
-        <div class="spec__row"><dt data-de="Architektur" data-en="Architecture">Architektur</dt><dd>Zen 4</dd></div>
-        <div class="spec__row"><dt>L3 V-Cache</dt><dd>96 MB</dd></div>
-        <div class="spec__row"><dt>Boost</dt><dd>5.2 GHz</dd></div>
-        <div class="spec__row"><dt>TDP</dt><dd>120 W</dd></div>
+  <div class="reveal mt-10 mb-4 flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-widest text-blue-600">
+    {% include t.html key="lab.core" %}<span class="h-px flex-1 bg-slate-200"></span>
+  </div>
+
+  <div class="reveal grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <span class="font-mono text-sm font-bold text-red-600">CPU</span>
+      <h3 class="mt-1 mb-2.5 font-mono font-semibold text-slate-900">AMD Ryzen 7 9800X3D</h3>
+      <dl class="text-sm">
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400" data-de="Kerne / Threads" data-en="Cores / threads">Kerne / Threads</dt><dd class="font-medium text-slate-800">8 / 16</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400" data-de="Architektur" data-en="Architecture">Architektur</dt><dd class="font-medium text-slate-800">Zen 4</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400">L3 V-Cache</dt><dd class="font-medium text-slate-800">96 MB</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400">Boost</dt><dd class="font-medium text-slate-800">5.2 GHz</dd></div>
+        <div class="flex justify-between py-2"><dt class="text-slate-400">TDP</dt><dd class="font-medium text-slate-800">120 W</dd></div>
       </dl>
     </article>
-    <article class="spec" style="--c:#76b900;">
-      <span class="spec__title" style="color:#4d7c0f;">GPU</span>
-      <h3 class="tile__title" style="margin-bottom:10px;">RTX 5070 ASUS TUF OC</h3>
-      <dl style="margin:0;">
-        <div class="spec__row"><dt>VRAM</dt><dd>12 GB GDDR7</dd></div>
-        <div class="spec__row"><dt data-de="Architektur" data-en="Architecture">Architektur</dt><dd>Blackwell GB205</dd></div>
-        <div class="spec__row"><dt>Feature</dt><dd>DLSS 4 / Frame Gen</dd></div>
-        <div class="spec__row"><dt data-de="Kühlung" data-en="Cooling">Kühlung</dt><dd>Triple-Fan TUF</dd></div>
-        <div class="spec__row"><dt>TDP</dt><dd>220 W</dd></div>
+    <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <span class="font-mono text-sm font-bold text-lime-700">GPU</span>
+      <h3 class="mt-1 mb-2.5 font-mono font-semibold text-slate-900">RTX 5070 ASUS TUF OC</h3>
+      <dl class="text-sm">
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400">VRAM</dt><dd class="font-medium text-slate-800">12 GB GDDR7</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400" data-de="Architektur" data-en="Architecture">Architektur</dt><dd class="font-medium text-slate-800">Blackwell GB205</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400">Feature</dt><dd class="font-medium text-slate-800">DLSS 4 / Frame Gen</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400" data-de="Kühlung" data-en="Cooling">Kühlung</dt><dd class="font-medium text-slate-800">Triple-Fan TUF</dd></div>
+        <div class="flex justify-between py-2"><dt class="text-slate-400">TDP</dt><dd class="font-medium text-slate-800">220 W</dd></div>
       </dl>
     </article>
-    <article class="spec" style="--c:#cc44ff;">
-      <span class="spec__title" style="color:#7c3aed;">RAM</span>
-      <h3 class="tile__title" style="margin-bottom:10px;">32 GB DDR5 Corsair</h3>
-      <dl style="margin:0;">
-        <div class="spec__row"><dt data-de="Frequenz" data-en="Frequency">Frequenz</dt><dd>6000 MHz</dd></div>
-        <div class="spec__row"><dt data-de="Latenz" data-en="Latency">Latenz</dt><dd>CL30</dd></div>
-        <div class="spec__row"><dt data-de="Modell" data-en="Model">Modell</dt><dd>Vengeance RGB</dd></div>
-        <div class="spec__row"><dt data-de="Profil" data-en="Profile">Profil</dt><dd>AMD EXPO / XMP 3.0</dd></div>
+    <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <span class="font-mono text-sm font-bold text-violet-600">RAM</span>
+      <h3 class="mt-1 mb-2.5 font-mono font-semibold text-slate-900">32 GB DDR5 Corsair</h3>
+      <dl class="text-sm">
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400" data-de="Frequenz" data-en="Frequency">Frequenz</dt><dd class="font-medium text-slate-800">6000 MHz</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400" data-de="Latenz" data-en="Latency">Latenz</dt><dd class="font-medium text-slate-800">CL30</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2"><dt class="text-slate-400" data-de="Modell" data-en="Model">Modell</dt><dd class="font-medium text-slate-800">Vengeance RGB</dd></div>
+        <div class="flex justify-between py-2"><dt class="text-slate-400" data-de="Profil" data-en="Profile">Profil</dt><dd class="font-medium text-slate-800">AMD EXPO / XMP 3.0</dd></div>
       </dl>
     </article>
   </div>
 
-  <div class="spec-grid reveal">
-    <div class="spec">
-      <span class="spec__title">&gt; Hardware Components</span>
-      <dl style="margin:0;">
-        <div class="spec__row"><dt>CPU</dt><dd>AMD Ryzen 7 9800X3D</dd></div>
-        <div class="spec__row"><dt>GPU</dt><dd>NVIDIA RTX 5070 ASUS TUF OC</dd></div>
-        <div class="spec__row"><dt>RAM</dt><dd>32 GB DDR5 @ 6000 MHz</dd></div>
-        <div class="spec__row"><dt>Storage</dt><dd>2 TB NVMe PCIe 5.0</dd></div>
+  <div class="reveal mt-6 grid gap-5 sm:grid-cols-2">
+    <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <span class="mb-3 block font-mono text-sm font-semibold text-blue-600">&gt; Hardware Components</span>
+      <dl class="text-sm">
+        <div class="flex justify-between border-b border-slate-100 py-2.5"><dt class="text-slate-400">CPU</dt><dd class="font-medium text-slate-800">AMD Ryzen 7 9800X3D</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2.5"><dt class="text-slate-400">GPU</dt><dd class="font-medium text-slate-800">NVIDIA RTX 5070 ASUS TUF OC</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2.5"><dt class="text-slate-400">RAM</dt><dd class="font-medium text-slate-800">32 GB DDR5 @ 6000 MHz</dd></div>
+        <div class="flex justify-between py-2.5"><dt class="text-slate-400">Storage</dt><dd class="font-medium text-slate-800">2 TB NVMe PCIe 5.0</dd></div>
       </dl>
     </div>
-    <div class="spec">
-      <span class="spec__title">&gt; Software Environment</span>
-      <dl style="margin:0;">
-        <div class="spec__row"><dt>Primary OS</dt><dd><span class="badge badge--ok">CachyOS (Arch)</span></dd></div>
-        <div class="spec__row"><dt>Secondary OS</dt><dd>Windows 11 Pro</dd></div>
-        <div class="spec__row"><dt>Boot</dt><dd><span class="badge badge--warn">Dual-Boot</span></dd></div>
-        <div class="spec__row"><dt>Shell</dt><dd>ZSH + Oh-My-Zsh</dd></div>
-        <div class="spec__row"><dt>Kernel</dt><dd>Linux BORE / EEVDF</dd></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <span class="mb-3 block font-mono text-sm font-semibold text-blue-600">&gt; Software Environment</span>
+      <dl class="text-sm">
+        <div class="flex justify-between border-b border-slate-100 py-2.5"><dt class="text-slate-400">Primary OS</dt><dd><span class="rounded-md bg-green-100 px-2 py-0.5 font-mono text-[11px] font-bold text-green-800">CachyOS (Arch)</span></dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2.5"><dt class="text-slate-400">Secondary OS</dt><dd class="font-medium text-slate-800">Windows 11 Pro</dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2.5"><dt class="text-slate-400">Boot</dt><dd><span class="rounded-md bg-amber-100 px-2 py-0.5 font-mono text-[11px] font-bold text-amber-800">Dual-Boot</span></dd></div>
+        <div class="flex justify-between border-b border-slate-100 py-2.5"><dt class="text-slate-400">Shell</dt><dd class="font-medium text-slate-800">ZSH + Oh-My-Zsh</dd></div>
+        <div class="flex justify-between py-2.5"><dt class="text-slate-400">Kernel</dt><dd class="font-medium text-slate-800">Linux BORE / EEVDF</dd></div>
       </dl>
     </div>
   </div>
 
-  <section class="card reveal" style="margin-top:22px;">
-    {% include t.html key="lab.summary_title" tag="h2" %}
-    {% include t.html key="lab.summary" tag="p" %}
+  <section class="reveal mt-6 rounded-2xl border border-slate-200 bg-white p-7 shadow-card">
+    {% include t.html key="lab.summary_title" tag="h2" class="mb-3 font-mono text-lg font-bold text-slate-900" %}
+    {% include t.html key="lab.summary" tag="p" class="leading-relaxed text-slate-600" %}
   </section>
 </div>

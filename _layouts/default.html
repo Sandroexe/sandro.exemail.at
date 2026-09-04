@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="de">
 {% include head.html %}
-<body class="{{ page.body_class }}">
+<body class="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-600 antialiased selection:bg-blue-100 {{ page.body_class }}">
 
-  <div class="bg-grain" aria-hidden="true"></div>
+  <!-- dezentes Dot-Grid + Farbverlauf-Hauch -->
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10"
+       style="background:
+              radial-gradient(60% 55% at 88% -8%, rgba(59,130,246,.10), transparent 60%),
+              radial-gradient(45% 45% at 3% 0%, rgba(79,70,229,.07), transparent 55%),
+              radial-gradient(#dbe1ea 1px, transparent 1px) 0 0 / 22px 22px,
+              #f8fafc;"></div>
 
   {% include header.html %}
 
-  <main id="main" class="site-main">
+  <main id="main" class="relative z-10 flex-1 w-full pt-16">
     {{ content }}
   </main>
 
   {% include footer.html %}
 
-  <button class="to-top" id="toTop" type="button" aria-label="Nach oben scrollen">
-    {% include icon.html name="arrow" %}
+  <button class="to-top fixed right-5 bottom-5 z-40 grid h-11 w-11 place-items-center rounded-full
+                 border border-slate-200 bg-white text-blue-600 shadow-card opacity-0 translate-y-2 pointer-events-none
+                 transition-all hover:bg-blue-600 hover:text-white hover:border-blue-600"
+          id="toTop" type="button" aria-label="Nach oben scrollen">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
   </button>
 
-  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/main.js?v=3" defer></script>
 </body>
 </html>

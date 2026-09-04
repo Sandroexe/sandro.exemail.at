@@ -7,18 +7,20 @@ description: "Zertifikate und Kurse von Sandro Exenberger – Cisco CCNA, Linux 
 
 {% assign L = site.data.locales %}
 
-<div class="container">
-  <div class="page-head">
-    <h1>[<span class="br">CERT_ARCHIVE</span>]</h1>
-    {% include t.html key="certs.head" tag="p" %}
-    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} {% include t.html key="ui.back" %}</a>
+<div class="mx-auto max-w-6xl px-5 py-14">
+  <div class="text-center">
+    <h1 class="font-mono text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">[<span class="text-blue-600">CERT_ARCHIVE</span>]</h1>
+    {% include t.html key="certs.head" tag="p" class="mx-auto mt-4 max-w-xl text-slate-500" %}
+    <a href="/index.html" class="mt-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 font-mono text-xs text-slate-500 shadow-sm transition hover:border-blue-200 hover:text-blue-600">
+      <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {% include t.html key="ui.back" %}
+    </a>
   </div>
 
-  <div class="stat-row reveal" style="margin-bottom:30px;">
+  <div class="reveal mt-10 flex flex-wrap gap-3.5">
     {% for s in site.data.certificates.summary %}
-    <div class="stat">
-      <span class="stat__num">{{ s.num }}</span>
-      <span class="stat__label" data-de="{{ s.label }}" data-en="{{ s.label_en }}">{{ s.label }}</span>
+    <div class="flex-1 min-w-[110px] rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+      <span class="block font-mono text-2xl font-bold text-blue-600">{{ s.num }}</span>
+      <span class="mt-1 block text-xs text-slate-400" data-de="{{ s.label }}" data-en="{{ s.label_en }}">{{ s.label }}</span>
     </div>
     {% endfor %}
   </div>
@@ -26,33 +28,39 @@ description: "Zertifikate und Kurse von Sandro Exenberger – Cisco CCNA, Linux 
   {% assign groups = site.data.certificates.items | group_by: "section" %}
   {% for g in groups %}
   {% assign sec_en = g.items[0].section_en | default: g.name %}
-  <div class="eyebrow reveal"><span data-de="{{ g.name }}" data-en="{{ sec_en }}">{{ g.name }}</span></div>
-  <div class="grid-auto" style="margin-bottom:34px;">
+  <div class="reveal mt-10 mb-4 flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-widest text-blue-600">
+    <span data-de="{{ g.name }}" data-en="{{ sec_en }}">{{ g.name }}</span>
+    <span class="h-px flex-1 bg-slate-200"></span>
+  </div>
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
     {% for c in g.items %}
-    <article class="tile tile--hover cert reveal" style="--c:{{ c.color }};">
-      <div class="cert__top"></div>
-      <div class="tile__body">
-        <div class="cert__issuer">
-          <span class="cert__issuer-glyph">{{ c.glyph }}</span>
+    <article class="reveal flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-cardhover">
+      <div class="h-1" style="background:{{ c.color }}"></div>
+      <div class="flex flex-1 flex-col gap-2.5 p-6">
+        <div class="flex items-center gap-3">
+          <span class="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-slate-50 text-xl">{{ c.glyph }}</span>
           <span>
-            <span class="cert__issuer-name">{{ c.issuer }}</span><br>
-            <span class="cert__issuer-sub">{{ c.issuer_sub }}</span>
+            <span class="block font-mono text-[13px] text-slate-500">{{ c.issuer }}</span>
+            <span class="block text-[11px] text-slate-400">{{ c.issuer_sub }}</span>
           </span>
         </div>
-        <h3 class="tile__title" style="font-size:1rem;line-height:1.35;"
-            data-de="{{ c.title }}" data-en="{{ c.title_en | default: c.title }}">{{ c.title }}</h3>
-        <div class="cert__meta">
+        <h3 class="font-mono text-base font-semibold leading-snug text-slate-900" data-de="{{ c.title }}" data-en="{{ c.title_en | default: c.title }}">{{ c.title }}</h3>
+        <div class="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[11px] text-slate-400">
           <span>{{ c.date }}</span>
+          <span class="text-slate-300">·</span>
           <span data-de="{{ c.validity }}" data-en="{{ c.validity_en | default: c.validity }}">{{ c.validity }}</span>
         </div>
-        <p class="tile__text" data-de="{{ c.desc }}" data-en="{{ c.desc_en | default: c.desc }}">{{ c.desc }}</p>
-        <div class="tags">
-          {% for tg in c.tags %}<span class="tag">{{ tg }}</span>{% endfor %}
+        <p class="flex-1 text-sm leading-relaxed text-slate-500" data-de="{{ c.desc }}" data-en="{{ c.desc_en | default: c.desc }}">{{ c.desc }}</p>
+        <div class="flex flex-wrap gap-1.5">
+          {% for tg in c.tags %}<span class="rounded-md border border-blue-100 bg-blue-50 px-2 py-0.5 font-mono text-[11px] text-blue-700">{{ tg }}</span>{% endfor %}
         </div>
       </div>
-      <div class="cert__foot">
-        <span class="status-dot" data-de="{{ c.status }}" data-en="{{ c.status_en | default: c.status }}">{{ c.status }}</span>
-        <a href="{{ c.url }}" target="_blank" rel="noopener" class="tile__link" style="--c:{{ c.color }};">
+      <div class="flex items-center justify-between gap-2 border-t border-slate-200 px-6 py-3.5">
+        <span class="inline-flex items-center gap-2 font-mono text-xs text-slate-400">
+          <span class="h-1.5 w-1.5 rounded-full bg-green-500 ring-2 ring-green-100"></span>
+          <span data-de="{{ c.status }}" data-en="{{ c.status_en | default: c.status }}">{{ c.status }}</span>
+        </span>
+        <a href="{{ c.url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-1.5 font-mono text-[11px] text-slate-600 transition hover:border-blue-200 hover:text-blue-600">
           {% include icon.html name="external" %}
           {% if c.link_label == "Verifizieren" %}<span data-de="{{ L.de['ui.verify'] }}" data-en="{{ L.en['ui.verify'] }}">{{ L.de['ui.verify'] }}</span>{% else %}{{ c.link_label }}{% endif %}
         </a>

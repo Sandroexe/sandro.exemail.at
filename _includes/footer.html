@@ -1,24 +1,26 @@
 {%- comment -%} Globaler Footer · Socials & Navigation zentral aus _data/ {%- endcomment -%}
 {%- assign p = site.data.socials.profile -%}
-<footer class="footer reveal">
-  <div class="footer__inner">
+<footer class="reveal relative z-10 mt-24 border-t border-slate-200 bg-white">
+  <div class="mx-auto max-w-6xl px-5 py-14 text-center">
 
-    <div class="footer__brand">
-      <a href="/index.html" class="footer__logo">sandro<span>.exe</span></a>
-      {% include t.html key="footer.tagline" tag="p" class="footer__tag" %}
+    <a href="/index.html" class="font-mono text-[17px] font-bold text-slate-900">
+      sandro<span class="text-blue-600">.exe</span>
+    </a>
+    {% include t.html key="footer.tagline" tag="p" class="mt-2 font-mono text-xs text-slate-400" %}
+
+    <div class="mt-7">
+      {% include social-links.html group="footer" style="icons" %}
     </div>
 
-    {% include social-links.html group="footer" style="icons" %}
-
-    <nav class="footer__nav" aria-label="Footer-Navigation">
+    <nav class="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2" aria-label="Footer-Navigation">
       {%- for item in site.data.navigation.primary -%}
-      <a href="{{ item.url }}">{{ item.label }}</a>
+      <a href="{{ item.url }}" class="font-mono text-[13px] text-slate-500 transition hover:text-blue-600">{{ item.label }}</a>
       {%- endfor -%}
     </nav>
 
-    <div class="footer__legal">
+    <div class="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-400">
       {%- for item in site.data.navigation.legal -%}
-      <a href="{{ item.url }}">{{ item.label }}</a>
+      <a href="{{ item.url }}" class="transition hover:text-slate-700">{{ item.label }}</a>
       {%- unless forloop.last %}<span aria-hidden="true">·</span>{% endunless -%}
       {%- endfor -%}
       <span aria-hidden="true">·</span>

@@ -7,36 +7,27 @@ description: "Datenschutzerklärung gemäß DSGVO für sandro.exemail.at."
 
 {% assign p = site.data.socials.profile %}
 
-<div class="container container--narrow">
-  <div style="margin-bottom:18px;">
-    <a href="/index.html" class="back-link">{% include icon.html name="arrow" %} {% include t.html key="ui.back_home" %}</a>
-  </div>
+<div class="mx-auto max-w-3xl px-5 py-14">
+  <a href="/index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 font-mono text-xs text-slate-500 shadow-sm transition hover:border-blue-200 hover:text-blue-600">
+    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {% include t.html key="ui.back_home" %}
+  </a>
 
-  <article class="card prose reveal">
-    {% include t.html key="ds.title" tag="h1" %}
+  <article class="reveal mt-5 rounded-2xl border border-slate-200 bg-white p-8 shadow-card sm:p-10">
+    {% include t.html key="ds.title" tag="h1" class="border-b border-slate-200 pb-4 text-2xl font-bold text-slate-900" %}
 
-    {% include t.html key="ds.h1" tag="h2" %}
-    {% include t.html key="ds.p1" tag="p" %}
+    {% for n in (1..6) %}
+      {% assign hk = "ds.h" | append: n %}
+      {% assign pk = "ds.p" | append: n %}
+      {% include t.html key=hk tag="h2" class="mt-7 text-base font-semibold text-slate-800" %}
+      {% include t.html key=pk tag="p" class="mt-1 text-sm leading-relaxed text-slate-500" %}
+      {% if n == 2 %}
+      <p class="mt-1 text-sm"><a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener" class="text-blue-600 hover:underline">GitHub Privacy Statement ↗</a></p>
+      {% endif %}
+    {% endfor %}
 
-    {% include t.html key="ds.h2" tag="h2" %}
-    {% include t.html key="ds.p2" tag="p" %}
-    <p><a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement ↗</a></p>
-
-    {% include t.html key="ds.h3" tag="h2" %}
-    {% include t.html key="ds.p3" tag="p" %}
-
-    {% include t.html key="ds.h4" tag="h2" %}
-    {% include t.html key="ds.p4" tag="p" %}
-
-    {% include t.html key="ds.h5" tag="h2" %}
-    {% include t.html key="ds.p5" tag="p" %}
-
-    {% include t.html key="ds.h6" tag="h2" %}
-    {% include t.html key="ds.p6" tag="p" %}
-
-    <div class="prose__foot">
-      <strong>{% include t.html key="ds.responsible" mode="raw" %}</strong> {{ p.name }}<br>
-      E-Mail: <a href="mailto:{{ p.email }}">{{ p.email }}</a>
+    <div class="mt-8 border-t border-slate-200 pt-4 text-sm text-slate-400">
+      <strong class="text-slate-600">{% include t.html key="ds.responsible" mode="raw" %}</strong> {{ p.name }}<br>
+      E-Mail: <a href="mailto:{{ p.email }}" class="text-blue-600 hover:underline">{{ p.email }}</a>
     </div>
   </article>
 </div>

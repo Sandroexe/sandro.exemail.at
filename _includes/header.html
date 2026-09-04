@@ -1,6 +1,6 @@
-{%- comment -%}
-  Globaler Seitenkopf.  Bindet die Navigation (_includes/nav.html) ein.
-  Wird von _layouts/default.html verwendet.
-{%- endcomment -%}
-<a href="#main" class="skip-link" data-de="Zum Inhalt springen" data-en="Skip to content">Zum Inhalt springen</a>
+{%- comment -%} Globaler Seitenkopf – bindet die Navigation ein. {%- endcomment -%}
+<a href="#main"
+   class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-lg
+          focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+   data-de="Zum Inhalt springen" data-en="Skip to content">Zum Inhalt springen</a>
 {% include nav.html %}

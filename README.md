@@ -38,9 +38,8 @@ _layouts/
   default.html         # Globales Grundgerüst (Hintergrund, Header, Main, Footer)
 
 assets/
-  css/main.css         # Komplettes Design-System (Design-Tokens, Bento, Glas, Motion)
-  js/main.js           # Nav, Sprache, Scroll-Reveal, Partikel-Hintergrund, To-Top
-  js/github-activity.js # Datenabruf + Rendering der Heatmap
+  js/main.js           # Mobile-Nav, Sprache, Scroll-Reveal, Skill-Bars, To-Top
+  js/github-activity.js # Datenabruf + Rendering der Heatmap (Tailwind-Klassen)
 ```
 
 ## 📄 Seiten (feste URLs – nicht umbenennen!)
@@ -68,15 +67,18 @@ assets/
 - **Manuell:** eleganter `DE | EN`-Schalter im Header; die Wahl wird sofort in
   `localStorage` gespeichert.
 
-## 🎨 Design (v3 · hell)
+## 🎨 Design (v4 · Tailwind, hell)
 
-Modern, clean & hell: warmes Off-White (`#f8fafc`), reinweiße Cards mit
-weichen Schatten und hauchdünnen `#e2e8f0`-Borders, Royal-Blue-Akzent
-(`#2563eb`), sattes Anthrazit (`#0f172a`) für Headlines. Bento-Grid,
-sanfte Hover-Lifts (`translateY(-4px)`), Scroll-Reveal,
-`prefers-reduced-motion`-Support. Typografie: **Plus Jakarta Sans** +
-**JetBrains Mono** (Google Fonts). Das gesamte Designsystem liegt in
-`assets/css/main.css` (Cache-Buster `?v=N` in `_includes/head.html`).
+Kein eigenes CSS-Framework mehr – Styling läuft komplett über **Tailwind CSS**
+(offizielle Play-CDN, eingebunden in `_includes/head.html`). Utility-Klassen
+direkt im HTML; nur ~15 Zeilen `<style>` im Head für Scroll-Reveal, Scrollbar
+und `prefers-reduced-motion`.
+
+Look: warmes Off-White (`bg-slate-50`) mit Dot-Grid, reinweiße Cards
+(`bg-white border-slate-200 shadow-card`), Royal-Blue-Akzent (`blue-600`),
+Anthrazit-Headlines (`slate-900`). Bento-Grid, `hover:-translate-y-1`,
+Scroll-Reveal. Schrift **Inter** + **JetBrains Mono** (Google Fonts),
+Icons **Font Awesome 6** (CDN). Cache-Buster `?v=N` an JS/CDN.
 
 ## 🛠️ Lokal bauen
 
