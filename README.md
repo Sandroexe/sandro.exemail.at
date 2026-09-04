@@ -68,12 +68,15 @@ assets/
 - **Manuell:** eleganter `DE | EN`-Schalter im Header; die Wahl wird sofort in
   `localStorage` gespeichert.
 
-## 🎨 Design
+## 🎨 Design (v3 · hell)
 
-High-End-Tech-Ästhetik: Dark-Mode-first (tiefes Anthrazit), feiner
-Glasmorphismus, Bento-Grid, Partikel-Netzwerk-Hintergrund, dezente
-Motion (Scroll-Reveal, Hover-States) und `prefers-reduced-motion`-Support.
-Typografie: **Inter** + **JetBrains Mono** (Google Fonts).
+Modern, clean & hell: warmes Off-White (`#f8fafc`), reinweiße Cards mit
+weichen Schatten und hauchdünnen `#e2e8f0`-Borders, Royal-Blue-Akzent
+(`#2563eb`), sattes Anthrazit (`#0f172a`) für Headlines. Bento-Grid,
+sanfte Hover-Lifts (`translateY(-4px)`), Scroll-Reveal,
+`prefers-reduced-motion`-Support. Typografie: **Plus Jakarta Sans** +
+**JetBrains Mono** (Google Fonts). Das gesamte Designsystem liegt in
+`assets/css/main.css` (Cache-Buster `?v=N` in `_includes/head.html`).
 
 ## 🛠️ Lokal bauen
 
