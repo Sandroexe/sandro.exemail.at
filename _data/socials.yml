@@ -1,117 +1,61 @@
 # ══════════════════════════════════════════════════════════════════════════
-#  ZENTRALE DATENQUELLE  ·  socials.yml
-#  Alle Kontaktdaten, sozialen Profile, Icons & Farben an EINER Stelle.
-#  Ändere einen Wert hier → er aktualisiert sich auf der GESAMTEN Website
-#  (Footer, Links-Seite, social-links-Komponente, Kontaktseite, vCard).
+#  ZENTRALE DATENQUELLE · socials.yml
+#  Eine Änderung hier wirkt auf die gesamte Website (Footer, links.html,
+#  index.html, Kontaktseite, vCard, JSON-LD).
 # ══════════════════════════════════════════════════════════════════════════
 
-# ── Persönliche Basisdaten ────────────────────────────────────────────────
 profile:
-  name:      "Sandro Exenberger"
-  handle:    "@Sandroexe"
-  role:      "Elektronik · Netzwerktechnik"
-  domain:    "exemail.at"
-  location:  "Schwoich, Tirol"
-  zip_city:  "6334 Schwoich"
-  country:   "Österreich"
-  email:     "sandro@exemail.at"
-  phone:         "+43 676 7406799"   # Anzeige-Format
-  phone_href:    "+436767406799"     # tel:-Format
-  avatar:    "/profile.jpg"
+  name:        "Sandro Exenberger"
+  handle:      "@Sandroexe"
+  tagline:     "Elektronik · Netzwerktechnik · Homelab"
+  tagline_en:  "Electronics · Networking · Homelab"
+  location:    "Schwoich, Tirol"
+  zip_city:    "6334 Schwoich"
+  country:     "Österreich"
+  email:       "sandro@exemail.at"
+  phone:       "+43 676 7406799"
+  phone_href:  "+436767406799"
+  avatar:      "/profile.jpg"
+  status:      "Verfügbar für Projekte"
+  status_en:   "Available for projects"
 
-# ── Kontaktformular-Backend ───────────────────────────────────────────────
 contact_api: "https://api.exemail.at/api/contact"
 
-# ── Kanäle ───────────────────────────────────────────────────────────────
-#  groups:  contact  → primäre Kontaktwege
-#           social   → soziale Netzwerke
-#           portfolio→ interne Portfolio-Seiten (nur links.html)
-#           footer   → Icon-Reihe im globalen Footer
-#  icon:    Schlüssel für _includes/icon.html
-channels:
-  - name:     "Kontaktformular"
-    name_en:  "Contact form"
-    subtitle: "Nachricht direkt aufs Smartphone"
-    subtitle_en: "Message straight to my phone"
-    value:    "Nachricht senden"
-    value_en: "Send a message"
-    url:      "/contact/"
-    icon:     "message"
-    color:    "#5b8cff"
-    groups:   [contact]
+# ── Social-/Kontakt-Links ────────────────────────────────────────────────
+#  name · url · icon (Font-Awesome-Klasse) · description (+ _en)
+links:
+  - name:           "GitHub"
+    url:            "https://github.com/Sandroexe"
+    icon:           "fa-brands fa-github"
+    description:    "Code, Projekte & Contributions"
+    description_en: "Code, projects & contributions"
 
-  - name:     "E-Mail"
-    subtitle: "sandro@exemail.at"
-    value:    "sandro@exemail.at"
-    url:      "mailto:sandro@exemail.at"
-    icon:     "mail"
-    color:    "#5b8cff"
-    groups:   [contact, altcontact, footer]
+  - name:           "LinkedIn"
+    url:            "https://www.linkedin.com/in/sandro-exenberger-1a5486315/"
+    icon:           "fa-brands fa-linkedin-in"
+    description:    "Beruflicher Werdegang & Netzwerk"
+    description_en: "Career & professional network"
 
-  - name:     "Telefon"
-    name_en:  "Phone"
-    subtitle: "+43 676 7406799"
-    value:    "+43 676 7406799"
-    url:      "tel:+436767406799"
-    icon:     "phone"
-    color:    "#27c93f"
-    groups:   [contact, altcontact, footer]
+  - name:           "Instagram"
+    url:            "https://instagram.com/sandro_exe_2008"
+    icon:           "fa-brands fa-instagram"
+    description:    "@sandro_exe_2008"
+    description_en: "@sandro_exe_2008"
 
-  - name:     "LinkedIn"
-    subtitle: "sandro-exenberger"
-    value:    "in/sandro-exenberger-1a5486315"
-    url:      "https://www.linkedin.com/in/sandro-exenberger-1a5486315/"
-    icon:     "linkedin"
-    color:    "#0a66c2"
-    groups:   [social, footer]
+  - name:           "Reddit"
+    url:            "https://www.reddit.com/user/Sandro_exe08/"
+    icon:           "fa-brands fa-reddit-alien"
+    description:    "u/Sandro_exe08"
+    description_en: "u/Sandro_exe08"
 
-  - name:     "GitHub"
-    subtitle: "@Sandroexe"
-    value:    "@Sandroexe"
-    url:      "https://github.com/Sandroexe"
-    icon:     "github"
-    color:    "#e6e6e6"
-    groups:   [social, footer]
+  - name:           "Stack Overflow"
+    url:            "https://stackoverflow.com/users/32745248/sandro-exenberger"
+    icon:           "fa-brands fa-stack-overflow"
+    description:    "Fragen & Antworten rund um Code"
+    description_en: "Coding questions & answers"
 
-  - name:     "Instagram"
-    subtitle: "@sandro_exe_2008"
-    value:    "@sandro_exe_2008"
-    url:      "https://instagram.com/sandro_exe_2008"
-    icon:     "instagram"
-    color:    "#e1306c"
-    groups:   [social, footer]
-
-  - name:     "XING"
-    subtitle: "Sandro Exenberger"
-    value:    "Profil ansehen"
-    value_en: "View profile"
-    url:      "https://www.xing.com/profile/Sandro_Exenberger/web_profiles?nwt_nav=profile"
-    icon:     "xing"
-    color:    "#0698a0"
-    groups:   [social]
-
-  - name:     "Reddit"
-    subtitle: "u/Sandro_exe08"
-    value:    "u/Sandro_exe08"
-    url:      "https://www.reddit.com/user/Sandro_exe08/"
-    icon:     "reddit"
-    color:    "#ff4500"
-    groups:   [social]
-
-  - name:     "Stack Overflow"
-    subtitle: "sandro-exenberger"
-    value:    "sandro-exenberger"
-    url:      "https://stackoverflow.com/users/32745248/sandro-exenberger"
-    icon:     "stackoverflow"
-    color:    "#f48024"
-    groups:   [social]
-
-  - name:     "Credly"
-    subtitle: "Verifizierte Badges"
-    subtitle_en: "Verified badges"
-    value:    "Badges ansehen"
-    value_en: "View badges"
-    url:      "https://www.credly.com/users/sandro-exenberger"
-    icon:     "credly"
-    color:    "#ff6b35"
-    groups:   [social]
+  - name:           "E-Mail"
+    url:            "mailto:sandro@exemail.at"
+    icon:           "fa-solid fa-envelope"
+    description:    "sandro@exemail.at"
+    description_en: "sandro@exemail.at"

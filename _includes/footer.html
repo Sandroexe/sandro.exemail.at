@@ -1,15 +1,15 @@
-{%- comment -%} Globaler Footer · Socials & Navigation zentral aus _data/ {%- endcomment -%}
+{%- comment -%} Globaler Footer · Links & Recht zentral aus _data/ {%- endcomment -%}
 {%- assign p = site.data.socials.profile -%}
-<footer class="reveal relative z-10 mt-24 border-t border-slate-200 bg-white">
+<footer class="reveal relative z-10 mt-24 border-t border-slate-200/80 bg-white">
   <div class="mx-auto max-w-6xl px-5 py-14 text-center">
 
     <a href="/index.html" class="font-mono text-[17px] font-bold text-slate-900">
       sandro<span class="text-blue-600">.exe</span>
     </a>
-    {% include t.html key="footer.tagline" tag="p" class="mt-2 font-mono text-xs text-slate-400" %}
+    <p class="mt-2 font-mono text-xs text-slate-400" data-de="{{ p.tagline }}" data-en="{{ p.tagline_en }}">{{ p.tagline }}</p>
 
     <div class="mt-7">
-      {% include social-links.html group="footer" style="icons" %}
+      {% include social-links.html style="icons" %}
     </div>
 
     <nav class="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2" aria-label="Footer-Navigation">

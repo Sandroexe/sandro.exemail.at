@@ -1,61 +1,37 @@
 {%- comment -%}
-  Wiederverwendbare Ausgabe der Kanäle aus _data/socials.yml (zweisprachig, Tailwind)
-  Parameter:  group  (contact | altcontact | social | footer)   ·  style  (icons | buttons | list)
+  Wiederverwendbare Ausgabe der Links aus _data/socials.yml
+  Parameter:  style = "icons" (Standard) | "cards"
 {%- endcomment -%}
-{%- assign _group = include.group -%}
 {%- assign _style = include.style | default: "icons" -%}
-{%- assign _items = site.data.socials.channels | where_exp: "c", "c.groups contains _group" -%}
+{%- assign _links = site.data.socials.links -%}
 
 {%- if _style == "icons" -%}
 <div class="flex flex-wrap justify-center gap-3">
-  {%- for c in _items -%}
-  {%- assign _ext = c.url | slice: 0, 4 -%}
-  <a href="{{ c.url }}" title="{{ c.name }}"{% if _ext == "http" %} target="_blank" rel="noopener"{% endif %}
-     class="grid h-11 w-11 place-items-center rounded-xl border border-slate-200 bg-white text-slate-500 shadow-sm
-            transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-md">
-    <span style="color:{{ c.color }}">{% include icon.html name=c.icon class="text-[17px]" %}</span>
-    <span class="sr-only">{{ c.name }}</span>
+  {%- for l in _links -%}
+  {%- assign _ext = l.url | slice: 0, 4 -%}
+  <a href="{{ l.url }}" title="{{ l.name }}"{% if _ext == "http" %} target="_blank" rel="noopener"{% endif %}
+     class="grid h-11 w-11 place-items-center rounded-xl border border-slate-200/80 bg-white text-slate-500 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:text-slate-900 hover:shadow-md">
+    <i class="{{ l.icon }} text-[17px]" aria-hidden="true"></i>
+    <span class="sr-only">{{ l.name }}</span>
   </a>
   {%- endfor -%}
 </div>
 
-{%- elsif _style == "buttons" -%}
-<div class="flex flex-col gap-2.5">
-  {%- for c in _items -%}
-  {%- assign _ext = c.url | slice: 0, 4 -%}
-  {%- assign _name_en = c.name_en | default: c.name -%}
-  {%- assign _sub_en = c.subtitle_en | default: c.subtitle -%}
-  <a href="{{ c.url }}"{% if _ext == "http" %} target="_blank" rel="noopener"{% endif %}
-     class="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm
-            transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-cardhover">
-    <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-slate-50 text-[17px] ring-1 ring-slate-200"
-          style="color:{{ c.color }}">{% include icon.html name=c.icon %}</span>
-    <span class="min-w-0 flex-1">
-      <span class="block font-mono text-[14px] font-semibold text-slate-900" data-de="{{ c.name | escape_once }}" data-en="{{ _name_en | escape_once }}">{{ c.name }}</span>
-      <span class="block truncate font-mono text-xs text-slate-400" data-de="{{ c.subtitle | escape_once }}" data-en="{{ _sub_en | escape_once }}">{{ c.subtitle }}</span>
+{%- elsif _style == "cards" -%}
+<div class="flex flex-col gap-3">
+  {%- for l in _links -%}
+  {%- assign _ext = l.url | slice: 0, 4 -%}
+  <a href="{{ l.url }}"{% if _ext == "http" %} target="_blank" rel="noopener"{% endif %}
+     class="group flex items-center gap-4 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-slate-50 text-xl text-slate-700 ring-1 ring-slate-200/80">
+      <i class="{{ l.icon }}" aria-hidden="true"></i>
     </span>
-    <i class="fa-solid fa-arrow-right shrink-0 text-slate-300 transition group-hover:translate-x-1 group-hover:text-blue-600" aria-hidden="true"></i>
+    <span class="min-w-0 flex-1">
+      <span class="block font-semibold text-slate-900">{{ l.name }}</span>
+      <span class="block truncate text-sm text-slate-400" data-de="{{ l.description | escape_once }}" data-en="{{ l.description_en | default: l.description | escape_once }}">{{ l.description }}</span>
+    </span>
+    <i class="fa-solid fa-arrow-right shrink-0 text-slate-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-blue-600" aria-hidden="true"></i>
   </a>
   {%- endfor -%}
 </div>
-
-{%- elsif _style == "list" -%}
-<ul class="flex flex-col gap-2.5">
-  {%- for c in _items -%}
-  {%- assign _ext = c.url | slice: 0, 4 -%}
-  {%- assign _name_en = c.name_en | default: c.name -%}
-  {%- assign _val_en = c.value_en | default: c.value -%}
-  <li>
-    <a href="{{ c.url }}"{% if _ext == "http" %} target="_blank" rel="noopener"{% endif %}
-       class="flex items-center gap-3.5 rounded-xl border border-slate-200 bg-slate-50 p-3.5 transition hover:translate-x-1 hover:border-blue-200 hover:bg-blue-50">
-      <span class="text-[17px]" style="color:{{ c.color }}">{% include icon.html name=c.icon %}</span>
-      <span class="min-w-0 flex-1">
-        <span class="block font-mono text-[11px] uppercase tracking-wide text-slate-400" data-de="{{ c.name | escape_once }}" data-en="{{ _name_en | escape_once }}">{{ c.name }}</span>
-        <span class="block truncate font-semibold text-slate-900" data-de="{{ c.value | escape_once }}" data-en="{{ _val_en | escape_once }}">{{ c.value }}</span>
-      </span>
-      <i class="fa-solid fa-arrow-right text-sm text-slate-300" aria-hidden="true"></i>
-    </a>
-  </li>
-  {%- endfor -%}
-</ul>
 {%- endif -%}

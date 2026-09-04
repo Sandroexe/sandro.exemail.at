@@ -2,241 +2,140 @@
 layout: default
 nav: home
 title: Home
-description: "Sandro Exenberger – Elektroniker, CCNA-zertifizierter Netzwerktechniker, Linux-Enthusiast und Schülervertreter aus Tirol."
+description: "Sandro Exenberger – Elektronik, Netzwerktechnik (CCNA), Linux & Homelab aus Tirol. IT-Infrastruktur, Smart Home, Hardware."
 ---
 
 {% assign p = site.data.socials.profile %}
-{% assign de = site.data.locales.de %}
-{% assign en = site.data.locales.en %}
 
-<div class="mx-auto max-w-6xl px-5 py-14 sm:py-20">
+<div class="mx-auto max-w-6xl px-5 py-16 sm:py-24">
 
-  <!-- HERO -->
+  <!-- ── HERO ── -->
   <header class="flex flex-col items-center text-center">
-    <span class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white px-4 py-1.5 font-mono text-xs font-semibold text-slate-600 shadow-sm">
+    <span class="mb-7 inline-flex items-center gap-2.5 rounded-full border border-slate-200/80 bg-white px-4 py-1.5 text-xs font-semibold text-slate-600 shadow-sm">
       <span class="relative flex h-2 w-2">
         <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
         <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
       </span>
-      {% include t.html key="home.status" %}
+      <span data-de="{{ p.status }}" data-en="{{ p.status_en }}">{{ p.status }}</span>
     </span>
 
-    <img src="{{ p.avatar }}" alt="Sandro Exenberger" width="128" height="128"
-         onerror="this.style.display='none'"
-         class="mb-6 h-32 w-32 rounded-3xl object-cover shadow-xl ring-1 ring-slate-900/5">
-
-    <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">Sandro Exenberger</h1>
-
-    <p class="mt-3 min-h-[1.6em] font-mono text-base text-slate-500 sm:text-lg">
-      {% include t.html key="home.role_prefix" %}
-      <span data-typewriter-de='{{ de["home.roles"] | jsonify }}' data-typewriter-en='{{ en["home.roles"] | jsonify }}'></span><span class="ml-0.5 inline-block h-[1em] w-0.5 -translate-y-0.5 animate-pulse bg-blue-600 align-middle"></span>
-    </p>
-
-    <div class="mt-6 flex flex-wrap justify-center gap-2">
-      {% for c in "CCNA &#10003;|Linux|IoT|Maker|Tirol, AT" | split: "|" %}
-      <span class="rounded-full border border-slate-200 bg-white px-3 py-1 font-mono text-xs text-slate-500">{{ c }}</span>
-      {% endfor %}
+    <div class="relative mb-7">
+      <div class="absolute -inset-4 -z-10 rounded-full bg-blue-500/20 blur-2xl"></div>
+      <img src="{{ p.avatar }}" alt="Sandro Exenberger" width="132" height="132"
+           onerror="this.style.display='none'"
+           class="h-32 w-32 rounded-3xl border-4 border-white object-cover shadow-2xl ring-1 ring-slate-200">
     </div>
 
+    <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+      Sandro&nbsp;Exenberger
+    </h1>
+
+    <p class="mt-4 font-mono text-base text-slate-500 sm:text-lg">
+      <span data-de="Ich baue " data-en="I build ">Ich baue </span><span data-typewriter-de='["Netzwerke","Homelabs","Smart Homes","Automatisierungen","Elektronik"]' data-typewriter-en='["networks","homelabs","smart homes","automations","electronics"]'></span><span class="ml-0.5 inline-block h-[1em] w-0.5 -translate-y-0.5 animate-pulse bg-blue-600 align-middle"></span>
+    </p>
+
+    <p class="mt-4 max-w-xl text-slate-500"
+       data-de="Elektroniker &amp; CCNA-zertifizierter Netzwerktechniker aus Tirol. Ich plane IT-Infrastruktur, automatisiere Smart Homes und betreibe ein Proxmox-Homelab unter Linux."
+       data-en="Electronics technician &amp; CCNA-certified network engineer from Tyrol. I design IT infrastructure, automate smart homes and run a Proxmox homelab on Linux.">Elektroniker &amp; CCNA-zertifizierter Netzwerktechniker aus Tirol. Ich plane IT-Infrastruktur, automatisiere Smart Homes und betreibe ein Proxmox-Homelab unter Linux.</p>
+
     <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a href="/contact/" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-mono text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-blue-700">
-        {% include icon.html name="message" %} {% include t.html key="home.cta_contact" %}
+      <a href="/contact/" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl">
+        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+        <span data-de="Kontakt aufnehmen" data-en="Get in touch">Kontakt aufnehmen</span>
       </a>
-      <a href="/projects.html" class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 font-mono text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-600">
-        ~/projects
+      <a href="/projects.html" class="inline-flex items-center gap-2 rounded-xl border border-slate-200/80 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:text-blue-600 hover:shadow-md">
+        <i class="fa-solid fa-folder-open" aria-hidden="true"></i> ~/projects
       </a>
-      <a href="/links.html" class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 font-mono text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-600">
-        ~/links
+      <a href="/links.html" class="inline-flex items-center gap-2 rounded-xl border border-slate-200/80 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:text-blue-600 hover:shadow-md">
+        <i class="fa-solid fa-link" aria-hidden="true"></i> ~/links
       </a>
+    </div>
+
+    <div class="mt-7 flex flex-wrap justify-center gap-2">
+      {% for c in "CCNA &#10003;|Linux / CachyOS|Proxmox|Home Assistant|3D-Druck" | split: "|" %}
+      <span class="rounded-full border border-slate-200/80 bg-white px-3 py-1 font-mono text-xs text-slate-500">{{ c }}</span>
+      {% endfor %}
     </div>
   </header>
 
-  <!-- BENTO -->
-  <div class="mt-16 grid gap-5 md:grid-cols-3">
+  <!-- ── BENTO GRID ── -->
+  <section class="mt-20 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-    <!-- Über mich -->
-    <section class="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-cardhover sm:p-8 md:col-span-2">
-      <div class="mb-4 flex items-center gap-3">
-        <span class="h-5 w-1 rounded-full bg-gradient-to-b from-blue-500 to-indigo-600"></span>
-        {% include t.html key="home.about_title" tag="h2" class="text-xl font-bold text-slate-900" %}
+    <!-- IT-Infrastruktur (groß) -->
+    <article class="reveal group rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:col-span-2">
+      <div class="flex items-center gap-3">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-blue-50 text-blue-600"><i class="fa-solid fa-network-wired text-lg" aria-hidden="true"></i></span>
+        <h2 class="text-lg font-bold text-slate-900" data-de="IT-Infrastruktur" data-en="IT infrastructure">IT-Infrastruktur</h2>
       </div>
-      {% include t.html key="home.about_p1" tag="p" class="text-slate-600" %}
-      {% include t.html key="home.about_p2" tag="p" class="mt-3 text-slate-600" %}
-    </section>
-
-    <!-- Tech Stack -->
-    <section class="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-cardhover sm:p-8">
-      <div class="mb-4 flex items-center gap-3">
-        <span class="h-5 w-1 rounded-full bg-gradient-to-b from-blue-500 to-indigo-600"></span>
-        {% include t.html key="home.stack_title" tag="h2" class="text-xl font-bold text-slate-900" %}
-      </div>
-      <div class="flex flex-col gap-4">
-        {% assign skde = de["home.skills"] %}
-        {% assign sken = en["home.skills"] %}
-        {% for s in skde %}
-        {% assign se = sken[forloop.index0] %}
-        <div>
-          <div class="mb-2 flex items-center justify-between gap-2 text-sm text-slate-700">
-            <span data-de="{{ s.label }}" data-en="{{ se.label }}">{{ s.label }}</span>
-            <span class="whitespace-nowrap rounded-md border border-blue-100 bg-blue-50 px-2 py-0.5 font-mono text-[11px] font-semibold text-blue-700" data-de="{{ s.badge }}" data-en="{{ se.badge }}">{{ s.badge }}</span>
-          </div>
-          <div class="h-2 overflow-hidden rounded-full bg-slate-100">
-            <div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-700 transition-[width] duration-1000 ease-out" style="width:0" data-value="{{ s.value }}"></div>
-          </div>
-        </div>
+      <p class="mt-4 text-slate-500"
+         data-de="Netzwerke planen, aufbauen und absichern. CCNA-zertifiziert in Routing &amp; Switching, VLANs, STP, OSPF und ACLs – von der Verkabelung bis zum DNS-Setup."
+         data-en="Planning, building and securing networks. CCNA-certified in routing &amp; switching, VLANs, STP, OSPF and ACLs – from cabling to DNS setup.">Netzwerke planen, aufbauen und absichern. CCNA-zertifiziert in Routing &amp; Switching, VLANs, STP, OSPF und ACLs – von der Verkabelung bis zum DNS-Setup.</p>
+      <div class="mt-5 flex flex-wrap gap-2">
+        {% for t in "CCNA|Routing &amp; Switching|VLANs|OSPF|AdGuard DNS|DynDNS" | split: "|" %}
+        <span class="rounded-md border border-blue-100 bg-blue-50 px-2 py-0.5 font-mono text-[11px] text-blue-700">{{ t }}</span>
         {% endfor %}
       </div>
-    </section>
+    </article>
 
-    <!-- GitHub -->
-    <div class="md:col-span-3">
-      {% include github-activity.html %}
-    </div>
-  </div>
-
-  <!-- LEBENSLAUF -->
-  <div class="mt-6 grid gap-5 md:grid-cols-2">
-    <section class="reveal rounded-2xl border border-slate-200 bg-white p-7 shadow-card">
-      {% include t.html key="home.edu_title" tag="h2" class="mb-5 border-b border-slate-200 pb-3 font-mono text-lg font-bold text-slate-900" %}
-      <div class="border-l border-slate-200 pl-6">
-        {% assign edde = de["home.edu"] %}
-        {% assign eden = en["home.edu"] %}
-        {% for it in edde %}
-        {% assign ie = eden[forloop.index0] %}
-        <div class="relative pb-6 last:pb-0">
-          <span class="absolute -left-[25px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-blue-600 bg-white"></span>
-          <span class="block font-mono text-[11px] uppercase tracking-wide text-blue-600" data-de="{{ it.date }}" data-en="{{ ie.date }}">{{ it.date }}</span>
-          <span class="block font-semibold text-slate-900" data-de="{{ it.title }}" data-en="{{ ie.title }}">{{ it.title }}</span>
-          <span class="block text-sm font-medium text-slate-500" data-de="{{ it.org }}" data-en="{{ ie.org }}">{{ it.org }}</span>
-          <p class="mt-1 text-sm leading-relaxed text-slate-400" data-de="{{ it.desc }}" data-en="{{ ie.desc }}">{{ it.desc }}</p>
-        </div>
+    <!-- Smart Home & Automation -->
+    <article class="reveal group rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div class="flex items-center gap-3">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-amber-50 text-amber-600"><i class="fa-solid fa-house-signal text-lg" aria-hidden="true"></i></span>
+        <h2 class="text-lg font-bold text-slate-900" data-de="Smart Home &amp; Automation" data-en="Smart home &amp; automation">Smart Home &amp; Automation</h2>
+      </div>
+      <p class="mt-4 text-slate-500"
+         data-de="Home Assistant als Zentrale: Energie-Dashboards, Automationen und ein netzwerkweiter AdGuard-Home-DNS – vieles davon self-hosted im LXC-Container."
+         data-en="Home Assistant at the core: energy dashboards, automations and a network-wide AdGuard Home DNS – much of it self-hosted in LXC containers.">Home Assistant als Zentrale: Energie-Dashboards, Automationen und ein netzwerkweiter AdGuard-Home-DNS – vieles davon self-hosted im LXC-Container.</p>
+      <div class="mt-5 flex flex-wrap gap-2">
+        {% for t in "Home Assistant|IoT|LXC|Automation" | split: "|" %}
+        <span class="rounded-md border border-amber-100 bg-amber-50 px-2 py-0.5 font-mono text-[11px] text-amber-700">{{ t }}</span>
         {% endfor %}
       </div>
-    </section>
-    <section class="reveal rounded-2xl border border-slate-200 bg-white p-7 shadow-card">
-      {% include t.html key="home.work_title" tag="h2" class="mb-5 border-b border-slate-200 pb-3 font-mono text-lg font-bold text-slate-900" %}
-      <div class="border-l border-slate-200 pl-6">
-        {% assign wde = de["home.work"] %}
-        {% assign wen = en["home.work"] %}
-        {% for it in wde %}
-        {% assign ie = wen[forloop.index0] %}
-        <div class="relative pb-6 last:pb-0">
-          <span class="absolute -left-[25px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-blue-600 bg-white"></span>
-          <span class="block font-mono text-[11px] uppercase tracking-wide text-blue-600" data-de="{{ it.date }}" data-en="{{ ie.date }}">{{ it.date }}</span>
-          <span class="block font-semibold text-slate-900" data-de="{{ it.title }}" data-en="{{ ie.title }}">{{ it.title }}</span>
-          <span class="block text-sm font-medium text-slate-500" data-de="{{ it.org }}" data-en="{{ ie.org }}">{{ it.org }}</span>
-          <p class="mt-1 text-sm leading-relaxed text-slate-400" data-de="{{ it.desc }}" data-en="{{ ie.desc }}">{{ it.desc }}</p>
-        </div>
+    </article>
+
+    <!-- Elektronik / Hardware -->
+    <article class="reveal group rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div class="flex items-center gap-3">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-rose-50 text-rose-600"><i class="fa-solid fa-microchip text-lg" aria-hidden="true"></i></span>
+        <h2 class="text-lg font-bold text-slate-900" data-de="Elektronik &amp; Hardware" data-en="Electronics &amp; hardware">Elektronik &amp; Hardware</h2>
+      </div>
+      <p class="mt-4 text-slate-500"
+         data-de="Ausbildung in Elektronik &amp; Technischer Informatik an der HTL Anichstraße: Löten, Mikrocontroller, Sensorik und 3D-Druck – Hardware, die mit Software spricht."
+         data-en="Training in electronics &amp; technical computer science at HTL Anichstraße: soldering, microcontrollers, sensors and 3D printing – hardware that talks to software.">Ausbildung in Elektronik &amp; Technischer Informatik an der HTL Anichstraße: Löten, Mikrocontroller, Sensorik und 3D-Druck – Hardware, die mit Software spricht.</p>
+      <div class="mt-5 flex flex-wrap gap-2">
+        {% for t in "Mikrocontroller|Sensorik|3D-Druck|IoT" | split: "|" %}
+        <span class="rounded-md border border-rose-100 bg-rose-50 px-2 py-0.5 font-mono text-[11px] text-rose-700">{{ t }}</span>
         {% endfor %}
       </div>
-    </section>
-  </div>
+    </article>
+
+    <!-- Homelab & Linux -->
+    <article class="reveal group rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div class="flex items-center gap-3">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-violet-50 text-violet-600"><i class="fa-solid fa-terminal text-lg" aria-hidden="true"></i></span>
+        <h2 class="text-lg font-bold text-slate-900" data-de="Homelab &amp; Linux" data-en="Homelab &amp; Linux">Homelab &amp; Linux</h2>
+      </div>
+      <p class="mt-4 text-slate-500"
+         data-de="CachyOS als Daily Driver, Proxmox-Homelab mit Containern und VMs, self-hosted Media-Stack (Jellyfin &amp; Plex) und ein ZSH-Workflow, der sitzt."
+         data-en="CachyOS as daily driver, a Proxmox homelab with containers and VMs, a self-hosted media stack (Jellyfin &amp; Plex) and a ZSH workflow that just works.">CachyOS als Daily Driver, Proxmox-Homelab mit Containern und VMs, self-hosted Media-Stack (Jellyfin &amp; Plex) und ein ZSH-Workflow, der sitzt.</p>
+      <div class="mt-5 flex flex-wrap gap-2">
+        {% for t in "CachyOS|Proxmox|Jellyfin|Self-Hosted|ZSH" | split: "|" %}
+        <span class="rounded-md border border-violet-100 bg-violet-50 px-2 py-0.5 font-mono text-[11px] text-violet-700">{{ t }}</span>
+        {% endfor %}
+      </div>
+    </article>
+
+    <!-- CTA -->
+    <a href="/contact/" class="reveal group flex flex-col justify-between rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-600 to-indigo-600 p-7 text-white shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div>
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-white/15"><i class="fa-solid fa-comment-dots text-lg" aria-hidden="true"></i></span>
+        <h2 class="mt-4 text-lg font-bold" data-de="Projekt im Kopf?" data-en="Got a project in mind?">Projekt im Kopf?</h2>
+        <p class="mt-2 text-sm text-blue-100" data-de="Schreib mir – die Nachricht landet direkt auf meinem Smartphone." data-en="Message me – it lands straight on my phone.">Schreib mir – die Nachricht landet direkt auf meinem Smartphone.</p>
+      </div>
+      <span class="mt-6 inline-flex items-center gap-2 font-mono text-sm font-semibold">
+        <span data-de="Nachricht senden" data-en="Send a message">Nachricht senden</span>
+        <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+      </span>
+    </a>
+  </section>
 </div>
-
-<!-- ══ TERMINAL (Easter Egg) ══ -->
-<button class="term-open" id="termOpen" type="button" aria-label="Terminal / open">
-  {% include icon.html name="external" %} <span>_CMD</span>
-</button>
-
-<div class="term-overlay" id="termOverlay" hidden>
-  <div class="term-window" role="dialog" aria-label="Terminal">
-    <div class="term-bar">
-      <span class="term-dot" data-close style="background:#ff5f56;cursor:pointer;"></span>
-      <span class="term-dot" style="background:#ffbd2e;"></span>
-      <span class="term-dot" style="background:#27c93f;"></span>
-      <span class="term-bar__title">sandro@sandroOS — bash</span>
-    </div>
-    <div class="term-body" id="termBody">
-      <div class="term-ascii">SandroOS v3.0 · Linux 6.x-cachyos · Tirol, Austria</div>
-      {% include t.html key="term.intro" tag="p" %}
-      <div class="term-chips" id="termChips"></div>
-    </div>
-    <div class="term-input">
-      <span class="term-prompt">guest@sandro:~$</span>
-      <input type="text" id="termIn" autocomplete="off" spellcheck="false" placeholder="…"
-             data-de="Befehl eingeben…" data-en="Type a command…">
-    </div>
-  </div>
-</div>
-
-<style>
-  /* Terminal-Easter-Egg – bewusst dunkel, komplett eigenständig (keine Abhängigkeiten) */
-  .term-open { position: fixed; right: 20px; bottom: 74px; z-index: 40; display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: .8rem; padding: 10px 16px; border-radius: 9999px; cursor: pointer; color: #fff; background: #0f172a; border: 1px solid #0f172a; box-shadow: 0 8px 24px rgba(2,6,23,.15); transition: transform .2s, box-shadow .28s; }
-  .term-open:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(2,6,23,.2); }
-  .term-overlay { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center; background: rgba(15,23,42,.55); backdrop-filter: blur(6px); padding: 20px; }
-  .term-window { width: 100%; max-width: 720px; height: min(560px, 82vh); display: flex; flex-direction: column; overflow: hidden; background: #0b1020; border: 1px solid #1e293b; border-radius: 16px; box-shadow: 0 40px 90px -20px rgba(2,6,23,.5); font-family: 'JetBrains Mono', monospace; font-size: .9rem; }
-  .term-bar { display: flex; align-items: center; gap: 7px; padding: 12px 15px; background: #0f172a; border-bottom: 1px solid #1e293b; }
-  .term-dot { width: 12px; height: 12px; border-radius: 50%; }
-  .term-bar__title { margin-left: 10px; color: #64748b; font-size: .78rem; }
-  .term-body { flex: 1; overflow-y: auto; padding: 16px 18px; color: #4ade80; line-height: 1.6; }
-  .term-ascii { color: #475569; font-size: .76rem; margin-bottom: 10px; }
-  .term-body > p { color: #94a3b8; margin: 0 0 10px; }
-  .term-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-  .term-chip { background: #131c31; border: 1px solid #26324a; color: #93c5fd; padding: 4px 12px; border-radius: 9999px; font-size: .76rem; cursor: pointer; transition: all .15s; }
-  .term-chip:hover { background: #3b82f6; color: #fff; border-color: #3b82f6; }
-  .term-echo { color: #fff; margin: 8px 0 4px; }
-  .term-out { color: #cbd5e1; margin-bottom: 10px; }
-  .term-out .k { color: #64748b; display: inline-block; min-width: 130px; }
-  .term-out .v { color: #e2e8f0; }
-  .term-out a { color: #93c5fd; }
-  .term-input { display: flex; align-items: center; gap: 10px; padding: 11px 18px; border-top: 1px solid #1e293b; background: #0b1020; }
-  .term-prompt { color: #93c5fd; white-space: nowrap; font-size: .85rem; }
-  #termIn { flex: 1; background: none; border: none; outline: none; color: #fff; font: inherit; }
-</style>
-
-<script>
-(function () {
-  var open = document.getElementById('termOpen'),
-      overlay = document.getElementById('termOverlay'),
-      body = document.getElementById('termBody'),
-      input = document.getElementById('termIn'),
-      chipWrap = document.getElementById('termChips');
-  if (!open) return;
-  var CHIPS = ['help', 'whoami', 'skills', 'fetch', 'contact', 'clear', 'exit'];
-
-  function mkChips(target) {
-    target.innerHTML = '';
-    CHIPS.forEach(function (c) {
-      var s = document.createElement('span');
-      s.className = 'term-chip'; s.textContent = c;
-      s.onclick = function () { run(c); };
-      target.appendChild(s);
-    });
-  }
-  mkChips(chipWrap);
-
-  var CMDS = {
-    help: '<div class="term-out"><span class="k" style="color:#93c5fd">whoami</span><span class="v">Wer ist Sandro? / Who is Sandro?</span><br><span class="k" style="color:#93c5fd">skills</span><span class="v">Tech-Skills &amp; Zertifikate</span><br><span class="k" style="color:#93c5fd">fetch</span><span class="v">System-Info</span><br><span class="k" style="color:#93c5fd">contact</span><span class="v">Kontakt / contact</span><br><span class="k" style="color:#93c5fd">clear</span><span class="v">Terminal leeren / clear</span><br><span class="k" style="color:#93c5fd">exit</span><span class="v">schlie&szlig;en / close</span></div>',
-    whoami: '<div class="term-out"><span class="k">Rolle / Role</span><span class="v">Elektroniker &amp; Netzwerktechniker</span><br><span class="k">Zertifikat</span><span class="v">Cisco CCNA</span><br><span class="k">Position</span><span class="v">Regionalvorstand Tiroler Unterland</span><br><span class="k">Schule / School</span><span class="v">HTBLVA Anichstra&szlig;e, Innsbruck</span><br><span class="k">Heimat / Home</span><span class="v">Schwoich, Tirol</span></div>',
-    skills: '<div class="term-out"><span class="k">Linux / CachyOS</span><span class="v">88%</span><br><span class="k">CCNA</span><span class="v">CERTIFIED</span><br><span class="k">IoT / Elektronik</span><span class="v">75%</span><br><span class="k">Python / Bots</span><span class="v">80%</span><br><span class="k">Hardware</span><span class="v">72%</span></div>',
-    fetch: '<div class="term-out"><span class="k">OS</span><span class="v">CachyOS + Windows 11 [Dual-Boot]</span><br><span class="k">CPU</span><span class="v">AMD Ryzen 7 9800X3D</span><br><span class="k">GPU</span><span class="v">ASUS TUF RTX 5070 OC</span><br><span class="k">RAM</span><span class="v">32 GB DDR5 @ 6000 MHz</span><br><span class="k">Storage</span><span class="v">2 TB NVMe PCIe 5.0</span><br><span class="k">Shell</span><span class="v">zsh + oh-my-zsh</span></div>',
-    contact: '<div class="term-out"><span class="k">E-Mail</span><span class="v"><a href="mailto:sandro@exemail.at">sandro@exemail.at</a></span><br><span class="k">Telefon / Phone</span><span class="v">+43 676 7406799</span><br><span class="k">Web</span><span class="v"><a href="/links.html">sandro.exemail.at/links</a></span></div>'
-  };
-
-  function line(cls, html) { var el = document.createElement('div'); el.className = cls; el.innerHTML = html; body.appendChild(el); body.scrollTop = body.scrollHeight; }
-  function run(raw) {
-    var cmd = (raw || '').toLowerCase().trim();
-    if (!cmd) return;
-    line('term-echo', '<span class="term-prompt">guest@sandro:~$</span> ' + cmd);
-    if (cmd === 'clear') { body.innerHTML = ''; var w = document.createElement('div'); w.className = 'term-chips'; body.appendChild(w); mkChips(w); return; }
-    if (cmd === 'exit') { close(); return; }
-    if (CMDS[cmd]) line('', CMDS[cmd]);
-    else line('term-out', '<span style="color:#f87171">bash: ' + cmd + ': command not found</span>');
-    input.value = '';
-  }
-  function openT() { overlay.hidden = false; setTimeout(function () { input.focus(); }, 30); }
-  function close() { overlay.hidden = true; }
-  open.addEventListener('click', openT);
-  overlay.addEventListener('click', function (e) { if (e.target === overlay || e.target.hasAttribute('data-close')) close(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) close(); });
-  input.addEventListener('keydown', function (e) { if (e.key === 'Enter') run(input.value); });
-
-  var seq = '';
-  document.addEventListener('keydown', function (e) {
-    seq = (seq + (e.key || '').toLowerCase()).slice(-10);
-    if (seq.indexOf('sandro') !== -1) { document.querySelectorAll('section').forEach(function (el) { el.classList.add('ring-2', 'ring-blue-400'); }); seq = ''; }
-  });
-})();
-</script>
-
-<script src="/assets/js/github-activity.js?v=3" defer></script>
