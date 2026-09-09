@@ -1,5 +1,26 @@
 # Bugreport — Audit der Live-Seite
 
+> **Stand nach der Reparatur (2026-09-09):** Alle Befunde außer **B-05** sind behoben und live.
+> Build & Link-Check und Lighthouse laufen auf `main` grün, Lighthouse liegt bei
+> **1,00 / 1,00 / 1,00 / 1,00** je Kategorie (Accessibility 0,99 auf `/projects/`).
+>
+> | Befund | Status |
+> |---|---|
+> | B-01 Leere Beschriftungen | behoben |
+> | B-02 Vorschaubild 404 | behoben, wird jetzt erzeugt |
+> | B-03 Bilder nie ausgeliefert | behoben, 753 KB → 25 KB und 2,5 MB → 104 KB |
+> | B-04 CSP-Konsolenfehler | behoben |
+> | B-05 Kein HTTPS-Redirect | **offen — braucht dich, siehe Frage 1** |
+> | B-06 Tote Konfiguration | behoben |
+> | B-07 Ungenutzte Sprite-Gruppe | behoben |
+> | B-08 Doppelter vCard-Name | bleibt bewusst, technisch nicht auflösbar |
+> | B-09 `http`-Homepage aus dem Repo-Sync | behoben, Sync normalisiert auf `https` |
+> | B-10 Sprachfilter zeigte „Html" | behoben |
+>
+> Der ursprüngliche Befundtext bleibt unten unverändert stehen, damit die Begründungen
+> nachvollziehbar bleiben.
+
+
 **Stand:** 2026-09-09 · **Geprüft gegen:** `main` @ `7086744`, live auf `https://sandro.exemail.at`
 **Grundlage:** Lighthouse-CI-Läufe (10 Seiten), HTMLProofer, gerechnete Kontrastwerte, Live-HTML, Workflow-Logs
 
@@ -152,3 +173,33 @@ Damit klar ist, was ich tatsächlich verifiziert habe und was nicht:
 1. **Cloudflare:** Soll ich B-05 offen lassen, oder schaltest du „Always Use HTTPS" ein? Ohne das ist das Kontaktformular für alle kaputt, die über `http://` kommen.
 2. **Unternehmensgegenstand:** Deine zwischenzeitliche Platzhalterseite nannte „IT-Dienstleistungen". Meine `legal.yml` sagt dagegen ausdrücklich, dass die Seite **rein privat und nicht unternehmerisch** betrieben wird, ohne Gewerbeberechtigung und ohne UID. Beides zugleich geht nicht — was stimmt?
 3. **Freigabe** für Phase 2 (Reparatur) und Phase 3 (Design-Feinschliff).
+
+---
+
+## Nachtrag: im Browser geprüft (2026-09-09)
+
+Nach dem Fix von B-01 habe ich die Bedienung auf der Live-Seite durchgetestet.
+
+| Geprüft | Ergebnis |
+|---|---|
+| Farbschema-Umschalter | wechselt, bleibt in `localStorage`, kein Aufblitzen beim Laden |
+| Sprachumschalter DE/EN | schaltet Fließtext **und** `aria-label` um („Switch colour scheme"), keine hängengebliebenen Strings |
+| Mobilmenü | öffnet, schließt bei Linkklick, schließt mit Escape |
+| Scroll-Reveals | feuern; kein Element bleibt unsichtbar |
+| Projektfilter | 12 Karten (6 eigene, 6 Repos), Suche, Leerzustand, Zurücksetzen, Sortierung — **keine Doppelungen** |
+| Formularvalidierung | leeres Absenden markiert 3 Pflichtfelder, ungültige Mail setzt `aria-invalid`, gültige Eingabe hebt es auf |
+| Icons | alle 28 `<use>`-Referenzen lösen auf, sichtbar in Hell und Dunkel |
+| Bilder | AVIF wird ausgeliefert (`profile-720.avif`), kein fehlendes `alt` |
+| Überschriften | genau ein `h1` je Seite, keine Sprünge |
+| Externe Links | 6 von 6 mit `target="_blank"` und `rel="noopener noreferrer"` |
+| Kein horizontales Scrollen | bei 320 px auf **allen 11 Seiten** `scrollWidth` 305, kein überbreites Element |
+| Seitentitel | je Seite eigener Titel, nicht überall der Startseitentext |
+
+**Eine Falle, die ich mir selbst gestellt habe:** Im ersten Anlauf schien es, als würden
+Scroll-Reveals nie feuern und `aria-label` nicht übersetzt. Beides war ein Messfehler —
+der Testtab lief im Hintergrund (`visibilityState: hidden`), dort liefert der
+IntersectionObserver prinzipbedingt keine Callbacks und Timer werden gedrosselt. Im
+sichtbaren Tab funktioniert beides. Festgehalten, damit dieser Irrweg nicht wiederholt wird.
+
+**Nicht getestet:** ein echter Formularversand. Das würde dir eine reale Nachricht
+schicken — dafür hätte ich deine Zustimmung gebraucht.
