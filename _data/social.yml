@@ -1,0 +1,204 @@
+# ═══════════════════════════════════════════════════════════════════
+#  social.yml — DIE EINZIGE QUELLE für alle Social-Media-Kanäle
+#
+#  Speist automatisch:
+#    · Footer-Icons            · /links/
+#    · /impressum/social/      · JSON-LD sameAs
+#    · /contact/               · vcard.vcf
+#
+#  Neuen Kanal aufnehmen = einen Eintrag unter `channels` ergänzen.
+#  Keine HTML-Datei muss dafür angefasst werden.
+# ═══════════════════════════════════════════════════════════════════
+
+# ── Kontexte ──────────────────────────────────────────────────────
+#  Die medienrechtliche Verantwortlichkeit steht EINMAL hier, nicht
+#  bei jedem Kanal. Jeder Kanal verweist per `context:` hierher.
+#  /impressum/social/ rendert pro Kontext einen eigenen Abschnitt.
+contexts:
+  - id: private
+    order: 1
+    name: "Private Kanäle"
+    name_en: "Personal channels"
+    responsible: "Sandro Exenberger"
+    subject: >-
+      Persönliches Portfolio: Darstellung eigener Projekte, Ausbildung
+      und Interessen aus den Bereichen Elektronik, Netzwerktechnik,
+      Linux und Maker-Kultur.
+    subject_en: >-
+      Personal portfolio: presentation of my own projects, education and
+      interests in electronics, network engineering, Linux and maker culture.
+    # Blattlinie nach § 25 Mediengesetz
+    blattlinie: >-
+      Persönliche Website und private Social-Media-Kanäle zur Darstellung
+      eigener Projekte, der Ausbildung sowie fachlicher Interessen aus den
+      Bereichen Elektronik, Netzwerktechnik und Linux. Die Inhalte geben
+      ausschließlich die persönliche Auffassung des Medieninhabers wieder.
+    blattlinie_en: >-
+      Personal website and private social media channels presenting my own
+      projects, education and technical interests in electronics, network
+      engineering and Linux. All content reflects the personal views of the
+      media owner only.
+
+  - id: politik
+    order: 2
+    name: "Schulpolitisches Engagement"
+    name_en: "Student politics"
+    # TODO 4a: Wer ist für diesen Kanal medienrechtlich verantwortlich?
+    #   Du selbst als Privatperson, oder die Schülerunion als Organisation?
+    #   Das entscheidet, wer hier steht — und wer haftet.
+    responsible: "Sandro Exenberger"
+    subject: >-
+      Information über die Tätigkeit als Regionalvorstand Tiroler Unterland
+      der Schülerunion Österreich sowie als gewählte Schülervertretung.
+    subject_en: >-
+      Information about my work as regional board member for Tiroler Unterland
+      of Schülerunion Österreich and as an elected student representative.
+    blattlinie: >-
+      Information über die schulpolitische Tätigkeit des Medieninhabers,
+      über bildungspolitische Themen sowie über die Anliegen von
+      Schülerinnen und Schülern. Die Inhalte geben die persönliche
+      politische Auffassung des Medieninhabers wieder.
+    blattlinie_en: >-
+      Information about the media owner's activities in student politics,
+      about education policy topics and about the concerns of students.
+      All content reflects the personal political views of the media owner.
+    # TODO 4b: Blattlinie oben ist ein fachlich üblicher Entwurf.
+    #   Bitte prüfen und ggf. an die tatsächliche Ausrichtung anpassen.
+
+# ── Kanäle ────────────────────────────────────────────────────────
+#  Pflichtfelder: id · name · handle · url · icon · context · show_in
+#  `impressum.content_type` erscheint auf /impressum/social/.
+channels:
+  - id: github
+    name: "GitHub"
+    handle: "@Sandroexe"
+    url: "https://github.com/Sandroexe"
+    icon: github
+    color: "#6e5494"
+    context: private
+    show_in:
+      footer: true
+      links: true
+      impressum: true
+      vcard: true
+    impressum:
+      content_type: "Technische Projekte, Quellcode, Beiträge zu Open Source"
+      content_type_en: "Technical projects, source code, open source contributions"
+
+  - id: linkedin
+    name: "LinkedIn"
+    handle: "sandro-exenberger"
+    url: "https://www.linkedin.com/in/sandro-exenberger-1a5486315/"
+    icon: linkedin
+    color: "#0a66c2"
+    context: private
+    show_in:
+      footer: true
+      links: true
+      impressum: true
+      vcard: true
+    impressum:
+      content_type: "Beruflicher Werdegang, Ausbildung, Zertifikate, fachliche Beiträge"
+      content_type_en: "Career, education, certificates, professional posts"
+
+  - id: xing
+    name: "XING"
+    handle: "Sandro_Exenberger"
+    url: "https://www.xing.com/profile/Sandro_Exenberger"
+    icon: xing
+    color: "#0698a0"
+    context: private
+    show_in:
+      footer: false
+      links: true
+      impressum: true
+      vcard: false
+    impressum:
+      content_type: "Beruflicher Werdegang und Ausbildung"
+      content_type_en: "Career and education"
+
+  - id: instagram
+    name: "Instagram"
+    handle: "@sandro_exe_2008"
+    url: "https://www.instagram.com/sandro_exe_2008/"
+    icon: instagram
+    color: "#e4405f"
+    context: private
+    show_in:
+      footer: true
+      links: true
+      impressum: true
+      vcard: false
+    impressum:
+      content_type: "Persönliche Einblicke, Fotos, Projekte"
+      content_type_en: "Personal impressions, photos, projects"
+
+  - id: reddit
+    name: "Reddit"
+    handle: "u/Sandro_exe08"
+    url: "https://www.reddit.com/user/Sandro_exe08/"
+    icon: reddit
+    color: "#ff4500"
+    context: private
+    show_in:
+      footer: false
+      links: true
+      impressum: true
+      vcard: false
+    impressum:
+      content_type: "Fachliche Diskussionsbeiträge zu Linux, Netzwerk und Self-Hosting"
+      content_type_en: "Discussion posts on Linux, networking and self-hosting"
+
+  - id: stackoverflow
+    name: "Stack Overflow"
+    handle: "sandro-exenberger"
+    url: "https://stackoverflow.com/users/32745248/sandro-exenberger"
+    icon: stackoverflow
+    color: "#f48024"
+    context: private
+    show_in:
+      footer: false
+      links: true
+      impressum: true
+      vcard: false
+    impressum:
+      content_type: "Fragen und Antworten zu Programmierung und Systemadministration"
+      content_type_en: "Questions and answers on programming and system administration"
+
+  - id: credly
+    name: "Credly"
+    handle: "sandro-exenberger"
+    url: "https://www.credly.com/users/sandro-exenberger"
+    icon: credly
+    color: "#ff6b00"
+    context: private
+    show_in:
+      footer: false
+      links: true
+      impressum: true
+      vcard: false
+    impressum:
+      content_type: "Verifizierbare Zertifikats-Badges"
+      content_type_en: "Verifiable certification badges"
+
+  # ── Politischer Kanal ───────────────────────────────────────────
+  # TODO 4c: Trag hier deinen politischen Account ein. Alles, was fehlt,
+  #   sind Name, Handle und URL — Struktur und Rechtstext stehen schon.
+  #   Danach erscheint er automatisch auf /links/ und /impressum/social/.
+  #   Beispiel siehe unten; solange `url` mit "TODO" beginnt, wird der
+  #   Eintrag nirgends ausgegeben und blockiert den Build nicht.
+  - id: politik-instagram
+    name: "Instagram (Schulpolitik)"
+    handle: "TODO: @handle"
+    url: "TODO: https://www.instagram.com/…"
+    icon: instagram
+    color: "#e4405f"
+    context: politik
+    show_in:
+      footer: false
+      links: true
+      impressum: true
+      vcard: false
+    impressum:
+      content_type: "Schulpolitische Information und Öffentlichkeitsarbeit"
+      content_type_en: "Student politics information and public relations"

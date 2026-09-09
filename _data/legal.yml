@@ -1,0 +1,192 @@
+# ═══════════════════════════════════════════════════════════════════
+#  legal.yml — Rechtstexte
+#  Speist: /impressum/, /impressum/social/, /datenschutz/
+#
+#  Name, E-Mail, Telefon und Anschrift stehen NICHT hier — sie kommen
+#  aus profile.yml und contact.yml. Hier steht nur, was rechtlich
+#  darüber hinausgeht.
+#
+#  ⚠ Diese Texte sind fachlich sorgfältig aufgebaut, aber keine
+#    Rechtsberatung. Prüfung vor dem Livegang liegt bei dir.
+# ═══════════════════════════════════════════════════════════════════
+
+# ── Impressum ─────────────────────────────────────────────────────
+basis: "Informationspflicht laut § 5 E-Commerce-Gesetz, § 14 Unternehmensgesetzbuch und § 63 Gewerbeordnung sowie Offenlegungspflicht laut § 25 Mediengesetz."
+basis_en: "Information obligation under § 5 Austrian E-Commerce Act, § 14 Austrian Commercial Code and § 63 Trade Regulation Act, and disclosure obligation under § 25 Austrian Media Act."
+
+purpose: "Persönliches Portfolio. Bereitstellung von Informationen über IT- und Elektronik-Projekte, Ausbildung und Zertifizierungen sowie Möglichkeit zur Kontaktaufnahme."
+purpose_en: "Personal portfolio. Providing information about IT and electronics projects, education and certifications, and a way to get in touch."
+
+# Nicht unternehmerisch tätig — das ist rechtlich relevant und
+# sollte im Impressum ausdrücklich stehen.
+commercial: false
+commercial_note: "Diese Website wird rein privat und nicht zu unternehmerischen Zwecken betrieben. Es besteht keine Gewerbeberechtigung und keine Umsatzsteuer-Identifikationsnummer."
+commercial_note_en: "This website is operated purely privately and not for commercial purposes. There is no trade licence and no VAT identification number."
+
+sections:
+  - id: liability
+    title: "Haftung für Inhalte"
+    title_en: "Liability for content"
+    body: >-
+      Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt erstellt.
+      Für die Richtigkeit, Vollständigkeit und Aktualität kann dennoch keine
+      Haftung übernommen werden. Sollten Ihnen problematische oder
+      rechtswidrige Inhalte auffallen, bitte ich um umgehende Kontaktaufnahme —
+      betroffene Inhalte werden dann rasch entfernt.
+    body_en: >-
+      The content of this website is created with the greatest possible care.
+      No liability can be assumed for its accuracy, completeness or
+      timeliness. If you notice problematic or unlawful content, please
+      contact me immediately — the content in question will be removed
+      promptly.
+
+  - id: links
+    title: "Haftung für Links"
+    title_en: "Liability for links"
+    body: >-
+      Diese Website enthält Links zu externen Websites Dritter, auf deren
+      Inhalte ich keinen Einfluss habe. Für diese fremden Inhalte kann keine
+      Gewähr übernommen werden; verantwortlich ist stets der jeweilige
+      Anbieter oder Betreiber. Zum Zeitpunkt der Verlinkung waren keine
+      Rechtsverstöße erkennbar.
+    body_en: >-
+      This website contains links to external third-party websites over whose
+      content I have no influence. No guarantee can be given for such external
+      content; the respective provider or operator is always responsible. No
+      legal violations were apparent at the time of linking.
+
+  - id: copyright
+    title: "Urheberrecht"
+    title_en: "Copyright"
+    body: >-
+      Die auf dieser Website erstellten Inhalte und Werke unterliegen dem
+      österreichischen Urheberrecht. Vervielfältigung, Bearbeitung und
+      Verbreitung außerhalb der Grenzen des Urheberrechts bedürfen der
+      schriftlichen Zustimmung. Der Quellcode dieser Website ist auf GitHub
+      einsehbar.
+    body_en: >-
+      The content and works created on this website are subject to Austrian
+      copyright law. Reproduction, modification and distribution beyond the
+      limits of copyright law require written consent. The source code of this
+      website is available on GitHub.
+
+# ── Datenschutz ───────────────────────────────────────────────────
+privacy:
+  intro: >-
+    Der Schutz deiner persönlichen Daten ist mir ein Anliegen. Ich verarbeite
+    Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen
+    (DSGVO, TKG 2021, DSG). Diese Website kommt bewusst ohne Tracking,
+    ohne Cookies und ohne externe Dienste aus.
+  intro_en: >-
+    Protecting your personal data matters to me. I process data exclusively on
+    the basis of the applicable law (GDPR, Austrian TKG 2021, DSG). This
+    website deliberately works without tracking, without cookies and without
+    third-party services.
+
+  sections:
+    - id: hosting
+      title: "Hosting durch GitHub Pages"
+      title_en: "Hosting via GitHub Pages"
+      body: >-
+        Diese Website wird bei GitHub Pages gehostet (GitHub Inc., 88 Colin P
+        Kelly Jr Street, San Francisco, CA 94107, USA). Beim Aufruf der Seite
+        werden von GitHub technisch notwendige Server-Logdaten verarbeitet,
+        darunter deine IP-Adresse. Rechtsgrundlage ist das berechtigte
+        Interesse an einem sicheren und funktionsfähigen Betrieb
+        (Art. 6 Abs. 1 lit. f DSGVO). GitHub ist nach dem EU-US Data Privacy
+        Framework zertifiziert.
+      body_en: >-
+        This website is hosted on GitHub Pages (GitHub Inc., 88 Colin P Kelly
+        Jr Street, San Francisco, CA 94107, USA). When you access the site,
+        GitHub processes technically necessary server log data including your
+        IP address. The legal basis is the legitimate interest in secure and
+        functional operation (Art. 6(1)(f) GDPR). GitHub is certified under the
+        EU-US Data Privacy Framework.
+      link:
+        url: "https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+        label: "GitHub Datenschutzerklärung"
+        label_en: "GitHub Privacy Statement"
+
+    - id: contactform
+      title: "Kontaktformular"
+      title_en: "Contact form"
+      body: >-
+        Wenn du das Kontaktformular nutzt, werden die von dir eingegebenen
+        Daten (Name, E-Mail-Adresse, optional Telefonnummer, Nachricht) an
+        einen von mir selbst betriebenen Server unter api.exemail.at
+        übermittelt und dort zur Bearbeitung deiner Anfrage verarbeitet.
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO. Die Daten
+        werden nicht an Dritte weitergegeben und gelöscht, sobald die Anfrage
+        abschließend bearbeitet ist. Der Server wird von mir selbst betrieben;
+        eine Weitergabe an einen externen Formulardienst findet nicht statt.
+      body_en: >-
+        If you use the contact form, the data you enter (name, email address,
+        optional phone number, message) is transmitted to a server operated by
+        me at api.exemail.at and processed there to handle your enquiry. The
+        legal basis is Art. 6(1)(b) or (f) GDPR. The data is not passed on to
+        third parties and is deleted once your enquiry has been fully handled.
+        The server is operated by me; no external form service is involved.
+
+    - id: email
+      title: "Kontaktaufnahme per E-Mail oder Telefon"
+      title_en: "Contact by email or phone"
+      body: >-
+        Nimmst du per E-Mail oder Telefon Kontakt auf, werden deine Angaben
+        zur Bearbeitung der Anfrage und für den Fall von Anschlussfragen
+        gespeichert. Diese Daten werden ohne deine Einwilligung nicht
+        weitergegeben.
+      body_en: >-
+        If you contact me by email or phone, your details are stored to handle
+        your enquiry and in case of follow-up questions. This data is not
+        passed on without your consent.
+
+    - id: nothirdparty
+      title: "Keine externen Dienste, keine Cookies"
+      title_en: "No third-party services, no cookies"
+      body: >-
+        Diese Website bindet keine externen Schriftarten, keine CDNs, keine
+        Analyse- oder Tracking-Dienste und keine Social-Media-Plugins ein.
+        Alle Schriften, Skripte, Stile und Bilder werden vom eigenen Server
+        ausgeliefert. Es werden keine Cookies gesetzt. Für die Speicherung
+        deiner Einstellungen zu Farbschema und Sprache wird ausschließlich
+        localStorage in deinem Browser genutzt — diese Angaben verlassen dein
+        Gerät nicht und werden nicht an mich übermittelt.
+      body_en: >-
+        This website embeds no external fonts, no CDNs, no analytics or
+        tracking services and no social media plugins. All fonts, scripts,
+        styles and images are served from this site's own server. No cookies
+        are set. Your colour scheme and language preferences are stored solely
+        in your browser's localStorage — this data never leaves your device and
+        is not transmitted to me.
+
+    - id: rights
+      title: "Deine Rechte"
+      title_en: "Your rights"
+      body: >-
+        Dir stehen die Rechte auf Auskunft, Berichtigung, Löschung,
+        Einschränkung der Verarbeitung, Datenübertragbarkeit, Widerruf einer
+        erteilten Einwilligung und Widerspruch zu. Wende dich dafür jederzeit
+        an die im Impressum genannten Kontaktdaten. Wenn du glaubst, dass die
+        Verarbeitung deiner Daten gegen das Datenschutzrecht verstößt, kannst
+        du dich bei der österreichischen Datenschutzbehörde beschweren.
+      body_en: >-
+        You have the right to information, rectification, erasure, restriction
+        of processing, data portability, withdrawal of consent and objection.
+        To exercise these rights, use the contact details given in the legal
+        notice. If you believe the processing of your data violates data
+        protection law, you may lodge a complaint with the Austrian Data
+        Protection Authority.
+      link:
+        url: "https://www.dsb.gv.at/"
+        label: "Österreichische Datenschutzbehörde"
+        label_en: "Austrian Data Protection Authority"
+
+# ── Hinweis auf beiden Rechtsseiten ───────────────────────────────
+disclaimer: >-
+  Dieser Text wurde nach bestem Wissen erstellt und ersetzt keine
+  Rechtsberatung.
+disclaimer_en: >-
+  This text was prepared to the best of my knowledge and does not constitute
+  legal advice.
+
+last_updated: "2026-09-09"

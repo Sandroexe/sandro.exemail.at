@@ -1,0 +1,30 @@
+# ═══════════════════════════════════════════════════════════════════
+#  site.yml — Grunddaten der Website
+#  Betrifft: <head>, Sprachumschalter, Feature-Schalter
+# ═══════════════════════════════════════════════════════════════════
+
+domain: sandro.exemail.at
+url: https://sandro.exemail.at
+
+default_lang: de
+languages:
+  - code: de
+    label: Deutsch
+    short: DE
+  - code: en
+    label: English
+    short: EN
+
+meta:
+  og_image: /assets/img/og-default.png
+  twitter_card: summary_large_image
+  # Browser-UI-Farbe je Theme; Werte stammen aus design.yml und werden
+  # in head.html von dort gelesen — hier steht bewusst nichts doppelt.
+
+# Zentrale Feature-Schalter. false = Code wird gar nicht erst gerendert.
+features:
+  easter_egg: true # traceroute-Easter-Egg auf der Startseite
+  github_sync: true # Repo-Karten aus _data/github.json
+  credly_sync: false # Credly-Badges (Workflow vorbereitet, aus)
+  theme_toggle: true # manueller Hell/Dunkel-Umschalter
+  lang_toggle: true # manueller DE/EN-Umschalter
