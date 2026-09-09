@@ -30,17 +30,15 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      # Interne Prüfung: tote Links, fehlende Bilder und Skripte.
+      # Fehlende und leere Alt-Texte sind in html-proofer 5 bereits
+      # Standardfehler — dafür braucht es keine Flags.
       - name: HTMLProofer
         run: |
           bundle exec htmlproofer ./_site \
             --disable-external \
             --allow-hash-href \
-            --check-html \
-            --check-img-http \
-            --enforce-https=false \
-            --ignore-empty-alt=false \
-            --ignore-missing-alt=false \
-            --no-check-external-hash
+            --checks "Links,Images,Scripts"
 
       # Externe Links getrennt und ohne Abbruch: ein fremder Server,
       # der gerade zickt, soll den Build nicht rot färben.
@@ -48,10 +46,9 @@ jobs:
         continue-on-error: true
         run: |
           bundle exec htmlproofer ./_site \
-            --ignore-status-codes "403,429,999" \
+            --checks "Links" \
             --only-4xx \
-            --no-check-internal-hash \
-            --swap-urls "^/:/"
+            --ignore-status-codes "403,429,999"
 
       - name: Zentralisierung prüfen
         run: bash tools/check-centralisation.sh
