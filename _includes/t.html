@@ -10,10 +10,10 @@
    Zwei Aufrufformen:
 
      Schlüssel aus _data/i18n/*.yml (max. zwei Ebenen):
-       {% include t.html key="nav.projects" %}
+       include t.html key="nav.projects"
 
      Direktes Paar aus einer Datendatei:
-       {% include t.html de=item.title en=item.title_en %}
+       include t.html de=item.title en=item.title_en
 
    Optionen:
      tag="h2"    umschließendes Element (Standard: span)

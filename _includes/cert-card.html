@@ -1,7 +1,7 @@
 {%- comment -%}
   cert-card.html — eine Zertifikatskarte aus certificates.yml.
   Ob ein Zertifikat noch gültig ist, wird gerechnet, nicht gepflegt.
-    {% include cert-card.html cert=c %}
+    include cert-card.html cert=c
 {%- endcomment -%}
 {%- assign c = include.cert -%}
 {%- assign today = 'now' | date: "%Y-%m" -%}

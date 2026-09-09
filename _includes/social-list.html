@@ -3,8 +3,8 @@
    social-list.html — die eine Stelle, an der Social-Kanäle gerendert
    werden. Footer, Linkseite und Kontaktseite rufen alle hierhin.
 
-   {% include social-list.html context="footer" %}
-   {% include social-list.html context="links" %}
+   include social-list.html context="footer"
+   include social-list.html context="links"
 
    `context` entscheidet über zweierlei:
      · welche Kanäle erscheinen — gesteuert über show_in in social.yml

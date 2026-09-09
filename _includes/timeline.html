@@ -2,9 +2,9 @@
   ═══════════════════════════════════════════════════════════════════
    timeline.html — CV-Zeitleiste aus cv.yml.
 
-     {% include timeline.html entries=site.data.cv.education %}
-     {% include timeline.html entries=site.data.cv.experience limit=3 %}
-     {% include timeline.html entries=… compact=true %}
+     include timeline.html entries=site.data.cv.education
+     include timeline.html entries=site.data.cv.experience limit=3
+     include timeline.html entries=… compact=true
 
    Die Datumsformatierung passiert hier an einer Stelle, damit
    Startseite, /cv/ und Druckansicht nie auseinanderlaufen.

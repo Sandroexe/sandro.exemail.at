@@ -1,7 +1,7 @@
 {%- comment -%}
   section.html — generischer Abschnittskopf.
-    {% include section.html key="home.skills" id="skills" %}
-    {% include section.html de="Hardware" en="Hardware" level="3" %}
+    include section.html key="home.skills" id="skills"
+    include section.html de="Hardware" en="Hardware" level="3"
   Gibt nur den Kopf aus; der Inhalt folgt im Aufrufer.
 {%- endcomment -%}
 {%- assign lvl = include.level | default: "2" -%}
