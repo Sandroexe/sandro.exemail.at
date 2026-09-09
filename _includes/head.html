@@ -1,0 +1,88 @@
+{%- assign S = site.data.site -%}
+{%- assign P = site.data.profile -%}
+{%- assign C = site.data.contact -%}
+{%- assign D = site.data.design -%}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{%- comment -%} ── Titel & Beschreibung ───────────────────────────── {%- endcomment -%}
+{%- if page.title -%}
+  {%- assign _title = page.title | append: " · " | append: P.name -%}
+{%- else -%}
+  {%- assign _title = P.name | append: " · " | append: P.role -%}
+{%- endif -%}
+{%- assign _desc = page.description | default: P.bio_short | strip_newlines | strip -%}
+{%- assign _url = page.url | replace: "index.html", "" | absolute_url -%}
+{%- assign _img = page.image | default: S.meta.og_image | absolute_url -%}
+
+<title>{{ _title }}</title>
+<meta name="description" content="{{ _desc | escape }}">
+<meta name="author" content="{{ P.name }}">
+<link rel="canonical" href="{{ _url }}">
+
+{%- comment -%} ── Farbe der Browser-Oberfläche, aus design.yml ────── {%- endcomment -%}
+<meta name="theme-color" content="{{ D.color.light.bg }}" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="{{ D.color.dark.bg }}" media="(prefers-color-scheme: dark)">
+
+{%- comment -%} ── Open Graph & Twitter ───────────────────────────── {%- endcomment -%}
+<meta property="og:type" content="{% if page.url == '/' %}profile{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ P.name }}">
+<meta property="og:title" content="{{ _title }}">
+<meta property="og:description" content="{{ _desc | escape }}">
+<meta property="og:url" content="{{ _url }}">
+<meta property="og:image" content="{{ _img }}">
+<meta property="og:locale" content="de_AT">
+<meta property="og:locale:alternate" content="en_GB">
+{%- if page.url == '/' %}
+<meta property="profile:first_name" content="{{ P.given_name }}">
+<meta property="profile:last_name" content="{{ P.family_name }}">
+{%- endif %}
+<meta name="twitter:card" content="{{ S.meta.twitter_card }}">
+<meta name="twitter:title" content="{{ _title }}">
+<meta name="twitter:description" content="{{ _desc | escape }}">
+<meta name="twitter:image" content="{{ _img }}">
+
+{%- comment -%} ── Sicherheit ─────────────────────────────────────── {%- endcomment -%}
+{%- comment -%}
+  Alles wird vom eigenen Server ausgeliefert. Einzige erlaubte
+  Fremdverbindung ist der Kontakt-Endpoint aus contact.yml.
+{%- endcomment -%}
+{%- assign _api = C.form.endpoint | split: "/" -%}
+{%- assign _api_origin = _api[0] | append: "//" | append: _api[2] -%}
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' {{ _api_origin }}; form-action 'self' {{ _api_origin }}; frame-ancestors 'none'; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+{%- comment -%} ── Icons ──────────────────────────────────────────── {%- endcomment -%}
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+{%- comment -%} ── Schriften: selbst gehostet, kein CDN ───────────── {%- endcomment -%}
+<link rel="preload" href="/assets/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fraunces-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+
+{%- comment -%} ── Stile ──────────────────────────────────────────── {%- endcomment -%}
+{% include critical.html %}
+<link rel="preload" href="/assets/css/main.css" as="style">
+<link rel="stylesheet" href="/assets/css/main.css">
+
+{%- comment -%}
+  ── Theme- und Sprach-Initialisierung ────────────────────────────
+  Muss inline und vor dem Rendern laufen, sonst blitzt beim Laden
+  das falsche Farbschema auf. Bewusst winzig gehalten.
+{%- endcomment -%}
+<script>
+(function(){try{
+  var r=document.documentElement,s=localStorage;
+  var t=s.getItem('theme'); if(t==='dark'||t==='light')r.setAttribute('data-theme',t);
+  var l=s.getItem('lang');  if(l==='en'||l==='de'){r.setAttribute('data-lang',l);r.setAttribute('lang',l);}
+}catch(e){}})();
+</script>
+
+{%- comment -%} ── Strukturierte Daten ────────────────────────────── {%- endcomment -%}
+{% include jsonld.html %}
+
+{%- comment -%} ── Sprachalternativen ─────────────────────────────── {%- endcomment -%}
+<link rel="alternate" hreflang="de" href="{{ _url }}">
+<link rel="alternate" hreflang="en" href="{{ _url }}">
+<link rel="alternate" hreflang="x-default" href="{{ _url }}">

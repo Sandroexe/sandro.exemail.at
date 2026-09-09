@@ -1,0 +1,28 @@
+---
+layout: base
+---
+{%- comment -%}
+  default.html — Standardseite mit Kopfbereich.
+
+  Die Seite liefert im Front Matter nur Schlüssel, keinen Text:
+    title_key: "projects.title"
+    lead_key:  "projects.lead"
+{%- endcomment -%}
+
+{%- if page.title_key or page.lead_key %}
+<header class="pagehead">
+  <div class="shell">
+    {%- if page.eyebrow_key %}
+    <p class="pagehead__eyebrow">{% include t.html key=page.eyebrow_key %}</p>
+    {%- endif %}
+    {%- if page.title_key %}
+    <h1 class="pagehead__title">{% include t.html key=page.title_key %}</h1>
+    {%- endif %}
+    {%- if page.lead_key %}
+    <p class="pagehead__lead">{% include t.html key=page.lead_key %}</p>
+    {%- endif %}
+  </div>
+</header>
+{%- endif %}
+
+{{ content }}

@@ -1,0 +1,8 @@
+{%- comment -%}
+  icon.html — der einzige Weg, ein Icon einzusetzen.
+    {% include icon.html name="github" %}
+    {% include icon.html name="arrow-right" class="btn__icon" size="18" %}
+  Icons sind rein dekorativ; die Bedeutung steht immer im Text daneben.
+{%- endcomment -%}
+{%- assign _s = include.size | default: 20 -%}
+<svg class="icon{% if include.class %} {{ include.class }}{% endif %}" width="{{ _s }}" height="{{ _s }}" aria-hidden="true" focusable="false"><use href="#i-{{ include.name }}"></use></svg>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ site.data.site.default_lang }}" data-lang="{{ site.data.site.default_lang }}">
+<head>
+{% include head.html %}
+</head>
+<body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
+
+<a class="skip" href="#main">{% include t.html key="nav.skip" %}</a>
+{% include icons.html %}
+
+<span id="top"></span>
+{% include header.html %}
+
+<main id="main">
+{{ content }}
+</main>
+
+{% include footer.html %}
+
+<script src="/assets/js/site.js" defer></script>
+{%- if page.scripts %}{% for s in page.scripts %}
+<script src="/assets/js/{{ s }}" defer></script>
+{%- endfor %}{% endif %}
+</body>
+</html>

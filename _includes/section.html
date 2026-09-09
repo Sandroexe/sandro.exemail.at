@@ -1,0 +1,22 @@
+{%- comment -%}
+  section.html — generischer Abschnittskopf.
+    {% include section.html key="home.skills" id="skills" %}
+    {% include section.html de="Hardware" en="Hardware" level="3" %}
+  Gibt nur den Kopf aus; der Inhalt folgt im Aufrufer.
+{%- endcomment -%}
+{%- assign lvl = include.level | default: "2" -%}
+<div class="sectionhead"{% if include.id %} id="{{ include.id }}"{% endif %}>
+  <h{{ lvl }} class="sectionhead__title">
+    {%- if include.key -%}{% include t.html key=include.key %}{%- else -%}{% include t.html de=include.de en=include.en %}{%- endif -%}
+  </h{{ lvl }}>
+  {%- if include.note_key or include.note_de %}
+  <p class="sectionhead__note">
+    {%- if include.note_key -%}{% include t.html key=include.note_key %}{%- else -%}{% include t.html de=include.note_de en=include.note_en %}{%- endif -%}
+  </p>
+  {%- endif %}
+  {%- if include.link_url %}
+  <a class="sectionhead__link" href="{{ include.link_url }}">
+    {% include t.html key=include.link_key %}{% include icon.html name="arrow-right" size="16" %}
+  </a>
+  {%- endif %}
+</div>

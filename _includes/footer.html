@@ -1,0 +1,62 @@
+{%- comment -%}
+  footer.html — Navigation, Rechtslinks und Social kommen aus _data.
+  Der einzige Text hier ist ein i18n-Schlüssel, kein Inhalt.
+{%- endcomment -%}
+{%- assign N = site.data.navigation -%}
+{%- assign P = site.data.profile -%}
+{%- assign C = site.data.contact -%}
+{%- assign here = page.url | remove: "index.html" -%}
+
+<footer class="sitefooter">
+  <div class="shell">
+
+    <div class="sitefooter__top">
+      <div class="sitefooter__brand">
+        <p class="sitefooter__name">{{ P.name }}</p>
+        <p class="sitefooter__role">{% include t.html de=P.role en=P.role_en %}</p>
+        <p class="sitefooter__place">
+          {% include icon.html name="pin" size="15" %}
+          {% include t.html de=P.location en=P.location_en %}
+        </p>
+      </div>
+
+      <nav class="sitefooter__nav" data-i18n-attr="aria-label:a11y.footer_nav"
+           aria-label="{% include t-plain.html key='a11y.footer_nav' %}">
+        <ul role="list">
+          {%- for item in N.footer %}
+          <li><a href="{{ item.url }}"{% if here == item.url %} aria-current="page"{% endif %}>{% include t.html key=item.key %}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+
+      <div class="sitefooter__contact">
+        <a href="mailto:{{ C.email }}">{% include icon.html name="mail" size="16" %}{{ C.email }}</a>
+        <a href="tel:{{ C.phone.href }}">{% include icon.html name="phone" size="16" %}{{ C.phone.display }}</a>
+      </div>
+    </div>
+
+    <div class="sitefooter__social" data-i18n-attr="aria-label:a11y.social_nav"
+         role="navigation" aria-label="{% include t-plain.html key='a11y.social_nav' %}">
+      {% include social-list.html context="footer" %}
+    </div>
+
+    <div class="sitefooter__bottom">
+      <p class="sitefooter__note">
+        <span>&copy; {{ 'now' | date: "%Y" }} {{ P.name }}.</span>
+        {% include t.html key="footer.built" %}
+      </p>
+      <nav data-i18n-attr="aria-label:a11y.legal_nav" aria-label="{% include t-plain.html key='a11y.legal_nav' %}">
+        <ul role="list">
+          {%- for item in N.legal %}
+          <li><a href="{{ item.url }}"{% if here == item.url %} aria-current="page"{% endif %}>{% include t.html key=item.key %}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</footer>
+
+<a class="totop" href="#top" data-i18n-attr="aria-label:a11y.to_top" aria-label="{% include t-plain.html key='a11y.to_top' %}">
+  {% include icon.html name="arrow-up" size="18" %}
+</a>

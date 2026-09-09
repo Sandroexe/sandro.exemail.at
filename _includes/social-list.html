@@ -1,0 +1,56 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   social-list.html — die eine Stelle, an der Social-Kanäle gerendert
+   werden. Footer, Linkseite und Kontaktseite rufen alle hierhin.
+
+   {% include social-list.html context="footer" %}
+   {% include social-list.html context="links" %}
+
+   `context` entscheidet über zweierlei:
+     · welche Kanäle erscheinen — gesteuert über show_in in social.yml
+     · welche Darstellung gewählt wird (Icon-Reihe oder Kartenliste)
+
+   Kanäle, deren URL noch ein TODO ist, werden übersprungen. So
+   blockiert ein unfertiger Eintrag nie die Seite.
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+{%- assign ctx = include.context | default: "footer" -%}
+
+{%- if ctx == "footer" -%}
+  <ul class="sociallist sociallist--icons" role="list">
+  {%- for ch in site.data.social.channels -%}
+    {%- unless ch.url contains "TODO" -%}
+      {%- if ch.show_in.footer -%}
+    <li>
+      <a class="sociallist__icon" href="{{ ch.url }}" target="_blank" rel="noopener noreferrer"
+         style="--brand:{{ ch.color }}">
+        {% include icon.html name=ch.icon %}
+        <span class="visually-hidden">{{ ch.name }} — {{ ch.handle }}</span>
+      </a>
+    </li>
+      {%- endif -%}
+    {%- endunless -%}
+  {%- endfor -%}
+  </ul>
+
+{%- elsif ctx == "links" -%}
+  <ul class="sociallist sociallist--cards" role="list">
+  {%- for ch in site.data.social.channels -%}
+    {%- unless ch.url contains "TODO" -%}
+      {%- if ch.show_in.links -%}
+    <li>
+      <a class="linkcard" href="{{ ch.url }}" target="_blank" rel="noopener noreferrer"
+         style="--brand:{{ ch.color }}">
+        <span class="linkcard__icon">{% include icon.html name=ch.icon size="22" %}</span>
+        <span class="linkcard__text">
+          <span class="linkcard__title">{{ ch.name }}</span>
+          <span class="linkcard__sub">{{ ch.handle }}</span>
+        </span>
+        {% include icon.html name="external" class="linkcard__go" size="16" %}
+      </a>
+    </li>
+      {%- endif -%}
+    {%- endunless -%}
+  {%- endfor -%}
+  </ul>
+{%- endif -%}

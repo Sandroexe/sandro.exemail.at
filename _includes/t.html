@@ -1,0 +1,48 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   t.html — der einzige Weg, Text auf die Seite zu bringen.
+
+   Gibt DE und EN nebeneinander aus; sichtbar ist immer nur die
+   aktive Sprache. Das Umschalten passiert per CSS über
+   <html data-lang="…"> und funktioniert deshalb auch ohne
+   JavaScript — ohne JS bleibt Deutsch stehen, alles lesbar.
+
+   Zwei Aufrufformen:
+
+     Schlüssel aus _data/i18n/*.yml (max. zwei Ebenen):
+       {% include t.html key="nav.projects" %}
+
+     Direktes Paar aus einer Datendatei:
+       {% include t.html de=item.title en=item.title_en %}
+
+   Optionen:
+     tag="h2"    umschließendes Element (Standard: span)
+     class="…"   Klassen für das umschließende Element
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+
+{%- if include.key -%}
+  {%- assign _p = include.key | split: "." -%}
+  {%- if _p.size == 2 -%}
+    {%- assign _de = site.data.i18n.de[_p[0]][_p[1]] -%}
+    {%- assign _en = site.data.i18n.en[_p[0]][_p[1]] -%}
+  {%- else -%}
+    {%- assign _de = site.data.i18n.de[_p[0]] -%}
+    {%- assign _en = site.data.i18n.en[_p[0]] -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign _de = include.de -%}
+  {%- assign _en = include.en -%}
+{%- endif -%}
+
+{%- comment -%} Fehlt die Übersetzung, bleibt Deutsch stehen statt einer Lücke. {%- endcomment -%}
+{%- if _en == nil or _en == "" -%}{%- assign _en = _de -%}{%- endif -%}
+
+{%- assign _tag = include.tag | default: "span" -%}
+{%- capture _cls %}{% if include.class %} class="{{ include.class }}"{% endif %}{% endcapture -%}
+
+{%- if include.tag -%}
+<{{ _tag }}{{ _cls }}><span class="i18n" lang="de">{{ _de }}</span><span class="i18n" lang="en">{{ _en }}</span></{{ _tag }}>
+{%- else -%}
+<span class="i18n" lang="de"{{ _cls }}>{{ _de }}</span><span class="i18n" lang="en"{{ _cls }}>{{ _en }}</span>
+{%- endif -%}

@@ -1,0 +1,25 @@
+---
+layout: default
+---
+{%- comment -%}
+  legal.html — Rechtsseiten: schmalere Spalte, ruhiger Satz,
+  Datumsstempel und Haftungshinweis automatisch aus legal.yml.
+{%- endcomment -%}
+{%- assign L = site.data.legal -%}
+
+<div class="shell">
+  <article class="prose">
+    {{ content }}
+
+    <hr class="prose__rule">
+
+    <p class="prose__meta">
+      <strong>{% include t.html key="legal.updated" %}:</strong>
+      <time datetime="{{ L.last_updated }}">{{ L.last_updated | date: "%d.%m.%Y" }}</time>
+    </p>
+    <p class="prose__disclaimer">
+      <strong>{% include t.html key="legal.disclaimer" %}:</strong>
+      {% include t.html de=L.disclaimer en=L.disclaimer_en %}
+    </p>
+  </article>
+</div>
