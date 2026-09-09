@@ -16,8 +16,15 @@ title: Zertifikate
 
 {%- assign valid_count = 0 -%}
 {%- assign issuers = "" -%}
+{%- comment -%}
+  Bewusst verschachtelt statt `c.expires == nil or c.expires >= today`:
+  Liquid wertet bei `or` beide Seiten aus, und ein Vergleich gegen nil
+  bricht ab.
+{%- endcomment -%}
 {%- for c in CERT.items -%}
-  {%- if c.expires == nil or c.expires >= today -%}
+  {%- if c.expires -%}
+    {%- if c.expires >= today -%}{%- assign valid_count = valid_count | plus: 1 -%}{%- endif -%}
+  {%- else -%}
     {%- assign valid_count = valid_count | plus: 1 -%}
   {%- endif -%}
   {%- unless issuers contains c.issuer -%}

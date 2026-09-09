@@ -38,11 +38,14 @@
 {%- comment -%} Fehlt die Übersetzung, bleibt Deutsch stehen statt einer Lücke. {%- endcomment -%}
 {%- if _en == nil or _en == "" -%}{%- assign _en = _de -%}{%- endif -%}
 
-{%- assign _tag = include.tag | default: "span" -%}
-{%- capture _cls %}{% if include.class %} class="{{ include.class }}"{% endif %}{% endcapture -%}
-
+{%- comment -%}
+  Ohne tag= tragen die beiden Spans die Klasse selbst mit — sonst
+  stünde class= zweimal im selben Element.
+{%- endcomment -%}
 {%- if include.tag -%}
-<{{ _tag }}{{ _cls }}><span class="i18n" lang="de">{{ _de }}</span><span class="i18n" lang="en">{{ _en }}</span></{{ _tag }}>
+  {%- capture _cls %}{% if include.class %} class="{{ include.class }}"{% endif %}{% endcapture -%}
+<{{ include.tag }}{{ _cls }}><span class="i18n" lang="de">{{ _de }}</span><span class="i18n" lang="en">{{ _en }}</span></{{ include.tag }}>
 {%- else -%}
-<span class="i18n" lang="de"{{ _cls }}>{{ _de }}</span><span class="i18n" lang="en"{{ _cls }}>{{ _en }}</span>
+  {%- capture _cls %}i18n{% if include.class %} {{ include.class }}{% endif %}{% endcapture -%}
+<span class="{{ _cls }}" lang="de">{{ _de }}</span><span class="{{ _cls }}" lang="en">{{ _en }}</span>
 {%- endif -%}

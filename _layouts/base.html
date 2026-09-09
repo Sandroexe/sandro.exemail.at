@@ -18,7 +18,13 @@
 {% include footer.html %}
 
 <script src="/assets/js/site.js" defer></script>
+{%- comment -%}
+  Seitenskripte aus dem Front Matter. egg.js wird nur eingebunden,
+  wenn features.easter_egg in _data/site.yml an ist — der Schalter
+  soll die Datei gar nicht erst ausliefern, nicht bloß stilllegen.
+{%- endcomment -%}
 {%- if page.scripts %}{% for s in page.scripts %}
+  {%- if s == "egg.js" and site.data.site.features.easter_egg != true %}{% continue %}{% endif %}
 <script src="/assets/js/{{ s }}" defer></script>
 {%- endfor %}{% endif %}
 </body>
