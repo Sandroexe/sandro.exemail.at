@@ -1,0 +1,99 @@
+---
+permalink: /links/
+redirect_from:
+  - /links.html
+title_key: links.title
+lead_key: links.lead
+title: Links
+---
+{%- comment -%}
+  Diese Seite enthält keinen einzigen fest geschriebenen Link.
+  Kontaktwege kommen aus contact.yml, Social-Kanäle aus social.yml,
+  Portfolio-Ziele aus navigation.yml.
+{%- endcomment -%}
+{%- assign C = site.data.contact -%}
+{%- assign N = site.data.navigation -%}
+
+<section>
+  <div class="shell">
+
+    {% include section.html key="links.contact_group" level="2" %}
+    <ul class="sociallist sociallist--cards" role="list">
+      <li>
+        <a class="linkcard" href="/contact/">
+          <span class="linkcard__icon">{% include icon.html name="mail" size="22" %}</span>
+          <span class="linkcard__text">
+            <span class="linkcard__title">{% include t.html key="contact.form_title" %}</span>
+            <span class="linkcard__sub">{{ site.data.site.domain }}/contact/</span>
+          </span>
+          {% include icon.html name="arrow-right" class="linkcard__go" size="16" %}
+        </a>
+      </li>
+      <li>
+        <a class="linkcard" href="mailto:{{ C.email }}">
+          <span class="linkcard__icon">{% include icon.html name="mail" size="22" %}</span>
+          <span class="linkcard__text">
+            <span class="linkcard__title">{% include t.html key="contact.email_label" %}</span>
+            <span class="linkcard__sub">{{ C.email }}</span>
+          </span>
+          {% include icon.html name="arrow-right" class="linkcard__go" size="16" %}
+        </a>
+      </li>
+      <li>
+        <a class="linkcard" href="tel:{{ C.phone.href }}">
+          <span class="linkcard__icon">{% include icon.html name="phone" size="22" %}</span>
+          <span class="linkcard__text">
+            <span class="linkcard__title">{% include t.html key="contact.phone_label" %}</span>
+            <span class="linkcard__sub">{{ C.phone.display }}</span>
+          </span>
+          {% include icon.html name="arrow-right" class="linkcard__go" size="16" %}
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="shell">
+    {% include section.html key="links.card_group" level="2" %}
+    <ul class="sociallist sociallist--cards" role="list">
+      <li>
+        <a class="linkcard" href="/{{ C.vcard.filename }}" download>
+          <span class="linkcard__icon">{% include icon.html name="user" size="22" %}</span>
+          <span class="linkcard__text">
+            <span class="linkcard__title">{% include t.html key="links.vcard" %}</span>
+            <span class="linkcard__sub">{% include t.html key="links.vcard_sub" %}</span>
+          </span>
+          {% include icon.html name="download" class="linkcard__go" size="16" %}
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="shell">
+    {% include section.html key="links.portfolio_group" level="2" %}
+    <ul class="sociallist sociallist--cards" role="list">
+      {%- for item in N.header %}
+      <li>
+        <a class="linkcard" href="{{ item.url }}">
+          <span class="linkcard__icon">{% include icon.html name="arrow-right" size="22" %}</span>
+          <span class="linkcard__text">
+            <span class="linkcard__title">{% include t.html key=item.key %}</span>
+            <span class="linkcard__sub">{{ site.data.site.domain }}{{ item.url }}</span>
+          </span>
+          {% include icon.html name="arrow-right" class="linkcard__go" size="16" %}
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="shell">
+    {% include section.html key="links.social_group" level="2" %}
+    {% include social-list.html context="links" %}
+  </div>
+</section>

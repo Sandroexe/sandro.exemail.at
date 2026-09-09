@@ -1,0 +1,55 @@
+# ═══════════════════════════════════════════════════════════════════
+#  github.yml — Steuerung der automatischen Repo-Übernahme
+#
+#  Der Workflow .github/workflows/sync-github.yml liest diese Datei,
+#  holt deine öffentlichen Repos und schreibt _data/github.json.
+#  Du steuerst die Projektseite hier — und über Topics direkt auf
+#  GitHub, ohne die Website anzufassen.
+# ═══════════════════════════════════════════════════════════════════
+
+username: Sandroexe
+
+include_forks: false
+include_archived: false
+
+# Repos, die nie erscheinen sollen (Name ohne Owner-Präfix)
+exclude_repos:
+  - Sandroexe # das Profil-README-Repo
+
+# Ein Repo auf GitHub mit einem dieser Topics versehen = versteckt.
+exclude_topics:
+  - hide
+  - private-notes
+
+# Ein Repo mit diesem Topic erscheint zusätzlich auf der Startseite.
+featured_topics:
+  - featured
+
+sort: pushed # pushed | stars | name
+max_items: 30
+
+# Kurzbeschreibung aus der README ziehen, wenn das Repo keine
+# description gesetzt hat.
+readme_fallback: true
+
+# Sprachfarben für die Karten. Fehlt eine Sprache, greift `default`.
+language_colors:
+  default: "#8b8680"
+  JavaScript: "#f1e05a"
+  TypeScript: "#3178c6"
+  Python: "#3572a5"
+  HTML: "#e34c26"
+  CSS: "#563d7c"
+  SCSS: "#c6538c"
+  Shell: "#89e051"
+  C: "#555555"
+  "C++": "#f34b7d"
+  Java: "#b07219"
+  Go: "#00add8"
+  Rust: "#dea584"
+  PHP: "#4f5d95"
+  Ruby: "#701516"
+  Dockerfile: "#384d54"
+  Lua: "#000080"
+  Vue: "#41b883"
+  Jupyter Notebook: "#da5b0b"

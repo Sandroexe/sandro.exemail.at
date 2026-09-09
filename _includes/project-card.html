@@ -1,0 +1,136 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   project-card.html — eine Karte für beide Sorten Projekt.
+
+   Aufruf mit einem manuellen Projekt aus projects.yml:
+     include project-card.html project=item
+   Aufruf mit einem Repo aus github.json:
+     include project-card.html repo=r
+
+   Ist am manuellen Projekt ein `repo:` gesetzt und das Repo bekannt,
+   reichert die Karte deine Angaben um Sprache, Sterne und letzten
+   Push an — dein Text gewinnt, die Zahlen kommen automatisch.
+
+   Die data-Attribute unten braucht die Filterleiste auf /projects/.
+   Sie stehen bewusst hier, damit Filter und Karte nicht auseinander-
+   laufen können.
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+{%- assign G = site.data.github -%}
+{%- assign p = include.project -%}
+{%- assign r = include.repo -%}
+
+{%- comment -%} Falls ein manuelles Projekt ein Repo referenziert: dessen Daten suchen. {%- endcomment -%}
+{%- if p and p.repo -%}
+  {%- for gr in site.data.github.repos -%}
+    {%- if gr.full_name == p.repo -%}{%- assign r = gr -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if p -%}
+  {%- assign title    = p.title -%}
+  {%- assign title_en = p.title_en | default: p.title -%}
+  {%- assign desc     = p.description -%}
+  {%- assign desc_en  = p.description_en | default: p.description -%}
+  {%- assign tags     = p.tags -%}
+  {%- assign icon     = p.icon | default: "server" -%}
+  {%- assign href     = p.url | default: r.html_url -%}
+  {%- assign featured = p.featured -%}
+  {%- assign kind     = "manual" -%}
+{%- else -%}
+  {%- assign title    = r.name -%}
+  {%- assign title_en = r.name -%}
+  {%- assign desc     = r.description -%}
+  {%- assign desc_en  = r.description -%}
+  {%- assign tags     = r.topics -%}
+  {%- assign icon     = "github" -%}
+  {%- assign href     = r.html_url -%}
+  {%- assign featured = r.featured -%}
+  {%- assign kind     = "repo" -%}
+{%- endif -%}
+
+{%- assign lang = r.language -%}
+{%- if lang -%}
+  {%- assign langcolor = G.language_colors[lang] | default: G.language_colors.default -%}
+{%- endif -%}
+
+{%- capture searchblob %}{{ title }} {{ desc }} {% for t in tags %}{{ t }} {% endfor %}{{ lang }}{% endcapture -%}
+
+<article class="pcard{% if featured %} pcard--featured{% endif %}"
+         data-kind="{{ kind }}"
+         data-lang="{{ lang | default: '' | downcase }}"
+         data-stars="{{ r.stargazers_count | default: 0 }}"
+         data-pushed="{{ r.pushed_at | default: '' }}"
+         data-name="{{ title | downcase }}"
+         data-search="{{ searchblob | downcase | strip_newlines | strip | escape }}">
+
+  <div class="pcard__top">
+    <span class="pcard__icon">{% include icon.html name=icon size="20" %}</span>
+    {%- if kind == "repo" %}
+    <span class="pcard__badge" title="{% include t-plain.html key='projects.synced' %}">
+      {% include icon.html name="github" size="13" %}
+      {% include t.html key="projects.repos" %}
+    </span>
+    {%- endif %}
+  </div>
+
+  <h3 class="pcard__title">
+    {%- if href -%}
+    <a href="{{ href }}"{% unless href contains site.data.site.domain %} target="_blank" rel="noopener noreferrer"{% endunless %}>
+      {% include t.html de=title en=title_en %}
+    </a>
+    {%- else -%}
+    {% include t.html de=title en=title_en %}
+    {%- endif -%}
+  </h3>
+
+  {%- if p.subtitle %}
+  <p class="pcard__sub">{% include t.html de=p.subtitle en=p.subtitle_en %}</p>
+  {%- endif %}
+
+  {%- if desc %}
+  <p class="pcard__desc">{% include t.html de=desc en=desc_en %}</p>
+  {%- endif %}
+
+  {%- if tags and tags.size > 0 %}
+  <ul class="chips" role="list">
+    {%- for t in tags limit: 5 %}
+    <li class="chip">{{ t }}</li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}
+
+  {%- if r %}
+  <dl class="pcard__meta">
+    {%- if lang %}
+    <div><dt class="visually-hidden">{% include t.html key="projects.filter_language" %}</dt>
+      <dd><span class="langdot" style="--lang:{{ langcolor }}"></span>{{ lang }}</dd></div>
+    {%- endif %}
+    {%- if r.stargazers_count and r.stargazers_count > 0 %}
+    <div><dt class="visually-hidden">{% include t.html key="projects.stars" %}</dt>
+      <dd>{% include icon.html name="star" size="14" %}{{ r.stargazers_count }}</dd></div>
+    {%- endif %}
+    {%- if r.forks_count and r.forks_count > 0 %}
+    <div><dt class="visually-hidden">{% include t.html key="projects.forks" %}</dt>
+      <dd>{% include icon.html name="fork" size="14" %}{{ r.forks_count }}</dd></div>
+    {%- endif %}
+    {%- if r.pushed_at %}
+    <div><dt class="visually-hidden">{% include t.html key="projects.updated" %}</dt>
+      <dd><time datetime="{{ r.pushed_at }}" data-reltime="{{ r.pushed_at }}">{{ r.pushed_at | date: "%m/%Y" }}</time></dd></div>
+    {%- endif %}
+  </dl>
+  {%- endif %}
+
+  <div class="pcard__links">
+    {%- if r.html_url %}
+    <a href="{{ r.html_url }}" target="_blank" rel="noopener noreferrer">
+      {% include icon.html name="github" size="15" %}{% include t.html key="projects.view_repo" %}
+    </a>
+    {%- endif %}
+    {%- if r.homepage and r.homepage != "" %}
+    <a href="{{ r.homepage }}" target="_blank" rel="noopener noreferrer">
+      {% include icon.html name="external" size="15" %}{% include t.html key="projects.view_demo" %}
+    </a>
+    {%- endif %}
+  </div>
+</article>

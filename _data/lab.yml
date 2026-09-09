@@ -1,0 +1,115 @@
+# ═══════════════════════════════════════════════════════════════════
+#  lab.yml — Home Lab & Arbeitsplatz
+#  Speist: /lab/ und das fetch-Kommando im Easter Egg
+# ═══════════════════════════════════════════════════════════════════
+
+intro: >-
+  Bei der Konfiguration dieses Rechners habe ich viel Wert auf
+  Preis-Leistung und Optik gelegt. Der Ryzen 7 9800X3D ist durch seinen
+  großen 3D-V-Cache eine der stärksten Gaming-CPUs überhaupt, und die
+  RTX 5070 liefert mit DLSS 4 und Frame Generation hohe Leistung bei
+  moderatem Verbrauch. CachyOS als primäres System bringt durch den
+  optimierten BORE/EEVDF-Kernel spürbar mehr Reaktionsfreude im Alltag
+  und beim Programmieren.
+intro_en: >-
+  When configuring this machine I put a lot of weight on value for money and
+  on looks. The Ryzen 7 9800X3D is one of the strongest gaming CPUs around
+  thanks to its large 3D V-Cache, and the RTX 5070 delivers high performance
+  at moderate power draw with DLSS 4 and frame generation. CachyOS as the
+  primary system feels noticeably more responsive in everyday use and while
+  coding, thanks to its optimised BORE/EEVDF kernel.
+
+photo:
+  fallback: "/pc-setup.jpg"
+  src: "/assets/img/pc-setup"
+  width: 5792
+  height: 4344
+  alt: "Der Arbeitsplatz mit dem selbst zusammengestellten Rechner"
+  alt_en: "The desk with the self-built PC"
+  widths: [640, 1024, 1600]
+
+# ── Hardware ──────────────────────────────────────────────────────
+hardware:
+  - id: cpu
+    label: "CPU"
+    name: "AMD Ryzen 7 9800X3D"
+    specs:
+      - { key: "Kerne / Threads", key_en: "Cores / threads", value: "8 / 16" }
+      - { key: "Architektur", key_en: "Architecture", value: "Zen 5" }
+      - { key: "L3 V-Cache", key_en: "L3 V-Cache", value: "96 MB" }
+      - { key: "Boost", key_en: "Boost", value: "5,2 GHz" }
+      - { key: "TDP", key_en: "TDP", value: "120 W" }
+
+  - id: gpu
+    label: "GPU"
+    name: "NVIDIA RTX 5070 · ASUS TUF OC"
+    specs:
+      - { key: "VRAM", key_en: "VRAM", value: "12 GB GDDR7" }
+      - { key: "Architektur", key_en: "Architecture", value: "Blackwell GB205" }
+      - { key: "Feature", key_en: "Feature", value: "DLSS 4 / Frame Generation" }
+      - { key: "Kühlung", key_en: "Cooling", value: "Triple-Fan TUF" }
+      - { key: "TDP", key_en: "TDP", value: "220 W" }
+
+  - id: ram
+    label: "RAM"
+    name: "32 GB DDR5 · Corsair Vengeance RGB"
+    specs:
+      - { key: "Frequenz", key_en: "Frequency", value: "6000 MHz" }
+      - { key: "Latenz", key_en: "Latency", value: "CL30" }
+      - { key: "Profil", key_en: "Profile", value: "AMD EXPO / XMP 3.0" }
+
+  - id: storage
+    label: "Storage"
+    name: "2 TB NVMe · PCIe 5.0"
+    specs:
+      - { key: "Schnittstelle", key_en: "Interface", value: "PCIe 5.0 x4" }
+      - { key: "Kapazität", key_en: "Capacity", value: "2 TB" }
+
+# ── Software ──────────────────────────────────────────────────────
+software:
+  - { key: "Primäres System", key_en: "Primary OS", value: "CachyOS (Arch-basiert)" }
+  - { key: "Zweitsystem", key_en: "Secondary OS", value: "Windows 11 Pro" }
+  - { key: "Boot", key_en: "Boot", value: "Dual-Boot" }
+  - { key: "Kernel", key_en: "Kernel", value: "Linux BORE / EEVDF" }
+  - { key: "Shell", key_en: "Shell", value: "ZSH + Oh My Zsh" }
+
+# ── Dienste im Netz ───────────────────────────────────────────────
+#  Bewusst ohne interne IP-Adressen, Ports oder Hostnamen — die
+#  gehören nicht auf eine öffentliche Website.
+services:
+  - id: proxmox
+    name: "Proxmox VE"
+    role: "Virtualisierung"
+    role_en: "Virtualisation"
+    description: "Basis für alle Container und virtuellen Maschinen im Heimnetz."
+    description_en: "Foundation for all containers and virtual machines on the home network."
+  - id: adguard
+    name: "AdGuard Home"
+    role: "DNS & Filter"
+    role_en: "DNS & filtering"
+    description: "Netzwerkweites Blockieren von Werbung und Trackern."
+    description_en: "Network-wide ad and tracker blocking."
+  - id: dyndns
+    name: "DynDNS"
+    role: "Fernzugriff"
+    role_en: "Remote access"
+    description: "Selbst gebauter Dienst im LXC-Container, hält die Erreichbarkeit stabil."
+    description_en: "Self-built service in an LXC container keeping the network reachable."
+  - id: jellyfin
+    name: "Jellyfin & Plex"
+    role: "Medienserver"
+    role_en: "Media server"
+    description: "Verwaltung und Streaming der eigenen Mediensammlung."
+    description_en: "Managing and streaming my own media collection."
+  - id: homeassistant
+    name: "Home Assistant"
+    role: "Smart Home"
+    role_en: "Smart home"
+    description: "Automatisierung und Energie-Monitoring."
+    description_en: "Automation and energy monitoring."
+  - id: mail
+    name: "Mail & API"
+    role: "exemail.at"
+    role_en: "exemail.at"
+    description: "Eigene Mail-Domain und der Endpoint hinter dem Kontaktformular."
+    description_en: "Own mail domain and the endpoint behind the contact form."

@@ -1,0 +1,24 @@
+---
+layout: base
+permalink: /404.html
+title: 404
+sitemap: false
+---
+{%- comment -%}
+  Hilft weiter, statt nur zu melden, dass etwas fehlt. Die
+  angebotenen Ziele kommen aus navigation.yml.
+{%- endcomment -%}
+<section>
+  <div class="shell notfound">
+    <p class="notfound__code">{% include t.html key="error.code" %}</p>
+    <h1>{% include t.html key="error.title" %}</h1>
+    <p class="pagehead__lead">{% include t.html key="error.lead" %}</p>
+
+    <p class="stat__label">{% include t.html key="error.suggest" %}</p>
+    <div class="notfound__links">
+      {%- for item in site.data.navigation.notfound %}
+      <a class="btn btn--ghost" href="{{ item.url }}">{% include t.html key=item.key %}</a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

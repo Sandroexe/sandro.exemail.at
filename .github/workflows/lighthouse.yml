@@ -1,0 +1,41 @@
+name: Lighthouse
+
+# Misst Performance, Accessibility, Best Practices und SEO auf einer
+# gedrosselten Mobilverbindung. Unterschreitet eine Kategorie 95,
+# schlägt der Lauf fehl.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Jekyll bauen
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.14.x
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

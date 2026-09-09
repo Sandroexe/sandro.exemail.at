@@ -1,0 +1,49 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   critical.html — Design-Tokens und das Nötigste zum ersten Bild.
+
+   Sämtliche Werte stammen aus _data/design.yml. Diese Datei ist der
+   EINZIGE Ort, an dem die Tokens entstehen; assets/css/main.css
+   benutzt sie nur noch über var(). Deshalb färbt eine Änderung in
+   design.yml zuverlässig die ganze Seite um.
+
+   Inline, weil das Farbschema vor dem ersten Bild feststehen muss —
+   sonst blitzt beim Laden das falsche Theme auf.
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+{%- assign D = site.data.design -%}
+{%- capture dark_tokens -%}
+{%- for c in D.color.dark %}--c-{{ c[0] }}:{{ c[1] }};{% endfor -%}
+color-scheme:dark;
+{%- endcapture -%}
+<style>
+:root{
+{%- for c in D.color.light %}--c-{{ c[0] }}:{{ c[1] }};{% endfor -%}
+color-scheme:light;
+{%- for s in D.space %}--sp-{{ s[0] }}:{{ s[1] }};{% endfor -%}
+{%- for r in D.radius %}--r-{{ r[0] }}:{{ r[1] }};{% endfor -%}
+{%- for s in D.shadow %}--sh-{{ s[0] }}:{{ s[1] }};{% endfor -%}
+{%- for f in D.type.scale %}--fs-{{ f[0] }}:{{ f[1] }};{% endfor -%}
+{%- for l in D.type.leading %}--lh-{{ l[0] }}:{{ l[1] }};{% endfor -%}
+{%- for t in D.type.tracking %}--ls-{{ t[0] }}:{{ t[1] }};{% endfor -%}
+{%- for m in D.motion %}--mo-{{ m[0] }}:{{ m[1] }};{% endfor -%}
+{%- for l in D.layout %}--ly-{{ l[0] }}:{{ l[1] }};{% endfor -%}
+--f-display:{{ D.type.display.stack }};
+--f-body:{{ D.type.body.stack }};
+--f-mono:{{ D.type.mono.stack }};
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){ {{ dark_tokens }} }}
+:root[data-theme="dark"]{ {{ dark_tokens }} }
+@media (prefers-reduced-motion:reduce){:root{--mo-fast:1ms;--mo-base:1ms;--mo-slow:1ms;}}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--c-bg);color:var(--c-ink);font-family:var(--f-body);font-size:var(--fs-step-0);line-height:var(--lh-normal);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%;height:auto}
+:where(h1,h2,h3,h4){font-family:var(--f-display);line-height:var(--lh-tight);letter-spacing:var(--ls-tight);color:var(--c-ink-strong);margin:0}
+.i18n[lang="en"]{display:none}
+:root[data-lang="en"] .i18n[lang="de"]{display:none}
+:root[data-lang="en"] .i18n[lang="en"]{display:inline}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;padding:var(--sp-xs) var(--sp-sm);background:var(--c-accent);color:var(--c-accent-ink);border-radius:0 0 var(--r-sm) 0}
+.skip:focus{left:0}
+.shell{width:min(100% - var(--ly-gutter) * 2,var(--ly-content));margin-inline:auto}
+</style>

@@ -1,0 +1,98 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   jsonld.html — strukturierte Daten, vollständig aus _data erzeugt.
+
+   sameAs kommt aus social.yml, die Ausbildung aus cv.yml, die
+   Zertifikate aus certificates.yml. Nichts davon ist hier
+   abgeschrieben — ein neuer Kanal oder ein neues Zertifikat
+   erscheint automatisch mit.
+
+   Einträge, deren URL noch ein TODO ist, werden ausgelassen.
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+{%- assign P = site.data.profile -%}
+{%- assign C = site.data.contact -%}
+{%- assign A = C.address -%}
+{%- assign S = site.data.site -%}
+
+{%- comment -%} Liquid kennt kein push — Listen entstehen über append + split. {%- endcomment -%}
+{%- assign _s = "" -%}
+{%- for ch in site.data.social.channels -%}
+  {%- unless ch.url contains "TODO" -%}
+    {%- assign _s = _s | append: ch.url | append: "|" -%}
+  {%- endunless -%}
+{%- endfor -%}
+{%- assign sameas = _s | split: "|" -%}
+
+{%- assign _e = "" -%}
+{%- for e in site.data.cv.education -%}
+  {%- assign _e = _e | append: e.org | append: "|" -%}
+{%- endfor -%}
+{%- assign edu = _e | split: "|" -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "{{ S.url }}/#person",
+      "name": {{ P.name | jsonify }},
+      "givenName": {{ P.given_name | jsonify }},
+      "familyName": {{ P.family_name | jsonify }},
+      "url": "{{ S.url }}/",
+      "image": "{{ P.photo.src | append: '-480.webp' | absolute_url }}",
+      "jobTitle": {{ P.role | jsonify }},
+      "description": {{ P.bio_short | strip_newlines | strip | jsonify }},
+      "email": "mailto:{{ C.email }}",
+      "telephone": "{{ C.phone.href }}",
+      {%- unless P.birth_year == "" or P.birth_year == nil %}
+      "birthDate": {{ P.birth_year | jsonify }},
+      {%- endunless %}
+      "address": {
+        "@type": "PostalAddress",
+        {%- unless A.street contains "TODO" %}
+        "streetAddress": {{ A.street | jsonify }},
+        {%- endunless %}
+        "postalCode": {{ A.zip | jsonify }},
+        "addressLocality": {{ A.city | jsonify }},
+        "addressRegion": {{ A.region | jsonify }},
+        "addressCountry": {{ A.country_code | jsonify }}
+      },
+      "knowsLanguage": [{% for l in site.data.cv.languages %}{{ l.name | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}],
+      "knowsAbout": [{% for s in P.skills %}{{ s.label | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}],
+      "alumniOf": [
+        {%- for org in edu %}
+        { "@type": "EducationalOrganization", "name": {{ org | jsonify }} }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      "hasCredential": [
+        {%- for c in site.data.certificates.items %}
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": {{ c.title | jsonify }},
+          "credentialCategory": "certificate",
+          "recognizedBy": { "@type": "Organization", "name": {{ c.issuer | jsonify }} },
+          "dateCreated": {{ c.issued | jsonify }}
+          {%- if c.expires %},
+          "expires": {{ c.expires | jsonify }}
+          {%- endif %}
+          {%- if c.verify_url %},
+          "url": {{ c.verify_url | jsonify }}
+          {%- endif %}
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      "sameAs": [{% for u in sameas %}{{ u | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ S.url }}/#website",
+      "url": "{{ S.url }}/",
+      "name": {{ P.name | jsonify }},
+      "inLanguage": ["de-AT", "en"],
+      "publisher": { "@id": "{{ S.url }}/#person" }
+    }
+  ]
+}
+</script>

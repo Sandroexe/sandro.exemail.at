@@ -1,0 +1,83 @@
+---
+layout: legal
+permalink: /impressum/
+redirect_from:
+  - /impressum.html
+  - /imprint/
+title_key: nav.imprint
+title: Impressum
+---
+{%- assign P = site.data.profile -%}
+{%- assign C = site.data.contact -%}
+{%- assign A = C.address -%}
+{%- assign L = site.data.legal -%}
+
+<p>{% include t.html de=L.basis en=L.basis_en %}</p>
+
+<h2>{% include t.html key="legal.operator" %}</h2>
+<dl class="datalist">
+  <div>
+    <dt>{% include t.html de="Name" en="Name" %}</dt>
+    <dd>{{ P.name }}</dd>
+  </div>
+  <div>
+    <dt>{% include t.html de="Anschrift" en="Address" %}</dt>
+    <dd>
+      {%- if A.street contains "TODO" -%}
+        {%- comment -%}
+          Sichtbarer Platzhalter statt stiller Lücke: eine unvollständige
+          Anschrift ist ein Rechtsmangel und soll auffallen.
+        {%- endcomment -%}
+        <span class="todo">{{ A.street }}</span><br>
+      {%- else -%}
+        {{ A.street }}<br>
+      {%- endif -%}
+      {{ A.zip }} {{ A.city }}<br>
+      {% include t.html de=A.country en=A.country_en %}
+    </dd>
+  </div>
+</dl>
+
+<h2>{% include t.html key="legal.contact" %}</h2>
+<dl class="datalist">
+  <div>
+    <dt>{% include t.html key="contact.email_label" %}</dt>
+    <dd><a href="mailto:{{ C.email }}">{{ C.email }}</a></dd>
+  </div>
+  <div>
+    <dt>{% include t.html key="contact.phone_label" %}</dt>
+    <dd><a href="tel:{{ C.phone.href }}">{{ C.phone.display }}</a></dd>
+  </div>
+</dl>
+
+<h2>{% include t.html key="legal.purpose" %}</h2>
+<p>{% include t.html de=L.purpose en=L.purpose_en %}</p>
+
+{%- unless L.commercial %}
+<h2>{% include t.html key="legal.commercial" %}</h2>
+<p>{% include t.html de=L.commercial_note en=L.commercial_note_en %}</p>
+{%- endunless %}
+
+{%- for s in L.sections %}
+<h2>{% include t.html de=s.title en=s.title_en %}</h2>
+<p>{% include t.html de=s.body en=s.body_en %}</p>
+{%- endfor %}
+
+{%- comment -%}
+  Verweis auf das Social-Media-Impressum — der Link, der in die
+  Profil-Bios gehört.
+{%- endcomment -%}
+<div class="callout">
+  {% include icon.html name="external" class="callout__icon" size="22" %}
+  <div>
+    <h2 class="callout__title">{% include t.html key="legal.to_social" %}</h2>
+    <p>{% include t.html key="legal.to_social_text" %}</p>
+    <p class="callout__action">
+      <a class="btn btn--accent" href="/impressum/social/">
+        {% include t.html key="nav.social_imprint" %}{% include icon.html name="arrow-right" size="16" %}
+      </a>
+    </p>
+  </div>
+</div>
+
+<p><a href="/datenschutz/">{% include t.html key="legal.to_privacy" %}</a></p>

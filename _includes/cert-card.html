@@ -1,0 +1,64 @@
+{%- comment -%}
+  cert-card.html — eine Zertifikatskarte aus certificates.yml.
+  Ob ein Zertifikat noch gültig ist, wird gerechnet, nicht gepflegt.
+    include cert-card.html cert=c
+{%- endcomment -%}
+{%- assign c = include.cert -%}
+{%- assign today = 'now' | date: "%Y-%m" -%}
+{%- if c.expires -%}
+  {%- if c.expires >= today -%}{%- assign valid = true -%}{%- else -%}{%- assign valid = false -%}{%- endif -%}
+{%- else -%}
+  {%- assign valid = true -%}
+{%- endif -%}
+{%- assign ip = c.issued | split: "-" -%}
+
+<article class="certcard{% if c.featured %} certcard--featured{% endif %}" style="--brand:{{ c.color }}">
+  <div class="certcard__bar" aria-hidden="true"></div>
+
+  <div class="certcard__head">
+    <span class="certcard__icon">{% include icon.html name=c.icon size="20" %}</span>
+    <div>
+      <p class="certcard__issuer">{{ c.issuer }}</p>
+      {%- if c.issuer_note %}
+      <p class="certcard__issuernote">{% include t.html de=c.issuer_note en=c.issuer_note_en %}</p>
+      {%- endif %}
+    </div>
+    <span class="badge {% if valid %}badge--ok{% else %}badge--off{% endif %}">
+      {%- if valid %}{% include t.html key="certificates.valid" %}{% else %}{% include t.html key="certificates.expired" %}{% endif -%}
+    </span>
+  </div>
+
+  <h3 class="certcard__title">{% include t.html de=c.title en=c.title_en %}</h3>
+  <p class="certcard__desc">{% include t.html de=c.description en=c.description_en %}</p>
+
+  {%- if c.tags %}
+  <ul class="chips" role="list">
+    {%- for t in c.tags %}<li class="chip">{{ t }}</li>{%- endfor %}
+  </ul>
+  {%- endif %}
+
+  <dl class="certcard__dates">
+    <div>
+      <dt>{% include t.html key="certificates.issued" %}</dt>
+      <dd><time datetime="{{ c.issued }}">{{ ip[1] }}/{{ ip[0] }}</time></dd>
+    </div>
+    <div>
+      <dt>{% include t.html key="certificates.expires" %}</dt>
+      <dd>
+        {%- if c.expires -%}
+          {%- assign xp = c.expires | split: "-" -%}
+          <time datetime="{{ c.expires }}">{{ xp[1] }}/{{ xp[0] }}</time>
+        {%- else -%}
+          {% include t.html key="certificates.no_expiry" %}
+        {%- endif -%}
+      </dd>
+    </div>
+  </dl>
+
+  {%- if c.verify_url %}
+  <a class="certcard__verify" href="{{ c.verify_url }}" target="_blank" rel="noopener noreferrer">
+    {% include icon.html name="external" size="15" %}{% include t.html key="certificates.verify" %}
+    <span class="visually-hidden">— {{ c.title }}</span>
+  </a>
+  {%- endif %}
+</article>

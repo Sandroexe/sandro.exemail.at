@@ -1,0 +1,54 @@
+name: Build & Link-Check
+
+# Baut die Seite und prüft sie mit HTMLProofer auf tote Links,
+# fehlende Alt-Texte und kaputtes HTML. Läuft bei jedem Push und
+# jedem Pull Request — das ist die eigentliche Qualitätskontrolle,
+# weil die Seite lokal nicht ohne Ruby gebaut werden kann.
+
+on:
+  push:
+    branches: [main, "rebuild/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Jekyll bauen
+        run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
+
+      # Interne Prüfung: tote Links, fehlende Bilder und Skripte.
+      # Fehlende und leere Alt-Texte sind in html-proofer 5 bereits
+      # Standardfehler — dafür braucht es keine Flags.
+      - name: HTMLProofer
+        run: |
+          bundle exec htmlproofer ./_site \
+            --disable-external \
+            --allow-hash-href \
+            --checks "Links,Images,Scripts"
+
+      # Externe Links getrennt und ohne Abbruch: ein fremder Server,
+      # der gerade zickt, soll den Build nicht rot färben.
+      - name: Externe Links prüfen (nur Hinweis)
+        continue-on-error: true
+        run: |
+          bundle exec htmlproofer ./_site \
+            --checks "Links" \
+            --only-4xx \
+            --ignore-status-codes "403,429,999"
+
+      - name: Zentralisierung prüfen
+        run: bash tools/check-centralisation.sh

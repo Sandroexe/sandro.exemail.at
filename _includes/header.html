@@ -1,0 +1,64 @@
+{%- comment -%}
+  header.html — Navigation kommt vollständig aus _data/navigation.yml.
+  Ein neuer Menüpunkt ist eine Zeile YAML, keine Änderung hier.
+{%- endcomment -%}
+{%- assign N = site.data.navigation -%}
+{%- assign S = site.data.site -%}
+{%- assign P = site.data.profile -%}
+{%- assign here = page.url | remove: "index.html" -%}
+
+<header class="siteheader">
+  <div class="shell siteheader__inner">
+
+    <a class="brand" href="/"{% if here == "/" %} aria-current="page"{% endif %}>
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="6" cy="16" r="3"/><circle cx="26" cy="7" r="3"/><circle cx="26" cy="25" r="3"/>
+          <path d="M9 15 23 8M9 17l14 7"/>
+        </svg>
+      </span>
+      <span class="brand__name">{{ P.name }}</span>
+    </a>
+
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="mainnav"
+            data-i18n-attr="aria-label:nav.menu" aria-label="{% include t-plain.html key='nav.menu' %}">
+      {% include icon.html name="menu" class="navtoggle__open" size="22" %}
+      {% include icon.html name="close" class="navtoggle__close" size="22" %}
+    </button>
+
+    <nav class="mainnav" id="mainnav" data-i18n-attr="aria-label:a11y.main_nav"
+         aria-label="{% include t-plain.html key='a11y.main_nav' %}">
+      <ul class="mainnav__list" role="list">
+        {%- for item in N.header %}
+        <li>
+          <a href="{{ item.url }}"{% if here == item.url %} aria-current="page"{% endif %}>
+            {% include t.html key=item.key %}
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+
+      <div class="mainnav__end">
+        <a class="btn btn--accent btn--sm" href="{{ N.header_cta.url }}"{% if here == N.header_cta.url %} aria-current="page"{% endif %}>
+          {% include t.html key=N.header_cta.key %}
+        </a>
+
+        {%- if S.features.lang_toggle %}
+        <button class="iconbtn" type="button" id="lang-toggle"
+                data-i18n-attr="aria-label:a11y.lang_toggle" aria-label="{% include t-plain.html key='a11y.lang_toggle' %}">
+          <span class="iconbtn__label" id="lang-label">DE</span>
+        </button>
+        {%- endif %}
+
+        {%- if S.features.theme_toggle %}
+        <button class="iconbtn" type="button" id="theme-toggle"
+                data-i18n-attr="aria-label:a11y.theme_toggle" aria-label="{% include t-plain.html key='a11y.theme_toggle' %}">
+          {% include icon.html name="sun" class="iconbtn__sun" size="18" %}
+          {% include icon.html name="moon" class="iconbtn__moon" size="18" %}
+        </button>
+        {%- endif %}
+      </div>
+    </nav>
+
+  </div>
+</header>

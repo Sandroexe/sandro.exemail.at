@@ -1,0 +1,46 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   img.html — der einzige Weg, ein Bild auszugeben.
+
+     include img.html photo=site.data.profile.photo
+                         sizes="(min-width: 768px) 30vw, 80vw"
+                         priority=true %}
+
+   Solange die optimierten Ableitungen fehlen, liefert der Include das
+   vorhandene JPG aus `fallback` aus. Sobald der Workflow
+   optimize-images.yml einmal gelaufen ist und die WebP-Dateien im
+   Repo liegen, wird features.responsive_images in _data/site.yml auf
+   true gesetzt — und dieselbe Stelle liefert ab dann <picture> mit
+   srcset. Kein Aufrufer muss dafür geändert werden.
+
+   Genau deshalb steht diese Logik hier und nicht in den Seiten.
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+{%- assign ph = include.photo -%}
+{%- capture alt_txt %}{% include t-plain.html de=ph.alt en=ph.alt_en %}{% endcapture -%}
+
+{%- if include.priority -%}
+  {%- assign loading = "eager" -%}
+  {%- assign fetchprio = "high" -%}
+{%- else -%}
+  {%- assign loading = "lazy" -%}
+  {%- assign fetchprio = "auto" -%}
+{%- endif -%}
+
+{%- if site.data.site.features.responsive_images -%}
+<picture>
+  <source type="image/avif"
+          srcset="{% for w in ph.widths %}{{ ph.src }}-{{ w }}.avif {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}"
+          sizes="{{ include.sizes }}">
+  <source type="image/webp"
+          srcset="{% for w in ph.widths %}{{ ph.src }}-{{ w }}.webp {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}"
+          sizes="{{ include.sizes }}">
+  <img src="{{ ph.fallback }}" alt="{{ alt_txt | strip }}"
+       width="{{ ph.width }}" height="{{ ph.height }}"
+       loading="{{ loading }}" fetchpriority="{{ fetchprio }}" decoding="async">
+</picture>
+{%- else -%}
+<img src="{{ ph.fallback }}" alt="{{ alt_txt | strip }}"
+     width="{{ ph.width }}" height="{{ ph.height }}"
+     loading="{{ loading }}" fetchpriority="{{ fetchprio }}" decoding="async">
+{%- endif -%}

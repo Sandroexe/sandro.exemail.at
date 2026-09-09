@@ -1,0 +1,34 @@
+# ═══════════════════════════════════════════════════════════════════
+#  navigation.yml — jede Navigation genau einmal
+#  `label` ist ein Schlüssel aus _data/i18n/*.yml (nav.*), kein Text.
+# ═══════════════════════════════════════════════════════════════════
+
+header:
+  - { key: "nav.projects", url: "/projects/" }
+  - { key: "nav.cv", url: "/cv/" }
+  - { key: "nav.certificates", url: "/certificates/" }
+  - { key: "nav.lab", url: "/lab/" }
+  - { key: "nav.links", url: "/links/" }
+
+# Der Kontakt-Button steht optisch abgesetzt neben der Navigation.
+header_cta: { key: "nav.contact", url: "/contact/" }
+
+footer:
+  - { key: "nav.home", url: "/" }
+  - { key: "nav.projects", url: "/projects/" }
+  - { key: "nav.cv", url: "/cv/" }
+  - { key: "nav.certificates", url: "/certificates/" }
+  - { key: "nav.lab", url: "/lab/" }
+  - { key: "nav.links", url: "/links/" }
+  - { key: "nav.contact", url: "/contact/" }
+
+legal:
+  - { key: "nav.imprint", url: "/impressum/" }
+  - { key: "nav.social_imprint", url: "/impressum/social/" }
+  - { key: "nav.privacy", url: "/datenschutz/" }
+
+# Auf der 404-Seite angebotene Ziele
+notfound:
+  - { key: "nav.home", url: "/" }
+  - { key: "nav.projects", url: "/projects/" }
+  - { key: "nav.contact", url: "/contact/" }

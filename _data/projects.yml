@@ -1,0 +1,115 @@
+# ═══════════════════════════════════════════════════════════════════
+#  projects.yml — manuell gepflegte Projekte
+#
+#  Auf /projects/ erscheinen diese Einträge gemeinsam mit den
+#  automatisch von GitHub geholten Repos aus _data/github.json — im
+#  selben Kartenlayout.
+#
+#  `repo:` verknüpft ein manuelles Projekt mit einem GitHub-Repo.
+#  Dann gewinnen deine Angaben hier, und Sterne, Sprache und letzter
+#  Push kommen automatisch dazu. Das Repo erscheint nicht doppelt.
+# ═══════════════════════════════════════════════════════════════════
+
+items:
+  - id: portfolio
+    title: "sandro.exemail.at"
+    title_en: "sandro.exemail.at"
+    subtitle: "Diese Website"
+    subtitle_en: "This website"
+    icon: globe
+    featured: true
+    repo: "Sandroexe/sandro.exemail.at"
+    url: "https://sandro.exemail.at"
+    description: >-
+      Vollständig datengetriebenes Portfolio auf Jekyll und GitHub Pages.
+      Jede Information existiert genau einmal in einer YAML-Datei; Seiten
+      bestehen nur noch aus Includes. Ohne externe CDNs, ohne Tracking,
+      zweisprachig, mit Hell- und Dunkelmodus.
+    description_en: >-
+      Fully data-driven portfolio built on Jekyll and GitHub Pages. Every
+      piece of information exists exactly once in a YAML file; pages consist
+      only of includes. No external CDNs, no tracking, bilingual, with light
+      and dark mode.
+    tags: [Jekyll, HTML, CSS, JavaScript, GitHub Pages]
+
+  - id: mail-domain
+    title: "Eigene Domain & Mailserver"
+    title_en: "Own domain & mail server"
+    subtitle: "@exemail.at"
+    subtitle_en: "@exemail.at"
+    icon: mail
+    featured: true
+    description: >-
+      Aufbau und Betrieb einer eigenen Mail-Domain inklusive DNS-Verwaltung
+      sowie SPF-, DKIM- und DMARC-Einrichtung für zuverlässige Zustellung.
+      Darauf läuft auch der Endpoint des Kontaktformulars dieser Seite.
+    description_en: >-
+      Building and operating my own mail domain including DNS management and
+      SPF, DKIM and DMARC setup for reliable delivery. It also hosts the
+      endpoint behind this site's contact form.
+    tags: [DNS, E-Mail, SPF/DKIM/DMARC, Self-Hosted]
+
+  - id: adguard
+    title: "AdGuard Home DNS"
+    title_en: "AdGuard Home DNS"
+    subtitle: "Netzwerkweiter Filter"
+    subtitle_en: "Network-wide filtering"
+    icon: shield
+    featured: true
+    description: >-
+      Privater DNS-Server für netzwerkweites Blockieren von Werbung und
+      Trackern. Erhöht die Privatsphäre aller Geräte im Haushalt, ohne dass
+      auf jedem einzelnen etwas installiert werden muss.
+    description_en: >-
+      Private DNS server for network-wide ad and tracker blocking. It improves
+      privacy for every device in the household without installing anything on
+      each one.
+    tags: [DNS, AdGuard, Security, Privacy]
+
+  - id: dyndns
+    title: "Eigener DynDNS-Dienst"
+    title_en: "Self-hosted DynDNS"
+    subtitle: "In einem LXC-Container"
+    subtitle_en: "In an LXC container"
+    icon: refresh
+    description: >-
+      Selbst gebauter Dynamic-DNS-Dienst, isoliert in einem LXC-Container auf
+      Proxmox. Hält den Fernzugriff auf das Heimnetz trotz wechselnder
+      IP-Adresse dauerhaft erreichbar — ohne Abhängigkeit von einem
+      kommerziellen Anbieter.
+    description_en: >-
+      Self-built dynamic DNS service, isolated in an LXC container on Proxmox.
+      It keeps remote access to the home network reachable despite a changing
+      IP address — with no dependency on a commercial provider.
+    tags: [LXC, Proxmox, Networking, Bash]
+
+  - id: homeassistant
+    title: "Home Assistant Energie-Dashboard"
+    title_en: "Home Assistant energy dashboard"
+    subtitle: "Verbrauch sichtbar machen"
+    subtitle_en: "Making consumption visible"
+    icon: bolt
+    description: >-
+      Zentrales Smart-Home-Dashboard zur Überwachung und Optimierung des
+      Energieverbrauchs. Sensordaten laufen zusammen, Verbräuche werden über
+      die Zeit ausgewertet.
+    description_en: >-
+      Central smart home dashboard for monitoring and optimising energy
+      consumption. Sensor data is aggregated and consumption is analysed over
+      time.
+    tags: [Home Assistant, Smart Home, IoT, Automation]
+
+  - id: mediaserver
+    title: "Mediathek mit Jellyfin & Plex"
+    title_en: "Media library with Jellyfin & Plex"
+    subtitle: "Eigenes Streaming"
+    subtitle_en: "Self-hosted streaming"
+    icon: play
+    description: >-
+      Selbst betriebene Medienserver-Lösung mit Jellyfin und Plex für
+      Verwaltung und Streaming der eigenen Sammlung — inklusive Transcoding
+      und Zugriff von unterwegs.
+    description_en: >-
+      Self-operated media server setup with Jellyfin and Plex for managing and
+      streaming my own collection — including transcoding and remote access.
+    tags: [Jellyfin, Plex, Self-Hosted, Docker]

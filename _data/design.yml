@@ -1,0 +1,131 @@
+# ═══════════════════════════════════════════════════════════════════
+#  design.yml — DIE Design-Wahrheit
+#
+#  Jeder Wert hier wird zu einer CSS-Custom-Property in
+#  assets/css/main.scss. Ändere eine Farbe hier und die gesamte
+#  Website ändert sich mit. Nirgendwo sonst im Projekt darf ein
+#  Hex-Wert oder eine feste px-Größe stehen.
+#
+#  Richtung A · "Werkstattpapier"
+# ═══════════════════════════════════════════════════════════════════
+
+color:
+  # ── Hell ────────────────────────────────────────────────────────
+  light:
+    bg: "#faf8f5" # Papier
+    bg-alt: "#f4f0ea" # abgesetzte Flächen
+    surface: "#ffffff" # Karten
+    surface-alt: "#f9f6f1"
+    ink: "#1a1714" # Tinte, Fließtext
+    ink-strong: "#0d0b09" # Überschriften
+    ink-muted: "#6b625a" # Sekundärtext (5.6:1 auf bg)
+    line: "#e5ded4" # Trennlinien, Rahmen
+    line-strong: "#cfc4b6"
+    accent: "#c2410c" # gebranntes Orange (5.3:1 auf bg)
+    accent-hover: "#9a3412"
+    accent-soft: "#fff1e7" # Akzentflächen, Chips
+    accent-ink: "#ffffff" # Text auf Akzentfläche
+    focus: "#0369a1" # Fokusring, bewusst kontrastierend
+    success: "#15803d"
+    danger: "#b91c1c"
+
+  # ── Dunkel ──────────────────────────────────────────────────────
+  dark:
+    bg: "#12100e" # Ruß
+    bg-alt: "#1a1714"
+    surface: "#1c1917"
+    surface-alt: "#262220"
+    ink: "#f5f0e8" # Creme
+    ink-strong: "#fffdf9"
+    ink-muted: "#a8a099" # (7.0:1 auf bg)
+    line: "#332e2a"
+    line-strong: "#4a423b"
+    accent: "#fb923c" # Amber (9.1:1 auf bg)
+    accent-hover: "#fdba74"
+    accent-soft: "#2a1d14"
+    accent-ink: "#12100e"
+    focus: "#7dd3fc"
+    success: "#4ade80"
+    danger: "#f87171"
+
+# ── Abstände (modulare Skala, Basis 1rem) ─────────────────────────
+space:
+  "3xs": "0.25rem"
+  "2xs": "0.5rem"
+  xs: "0.75rem"
+  sm: "1rem"
+  md: "1.5rem"
+  lg: "2.5rem"
+  xl: "4rem"
+  "2xl": "6rem"
+  "3xl": "8rem"
+
+radius:
+  none: "0"
+  sm: "4px"
+  md: "10px"
+  lg: "20px"
+  pill: "999px"
+
+shadow:
+  sm: "0 1px 2px rgb(26 23 20 / 0.05)"
+  md: "0 4px 16px -4px rgb(26 23 20 / 0.10)"
+  lg: "0 12px 40px -12px rgb(26 23 20 / 0.18)"
+
+# ── Typografie ────────────────────────────────────────────────────
+type:
+  display:
+    family: "Fraunces"
+    stack: "'Fraunces', 'Iowan Old Style', Georgia, serif"
+  body:
+    family: "Inter"
+    stack: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+  mono:
+    family: "JetBrains Mono"
+    stack: "'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace"
+
+  # Fluide Skala: clamp(min, vorzugsweise, max)
+  scale:
+    "step--2": "clamp(0.69rem, 0.67rem + 0.10vw, 0.75rem)"
+    "step--1": "clamp(0.83rem, 0.80rem + 0.15vw, 0.90rem)"
+    "step-0": "clamp(1.00rem, 0.96rem + 0.20vw, 1.10rem)"
+    "step-1": "clamp(1.20rem, 1.13rem + 0.35vw, 1.40rem)"
+    "step-2": "clamp(1.44rem, 1.33rem + 0.55vw, 1.80rem)"
+    "step-3": "clamp(1.73rem, 1.55rem + 0.90vw, 2.30rem)"
+    "step-4": "clamp(2.07rem, 1.80rem + 1.40vw, 2.95rem)"
+    "step-5": "clamp(2.49rem, 2.07rem + 2.10vw, 3.80rem)"
+    "step-6": "clamp(2.99rem, 2.36rem + 3.15vw, 4.90rem)"
+
+  leading:
+    tight: "1.1"
+    snug: "1.3"
+    normal: "1.6"
+    relaxed: "1.75"
+
+  tracking:
+    tight: "-0.02em"
+    normal: "0"
+    wide: "0.04em"
+    wider: "0.12em"
+
+# ── Bewegung ──────────────────────────────────────────────────────
+#  Wird bei prefers-reduced-motion: reduce global auf 0ms gesetzt.
+motion:
+  fast: "120ms"
+  base: "240ms"
+  slow: "480ms"
+  ease: "cubic-bezier(.2,.8,.2,1)"
+  ease-out: "cubic-bezier(0,0,.2,1)"
+
+# ── Raster & Breakpoints ──────────────────────────────────────────
+layout:
+  measure: "68ch" # optimale Lesebreite
+  content: "1180px" # Standard-Inhaltsbreite
+  wide: "1440px"
+  gutter: "clamp(1.25rem, 5vw, 4rem)"
+
+breakpoint:
+  sm: "480px"
+  md: "768px"
+  lg: "1100px"
+  xl: "1400px"

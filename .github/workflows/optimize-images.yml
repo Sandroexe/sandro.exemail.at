@@ -1,0 +1,48 @@
+name: Bilder optimieren
+
+# Erzeugt die WebP- und AVIF-Ableitungen und committet sie zurück.
+# Läuft nicht bei jedem Push, sondern nur auf Zuruf oder wenn sich
+# ein Originalbild ändert — Bildkonvertierung ist teuer und die
+# Ergebnisse ändern sich fast nie.
+#
+# Nach dem ersten Lauf in _data/site.yml
+# features.responsive_images auf true setzen.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "profile.jpg"
+      - "pc-setup.jpg"
+      - "_data/profile.yml"
+      - "_data/lab.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - run: npm install --no-save sharp
+
+      - run: node tools/optimize-images.mjs
+
+      - name: Ergebnisse committen
+        run: |
+          if git diff --quiet -- assets/img; then
+            echo "Keine neuen Ableitungen."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/img
+          git commit -m "chore(assets): Bildableitungen neu erzeugt"
+          git push

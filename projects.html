@@ -1,0 +1,47 @@
+---
+permalink: /projects/
+redirect_from:
+  - /projects.html
+  - /projekte/
+title_key: projects.title
+lead_key: projects.lead
+title: Projekte
+scripts: [filter.js]
+---
+{%- comment -%}
+  Die Filterleiste startet versteckt und wird von filter.js
+  eingeblendet. Ohne JavaScript stehen alle Projekte vollständig da —
+  nur eben ungefiltert, was ohne Filter auch niemanden stört.
+{%- endcomment -%}
+<section>
+  <div class="shell">
+
+    <div class="filterbar" id="filterbar" hidden>
+      <div class="field field--grow">
+        <label class="field__label" for="filter-search">{% include t.html key="projects.search" %}</label>
+        <input type="search" id="filter-search" autocomplete="off"
+               data-i18n-attr="placeholder:projects.search_placeholder"
+               placeholder="{% include t-plain.html key='projects.search_placeholder' %}">
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="filter-lang">{% include t.html key="projects.filter_language" %}</label>
+        <select id="filter-lang">
+          <option value="">{% include t-plain.html key="projects.filter_all" %}</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="filter-sort">{% include t.html key="projects.sort" %}</label>
+        <select id="filter-sort">
+          <option value="pushed">{% include t-plain.html key="projects.sort_pushed" %}</option>
+          <option value="stars">{% include t-plain.html key="projects.sort_stars" %}</option>
+          <option value="name">{% include t-plain.html key="projects.sort_name" %}</option>
+        </select>
+      </div>
+    </div>
+
+    {% include project-grid.html %}
+
+  </div>
+</section>

@@ -1,0 +1,23 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   t-plain.html — Text ohne Markup, für Attribute.
+
+   In alt=, aria-label=, title= oder <title> können keine zwei Spans
+   stehen. Hier kommt deshalb nur die deutsche Fassung heraus; das
+   Umschalten übernimmt assets/js/i18n.js über data-i18n-attr.
+
+   include t-plain.html key="a11y.theme_toggle"
+   include t-plain.html de=photo.alt en=photo.alt_en
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+{%- if include.key -%}
+  {%- assign _p = include.key | split: "." -%}
+  {%- if _p.size == 2 -%}
+    {%- assign _v = site.data.i18n.de[_p[0]][_p[1]] -%}
+  {%- else -%}
+    {%- assign _v = site.data.i18n.de[_p[0]] -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign _v = include.de -%}
+{%- endif -%}
+{{- _v | strip_newlines | strip -}}

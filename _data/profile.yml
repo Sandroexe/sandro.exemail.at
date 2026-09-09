@@ -1,0 +1,112 @@
+# ═══════════════════════════════════════════════════════════════════
+#  profile.yml — die Person
+#  Speist: Hero, Über-mich, JSON-LD Person, OpenGraph, /links/
+# ═══════════════════════════════════════════════════════════════════
+
+name: "Sandro Exenberger"
+given_name: "Sandro"
+family_name: "Exenberger"
+handle: "@Sandroexe"
+
+role: "Elektronik & Netzwerktechnik"
+role_en: "Electronics & Network Engineering"
+
+headline: "Elektroniker, CCNA-zertifiziert, Linux zu Hause"
+headline_en: "Electronics apprentice, CCNA certified, Linux at home"
+
+location: "Schwoich, Tirol"
+location_en: "Schwoich, Tyrol"
+country: "Österreich"
+country_en: "Austria"
+
+# TODO 2: Geburtsjahr bewusst nicht gesetzt. Wenn du es öffentlich
+#   zeigen willst, hier eintragen (z. B. birth_year: "2008") — es
+#   erscheint dann in JSON-LD und auf /cv/. Leer = wird nirgends ausgegeben.
+birth_year: ""
+
+photo:
+  # `fallback` ist das Original im Repo und wird immer ausgeliefert.
+  # `src` ist der Namensstamm der optimierten Ableitungen, die der
+  # Workflow optimize-images.yml erzeugt. Solange die fehlen, greift
+  # _includes/img.html auf `fallback` zurück.
+  fallback: "/profile.jpg"
+  src: "/assets/img/profile"
+  width: 2203
+  height: 2203
+  alt: "Porträtfoto von Sandro Exenberger"
+  alt_en: "Portrait photo of Sandro Exenberger"
+  widths: [240, 480, 720]
+
+status: "Offen für Projekte und Praktika"
+status_en: "Open to projects and internships"
+
+bio_short: >-
+  Ich bin Sandro,
+  lerne Elektronik und Technische Informatik an der HTBLVA Anichstraße
+  und baue in meiner Freizeit Netzwerke, Server und alles, was blinkt.
+bio_short_en: >-
+  I'm Sandro. I study electronics and computer engineering at HTBLVA
+  Anichstraße and spend my free time building networks, servers and
+  anything with blinking lights.
+
+bio_long:
+  - >-
+    Als Regionalvorstand für das Tiroler Unterland bei der Schülerunion
+    Österreich setze ich mich aktiv für die Anliegen von Schüler:innen ein
+    und bringe meine Kompetenzen in Kommunikation und Konfliktlösung ein.
+    Parallel dazu vertrete ich als Schülervertreter an der HTBLVA
+    Anichstraße die Interessen von etwa 1600 Schüler:innen im
+    Schulgemeinschaftsausschuss.
+  - >-
+    Neben meiner organisatorischen Tätigkeit leite ich den HTL-Incubator,
+    einen Open Maker Space, in dem ich Mitschüler:innen bei der Nutzung
+    moderner Technologien unterstütze. Mein technisches Wissen vertiefe ich
+    durch meine Ausbildung in Elektronik und Technischer Informatik sowie
+    durch meine CCNA-Zertifizierung.
+
+bio_long_en:
+  - >-
+    As regional board member for Tiroler Unterland at Schülerunion Österreich
+    I actively represent students' interests and contribute my skills in
+    communication and conflict resolution. In parallel I serve as an elected
+    student representative at HTBLVA Anichstraße, representing roughly 1600
+    students on the school community committee.
+  - >-
+    Alongside that organisational work I run the HTL-Incubator, an open maker
+    space where I help fellow students work with modern technology. I deepen
+    my technical knowledge through my training in electronics and computer
+    engineering and through my CCNA certification.
+
+# ── Tech-Stack ────────────────────────────────────────────────────
+#  level: 0–100 für den Balken · rating: die ehrliche Einordnung in Worten
+skills:
+  - id: linux
+    label: "Linux · Debian & CachyOS"
+    label_en: "Linux · Debian & CachyOS"
+    level: 88
+    rating: "Fortgeschritten"
+    rating_en: "Advanced"
+  - id: network
+    label: "Netzwerktechnik · CCNA"
+    label_en: "Networking · CCNA"
+    level: 85
+    rating: "Zertifiziert"
+    rating_en: "Certified"
+  - id: python
+    label: "Python & Chatbots"
+    label_en: "Python & chatbots"
+    level: 80
+    rating: "Fortgeschritten"
+    rating_en: "Advanced"
+  - id: iot
+    label: "IoT & Elektronik"
+    label_en: "IoT & electronics"
+    level: 75
+    rating: "Erfahren"
+    rating_en: "Experienced"
+  - id: hardware
+    label: "Hardware & Maker"
+    label_en: "Hardware & maker"
+    level: 72
+    rating: "Erfahren"
+    rating_en: "Experienced"

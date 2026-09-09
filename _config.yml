@@ -1,0 +1,49 @@
+# ═══════════════════════════════════════════════════════════════════
+#  _config.yml — nur Jekyll-Technik.
+#  Inhaltliche Angaben (Name, Domain, Sprachen, Meta) stehen in
+#  _data/site.yml. Was hier steht, braucht Jekyll selbst.
+# ═══════════════════════════════════════════════════════════════════
+
+url: "https://sandro.exemail.at"
+baseurl: ""
+
+# jekyll-seo-tag und jekyll-sitemap greifen auf diese beiden zu.
+title: "Sandro Exenberger"
+description: "Portfolio von Sandro Exenberger — Elektronik, Netzwerktechnik (CCNA), Linux und Home Lab aus Tirol."
+
+# GitHub-Pages-Whitelist, keine eigenen Plugins.
+plugins:
+  - jekyll-sitemap
+  - jekyll-redirect-from
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Saubere URLs ohne .html
+permalink: pretty
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - docs/
+  - tools/
+  - scratchpad/
+  - .github/
+  - vendor/
+  - node_modules/
+
+include:
+  - .well-known
+
+# Redirect-Seiten aus _data/redirects.yml erzeugen.
+collections: {}
+
+defaults:
+  - scope: { path: "" }
+    values:
+      layout: default
+      lang: de

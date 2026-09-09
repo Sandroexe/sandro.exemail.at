@@ -1,0 +1,133 @@
+# ═══════════════════════════════════════════════════════════════════
+#  cv.yml — DIE Lebenslauf-Wahrheit
+#  Speist: /cv/, Kurzform auf der Startseite, JSON-LD, Druckansicht
+#
+#  Ergänzbar per Hand oder halbautomatisch aus dem LinkedIn-Datenexport:
+#      node tools/import-linkedin.mjs <pfad-zum-export.zip>
+#  Das Skript schreibt nie direkt, sondern zeigt einen Diff.
+#
+#  Datumsformat: YYYY-MM. `end: null` bedeutet "bis heute".
+# ═══════════════════════════════════════════════════════════════════
+
+education:
+  - id: htl-anichstrasse
+    start: "2022-09"
+    end: null
+    title: "Elektronik & Technische Informatik"
+    title_en: "Electronics & Computer Engineering"
+    org: "HTBLVA Anichstraße"
+    org_url: "https://www.htlinn.ac.at/"
+    place: "Innsbruck, Tirol"
+    description: >-
+      Höhere technische Ausbildung zum Elektroniker und Netzwerktechniker
+      mit Schwerpunkt auf Hardware, Software und Mechanik.
+    description_en: >-
+      Higher technical education in electronics and network engineering with
+      a focus on hardware, software and mechanics.
+    highlights:
+      - "Netzwerktechnik, Routing & Switching"
+      - "Mikrocontroller und Embedded Systems"
+      - "Software-Entwicklung und Automatisierung"
+    highlights_en:
+      - "Network engineering, routing & switching"
+      - "Microcontrollers and embedded systems"
+      - "Software development and automation"
+
+  - id: ms2-kufstein
+    start: "2018-09"
+    end: "2022-07"
+    title: "Mittelschule"
+    title_en: "Secondary school"
+    org: "Mittelschule 2 Kufstein"
+    place: "Kufstein, Tirol"
+    description: "Abschluss der Unterstufe mit fundierter Allgemeinbildung."
+    description_en: "Completion of lower secondary education."
+
+  - id: vs-schwoich
+    start: "2014-09"
+    end: "2018-07"
+    title: "Volksschule"
+    title_en: "Primary school"
+    org: "Volksschule Schwoich"
+    place: "Schwoich, Tirol"
+    description: "Grundschulausbildung in meiner Heimatgemeinde."
+    description_en: "Primary education in my home municipality."
+
+experience:
+  - id: schuelerunion-vorstand
+    start: "2025-10"
+    end: null
+    title: "Regionalvorstand Tiroler Unterland"
+    title_en: "Regional board member, Tiroler Unterland"
+    org: "Schülerunion Österreich"
+    place: "Tirol"
+    type: "engagement"
+    description: >-
+      Einsatz für die Anliegen von Schüler:innen in der Region, Organisation
+      von Veranstaltungen sowie Kommunikation und Konfliktlösung zwischen
+      Schulen, Schülervertretungen und Organisation.
+    description_en: >-
+      Representing students' concerns across the region, organising events and
+      handling communication and conflict resolution between schools, student
+      representatives and the organisation.
+
+  - id: schuelervertretung
+    start: "2025-10"
+    end: null
+    title: "Gewählte Schülervertretung"
+    title_en: "Elected student representative"
+    org: "HTBLVA Anichstraße"
+    place: "Innsbruck, Tirol"
+    type: "engagement"
+    description: >-
+      Interessenvertretung von rund 1600 Schüler:innen im
+      Schulgemeinschaftsausschuss.
+    description_en: >-
+      Representing around 1600 students on the school community committee.
+
+  - id: htl-incubator
+    start: "2025-06"
+    end: null
+    title: "Leitung HTL-Incubator"
+    title_en: "Lead, HTL-Incubator"
+    org: "HTBLVA Anichstraße"
+    place: "Innsbruck, Tirol"
+    type: "engagement"
+    description: >-
+      Leitung eines Open Maker Space: Unterstützung von Mitschüler:innen bei
+      der Nutzung moderner Technologien und bei eigenen Projekten.
+    description_en: >-
+      Running an open maker space: supporting fellow students in using modern
+      technology and realising their own projects.
+
+  - id: praktikum-woerglweb
+    start: "2024-07"
+    end: "2024-08"
+    title: "Praktikum WörglWeb"
+    title_en: "Internship, WörglWeb"
+    org: "Stadtwerke Wörgl GmbH"
+    place: "Wörgl, Tirol"
+    type: "work"
+    description: >-
+      Installation und Wartung von Netzwerkinfrastruktur, Außendiensteinsätze,
+      Fehlerbehebung beim Kunden sowie Vorkonfiguration von Hardware.
+    description_en: >-
+      Installing and maintaining network infrastructure, on-site field work,
+      troubleshooting at customer premises and pre-configuring hardware.
+
+# ── Sprachen ──────────────────────────────────────────────────────
+#  TODO 7: Dein Englisch-Niveau kenne ich nicht — ich rate es nicht.
+#  Trag es ein (z. B. "B2" oder "Gute Kenntnisse"), dann erscheint es
+#  auf /cv/. Einträge mit "TODO" werden nicht ausgegeben.
+languages:
+  - { name: "Deutsch", name_en: "German", level: "Muttersprache", level_en: "Native" }
+  - { name: "Englisch", name_en: "English", level: "TODO: Niveau", level_en: "TODO: level" }
+
+# ── Interessen ────────────────────────────────────────────────────
+#  Abgeleitet aus deinen Projekten und dem Home Lab. Streich oder
+#  ergänze frei — die Liste ist reine Selbstdarstellung, kein Faktum.
+interests:
+  - { label: "Self-Hosting & Homelab", label_en: "Self-hosting & homelab" }
+  - { label: "Netzwerktechnik", label_en: "Network engineering" }
+  - { label: "Linux & Open Source", label_en: "Linux & open source" }
+  - { label: "Maker-Kultur & 3D-Druck", label_en: "Maker culture & 3D printing" }

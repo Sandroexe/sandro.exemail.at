@@ -1,0 +1,62 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   timeline.html — CV-Zeitleiste aus cv.yml.
+
+     include timeline.html entries=site.data.cv.education
+     include timeline.html entries=site.data.cv.experience limit=3
+     include timeline.html entries=… compact=true
+
+   Die Datumsformatierung passiert hier an einer Stelle, damit
+   Startseite, /cv/ und Druckansicht nie auseinanderlaufen.
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+{%- assign entries = include.entries -%}
+{%- if include.limit -%}{%- assign entries = entries | slice: 0, include.limit -%}{%- endif -%}
+
+<ol class="timeline{% if include.compact %} timeline--compact{% endif %}" role="list">
+  {%- for e in entries %}
+  {%- comment -%} "2022-09" → "09/2022"; end: null → "seit …" {%- endcomment -%}
+  {%- assign sp = e.start | split: "-" -%}
+  {%- assign start_fmt = sp[1] | append: "/" | append: sp[0] -%}
+  {%- if e.end -%}
+    {%- assign ep = e.end | split: "-" -%}
+    {%- assign end_fmt = ep[1] | append: "/" | append: ep[0] -%}
+  {%- endif -%}
+
+  <li class="timeline__item">
+    <div class="timeline__when">
+      <time datetime="{{ e.start }}">{{ start_fmt }}</time>
+      {%- if e.end %}
+      <span class="timeline__dash" aria-hidden="true">–</span>
+      <time datetime="{{ e.end }}">{{ end_fmt }}</time>
+      {%- else %}
+      <span class="timeline__dash" aria-hidden="true">–</span>
+      <span class="timeline__now">{% include t.html key="cv.today" %}</span>
+      {%- endif %}
+    </div>
+
+    <div class="timeline__body">
+      <h3 class="timeline__title">{% include t.html de=e.title en=e.title_en %}</h3>
+      <p class="timeline__org">
+        {%- if e.org_url -%}
+        <a href="{{ e.org_url }}" target="_blank" rel="noopener noreferrer">{{ e.org }}</a>
+        {%- else -%}{{ e.org }}{%- endif -%}
+        {%- if e.place %}<span class="timeline__place">{{ e.place }}</span>{% endif -%}
+      </p>
+      {%- unless include.compact %}
+        {%- if e.description %}
+        <p class="timeline__desc">{% include t.html de=e.description en=e.description_en %}</p>
+        {%- endif %}
+        {%- if e.highlights %}
+        <ul class="timeline__highlights" role="list">
+          {%- for h in e.highlights %}
+          {%- assign h_en = e.highlights_en[forloop.index0] -%}
+          <li>{% include t.html de=h en=h_en %}</li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+      {%- endunless %}
+    </div>
+  </li>
+  {%- endfor %}
+</ol>

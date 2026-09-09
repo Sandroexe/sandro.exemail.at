@@ -1,0 +1,41 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   project-grid.html — führt manuelle Projekte und GitHub-Repos in
+   einem Raster zusammen.
+
+     include project-grid.html                alle
+     include project-grid.html featured=true  nur hervorgehobene
+
+   Ein Repo, das bereits von einem manuellen Projekt beansprucht wird
+   (Feld `repo:`), erscheint nicht doppelt.
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+{%- assign only_featured = include.featured -%}
+
+{%- comment -%} Welche Repos sind schon durch ein manuelles Projekt vertreten? {%- endcomment -%}
+{%- assign claimed = "" -%}
+{%- for p in site.data.projects.items -%}
+  {%- if p.repo -%}{%- assign claimed = claimed | append: "[" | append: p.repo | append: "]" -%}{%- endif -%}
+{%- endfor -%}
+
+<div class="pgrid" id="project-grid">
+  {%- for p in site.data.projects.items -%}
+    {%- if only_featured and p.featured != true -%}{%- continue -%}{%- endif -%}
+    {% include project-card.html project=p %}
+  {%- endfor -%}
+
+  {%- if site.data.site.features.github_sync -%}
+    {%- for r in site.data.github.repos -%}
+      {%- assign key = "[" | append: r.full_name | append: "]" -%}
+      {%- unless claimed contains key -%}
+        {%- if only_featured and r.featured != true -%}{%- continue -%}{%- endif -%}
+        {% include project-card.html repo=r %}
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- endif -%}
+</div>
+
+<p class="pgrid__empty" id="project-empty" hidden>
+  {% include t.html key="projects.none" %}
+  <button type="button" class="btn btn--ghost btn--sm" id="filter-reset">{% include t.html key="projects.reset" %}</button>
+</p>

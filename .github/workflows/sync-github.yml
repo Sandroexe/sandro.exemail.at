@@ -1,0 +1,55 @@
+name: GitHub-Repos synchronisieren
+
+# Holt die öffentlichen Repos und schreibt sie nach _data/github.json.
+# Dadurch aktualisiert sich /projects/ von selbst, sobald ein neues
+# Repository entsteht — ohne dass die Website angefasst werden muss.
+#
+# Gesteuert wird alles über _data/github.yml und über Repo-Topics:
+#   Topic "hide"     → erscheint nicht auf der Website
+#   Topic "featured" → erscheint zusätzlich auf der Startseite
+
+on:
+  schedule:
+    - cron: "17 */6 * * *" # alle 6 Stunden, versetzt zur vollen Stunde
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "_data/github.yml"
+      - ".github/workflows/sync-github.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-github
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Repos holen und github.json schreiben
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node tools/sync-github.mjs
+
+      # Nur committen, wenn sich wirklich etwas geändert hat — sonst
+      # entstünde bei jedem Lauf ein leerer Commit und ein Pages-Build.
+      - name: Änderungen committen
+        run: |
+          if git diff --quiet -- _data/github.json; then
+            echo "Keine Änderungen an _data/github.json."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/github.json
+          git commit -m "chore(data): GitHub-Repos synchronisiert"
+          git push

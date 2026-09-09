@@ -1,0 +1,82 @@
+---
+permalink: /lab/
+redirect_from:
+  - /lab.html
+title_key: lab.title
+lead_key: lab.lead
+title: Home Lab
+---
+{%- assign L = site.data.lab -%}
+
+<section>
+  <div class="shell">
+    {% include section.html key="lab.hardware" id="hardware" %}
+    <div class="specgrid">
+      {%- for h in L.hardware %}
+      <article class="spec">
+        <p class="spec__kind">{{ h.label }}</p>
+        <h3 class="spec__name">{{ h.name }}</h3>
+        <div class="tablewrap">
+          <table class="spec__table">
+            <tbody>
+              {%- for s in h.specs %}
+              <tr>
+                <th scope="row">{% include t.html de=s.key en=s.key_en %}</th>
+                <td>{{ s.value }}</td>
+              </tr>
+              {%- endfor %}
+            </tbody>
+          </table>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="shell">
+    {% include section.html key="lab.software" %}
+    <div class="tablewrap">
+      <table class="spec__table">
+        <tbody>
+          {%- for s in L.software %}
+          <tr>
+            <th scope="row">{% include t.html de=s.key en=s.key_en %}</th>
+            <td>{{ s.value }}</td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="shell">
+    {% include section.html key="lab.services" %}
+    <div class="specgrid">
+      {%- for s in L.services %}
+      <article class="spec">
+        <p class="spec__kind">{% include t.html de=s.role en=s.role_en %}</p>
+        <h3 class="spec__name">{{ s.name }}</h3>
+        <p class="pcard__desc">{% include t.html de=s.description en=s.description_en %}</p>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="shell">
+    {% include section.html key="lab.summary" %}
+    <div class="hero__grid">
+      <div class="prose prose--flush">
+        <p>{% include t.html de=L.intro en=L.intro_en %}</p>
+      </div>
+      <div class="hero__portrait">
+        {% include img.html photo=L.photo sizes="(min-width: 768px) 40vw, 90vw" %}
+      </div>
+    </div>
+  </div>
+</section>

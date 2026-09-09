@@ -1,0 +1,150 @@
+---
+permalink: /contact/
+redirect_from:
+  - /contact.html
+  - /kontakt/
+title_key: contact.title
+lead_key: contact.lead
+title: Kontakt
+scripts: [contact.js]
+---
+{%- comment -%}
+  ⚠ Diese URL steht auf der gedruckten Visitenkarte. Der Pfad
+    /contact/ darf sich nie ändern.
+
+  Das Formular ist die bequeme Variante; E-Mail, Telefon, vCard und
+  QR-Code stehen daneben und funktionieren auch ohne JavaScript.
+{%- endcomment -%}
+{%- assign C = site.data.contact -%}
+
+<section>
+  <div class="shell contactgrid">
+
+    {%- comment -%} ── Formular ──────────────────────────────────── {%- endcomment -%}
+    <div>
+      {% include section.html key="contact.form_title" %}
+
+      {%- comment -%}
+        Ohne JavaScript kann das Formular nicht abschicken — es gibt
+        keinen serverseitigen Fallback, der ohne fremden Dienst
+        auskäme. Statt einen kaputten Absende-Knopf anzubieten, sagt
+        die Seite das offen und zeigt den direkten Weg.
+      {%- endcomment -%}
+      <noscript>
+        <p class="form__status" data-state="err">
+          {% include t.html key="contact.error" %}
+          {% include t.html key="contact.error_fallback" %}
+          <a href="mailto:{{ C.email }}">{{ C.email }}</a>
+        </p>
+      </noscript>
+
+      <form class="form" id="contact-form" novalidate>
+        <div class="field">
+          <label for="name">{% include t.html key="contact.name" %}</label>
+          <input type="text" id="name" name="name" required autocomplete="name"
+                 data-i18n-attr="placeholder:contact.name_placeholder"
+                 placeholder="{% include t-plain.html key='contact.name_placeholder' %}"
+                 aria-describedby="err-name">
+          <p class="form__error" id="err-name">{% include t.html key="contact.name_error" %}</p>
+        </div>
+
+        <div class="field">
+          <label for="email">{% include t.html key="contact.email" %}</label>
+          <input type="email" id="email" name="email" required autocomplete="email"
+                 data-i18n-attr="placeholder:contact.email_placeholder"
+                 placeholder="{% include t-plain.html key='contact.email_placeholder' %}"
+                 aria-describedby="err-email">
+          <p class="form__error" id="err-email">{% include t.html key="contact.email_error" %}</p>
+        </div>
+
+        <div class="field">
+          <label for="phone">
+            {% include t.html key="contact.phone" %}
+            <span class="optional">{% include t.html key="contact.phone_optional" %}</span>
+          </label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" pattern="[0-9 +()/.\-]{6,}"
+                 data-i18n-attr="placeholder:contact.phone_placeholder"
+                 placeholder="{% include t-plain.html key='contact.phone_placeholder' %}"
+                 aria-describedby="err-phone">
+          <p class="form__error" id="err-phone">{% include t.html key="contact.phone_error" %}</p>
+        </div>
+
+        <div class="field">
+          <label for="message">{% include t.html key="contact.message" %}</label>
+          <textarea id="message" name="message" required rows="6"
+                    data-i18n-attr="placeholder:contact.message_placeholder"
+                    placeholder="{% include t-plain.html key='contact.message_placeholder' %}"
+                    aria-describedby="err-message"></textarea>
+          <p class="form__error" id="err-message">{% include t.html key="contact.message_error" %}</p>
+        </div>
+
+        <div>
+          <button class="btn btn--accent btn--lg" type="submit">
+            {% include t.html key="contact.submit" %}{% include icon.html name="arrow-right" size="18" %}
+          </button>
+        </div>
+
+        <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+
+        {%- comment -%}
+          Steht im HTML bereit und wird nur eingeblendet, wenn das
+          Absenden scheitert — dann ist der direkte Weg zur Hand.
+        {%- endcomment -%}
+        <p class="form__note" id="form-fallback" hidden>
+          {% include t.html key="contact.error_fallback" %}
+          <a href="mailto:{{ C.email }}">{{ C.email }}</a>
+        </p>
+
+        <p class="form__note">
+          {% include t.html key="contact.privacy_note" %}
+          <a href="/datenschutz/">{% include t.html key="contact.privacy_link" %}</a>
+        </p>
+      </form>
+    </div>
+
+    {%- comment -%} ── Direkte Wege ──────────────────────────────── {%- endcomment -%}
+    <div>
+      {% include section.html key="contact.direct" %}
+
+      <ul class="sociallist sociallist--cards" role="list">
+        <li>
+          <a class="linkcard" href="mailto:{{ C.email }}">
+            <span class="linkcard__icon">{% include icon.html name="mail" size="22" %}</span>
+            <span class="linkcard__text">
+              <span class="linkcard__title">{% include t.html key="contact.email_label" %}</span>
+              <span class="linkcard__sub">{{ C.email }}</span>
+            </span>
+            {% include icon.html name="arrow-right" class="linkcard__go" size="16" %}
+          </a>
+        </li>
+        <li>
+          <a class="linkcard" href="tel:{{ C.phone.href }}">
+            <span class="linkcard__icon">{% include icon.html name="phone" size="22" %}</span>
+            <span class="linkcard__text">
+              <span class="linkcard__title">{% include t.html key="contact.phone_label" %}</span>
+              <span class="linkcard__sub">{{ C.phone.display }}</span>
+            </span>
+            {% include icon.html name="arrow-right" class="linkcard__go" size="16" %}
+          </a>
+        </li>
+        <li>
+          <a class="linkcard" href="/{{ C.vcard.filename }}" download>
+            <span class="linkcard__icon">{% include icon.html name="user" size="22" %}</span>
+            <span class="linkcard__text">
+              <span class="linkcard__title">{% include t.html key="contact.vcard_title" %}</span>
+              <span class="linkcard__sub">{% include t.html key="contact.vcard_text" %}</span>
+            </span>
+            {% include icon.html name="download" class="linkcard__go" size="16" %}
+          </a>
+        </li>
+      </ul>
+
+      <div class="qr">
+        {% include qr-contact.html %}
+        <p class="stat__label">{% include t.html key="contact.qr_title" %}</p>
+        <p class="form__note">{% include t.html key="contact.qr_text" %}</p>
+      </div>
+    </div>
+
+  </div>
+</section>
