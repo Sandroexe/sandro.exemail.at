@@ -12,10 +12,13 @@
 {%- endcomment -%}
 {%- if include.key -%}
   {%- assign _p = include.key | split: "." -%}
+  {%- comment -%} Keine verschachtelten Klammern — Begründung siehe t.html. {%- endcomment -%}
+  {%- assign _k0 = _p[0] -%}
+  {%- assign _k1 = _p[1] -%}
   {%- if _p.size == 2 -%}
-    {%- assign _v = site.data.i18n.de[_p[0]][_p[1]] -%}
+    {%- assign _v = site.data.i18n.de[_k0][_k1] -%}
   {%- else -%}
-    {%- assign _v = site.data.i18n.de[_p[0]] -%}
+    {%- assign _v = site.data.i18n.de[_k0] -%}
   {%- endif -%}
 {%- else -%}
   {%- assign _v = include.de -%}

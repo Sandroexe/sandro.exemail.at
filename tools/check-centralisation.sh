@@ -93,6 +93,28 @@ else
   echo "✓ Sprachkataloge sind deckungsgleich"
 fi
 
+# 6) Verschachtelte Klammern in Liquid-Lookups.
+#    Liquids Variablen-Parser kennt nur \[[^\]]+\] und bricht bei der
+#    ersten schliessenden Klammer ab. `a[b[0]][c]` liefert deshalb
+#    stillschweigend nil — der Build bleibt gruen, der Text ist weg.
+#    Genau so sind saemtliche Beschriftungen unsichtbar geworden.
+hits=$(grep -rnE '\[[A-Za-z_.]+\[' $PAGES _includes/*.html 2>/dev/null | grep -v 'check-centralisation' || true)
+if [ -n "$hits" ]; then
+  report "Verschachtelte Klammern in einem Liquid-Lookup — Liquid liefert dort nil:"
+  echo "$hits"
+else
+  echo "✓ Keine verschachtelten Klammern in Liquid-Lookups"
+fi
+
+# 7) Kein unverschluesselter Link in den Daten
+hits=$(grep -rn 'http://' _data/*.yml _data/*.json 2>/dev/null || true)
+if [ -n "$hits" ]; then
+  report "Unverschluesselter http-Link in den Daten:"
+  echo "$hits"
+else
+  echo "✓ Keine http-Links in den Datendateien"
+fi
+
 echo ""
 if [ "$fail" -eq 0 ]; then
   echo "Alles zentral. Keine doppelten Angaben gefunden."

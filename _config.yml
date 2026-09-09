@@ -16,9 +16,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
 
-sass:
-  sass_dir: _sass
-  style: compressed
 
 # Saubere URLs ohne .html
 permalink: pretty
@@ -39,8 +36,6 @@ exclude:
 include:
   - .well-known
 
-# Redirect-Seiten aus _data/redirects.yml erzeugen.
-collections: {}
 
 defaults:
   - scope: { path: "" }

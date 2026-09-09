@@ -23,12 +23,24 @@
 
 {%- if include.key -%}
   {%- assign _p = include.key | split: "." -%}
+  {%- comment -%}
+    Die Teilschlüssel MÜSSEN erst an einfache Variablen gebunden werden.
+    Liquids Variablen-Parser kennt nur das Muster einer Klammer ohne
+    weitere Klammer darin und bricht bei der ersten schließenden ab.
+    Steht ein indizierter Ausdruck direkt in der Klammer, liest Liquid
+    einen abgeschnittenen Schlüssel und liefert nil — der Text bliebe
+    leer, ohne dass der Build etwas meldet. Mit den einfachen Variablen
+    _k0 und _k1 gibt es keine Verschachtelung und der Zugriff stimmt.
+    tools/check-centralisation.sh wacht darüber.
+  {%- endcomment -%}
+  {%- assign _k0 = _p[0] -%}
+  {%- assign _k1 = _p[1] -%}
   {%- if _p.size == 2 -%}
-    {%- assign _de = site.data.i18n.de[_p[0]][_p[1]] -%}
-    {%- assign _en = site.data.i18n.en[_p[0]][_p[1]] -%}
+    {%- assign _de = site.data.i18n.de[_k0][_k1] -%}
+    {%- assign _en = site.data.i18n.en[_k0][_k1] -%}
   {%- else -%}
-    {%- assign _de = site.data.i18n.de[_p[0]] -%}
-    {%- assign _en = site.data.i18n.en[_p[0]] -%}
+    {%- assign _de = site.data.i18n.de[_k0] -%}
+    {%- assign _en = site.data.i18n.en[_k0] -%}
   {%- endif -%}
 {%- else -%}
   {%- assign _de = include.de -%}

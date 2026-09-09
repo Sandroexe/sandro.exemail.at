@@ -132,7 +132,11 @@ async function main() {
       full_name: r.full_name,
       description: r.description || "",
       html_url: r.html_url,
-      homepage: r.homepage || "",
+      // Zwei Repos tragen auf GitHub eine http://-Homepage. Unverändert
+      // übernommen landet ein unverschlüsselter Link auf der Seite, den
+      // HTMLProofer zu Recht ablehnt. Deshalb hier normalisieren, statt
+      // es auf jedem Repo einzeln nachzuziehen.
+      homepage: (r.homepage || "").replace(/^http:\/\//i, "https://"),
       language: r.language || "",
       topics: r.topics || [],
       stargazers_count: r.stargazers_count,

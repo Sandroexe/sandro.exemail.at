@@ -35,14 +35,17 @@ jobs:
 
       - run: node tools/optimize-images.mjs
 
+      # Erst stagen, dann pruefen: `git diff` allein sieht neue,
+      # ungetrackte Dateien nicht — genau daran sind die erzeugten
+      # Ableitungen beim ersten Lauf verloren gegangen.
       - name: Ergebnisse committen
         run: |
-          if git diff --quiet -- assets/img; then
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/img
+          if git diff --cached --quiet; then
             echo "Keine neuen Ableitungen."
             exit 0
           fi
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/img
           git commit -m "chore(assets): Bildableitungen neu erzeugt"
           git push
