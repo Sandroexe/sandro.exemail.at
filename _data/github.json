@@ -1,6 +1,130 @@
 {
-  "generated_at": null,
+  "generated_at": "2026-09-09T12:37:18.296Z",
   "username": "Sandroexe",
-  "stats": { "public_repos": 0, "total_stars": 0, "languages": [] },
-  "repos": []
+  "stats": {
+    "public_repos": 7,
+    "total_stars": 0,
+    "languages": [
+      {
+        "name": "HTML",
+        "count": 2
+      },
+      {
+        "name": "Python",
+        "count": 2
+      },
+      {
+        "name": "Shell",
+        "count": 2
+      }
+    ]
+  },
+  "repos": [
+    {
+      "name": "sandro.exemail.at",
+      "full_name": "Sandroexe/sandro.exemail.at",
+      "description": "",
+      "html_url": "https://github.com/Sandroexe/sandro.exemail.at",
+      "homepage": "http://sandro.exemail.at/",
+      "language": "HTML",
+      "topics": [],
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-09-09T12:37:05Z",
+      "created_at": "2026-02-24T19:50:19Z",
+      "featured": false
+    },
+    {
+      "name": "Schach",
+      "full_name": "Sandroexe/Schach",
+      "description": "Softwarentwicklungs-Projekt (Scrum) an der HTL-Anichstraße",
+      "html_url": "https://github.com/Sandroexe/Schach",
+      "homepage": "https://htlinn.ac.at/ausbildung/elektronik-technische-informatik/hoehere-abteilung",
+      "language": "Python",
+      "topics": [
+        "linux",
+        "macos",
+        "python",
+        "schach",
+        "shell-script",
+        "sockets",
+        "windows"
+      ],
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-06-17T09:31:00Z",
+      "created_at": "2026-04-08T09:57:26Z",
+      "featured": false
+    },
+    {
+      "name": "exenberger-it-services.exemail.at",
+      "full_name": "Sandroexe/exenberger-it-services.exemail.at",
+      "description": "",
+      "html_url": "https://github.com/Sandroexe/exenberger-it-services.exemail.at",
+      "homepage": "http://exenberger-it-services.exemail.at/",
+      "language": "HTML",
+      "topics": [],
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-05-13T07:02:02Z",
+      "created_at": "2026-05-04T09:51:43Z",
+      "featured": false
+    },
+    {
+      "name": "Homelab",
+      "full_name": "Sandroexe/Homelab",
+      "description": "",
+      "html_url": "https://github.com/Sandroexe/Homelab",
+      "homepage": "",
+      "language": "",
+      "topics": [],
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-04-29T16:42:18Z",
+      "created_at": "2026-04-28T10:47:58Z",
+      "featured": false
+    },
+    {
+      "name": "system-setup",
+      "full_name": "Sandroexe/system-setup",
+      "description": "",
+      "html_url": "https://github.com/Sandroexe/system-setup",
+      "homepage": "",
+      "language": "Shell",
+      "topics": [],
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-03-05T10:23:18Z",
+      "created_at": "2026-03-05T09:46:20Z",
+      "featured": false
+    },
+    {
+      "name": "network-scanner",
+      "full_name": "Sandroexe/network-scanner",
+      "description": "",
+      "html_url": "https://github.com/Sandroexe/network-scanner",
+      "homepage": "",
+      "language": "Python",
+      "topics": [],
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-02-27T15:52:50Z",
+      "created_at": "2026-02-27T11:14:21Z",
+      "featured": false
+    },
+    {
+      "name": "dotfiles",
+      "full_name": "Sandroexe/dotfiles",
+      "description": "",
+      "html_url": "https://github.com/Sandroexe/dotfiles",
+      "homepage": "",
+      "language": "Shell",
+      "topics": [],
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "pushed_at": "2026-02-26T23:15:58Z",
+      "created_at": "2026-02-26T22:56:54Z",
+      "featured": false
+    }
+  ]
 }
