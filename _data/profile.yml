@@ -25,7 +25,14 @@ country_en: "Austria"
 birth_year: ""
 
 photo:
+  # `fallback` ist das Original im Repo und wird immer ausgeliefert.
+  # `src` ist der Namensstamm der optimierten Ableitungen, die der
+  # Workflow optimize-images.yml erzeugt. Solange die fehlen, greift
+  # _includes/img.html auf `fallback` zurück.
+  fallback: "/profile.jpg"
   src: "/assets/img/profile"
+  width: 2203
+  height: 2203
   alt: "Porträtfoto von Sandro Exenberger"
   alt_en: "Portrait photo of Sandro Exenberger"
   widths: [240, 480, 720]

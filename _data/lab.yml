@@ -20,7 +20,10 @@ intro_en: >-
   coding, thanks to its optimised BORE/EEVDF kernel.
 
 photo:
+  fallback: "/pc-setup.jpg"
   src: "/assets/img/pc-setup"
+  width: 5792
+  height: 4344
   alt: "Der Arbeitsplatz mit dem selbst zusammengestellten Rechner"
   alt_en: "The desk with the self-built PC"
   widths: [640, 1024, 1600]
