@@ -1,0 +1,7 @@
+---
+# Wird aus _data/i18n/*.yml erzeugt. Holt sich site.js nur dann, wenn
+# jemand tatsächlich auf Englisch umschaltet — deutsche Besucher laden
+# diese Datei nie.
+layout: null
+---
+{{ site.data.i18n | jsonify }}
