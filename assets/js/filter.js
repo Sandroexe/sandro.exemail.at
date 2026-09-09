@@ -28,12 +28,15 @@
     var langs = {};
     cards.forEach(function (c) {
       var l = c.getAttribute('data-lang');
-      if (l) langs[l] = true;
+      /* Beschriftung in Original-Schreibweise, damit "HTML" nicht als
+         "Html" erscheint. Der Wert bleibt kleingeschrieben, weil danach
+         verglichen wird. */
+      if (l) langs[l] = c.getAttribute('data-lang-label') || l;
     });
     Object.keys(langs).sort().forEach(function (l) {
       var opt = document.createElement('option');
       opt.value = l;
-      opt.textContent = l.charAt(0).toUpperCase() + l.slice(1);
+      opt.textContent = langs[l];
       langSel.appendChild(opt);
     });
   }

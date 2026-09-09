@@ -59,6 +59,8 @@
 <article class="pcard{% if featured %} pcard--featured{% endif %}"
          data-kind="{{ kind }}"
          data-lang="{{ lang | default: '' | downcase }}"
+         {%- comment -%} Original-Schreibweise mitgeben, sonst steht im Filter "Html" statt "HTML". {%- endcomment -%}
+         data-lang-label="{{ lang | default: '' }}"
          data-stars="{{ r.stargazers_count | default: 0 }}"
          data-pushed="{{ r.pushed_at | default: '' }}"
          data-name="{{ title | downcase }}"
