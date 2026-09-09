@@ -32,4 +32,4 @@ features:
   # Auf true stellen, sobald optimize-images.yml einmal gelaufen ist
   # und die WebP/AVIF-Ableitungen unter assets/img/ im Repo liegen.
   # Vorher liefert _includes/img.html die Original-JPGs aus.
-  responsive_images: false
+  responsive_images: true
