@@ -1,0 +1,62 @@
+---
+permalink: /certificates/
+redirect_from:
+  - /certificates.html
+  - /zertifikate/
+title_key: certificates.title
+lead_key: certificates.lead
+title: Zertifikate
+---
+{%- comment -%}
+  Die Zahlen oben werden gerechnet, nicht gepflegt: ein neues
+  Zertifikat in certificates.yml verändert sie automatisch mit.
+{%- endcomment -%}
+{%- assign CERT = site.data.certificates -%}
+{%- assign today = 'now' | date: "%Y-%m" -%}
+
+{%- assign valid_count = 0 -%}
+{%- assign issuers = "" -%}
+{%- for c in CERT.items -%}
+  {%- if c.expires == nil or c.expires >= today -%}
+    {%- assign valid_count = valid_count | plus: 1 -%}
+  {%- endif -%}
+  {%- unless issuers contains c.issuer -%}
+    {%- assign issuers = issuers | append: c.issuer | append: "|" -%}
+  {%- endunless -%}
+{%- endfor -%}
+{%- assign issuer_count = issuers | split: "|" | size -%}
+
+<section>
+  <div class="shell">
+    <div class="statrow">
+      <div class="stat">
+        <p class="stat__num mono">{{ CERT.items | size }}</p>
+        <p class="stat__label">{% include t.html key="certificates.count" %}</p>
+      </div>
+      <div class="stat">
+        <p class="stat__num mono">{{ valid_count }}</p>
+        <p class="stat__label">{% include t.html key="certificates.active" %}</p>
+      </div>
+      <div class="stat">
+        <p class="stat__num mono">{{ issuer_count }}</p>
+        <p class="stat__label">{% include t.html key="certificates.issuers" %}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- for g in CERT.groups %}
+  {%- assign in_group = CERT.items | where: "group", g.id -%}
+  {%- if in_group.size > 0 %}
+<section class="reveal">
+  <div class="shell">
+    {% include section.html de=g.label en=g.label_en %}
+    <div class="certgrid">
+      {%- for c in in_group %}
+      {% include cert-card.html cert=c %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+  {%- endif %}
+{%- endfor %}

@@ -1,0 +1,33 @@
+---
+permalink: /Sandro_Exenberger.vcf
+layout: null
+---
+{%- comment -%}
+  Digitale Visitenkarte, vollständig aus profile.yml, contact.yml und
+  social.yml erzeugt. Ein neuer Social-Kanal mit show_in.vcard: true
+  landet automatisch mit darin.
+
+  Der Dateiname kommt aus contact.yml (vcard.filename) — steht er dort
+  anders, muss auch der permalink oben angepasst werden. Das ist die
+  einzige Stelle im Projekt, an der eine Angabe zweimal vorkommt, weil
+  Jekyll im Front Matter kein Liquid auswertet.
+{%- endcomment -%}
+{%- assign P = site.data.profile -%}
+{%- assign C = site.data.contact -%}
+{%- assign A = C.address -%}
+BEGIN:VCARD
+VERSION:3.0
+N:{{ P.family_name }};{{ P.given_name }};;;
+FN:{{ P.name }}
+TITLE:{{ C.vcard.title }}
+ORG:{{ C.vcard.organization }}
+EMAIL;TYPE=INTERNET,PREF:{{ C.email }}
+TEL;TYPE=CELL,VOICE:{{ C.phone.display }}
+{% if A.street contains "TODO" %}ADR;TYPE=HOME:;;;{{ A.city }};{{ A.region }};{{ A.zip }};{{ A.country }}
+{% else %}ADR;TYPE=HOME:;;{{ A.street }};{{ A.city }};{{ A.region }};{{ A.zip }};{{ A.country }}
+{% endif %}URL:{{ site.data.site.url }}/
+{% for ch in site.data.social.channels %}{% unless ch.url contains "TODO" %}{% if ch.show_in.vcard %}URL;TYPE={{ ch.name }}:{{ ch.url }}
+X-SOCIALPROFILE;TYPE={{ ch.id }}:{{ ch.url }}
+{% endif %}{% endunless %}{% endfor %}NOTE:{{ P.role }} — {{ P.location }}
+REV:{{ 'now' | date: "%Y%m%dT%H%M%SZ" }}
+END:VCARD

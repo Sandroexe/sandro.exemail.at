@@ -302,9 +302,9 @@ section{padding-block:var(--sp-xl)}
 .form__note{font-size:var(--fs-step--2);color:var(--c-ink-muted)}
 
 .qr{background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--r-md);padding:var(--sp-md);display:grid;gap:var(--sp-xs);justify-items:center;text-align:center}
-.qr svg{width:min(100%,12rem);height:auto}
-.qr rect{fill:var(--c-ink-strong)}
-.qr__bg{fill:var(--c-surface)}
+.qr__code{width:min(100%,12rem);height:auto}
+.qr__code path{fill:var(--c-ink-strong)}
+.qr__code .qr__bg{fill:var(--c-surface)}
 
 /* ── Fließtext auf Rechtsseiten ───────────────────────────────── */
 .prose{max-width:var(--ly-measure);padding-block:var(--sp-xl);font-size:var(--fs-step-0)}
@@ -321,10 +321,15 @@ section{padding-block:var(--sp-xl)}
 .datalist dd{margin:0}
 .todo{background:var(--c-accent-soft);color:var(--c-accent);border:1px dashed var(--c-accent);border-radius:var(--r-sm);padding:.1em .5em;font-family:var(--f-mono);font-size:var(--fs-step--2)}
 
+.prose--flush{padding-block:0}
+
 .callout{display:flex;gap:var(--sp-sm);align-items:flex-start;padding:var(--sp-md);border:1px solid var(--c-accent);border-radius:var(--r-md);background:var(--c-accent-soft);margin:var(--sp-lg) 0}
-.callout__icon{color:var(--c-accent);flex:none}
+.callout__icon{color:var(--c-accent);flex:none;margin-top:.2em}
+.callout__title{font-size:var(--fs-step-2)}
+.callout__action{margin-top:var(--sp-sm)}
 .callout p{margin:0}
-.callout a{color:var(--c-accent);font-weight:500}
+.callout p+p{margin-top:var(--sp-2xs)}
+.callout a:not(.btn){color:var(--c-accent);font-weight:500}
 
 /* ── Social-Impressum ─────────────────────────────────────────── */
 .discl{padding-block:var(--sp-lg);border-bottom:1px solid var(--c-line)}
@@ -399,3 +404,8 @@ section{padding-block:var(--sp-xl)}
   .prose{max-width:none}
   @page{margin:16mm}
 }
+
+/* Copy-Button: "Kopiert" erscheint erst nach dem Klick. */
+.copy-done{display:none}
+[data-copied="true"] .copy-idle{display:none}
+[data-copied="true"] .copy-done{display:inline}

@@ -1,0 +1,128 @@
+---
+layout: legal
+permalink: /impressum/social/
+title_key: social_imprint.title
+lead_key: social_imprint.lead
+title: Social-Media-Impressum
+---
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   Das Social-Media-Impressum. Genau diese URL gehört in die Bio jedes
+   Profils — kurz genug zum Abtippen, mobil gut lesbar.
+
+   Die Seite schreibt nichts selbst: Kontexte, Verantwortlichkeiten
+   und Blattlinien kommen aus social.yml, die Betreiberdaten aus
+   profile.yml und contact.yml. Ein neuer Kanal erscheint hier
+   automatisch, sobald er in social.yml steht und show_in.impressum
+   auf true gesetzt ist.
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+{%- assign P = site.data.profile -%}
+{%- assign C = site.data.contact -%}
+{%- assign A = C.address -%}
+{%- assign L = site.data.legal -%}
+{%- assign SOC = site.data.social -%}
+{%- assign here = site.data.site.url | append: "/impressum/social/" -%}
+
+{%- comment -%} ── Link zum Kopieren ────────────────────────────── {%- endcomment -%}
+<div class="copyrow">
+  <code class="copyrow__url">{{ site.data.site.domain }}/impressum/social/</code>
+  <button class="btn btn--ghost btn--sm" type="button" data-copy="{{ here }}">
+    {% include icon.html name="copy" size="15" %}
+    <span data-copy-label>
+      <span class="copy-idle">{% include t.html key="social_imprint.copy" %}</span>
+      <span class="copy-done">{% include t.html key="social_imprint.copied" %}</span>
+    </span>
+  </button>
+</div>
+
+{%- comment -%} ── Betreiber ────────────────────────────────────── {%- endcomment -%}
+<h2>{% include t.html key="legal.operator" %}</h2>
+<dl class="datalist">
+  <div>
+    <dt>{% include t.html de="Name" en="Name" %}</dt>
+    <dd>{{ P.name }}</dd>
+  </div>
+  <div>
+    <dt>{% include t.html de="Anschrift" en="Address" %}</dt>
+    <dd>
+      {%- if A.street contains "TODO" -%}
+        <span class="todo">{{ A.street }}</span>,
+      {%- else -%}
+        {{ A.street }},
+      {%- endif -%}
+      {{ A.zip }} {{ A.city }}, {% include t.html de=A.country en=A.country_en %}
+    </dd>
+  </div>
+  <div>
+    <dt>{% include t.html key="contact.email_label" %}</dt>
+    <dd><a href="mailto:{{ C.email }}">{{ C.email }}</a></dd>
+  </div>
+  <div>
+    <dt>{% include t.html key="contact.phone_label" %}</dt>
+    <dd><a href="tel:{{ C.phone.href }}">{{ C.phone.display }}</a></dd>
+  </div>
+</dl>
+
+<p>{% include t.html de=L.basis en=L.basis_en %}</p>
+
+{%- comment -%}
+  ── Ein Abschnitt je Kontext ──────────────────────────────────────
+  Kontexte ohne sichtbare Kanäle werden übersprungen, damit kein
+  leerer Abschnitt entsteht, solange ein Kanal noch ein TODO ist.
+{%- endcomment -%}
+{%- assign contexts = SOC.contexts | sort: "order" -%}
+{%- for ctx in contexts -%}
+
+  {%- assign visible = 0 -%}
+  {%- for ch in SOC.channels -%}
+    {%- if ch.context == ctx.id and ch.show_in.impressum -%}
+      {%- unless ch.url contains "TODO" -%}{%- assign visible = visible | plus: 1 -%}{%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if visible > 0 %}
+<section class="discl">
+  <h2 class="discl__name">{% include t.html de=ctx.name en=ctx.name_en %}</h2>
+
+  <h3>{% include t.html key="social_imprint.channels" %}</h3>
+  <div class="discl__channels">
+    {%- for ch in SOC.channels -%}
+      {%- if ch.context == ctx.id and ch.show_in.impressum -%}
+        {%- unless ch.url contains "TODO" %}
+    <div class="discl__channel" style="--brand:{{ ch.color }}">
+      {% include icon.html name=ch.icon size="18" %}
+      <strong>{{ ch.name }}</strong>
+      <a class="discl__handle" href="{{ ch.url }}" target="_blank" rel="noopener noreferrer">{{ ch.handle }}</a>
+      <span class="discl__type">{% include t.html de=ch.impressum.content_type en=ch.impressum.content_type_en %}</span>
+    </div>
+        {%- endunless -%}
+      {%- endif -%}
+    {%- endfor %}
+  </div>
+
+  <h3>{% include t.html key="social_imprint.responsible" %}</h3>
+  <p>
+    {%- if ctx.responsible contains "TODO" -%}
+      <span class="todo">{{ ctx.responsible }}</span>
+    {%- else -%}
+      {{ ctx.responsible }}
+    {%- endif -%}
+  </p>
+
+  <h3>{% include t.html key="social_imprint.subject" %}</h3>
+  <p>{% include t.html de=ctx.subject en=ctx.subject_en %}</p>
+
+  <h3>{% include t.html key="social_imprint.blattlinie" %}</h3>
+  <p>{% include t.html de=ctx.blattlinie en=ctx.blattlinie_en %}</p>
+</section>
+  {%- endif -%}
+{%- endfor %}
+
+{%- comment -%} ── Datenschutz und Rückverweis ──────────────────── {%- endcomment -%}
+<h2>{% include t.html key="nav.privacy" %}</h2>
+<p>{% include t.html de=L.privacy.intro en=L.privacy.intro_en %}</p>
+<p>
+  <a href="/datenschutz/">{% include t.html key="legal.to_privacy" %}</a> ·
+  <a href="/impressum/">{% include t.html key="legal.to_imprint" %}</a>
+</p>

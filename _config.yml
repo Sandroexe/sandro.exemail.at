@@ -14,6 +14,7 @@ description: "Portfolio von Sandro Exenberger — Elektronik, Netzwerktechnik (C
 # GitHub-Pages-Whitelist, keine eigenen Plugins.
 plugins:
   - jekyll-sitemap
+  - jekyll-redirect-from
 
 sass:
   sass_dir: _sass

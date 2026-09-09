@@ -1,0 +1,31 @@
+---
+layout: legal
+permalink: /datenschutz/
+redirect_from:
+  - /datenschutz.html
+  - /privacy/
+title_key: nav.privacy
+title: Datenschutz
+---
+{%- assign P = site.data.profile -%}
+{%- assign C = site.data.contact -%}
+{%- assign L = site.data.legal -%}
+
+<p>{% include t.html de=L.privacy.intro en=L.privacy.intro_en %}</p>
+
+<h2>{% include t.html key="legal.operator" %}</h2>
+<p>
+  {{ P.name }}, {{ C.address.zip }} {{ C.address.city }},
+  {% include t.html de=C.address.country en=C.address.country_en %} —
+  <a href="mailto:{{ C.email }}">{{ C.email }}</a>
+</p>
+
+{%- for s in L.privacy.sections %}
+<h2>{% include t.html de=s.title en=s.title_en %}</h2>
+<p>{% include t.html de=s.body en=s.body_en %}</p>
+{%- if s.link %}
+<p><a href="{{ s.link.url }}" target="_blank" rel="noopener noreferrer">{% include t.html de=s.link.label en=s.link.label_en %}</a></p>
+{%- endif %}
+{%- endfor %}
+
+<p><a href="/impressum/">{% include t.html key="legal.to_imprint" %}</a></p>

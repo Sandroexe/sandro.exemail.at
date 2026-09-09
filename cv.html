@@ -1,0 +1,62 @@
+---
+permalink: /cv/
+redirect_from:
+  - /cv.html
+  - /lebenslauf/
+title_key: cv.title
+lead_key: cv.lead
+title: Lebenslauf
+---
+{%- comment -%}
+  Diese Seite IST der Lebenslauf-Download. Das Druck-Stylesheet in
+  main.css macht daraus ein sauberes PDF — deshalb gibt es keine
+  zweite PDF-Datei, die von cv.yml abweichen könnte.
+{%- endcomment -%}
+{%- assign CV = site.data.cv -%}
+
+<section>
+  <div class="shell">
+    <p>
+      <button class="btn btn--ghost" type="button" data-print>
+        {% include icon.html name="print" size="16" %}{% include t.html key="cv.print" %}
+      </button>
+    </p>
+
+    {% include section.html key="cv.education" id="ausbildung" %}
+    {% include timeline.html entries=CV.education %}
+  </div>
+</section>
+
+<section>
+  <div class="shell">
+    {% include section.html key="cv.experience" id="beruf" %}
+    {% include timeline.html entries=CV.experience %}
+  </div>
+</section>
+
+<section>
+  <div class="shell">
+    {% include section.html key="cv.languages" %}
+    <dl class="datalist">
+      {%- for l in CV.languages %}
+      {%- unless l.level contains "TODO" %}
+      <div>
+        <dt>{% include t.html de=l.name en=l.name_en %}</dt>
+        <dd>{% include t.html de=l.level en=l.level_en %}</dd>
+      </div>
+      {%- endunless %}
+      {%- endfor %}
+    </dl>
+  </div>
+</section>
+
+<section>
+  <div class="shell">
+    {% include section.html key="cv.interests" %}
+    <ul class="chips" role="list">
+      {%- for i in CV.interests %}
+      <li class="chip">{% include t.html de=i.label en=i.label_en %}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>

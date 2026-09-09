@@ -1,0 +1,48 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════
+   hero-network.html — das Hero-Element.
+
+   Ein Netzwerkdiagramm, wie man es in einer Netzplanung zeichnet:
+   Knoten, Kanten, und drei Pakete, die die Kanten entlanglaufen.
+   Reiner Vektor, rund 3 KB, keine Bibliothek — das Gegenstück zum
+   alten Three.js-Aufbau, der allein 600 KB von einem CDN nachlud.
+
+   Die Knoten sind zugleich der zweite Auslöser für das Easter Egg
+   (fünf Klicks). Die Farben kommen über CSS aus design.yml.
+  ═══════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+<svg class="netdiagram" viewBox="0 0 640 180" role="img"
+     aria-label="{% include t-plain.html de='Schematische Darstellung eines Netzwerks aus verbundenen Knoten' en='Schematic diagram of a network of connected nodes' %}">
+  <g class="edges">
+    <path class="edge" id="e1" d="M40 90 L170 40"/>
+    <path class="edge" d="M40 90 L170 140"/>
+    <path class="edge" d="M170 40 L320 40"/>
+    <path class="edge" d="M170 140 L320 140"/>
+    <path class="edge" d="M170 40 L320 140"/>
+    <path class="edge" d="M170 140 L320 40"/>
+    <path class="edge" id="e2" d="M320 40 L470 90"/>
+    <path class="edge" d="M320 140 L470 90"/>
+    <path class="edge" id="e3" d="M470 90 L600 90"/>
+  </g>
+
+  <g class="nodes">
+    <circle class="node" cx="40"  cy="90"  r="7"/>
+    <circle class="node" cx="170" cy="40"  r="6"/>
+    <circle class="node" cx="170" cy="140" r="6"/>
+    <circle class="node" cx="320" cy="40"  r="6"/>
+    <circle class="node" cx="320" cy="140" r="6"/>
+    <circle class="node" cx="470" cy="90"  r="6"/>
+    <circle class="node" cx="600" cy="90"  r="9"/>
+  </g>
+
+  <g class="labels">
+    <text class="label" x="40"  y="118" text-anchor="middle">edge</text>
+    <text class="label" x="320" y="20"  text-anchor="middle">switch</text>
+    <text class="label" x="470" y="118" text-anchor="middle">router</text>
+    <text class="label" x="600" y="118" text-anchor="middle">home</text>
+  </g>
+
+  <circle class="packet" r="2.5" style="offset-path:path('M40 90 L170 40')"/>
+  <circle class="packet" r="2.5" style="offset-path:path('M320 40 L470 90')"/>
+  <circle class="packet" r="2.5" style="offset-path:path('M470 90 L600 90')"/>
+</svg>

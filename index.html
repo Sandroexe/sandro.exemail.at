@@ -1,0 +1,124 @@
+---
+layout: base
+scripts: [egg.js]
+---
+{%- comment -%}
+  Startseite. Kein eigener Text, kein eigenes CSS — alles kommt aus
+  _data und den Includes. Wer etwas ändern will, ändert die YAML.
+{%- endcomment -%}
+{%- assign P = site.data.profile -%}
+{%- assign S = site.data.site -%}
+
+<section class="hero">
+  <div class="shell hero__grid">
+    <div>
+      <p class="hero__eyebrow">{% include t.html de=P.role en=P.role_en %}</p>
+      <h1 class="hero__name">{{ P.name }}</h1>
+      <p class="hero__role">{% include t.html de=P.headline en=P.headline_en %}</p>
+      <p class="hero__bio">{% include t.html de=P.bio_short en=P.bio_short_en %}</p>
+
+      <div class="hero__actions">
+        <a class="btn btn--accent btn--lg" href="/contact/">
+          {% include t.html key="home.cta_button" %}{% include icon.html name="arrow-right" size="18" %}
+        </a>
+        <a class="btn btn--ghost btn--lg" href="/projects/">
+          {% include t.html key="nav.projects" %}
+        </a>
+      </div>
+
+      <p class="hero__status">
+        <span class="hero__dot" aria-hidden="true"></span>
+        {% include t.html de=P.status en=P.status_en %}
+      </p>
+    </div>
+
+    <div class="hero__portrait">
+      <img src="{{ P.photo.src }}-480.webp"
+           srcset="{% for w in P.photo.widths %}{{ P.photo.src }}-{{ w }}.webp {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}"
+           sizes="(min-width: {{ site.data.design.breakpoint.md }}) 30vw, 80vw"
+           width="480" height="600" fetchpriority="high"
+           alt="{% include t-plain.html de=P.photo.alt en=P.photo.alt_en %}">
+    </div>
+  </div>
+
+  <div class="shell">{% include hero-network.html %}</div>
+</section>
+
+{%- comment -%} ── Über mich ────────────────────────────────────── {%- endcomment -%}
+<section class="reveal">
+  <div class="shell">
+    {% include section.html key="home.intro" id="ueber-mich" %}
+    <div class="prose prose--flush">
+      {%- for para in P.bio_long %}
+      <p>{% include t.html de=para en=P.bio_long_en[forloop.index0] %}</p>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ── Tech-Stack ───────────────────────────────────── {%- endcomment -%}
+<section>
+  <div class="shell">
+    {% include section.html key="home.skills" note_key="home.skills_note" id="skills" %}
+    <div class="skills">
+      {%- for s in P.skills %}
+      <div class="skill">
+        <div class="skill__row">
+          <span class="skill__label">{% include t.html de=s.label en=s.label_en %}</span>
+          <span class="skill__rating">{% include t.html de=s.rating en=s.rating_en %}</span>
+        </div>
+        <div class="skill__track" role="meter" aria-valuenow="{{ s.level }}" aria-valuemin="0" aria-valuemax="100"
+             aria-label="{% include t-plain.html de=s.label en=s.label_en %}">
+          <div class="skill__fill" style="--level:{{ s.level }}%"></div>
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ── Ausgewählte Projekte ─────────────────────────── {%- endcomment -%}
+<section class="reveal">
+  <div class="shell">
+    {% include section.html key="home.featured" link_url="/projects/" link_key="home.featured_all" %}
+    {% include project-grid.html featured=true %}
+  </div>
+</section>
+
+{%- comment -%} ── Werdegang in Kurzform ────────────────────────── {%- endcomment -%}
+<section class="reveal">
+  <div class="shell">
+    {% include section.html key="home.cv_teaser" link_url="/cv/" link_key="home.cv_all" %}
+    {% include timeline.html entries=site.data.cv.experience limit=3 compact=true %}
+  </div>
+</section>
+
+{%- comment -%} ── Zertifikate in Kurzform ──────────────────────── {%- endcomment -%}
+<section class="reveal">
+  <div class="shell">
+    {% include section.html key="home.certs_teaser" link_url="/certificates/" link_key="home.certs_all" %}
+    <div class="certgrid">
+      {%- for c in site.data.certificates.items limit: 3 %}
+      {% include cert-card.html cert=c %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ── Kontakt-Aufruf ───────────────────────────────── {%- endcomment -%}
+<section class="reveal">
+  <div class="shell">
+    <div class="callout">
+      {% include icon.html name="mail" class="callout__icon" size="24" %}
+      <div>
+        <h2 class="callout__title">{% include t.html key="home.cta_title" %}</h2>
+        <p>{% include t.html key="home.cta_text" %}</p>
+        <p class="callout__action">
+          <a class="btn btn--accent" href="/contact/">
+            {% include t.html key="home.cta_button" %}{% include icon.html name="arrow-right" size="16" %}
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
