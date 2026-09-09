@@ -50,7 +50,8 @@
         {%- if e.highlights %}
         <ul class="timeline__highlights" role="list">
           {%- for h in e.highlights %}
-          <li>{% include t.html de=h en=e.highlights_en[forloop.index0] %}</li>
+          {%- assign h_en = e.highlights_en[forloop.index0] -%}
+          <li>{% include t.html de=h en=h_en %}</li>
           {%- endfor %}
         </ul>
         {%- endif %}

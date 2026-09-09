@@ -33,8 +33,7 @@ scripts: [egg.js]
     </div>
 
     <div class="hero__portrait">
-      {% include img.html photo=P.photo priority=true
-                 sizes="(min-width: 768px) 30vw, 80vw" %}
+      {% include img.html photo=P.photo priority=true sizes="(min-width: 768px) 30vw, 80vw" %}
     </div>
   </div>
 
@@ -47,7 +46,9 @@ scripts: [egg.js]
     {% include section.html key="home.intro" id="ueber-mich" %}
     <div class="prose prose--flush">
       {%- for para in P.bio_long %}
-      <p>{% include t.html de=para en=P.bio_long_en[forloop.index0] %}</p>
+      {%- comment -%} Jekylls include-Tag erlaubt keinen Klammer-Index im Parameter. {%- endcomment -%}
+      {%- assign para_en = P.bio_long_en[forloop.index0] -%}
+      <p>{% include t.html de=para en=para_en %}</p>
       {%- endfor %}
     </div>
   </div>
