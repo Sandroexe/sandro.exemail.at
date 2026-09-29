@@ -189,38 +189,21 @@ permalink: /datenschutz/
   für die Verarbeitung Ihrer Daten verantwortlich ist. Es gelten die
   Datenschutzbestimmungen der jeweiligen Plattform.
 </p>
+<p>
+  Wie ich Daten auf meinen Social-Media-Kanälen selbst verarbeite, steht für jeden Kanal
+  einzeln im <a href="{{ '/social-impressum/' | relative_url }}">Social-Media-Impressum</a>.
+</p>
 
 <h2 id="rechte">8. Ihre Rechte</h2>
 <p>Ihnen stehen hinsichtlich Ihrer personenbezogenen Daten grundsätzlich folgende Rechte zu:</p>
-<ul>
-  <li>Recht auf <strong>Auskunft</strong> (Art.&nbsp;15 DSGVO)</li>
-  <li>Recht auf <strong>Berichtigung</strong> (Art.&nbsp;16 DSGVO)</li>
-  <li>Recht auf <strong>Löschung</strong> (Art.&nbsp;17 DSGVO)</li>
-  <li>Recht auf <strong>Einschränkung der Verarbeitung</strong> (Art.&nbsp;18 DSGVO)</li>
-  <li>Recht auf <strong>Datenübertragbarkeit</strong> (Art.&nbsp;20 DSGVO)</li>
-  <li>Recht auf <strong>Widerspruch</strong> gegen Verarbeitungen, die auf Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO beruhen (Art.&nbsp;21 DSGVO)</li>
-</ul>
+{% include betroffenenrechte.html %}
 <p>
   Um diese Rechte auszuüben, genügt eine formlose Nachricht an die oben unter
   „Verantwortlicher“ genannten Kontaktdaten.
 </p>
 
 <h2 id="beschwerde">9. Beschwerderecht bei der Aufsichtsbehörde</h2>
-<p>
-  Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht
-  verstößt oder Ihre datenschutzrechtlichen Ansprüche sonst verletzt wurden, können Sie
-  sich bei der zuständigen Aufsichtsbehörde beschweren. In Österreich ist dies die:
-</p>
-<dl class="facts">
-  <dt>Behörde</dt>
-  <dd>{{ d.name }}</dd>
-  <dt>Anschrift</dt>
-  <dd>{{ d.adresse }}</dd>
-  <dt>E-Mail</dt>
-  <dd>{{ d.email }}</dd>
-  <dt>Website</dt>
-  <dd><a href="{{ d.website }}" target="_blank" rel="noopener noreferrer">{{ d.website | remove: "https://" }}</a></dd>
-</dl>
+{% include beschwerderecht.html %}
 
 <h2 id="sonstiges">10. Sonstiges</h2>
 <p>

@@ -2,6 +2,7 @@
   Offenlegung gemäß § 25 Mediengesetz – wird im Impressum UND im
   Social-Media-Impressum verwendet. Alle Daten aus _data/rechtliches.yml.
   Parameter: richtung – abweichende grundlegende Richtung (optional)
+             ebene   – Überschriftenebene für „Grundlegende Richtung“ (Standard 3)
 {%- endcomment -%}
 {%- assign _r = site.data.rechtliches -%}
 {%- assign _m = _r.medieninhaber -%}
@@ -37,6 +38,6 @@
   {%- endif %}
 </dl>
 {%- if _richtung and _richtung != "" %}
-<h3>Grundlegende Richtung</h3>
+<h{{ include.ebene | default: 3 }}>Grundlegende Richtung</h{{ include.ebene | default: 3 }}>
 <p>{{ _richtung }}</p>
 {%- endif %}

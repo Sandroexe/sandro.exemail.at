@@ -3,9 +3,12 @@
 # ╠══════════════════════════════════════════════════════════════════════════╣
 # ║  Was ist diese Datei?                                                    ║
 # ║    Alle Kontaktwege und Social-Media-Profile an EINER Stelle.            ║
-# ║    Daraus entstehen automatisch: die Icons im Header, Footer und auf     ║
-# ║    der Startseite, die Karten auf der Kontaktseite und die Kanal-Liste   ║
-# ║    im Social-Media-Impressum.                                            ║
+# ║    Daraus entstehen automatisch:                                         ║
+# ║      • die Icons im Header, Footer und auf der Startseite                ║
+# ║      • die Karten auf der Kontaktseite                                   ║
+# ║      • das Social-Media-Impressum: pro Kanal ein eigener Bereich mit     ║
+# ║        Offenlegung + Datenschutzhinweisen, eine eigene Unterseite        ║
+# ║        (z. B. /social-impressum/instagram/) und ein Sprung-Button        ║
 # ║                                                                          ║
 # ║  Was darf ich ändern?                                                    ║
 # ║    Alle Werte. Einträge hinzufügen, löschen oder mit "anzeigen: false"   ║
@@ -14,43 +17,62 @@
 # ║  Was sollte ich NICHT ändern?                                            ║
 # ║    Die Feldnamen (links vom Doppelpunkt) und bei "typ" nur die drei      ║
 # ║    erlaubten Werte verwenden: link, email, telefon.                      ║
+# ║    Die "id" eines Kanals NICHT mehr ändern, sobald der Impressum-Link    ║
+# ║    in einer Bio steht – sonst funktioniert der Link dort nicht mehr.     ║
 # ║                                                                          ║
 # ║  Spam-Schutz:                                                            ║
 # ║    E-Mail und Telefonnummer werden automatisch verschlüsselt in die      ║
 # ║    Seite geschrieben und erst im Browser lesbar gemacht. Du trägst sie   ║
 # ║    hier ganz normal ein.                                                 ║
 # ║                                                                          ║
-# ║  Beispiel – GitHub ergänzen:                                             ║
-# ║    - name: "GitHub"                                                      ║
-# ║      typ: "link"                                                         ║
-# ║      wert: "https://github.com/Sandroexe"                                ║
-# ║      icon: "github"                                                      ║
-# ║      ...                                                                 ║
+# ║  Neuer Kanal (z. B. GitHub, YouTube, TikTok)?                            ║
+# ║    → Vorlage ganz unten kopieren. Ein Block = alles (Buttons, Kontakt-   ║
+# ║      karte, Impressum, Datenschutz, Unterseite, Sprung-Button).          ║
 # ╚══════════════════════════════════════════════════════════════════════════╝
 #
 #  ERKLÄRUNG DER FELDER
 #  ─────────────────────────────────────────────────────────────────────────
+#  id            Kurzer, eindeutiger Name in Kleinbuchstaben ohne Leerzeichen,
+#                z. B. "instagram". Daraus entstehen die Impressum-Links:
+#                  sandro.exemail.at/social-impressum/instagram/   (Unterseite)
+#                  sandro.exemail.at/social-impressum/#instagram   (Sprungmarke)
 #  name          Anzeigename, z. B. "LinkedIn"
 #  typ           "link"    → normale Web-Adresse (https://…)
 #                "email"   → E-Mail-Adresse (wird zu einem mailto:-Link)
 #                "telefon" → Telefonnummer (wird zu einem tel:-Link)
 #  wert          Die Adresse, E-Mail oder Telefonnummer
 #                Telefonnummer bitte im internationalen Format: "+43 664 1234567"
-#  anzeigetext   Optional: was auf der Kontaktseite sichtbar steht,
-#                z. B. "@sandro.exenberger" (leer = "wert" wird angezeigt)
+#  anzeigetext   Optional: was sichtbar steht, z. B. "@sandro.exenberger"
+#                (leer = "wert" wird angezeigt). Beim Impressum = Kanalname/Handle.
 #  beschreibung  Kurzer Satz für die Karte auf der Kontaktseite
 #  icon          Dateiname des Icons in assets/icons/ (ohne ".svg")
-#  anzeigen      true = sichtbar, false = überall ausgeblendet
+#  anzeigen      true = Button/Karte sichtbar, false = überall ausgeblendet
+#                (das Impressum steuert "rechtliches → impressum_anzeigen")
 #  orte          Wo soll der Button erscheinen? Beliebig kombinierbar:
 #                header, footer, startseite, kontakt
-#  impressum     true = Kanal wird im Social-Media-Impressum aufgelistet
-#                (sinnvoll für alle Social-Media-Profile, nicht für E-Mail/Telefon)
-#  grundlegende_richtung
-#                Optional: Blattlinie NUR für diesen Kanal (leer = die
-#                allgemeine aus rechtliches.yml gilt)
-#  datenschutz_link
-#                Optional: Datenschutzerklärung der Plattform (wird im
-#                Social-Media-Impressum verlinkt)
+#
+#  rechtliches   NUR für Social-Media-Kanäle. Steuert das Social-Media-Impressum.
+#                Fehlt der Block → Kanal erscheint dort nicht (z. B. E-Mail).
+#    impressum_anzeigen          true = eigener Bereich + Unterseite, false = weg
+#    betreiber_name              Plattformbetreiber für Nutzer in der EU      (PFLICHT)
+#    betreiber_anschrift         Anschrift des Betreibers                     (PFLICHT)
+#    datenschutz_link_plattform  Datenschutzerklärung der Plattform           (PFLICHT)
+#    einstellungen_link_plattform  Datenschutz-Einstellungen der Plattform    (freiwillig)
+#    rechte_link_plattform       Wo man Betroffenenrechte direkt beim Betreiber
+#                                geltend macht (leer = Datenschutzerklärung)  (freiwillig)
+#    grundlegende_richtung       Blattlinie nur für diesen Kanal (leer = die
+#                                allgemeine aus rechtliches.yml)              (freiwillig)
+#    insights_genutzt            true = die Plattform zeigt dir Statistiken an
+#                                (z. B. Profilaufrufe, Business-/Creator-Konto)
+#    insights_bezeichnung        Wie heißen diese Statistiken? (wird angezeigt)
+#    insights_hinweis            Besonderheiten der Statistik (Freitext)
+#    gemeinsame_verantwortung    true = gemeinsame Verantwortlichkeit nach
+#                                Art. 26 DSGVO (nur bei Unternehmens-/Fanseiten
+#                                mit Seitenstatistik – NICHT bei persönlichen
+#                                Profilen, siehe RECHTLICHES.md)
+#    vereinbarung_link           Link zur Art.-26-Vereinbarung der Plattform
+#    drittland_text              Datenübermittlung in die USA: wer + Grundlage
+#    zusaetzliche_hinweise       Freitext, erscheint am Ende des Kanals       (freiwillig)
 
 
 # ═════════════════════════════ KONTAKTSEITE ════════════════════════════════
@@ -67,7 +89,8 @@ kontaktseite:
 
 kanaele:
 
-  - name: "E-Mail"
+  - id: "email"
+    name: "E-Mail"
     typ: "email"
     wert: "[BITTE AUSFÜLLEN]"
     anzeigetext: ""
@@ -75,11 +98,9 @@ kanaele:
     icon: "mail"
     anzeigen: true
     orte: [header, footer, startseite, kontakt]
-    impressum: false
-    grundlegende_richtung: ""
-    datenschutz_link: ""
 
-  - name: "Telefon"
+  - id: "telefon"
+    name: "Telefon"
     typ: "telefon"
     wert: "[BITTE AUSFÜLLEN]"
     anzeigetext: ""
@@ -87,14 +108,13 @@ kanaele:
     icon: "phone"
     anzeigen: true
     orte: [kontakt]
-    impressum: false
-    grundlegende_richtung: ""
-    datenschutz_link: ""
 
 
 # ═════════════════════════════ SOCIAL MEDIA ════════════════════════════════
 
-  - name: "LinkedIn"
+  # ─────────────────────────────── LINKEDIN ────────────────────────────────
+  - id: "linkedin"
+    name: "LinkedIn"
     typ: "link"
     wert: "[BITTE AUSFÜLLEN]"          # z. B. "https://www.linkedin.com/in/dein-profil/"
     anzeigetext: "Sandro Exenberger"
@@ -102,11 +122,38 @@ kanaele:
     icon: "linkedin"
     anzeigen: true
     orte: [header, footer, startseite, kontakt]
-    impressum: true
-    grundlegende_richtung: ""
-    datenschutz_link: "https://www.linkedin.com/legal/privacy-policy"
+    rechtliches:
+      impressum_anzeigen: true
+      betreiber_name: "LinkedIn Ireland Unlimited Company"
+      betreiber_anschrift: "Wilton Plaza, Wilton Place, Dublin 2, Irland"
+      datenschutz_link_plattform: "https://de.linkedin.com/legal/privacy-policy"
+      einstellungen_link_plattform: "https://www.linkedin.com/mypreferences/d/categories/privacy"
+      rechte_link_plattform: "https://www.linkedin.com/help/linkedin/ask/TSO-DPO"
+      grundlegende_richtung: >-
+        Berufliches Profil von Sandro Exenberger mit Informationen und Beiträgen
+        zu Ausbildung, beruflichem Werdegang, Netzwerktechnik und IT.
+      # LinkedIn zeigt jedem persönlichen Profil automatisch Statistiken an.
+      insights_genutzt: true
+      insights_bezeichnung: "Profil- und Beitragsstatistiken (z. B. Profilaufrufe, Impressionen, „Wer hat Ihr Profil angesehen“)"
+      insights_hinweis: >-
+        Je nach Ihren eigenen LinkedIn-Einstellungen kann mir LinkedIn anzeigen, dass
+        Sie mein Profil angesehen haben. Das steuern Sie selbst unter
+        „Einstellungen → Sichtbarkeit → Profilanzeigeoptionen“ (z. B. privater Modus).
+      # Persönliches Profil, keine LinkedIn-Unternehmensseite → false.
+      # Erst bei einer Unternehmensseite ("Page") auf true setzen und
+      # vereinbarung_link = "https://legal.linkedin.com/pages-joint-controller-addendum"
+      gemeinsame_verantwortung: false
+      vereinbarung_link: ""
+      drittland_text: >-
+        LinkedIn übermittelt Daten auch an die LinkedIn Corporation in den USA. Die
+        Übermittlung stützt sich auf das EU-US Data Privacy Framework
+        (Angemessenheitsbeschluss, Art. 45 DSGVO) sowie auf
+        Standardvertragsklauseln der EU-Kommission (Art. 46 DSGVO).
+      zusaetzliche_hinweise: ""
 
-  - name: "Instagram"
+  # ─────────────────────────────── INSTAGRAM ───────────────────────────────
+  - id: "instagram"
+    name: "Instagram"
     typ: "link"
     wert: "[BITTE AUSFÜLLEN]"          # z. B. "https://www.instagram.com/dein.name/"
     anzeigetext: "[BITTE AUSFÜLLEN]"   # z. B. "@dein.name"
@@ -114,14 +161,37 @@ kanaele:
     icon: "instagram"
     anzeigen: true
     orte: [header, footer, startseite, kontakt]
-    impressum: true
-    grundlegende_richtung: ""
-    datenschutz_link: "https://privacycenter.instagram.com/policy"
+    rechtliches:
+      impressum_anzeigen: true
+      betreiber_name: "Meta Platforms Ireland Limited"
+      betreiber_anschrift: "Merrion Road, Dublin 4, D04 X2K5, Irland"
+      datenschutz_link_plattform: "https://privacycenter.instagram.com/policy"
+      einstellungen_link_plattform: "https://accountscenter.instagram.com/"
+      rechte_link_plattform: "https://privacycenter.instagram.com/"
+      grundlegende_richtung: >-
+        Persönlicher Kanal von Sandro Exenberger mit Einblicken in Ausbildung,
+        Technik, Projekte und Alltag.
+      # Privates/persönliches Konto: keine Insights → false.
+      # Bei Umstellung auf ein "professionelles Konto" (Creator/Business)
+      # stellt Instagram Insights bereit → auf true setzen.
+      insights_genutzt: false
+      insights_bezeichnung: "Instagram Insights"
+      insights_hinweis: ""
+      gemeinsame_verantwortung: false
+      vereinbarung_link: ""
+      drittland_text: >-
+        Meta übermittelt Daten auch an die Meta Platforms, Inc. in den USA. Die
+        Übermittlung stützt sich auf das EU-US Data Privacy Framework
+        (Angemessenheitsbeschluss, Art. 45 DSGVO) sowie auf
+        Standardvertragsklauseln der EU-Kommission (Art. 46 DSGVO).
+      zusaetzliche_hinweise: ""
 
 
-# ─── Vorlage zum Kopieren (Raute + 1 Leerzeichen am Zeilenanfang entfernen) ─
+# ─── Vorlage zum Kopieren (nur die Raute # am Zeilenanfang entfernen) ──────
+#     Alle Werte unten sind Beispiele für GitHub – vor der Verwendung prüfen!
 #
-#  - name: "GitHub"
+#  - id: "github"
+#    name: "GitHub"
 #    typ: "link"
 #    wert: "https://github.com/Sandroexe"
 #    anzeigetext: "Sandroexe"
@@ -129,9 +199,22 @@ kanaele:
 #    icon: "github"
 #    anzeigen: true
 #    orte: [footer, startseite, kontakt]
-#    impressum: true
-#    grundlegende_richtung: ""
-#    datenschutz_link: "https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
+#    rechtliches:
+#      impressum_anzeigen: true
+#      betreiber_name: "GitHub B.V."
+#      betreiber_anschrift: "[BITTE AUSFÜLLEN: Anschrift aus der Datenschutzerklärung der Plattform]"
+#      datenschutz_link_plattform: "https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
+#      einstellungen_link_plattform: "https://github.com/settings/profile"
+#      rechte_link_plattform: ""
+#      grundlegende_richtung: ""
+#      insights_genutzt: false
+#      insights_bezeichnung: ""
+#      insights_hinweis: ""
+#      gemeinsame_verantwortung: false
+#      vereinbarung_link: ""
+#      drittland_text: >-
+#        [BITTE AUSFÜLLEN: Wer erhält Daten in den USA und auf welcher Grundlage?]
+#      zusaetzliche_hinweise: ""
 #
 #  Mitgelieferte Icons: mail, phone, linkedin, instagram, github, youtube,
 #  facebook, twitter, globe, message-circle

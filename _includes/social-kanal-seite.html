@@ -1,0 +1,11 @@
+{%- comment -%}
+  Inhalt einer Kanal-Unterseite /social-impressum/<id>/ – die Seite selbst
+  wird automatisch von _plugins/seiten-generator.rb erzeugt.
+{%- endcomment -%}
+{%- assign _kanal = site.data.social.kanaele | where: "id", page.kanal_id | first -%}
+<p>
+  Impressum und Datenschutzhinweise für meinen {{ _kanal.name }}-Kanal. Alle Kanäle auf einen
+  Blick: <a href="{{ '/social-impressum/' | relative_url }}">Social-Media-Impressum</a>.
+</p>
+{% include social-kanal.html kanal=_kanal ansicht="seite" %}
+{% include social-allgemein.html %}

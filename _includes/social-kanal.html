@@ -1,0 +1,205 @@
+{%- comment -%}
+  ═══════════════════════════════════════════════════════════════════════
+   Ein Kanal im Social-Media-Impressum: Kanal-Info, Offenlegung (§ 25
+   MedienG), ggf. § 5 ECG und Datenschutzhinweise.
+
+   Alle Texte stehen NUR hier und werden für jeden Kanal automatisch mit
+   dessen Werten aus _data/social.yml (Block "rechtliches") gefüllt.
+   Personendaten (Name, Ort, Kontakt) kommen aus _data/rechtliches.yml.
+
+   Parameter:
+     kanal    – Eintrag aus social.yml (Pflicht)
+     ansicht  – "akkordeon" (Übersichtsseite, aufklappbar) oder
+                "seite"     (eigene Unterseite /social-impressum/<id>/)
+  ═══════════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+{%- assign k = include.kanal -%}
+{%- assign kr = k.rechtliches -%}
+{%- assign r = site.data.rechtliches -%}
+{%- assign _handle = k.anzeigetext | default: k.wert -%}
+{%- assign _richtung = kr.grundlegende_richtung | default: r.social_impressum.grundlegende_richtung | default: r.grundlegende_richtung -%}
+{%- assign _unterseite = "/social-impressum/" | append: k.id | append: "/" -%}
+{%- assign _rechte_link = kr.rechte_link_plattform | default: kr.datenschutz_link_plattform -%}
+
+{%- capture _inhalt -%}
+  <h3>Kanal</h3>
+  <dl class="facts">
+    <dt>Plattform</dt>
+    <dd>{{ k.name }}</dd>
+    <dt>Kanal</dt>
+    <dd><a href="{{ k.wert | escape }}" target="_blank" rel="noopener noreferrer me">{{ _handle }}<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></dd>
+    <dt>Plattform&shy;betreiber (EU)</dt>
+    <dd>{{ kr.betreiber_name }}<br>{{ kr.betreiber_anschrift }}</dd>
+    {%- if include.ansicht != "seite" %}
+    <dt>Direktlink</dt>
+    <dd><a href="{{ _unterseite | relative_url }}">{{ _unterseite | absolute_url | remove: "https://" | remove: "http://" }}</a></dd>
+    {%- endif %}
+  </dl>
+
+  <h3>Impressum / Offenlegung</h3>
+  <p>Offenlegung gemäß § 25 Mediengesetz für den {{ k.name }}-Kanal <strong>{{ _handle }}</strong>:</p>
+  {% include offenlegung.html richtung=_richtung ebene=4 %}
+  {%- if r.modus == "unternehmen" %}
+  <h4>Angaben gemäß § 5 E-Commerce-Gesetz, § 14 UGB und § 63 Gewerbeordnung</h4>
+  {% include ecg-angaben.html %}
+  {%- else %}
+  {%- comment -%}
+    [RECHTLICH PRÜFEN] Einschätzung: Ein privater Kanal ohne wirtschaftliche
+    Tätigkeit ist kein "Dienst der Informationsgesellschaft" im Sinne des
+    ECG → keine Angaben nach § 5 ECG nötig.
+  {%- endcomment %}
+  <p>
+    Dieser Kanal wird privat und nicht zu wirtschaftlichen Zwecken betrieben. Angaben nach
+    § 5 E-Commerce-Gesetz sind daher nicht erforderlich.
+  </p>
+  {%- endif %}
+
+  <h3>Datenschutzhinweise für {{ k.name }}</h3>
+
+  <h4>Verantwortlichkeit</h4>
+  <p>
+    Für die Daten, die ich selbst über diesen Kanal verarbeite (siehe unten), bin ich
+    verantwortlich; meine Kontaktdaten stehen oben in der Offenlegung. Für alle
+    Verarbeitungen, die {{ k.name }} selbst durchführt – etwa beim Aufruf meines Profils,
+    für Werbung oder Analysen –, ist {{ kr.betreiber_name }} verantwortlich.
+  </p>
+
+  <h4>Welche Daten ich verarbeite</h4>
+  <p>Wenn Sie mit meinem Kanal interagieren, sehe und verarbeite ich:</p>
+  <ul>
+    <li>öffentliche Profilangaben (z.&nbsp;B. Name, Benutzername, Profilbild) von Personen, die mir folgen, mit mir vernetzt sind oder mit meinen Inhalten interagieren,</li>
+    <li>Kommentare, Reaktionen (z.&nbsp;B. „Gefällt mir“), Erwähnungen und geteilte Beiträge,</li>
+    <li>Direktnachrichten und die darin enthaltenen Angaben.</li>
+  </ul>
+  <p>
+    Ich exportiere diese Daten nicht, werte sie nicht mit fremden Werkzeugen aus und
+    erstelle keine Nutzerprofile.
+  </p>
+
+  <h4>Zweck und Rechtsgrundlage</h4>
+  <p>
+    Ich verarbeite diese Daten, um mit Ihnen zu kommunizieren, auf Nachrichten und
+    Kommentare zu antworten und meine Person, Ausbildung und Projekte darzustellen.
+    Rechtsgrundlage ist mein berechtigtes Interesse an dieser Kommunikation
+    (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO). Betrifft Ihre Nachricht die Anbahnung eines
+    Vertrags (z.&nbsp;B. Praktikum, Anstellung, Auftrag), ist Rechtsgrundlage
+    Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO.
+  </p>
+
+  <h4>Statistikfunktionen</h4>
+  {%- if kr.insights_genutzt %}
+  <p>
+    {{ k.name }} stellt mir automatisch Statistiken zur Verfügung:
+    {{ kr.insights_bezeichnung }}. Diese werden von {{ kr.betreiber_name }} erhoben und
+    berechnet; ich kann die Erhebung weder abschalten noch beeinflussen. Ich erhalte
+    überwiegend zusammengefasste Werte (z.&nbsp;B. Anzahl der Aufrufe oder Reichweite).
+  </p>
+  {%- if kr.insights_hinweis and kr.insights_hinweis != "" %}
+  <p>{{ kr.insights_hinweis }}</p>
+  {%- endif %}
+  {%- else %}
+  <p>
+    Ich nutze für diesen Kanal keine Statistikfunktionen (z.&nbsp;B. kein Business- oder
+    Creator-Konto mit Insights). Unabhängig davon erhebt {{ kr.betreiber_name }}
+    eigenständig Nutzungsdaten; darauf habe ich keinen Zugriff.
+  </p>
+  {%- endif %}
+
+  <h4>Gemeinsame Verantwortlichkeit (Art. 26 DSGVO)</h4>
+  {%- if kr.gemeinsame_verantwortung %}
+  <p>
+    Für die Verarbeitung von Daten zur Erstellung der Statistiken bin ich gemeinsam mit
+    {{ kr.betreiber_name }} verantwortlich (Art.&nbsp;26 DSGVO; vgl. EuGH, Urteil vom
+    5.&nbsp;Juni&nbsp;2018, C-210/16). Die Aufgabenverteilung ist in einer Vereinbarung geregelt;
+    {{ kr.betreiber_name }} übernimmt insbesondere die Erfüllung der Betroffenenrechte für
+    diese Daten.
+    {%- if kr.vereinbarung_link and kr.vereinbarung_link != "" %}
+    Die wesentlichen Inhalte finden Sie hier:
+    <a href="{{ kr.vereinbarung_link }}" target="_blank" rel="noopener noreferrer">Vereinbarung zur gemeinsamen Verantwortlichkeit<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>.
+    {%- endif %}
+  </p>
+  {%- else %}
+  {%- comment -%}
+    [RECHTLICH PRÜFEN] Einschätzung: Das Fanpage-Urteil (EuGH C-210/16) betraf
+    den Betreiber einer Unternehmens-/Fanseite, der Seitenstatistiken über
+    Parameter mitgestaltet. Bei einem persönlichen Profil ohne solche
+    Einflussmöglichkeit bestimmt der Profilinhaber weder Zwecke noch Mittel
+    der Plattform-Verarbeitung → keine gemeinsame Verantwortlichkeit.
+    LinkedIn bietet sein "Page Insights Joint Controller Addendum" auch
+    ausdrücklich nur für Unternehmensseiten ("Pages") an.
+  {%- endcomment %}
+  <p>
+    Bei diesem Kanal handelt es sich um ein <strong>persönliches Profil</strong>, nicht um
+    eine Unternehmens- oder Fanseite. Die Rechtsprechung zur gemeinsamen Verantwortlichkeit
+    (EuGH, Urteil vom 5.&nbsp;Juni&nbsp;2018, C-210/16 „Fanpage“) betrifft Seitenbetreiber, die
+    durch die Nutzung von Seitenstatistiken Zwecke und Mittel der Verarbeitung
+    mitbestimmen. Das ist hier nicht der Fall: Ich lege weder fest, welche Daten
+    {{ kr.betreiber_name }} erhebt, noch wie sie ausgewertet werden. Nach meiner
+    Einschätzung besteht daher keine gemeinsame Verantwortlichkeit nach Art.&nbsp;26 DSGVO;
+    für die Verarbeitung durch die Plattform ist allein {{ kr.betreiber_name }}
+    verantwortlich.
+  </p>
+  {%- endif %}
+
+  {%- if kr.drittland_text and kr.drittland_text != "" %}
+  <h4>Datenübermittlung in Drittländer</h4>
+  <p>{{ kr.drittland_text }}</p>
+  {%- endif %}
+
+  <h4>Speicherdauer</h4>
+  <p>
+    Nachrichten, Kommentare und Reaktionen bleiben auf {{ k.name }} gespeichert, bis Sie oder
+    ich sie löschen bzw. das jeweilige Konto gelöscht wird. Wie lange
+    {{ kr.betreiber_name }} Daten darüber hinaus speichert, liegt beim Betreiber; darauf
+    habe ich keinen Einfluss. Anfragen, die ich außerhalb der Plattform weiterbearbeite
+    (z.&nbsp;B. per E-Mail), lösche ich, sobald sie erledigt sind und keine gesetzlichen
+    Aufbewahrungspflichten entgegenstehen.
+  </p>
+
+  <h4>Ihre Rechte</h4>
+  <p>
+    Ihre Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit
+    und Widerspruch können Sie <strong>bei mir</strong> über die oben genannten Kontaktdaten
+    geltend machen – für die Daten, die ich selbst verarbeite. Für die Verarbeitung durch
+    die Plattform wenden Sie sich am besten <strong>direkt an {{ kr.betreiber_name }}</strong>,
+    da nur der Betreiber Zugriff auf diese Daten hat.
+  </p>
+  <ul>
+    <li><a href="{{ kr.datenschutz_link_plattform }}" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von {{ k.name }}<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></li>
+    {%- if kr.einstellungen_link_plattform and kr.einstellungen_link_plattform != "" %}
+    <li><a href="{{ kr.einstellungen_link_plattform }}" target="_blank" rel="noopener noreferrer">Datenschutz-Einstellungen bei {{ k.name }}<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></li>
+    {%- endif %}
+    {%- if _rechte_link != kr.datenschutz_link_plattform %}
+    <li><a href="{{ _rechte_link }}" target="_blank" rel="noopener noreferrer">Datenschutz-Anfrage direkt an {{ kr.betreiber_name }}<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></li>
+    {%- endif %}
+  </ul>
+
+  {%- if kr.zusaetzliche_hinweise and kr.zusaetzliche_hinweise != "" %}
+  <h4>Weitere Hinweise</h4>
+  <p>{{ kr.zusaetzliche_hinweise }}</p>
+  {%- endif %}
+{%- endcapture -%}
+
+{%- if include.ansicht == "seite" %}
+<section class="channel-page" aria-labelledby="kanal-{{ k.id }}-titel">
+  <header class="channel-page__head">
+    <span class="icon-badge">{% include icon.html name=k.icon %}</span>
+    <div>
+      <h2 id="kanal-{{ k.id }}-titel">{{ k.name }}</h2>
+      <p class="channel-section__handle">{{ _handle }}</p>
+    </div>
+  </header>
+  {{ _inhalt }}
+</section>
+{%- else %}
+<details class="channel-section" id="{{ k.id }}" data-kanal open>
+  <summary class="channel-section__summary">
+    <span class="icon-badge">{% include icon.html name=k.icon %}</span>
+    <h2 class="channel-section__title">{{ k.name }} <span class="channel-section__handle">{{ _handle }}</span></h2>
+    {% include icon.html name="arrow-right" klasse="channel-section__chevron" %}
+  </summary>
+  <div class="channel-section__body">
+    {{ _inhalt }}
+  </div>
+</details>
+{%- endif %}

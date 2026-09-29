@@ -1,61 +1,36 @@
 ---
-# Social-Media-Impressum – Diese Adresse (sandro.exemail.at/social-impressum)
-# gehört in die Bio/Info deiner Social-Media-Profile. Anleitung: README.md
-# Kanäle kommen aus _data/social.yml (impressum: true),
-# alle übrigen Angaben aus _data/rechtliches.yml.
+# Social-Media-Impressum – Übersicht aller Kanäle.
+# Alles kommt aus _data/social.yml (Block "rechtliches" je Kanal) und
+# _data/rechtliches.yml. Jeder Kanal bekommt zusätzlich automatisch eine
+# eigene Unterseite /social-impressum/<id>/ – DAS ist der Link für die Bio.
 layout: legal
 title: "Social-Media-Impressum"
-description: "Offenlegung gemäß § 25 Mediengesetz für die Social-Media-Kanäle von Sandro Exenberger."
+description: "Offenlegung gemäß § 25 Mediengesetz und Datenschutzhinweise für jeden Social-Media-Kanal von Sandro Exenberger."
 permalink: /social-impressum/
 ---
-{%- assign r = site.data.rechtliches -%}
-{%- assign si = r.social_impressum -%}
-{%- assign richtung = si.grundlegende_richtung | default: r.grundlegende_richtung -%}
+{%- assign si = site.data.rechtliches.social_impressum -%}
+{%- assign kanaele = site.data.social.kanaele | where_exp: "k", "k.rechtliches.impressum_anzeigen == true" -%}
 
 {%- if si.einleitung and si.einleitung != "" %}
 <p>{{ si.einleitung }}</p>
 {%- endif %}
 
-<h2>Gilt für folgende Kanäle</h2>
-{%- assign kanaele = site.data.social.kanaele | where_exp: "k", "k.impressum == true and k.anzeigen != false" %}
 {%- if kanaele.size > 0 %}
-<ul class="channel-list">
+<nav aria-label="Kanäle">
+  <ul class="channel-jump">
+    {%- for k in kanaele %}
+    <li><a class="channel-jump__link" href="#{{ k.id }}">{% include icon.html name=k.icon %}{{ k.name }}</a></li>
+    {%- endfor %}
+  </ul>
+</nav>
+
+<div class="channel-list-sections">
   {%- for k in kanaele %}
-  <li>
-    <span class="icon-badge">{% include icon.html name=k.icon %}</span>
-    <div>
-      <strong>{{ k.name }}</strong>:
-      <a href="{{ k.wert | escape }}" target="_blank" rel="noopener noreferrer me">{{ k.anzeigetext | default: k.wert }}<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>
-      {%- if k.grundlegende_richtung and k.grundlegende_richtung != "" %}
-      <p><em>Grundlegende Richtung dieses Kanals:</em> {{ k.grundlegende_richtung }}</p>
-      {%- endif %}
-    </div>
-  </li>
+  {% include social-kanal.html kanal=k ansicht="akkordeon" %}
   {%- endfor %}
-</ul>
+</div>
 {%- else %}
 <p>Derzeit sind keine Kanäle eingetragen.</p>
 {%- endif %}
 
-<h2>Offenlegung gemäß § 25 Mediengesetz</h2>
-{% include offenlegung.html richtung=richtung %}
-
-<h2>Datenschutz</h2>
-<p>
-  Informationen zur Verarbeitung personenbezogener Daten finden Sie in meiner
-  <a href="{{ '/datenschutz/' | relative_url }}">Datenschutzerklärung</a>.
-  Für die Datenverarbeitung auf den Plattformen selbst sind zusätzlich deren Betreiber
-  verantwortlich:
-</p>
-<ul>
-  {%- for k in kanaele %}
-  {%- if k.datenschutz_link and k.datenschutz_link != "" %}
-  <li><a href="{{ k.datenschutz_link }}" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von {{ k.name }}</a></li>
-  {%- endif %}
-  {%- endfor %}
-</ul>
-
-<p>
-  Das Impressum dieser Website finden Sie unter
-  <a href="{{ '/impressum/' | relative_url }}">{{ '/impressum/' | absolute_url | remove: "https://" | remove: "http://" }}</a>.
-</p>
+{% include social-allgemein.html %}

@@ -1167,3 +1167,164 @@
     color: var(--c-text-muted);
   }
 }
+
+// ═══ SOCIAL-MEDIA-IMPRESSUM (pro Kanal) ═══════════════════════════════════
+
+.prose .channel-jump,
+.channel-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+  list-style: none;
+
+  li + li {
+    margin-top: 0;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    background: var(--c-surface);
+    color: var(--c-text);
+    font-weight: var(--fw-medium);
+    text-decoration: none;
+    transition: border-color var(--tempo) ease, color var(--tempo) ease;
+
+    .icon {
+      color: var(--c-primary);
+    }
+
+    &:hover {
+      border-color: var(--c-primary);
+      color: var(--c-primary);
+    }
+  }
+}
+
+.channel-list-sections {
+  display: grid;
+  gap: 1rem;
+}
+
+.channel-section {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  box-shadow: var(--shadow);
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+
+  &__summary {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1.1rem 1.4rem;
+    cursor: pointer;
+    list-style: none;
+    border-radius: inherit;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--c-focus);
+      outline-offset: 3px;
+    }
+  }
+
+  // Überschrift in der Zusammenfassung (überschreibt .prose h2)
+  .channel-section__title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+  }
+
+  &__handle {
+    display: block;
+    margin-top: 0.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: var(--fw-normal);
+    letter-spacing: 0;
+    color: var(--c-text-muted);
+  }
+
+  &__chevron {
+    margin-left: auto;
+    color: var(--c-text-muted);
+    transform: rotate(90deg);
+    transition: transform var(--tempo) var(--ease);
+  }
+
+  &[open] &__chevron {
+    transform: rotate(-90deg);
+  }
+
+  &__body {
+    padding: 0 1.4rem 1.4rem;
+    border-top: 1px solid var(--c-border);
+
+    > h3:first-child {
+      margin-top: 1.25rem;
+    }
+  }
+
+  // Kurzes Aufleuchten nach Aufruf über einen Direktlink
+  &.is-highlighted {
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 4px var(--c-primary-soft), var(--shadow-hover);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .channel-section.is-highlighted {
+    animation: aufleuchten 1.8s var(--ease);
+  }
+}
+
+@keyframes aufleuchten {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c-primary) 55%, transparent); }
+  40% { box-shadow: 0 0 0 10px var(--c-primary-soft); }
+  100% { box-shadow: 0 0 0 4px var(--c-primary-soft), var(--shadow-hover); }
+}
+
+.channel-page__head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 2rem;
+
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .channel-section__handle {
+    margin: 0;
+  }
+}
+
+.channel-general {
+  margin-top: 3rem;
+}
+
+.prose h4 {
+  margin: 1.4rem 0 0.4rem;
+  font-size: 1rem;
+}
+
+@media print {
+  .channel-jump {
+    display: none;
+  }
+
+  .channel-section__chevron {
+    display: none;
+  }
+}

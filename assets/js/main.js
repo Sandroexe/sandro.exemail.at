@@ -9,6 +9,7 @@
  *  5. Scroll-Einblendungen
  *  6. Lebenslauf drucken / als PDF speichern
  *  7. Zertifikate: Filter & Detailansicht
+ *  8. Social-Media-Impressum: Kanal per Direktlink öffnen & hervorheben
  * ═══════════════════════════════════════════════════════════════════════
  */
 (function () {
@@ -233,6 +234,43 @@
     });
   }
 
+  /* ─── 8. Social-Media-Impressum ───────────────────────────────────── */
+  // Ohne JavaScript sind alle Kanäle aufgeklappt. Mit JavaScript bleibt nur
+  // der per Direktlink (#instagram …) angesprungene Kanal offen.
+
+  function initChannelSections() {
+    var sections = document.querySelectorAll("details[data-kanal]");
+    if (!sections.length) return;
+
+    function target() {
+      var id = decodeURIComponent(window.location.hash.slice(1));
+      var el = id ? document.getElementById(id) : null;
+      return el && el.hasAttribute("data-kanal") ? el : null;
+    }
+
+    function focusChannel(section) {
+      section.open = true;
+      section.classList.remove("is-highlighted");
+      void section.offsetWidth; // Animation neu starten
+      section.classList.add("is-highlighted");
+      section.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
+      window.setTimeout(function () {
+        section.classList.remove("is-highlighted");
+      }, 2500);
+    }
+
+    var initial = target();
+    sections.forEach(function (section) {
+      if (section !== initial) section.open = false;
+    });
+    if (initial) focusChannel(initial);
+
+    window.addEventListener("hashchange", function () {
+      var section = target();
+      if (section) focusChannel(section);
+    });
+  }
+
   /* ─── Start ───────────────────────────────────────────────────────── */
 
   initThemeToggle();
@@ -243,4 +281,5 @@
   initPrint();
   initCertificateFilter();
   initDialogs();
+  initChannelSections();
 })();

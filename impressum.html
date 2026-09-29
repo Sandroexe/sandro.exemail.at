@@ -13,62 +13,7 @@ permalink: /impressum/
 
 {%- if r.modus == "unternehmen" %}
 <h2>Angaben gemäß § 5 E-Commerce-Gesetz, § 14 UGB und § 63 Gewerbeordnung</h2>
-<dl class="facts">
-  <dt>Unternehmen</dt>
-  <dd>{{ u.firmenname }}</dd>
-  {%- if u.rechtsform != "" %}
-  <dt>Rechtsform</dt>
-  <dd>{{ u.rechtsform }}</dd>
-  {%- endif %}
-  <dt>Inhaber</dt>
-  <dd>{{ m.name }}</dd>
-  <dt>Anschrift</dt>
-  <dd>{% if m.strasse != "" %}{{ m.strasse }}<br>{% endif %}{{ m.plz }} {{ m.ort }}, {{ m.land }}</dd>
-  {%- if u.unternehmensgegenstand != "" %}
-  <dt>Unternehmensgegenstand</dt>
-  <dd>{{ u.unternehmensgegenstand }}</dd>
-  {%- endif %}
-  {%- if email and email.wert != "" %}
-  <dt>E-Mail</dt>
-  <dd>{% include kontakt-link.html kanal=email %}</dd>
-  {%- endif %}
-  {%- if tel and tel.wert != "" %}
-  <dt>Telefon</dt>
-  <dd>{% include kontakt-link.html kanal=tel %}</dd>
-  {%- endif %}
-  {%- if u.uid != "" %}
-  <dt>UID-Nummer</dt>
-  <dd>{{ u.uid }}</dd>
-  {%- endif %}
-  {%- if u.gisa != "" %}
-  <dt>GISA-Zahl</dt>
-  <dd>{{ u.gisa }}</dd>
-  {%- endif %}
-  {%- if u.firmenbuchnummer != "" %}
-  <dt>Firmenbuchnummer</dt>
-  <dd>{{ u.firmenbuchnummer }}</dd>
-  {%- endif %}
-  {%- if u.firmenbuchgericht != "" %}
-  <dt>Firmenbuchgericht</dt>
-  <dd>{{ u.firmenbuchgericht }}</dd>
-  {%- endif %}
-  {%- if u.gewerbe != "" %}
-  <dt>Gewerbe</dt>
-  <dd>{{ u.gewerbe }}{% if u.verleihungsstaat != "" %} (Berufsbezeichnung verliehen in {{ u.verleihungsstaat }}){% endif %}</dd>
-  {%- endif %}
-  {%- if u.gewerbebehoerde != "" %}
-  <dt>Gewerbebehörde</dt>
-  <dd>{{ u.gewerbebehoerde }}</dd>
-  {%- endif %}
-  {%- if u.kammer != "" %}
-  <dt>Kammer&shy;zugehörigkeit</dt>
-  <dd>{{ u.kammer }}{% if u.fachgruppe != "" %}, {{ u.fachgruppe }}{% endif %}</dd>
-  {%- endif %}
-  {%- if u.rechtsvorschriften != "" %}
-  <dt>Rechts&shy;vorschriften</dt>
-  <dd>{{ u.rechtsvorschriften }}{% if u.rechtsvorschriften_link != "" %} – abrufbar unter <a href="{{ u.rechtsvorschriften_link }}" target="_blank" rel="noopener noreferrer">{{ u.rechtsvorschriften_link | remove: "https://" }}</a>{% endif %}</dd>
-  {%- endif %}
-</dl>
+{% include ecg-angaben.html %}
 {%- endif %}
 
 <h2>Offenlegung gemäß § 25 Mediengesetz</h2>

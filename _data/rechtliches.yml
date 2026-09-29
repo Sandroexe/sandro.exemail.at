@@ -141,10 +141,13 @@ datenschutzbehoerde:
 social_impressum:
   # Einleitungssatz der Seite
   einleitung: >-
-    Diese Offenlegung gilt für die unten aufgeführten Social-Media-Kanäle
-    von Sandro Exenberger.
+    Impressum und Datenschutzhinweise für meine Social-Media-Kanäle. Jeder Kanal
+    hat einen eigenen Bereich – ein Klick auf den Namen klappt ihn auf.
   # (O) Blattlinie für ALLE Kanäle gemeinsam. Leer = die allgemeine von oben.
-  #     Pro Kanal abweichend? → in social.yml bei "grundlegende_richtung".
+  #     Pro Kanal abweichend? → in social.yml beim Kanal unter
+  #     rechtliches → grundlegende_richtung.
+  #     Alle weiteren Angaben pro Kanal (Betreiber, Datenschutz, Statistik …)
+  #     stehen ebenfalls in social.yml im Block "rechtliches".
   grundlegende_richtung: >-
     Persönliche Social-Media-Kanäle mit Einblicken in Ausbildung, beruflichen
     Werdegang, Technik und Alltag von Sandro Exenberger.

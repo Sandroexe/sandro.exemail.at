@@ -45,6 +45,9 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 | Footer-Text oder Footer-Links ändern               | `_data/footer.yml`            | TEXTE / LINKS                              |
 | Impressum- oder Datenschutz-Angaben ändern         | `_data/rechtliches.yml`       | MEDIENINHABER usw.                         |
 | auf „Unternehmen" umschalten                       | `_data/rechtliches.yml`       | MODUS → `modus: "unternehmen"`             |
+| Social-Media-Impressum eines Kanals ändern         | `_data/social.yml`            | beim Kanal → Block `rechtliches`           |
+| alte Adresse auf eine neue umleiten                | `_data/weiterleitungen.yml`   | WEITERLEITUNGEN                            |
+| QR-Linkseite `/links/` anpassen                    | `_data/linkseite.yml`         | (Links selbst: `social.yml`, `navigation.yml`) |
 | Farben, Schriften, Abstände, Rundungen ändern      | `_sass/_theme.scss`           | FARBEN / TYPOGRAFIE / …                    |
 | die Hintergrund-Animation abschalten               | `_sass/_theme.scss`           | ANIMATIONEN → `$hintergrund-animation: false;` |
 | Website-Titel oder Google-Beschreibung ändern      | `_config.yml`                 | WEBSITE                                    |
@@ -264,7 +267,7 @@ In `_data/social.yml`:
 - **Nur an bestimmten Stellen zeigen:** `orte: [footer, kontakt]` (möglich: `header`, `footer`, `startseite`, `kontakt`).
 - **Neue Plattform:** Vorlage am Dateiende kopieren. Mitgelieferte Icons: `mail`, `phone`, `linkedin`, `instagram`, `github`, `youtube`, `facebook`, `twitter`, `globe`, `message-circle`.
 - **Eigenes Icon:** SVG-Datei (24 × 24, am besten von [lucide.dev](https://lucide.dev) oder [simpleicons.org](https://simpleicons.org)) nach `assets/icons/` legen, z. B. `tiktok.svg`, und im Eintrag `icon: "tiktok"` schreiben. Das Icon wird automatisch eingebunden.
-- Bei Social-Media-Profilen `impressum: true` setzen, damit sie im Social-Media-Impressum erscheinen.
+- Social-Media-Profile brauchen zusätzlich den Block `rechtliches` – siehe [5.10](#510-social-media-impressum-neuer-kanal--direktlinks).
 
 ### 5.6 Menüpunkt hinzufügen, umbenennen, ausblenden
 
@@ -317,6 +320,26 @@ Standardmäßig aus – E-Mail und Telefon reichen. Wenn du eines willst:
 2. In `_config.yml` unter `kontaktformular` `aktiv: true` setzen und die Anbieterdaten eintragen.
 3. Vorschau neu starten – Formular, Datenschutz-Abschnitt und Sicherheitsrichtlinie (CSP) passen sich automatisch an.
 4. Datenschutzerklärung durchlesen und ggf. prüfen lassen.
+
+### 5.10 Social-Media-Impressum: neuer Kanal & Direktlinks
+
+Jeder Social-Media-Kanal hat im Impressum einen **eigenen Bereich** (Offenlegung + Datenschutz) und eine **eigene Unterseite**. Alles kommt aus dem Block `rechtliches` beim Kanal in `_data/social.yml`.
+
+**Direktlinks für die Bios** (Begründung und Details: [RECHTLICHES.md](RECHTLICHES.md), Abschnitt 4):
+
+| Kanal | Link | Wo eintragen |
+| --- | --- | --- |
+| LinkedIn | `https://sandro.exemail.at/social-impressum/linkedin/` | **Kontaktinfo → Website hinzufügen** (Typ „Sonstiges", Bezeichnung „Impressum") **und** letzte Zeile im Abschnitt **Info** |
+| Instagram | `https://sandro.exemail.at/social-impressum/instagram/` | **Profil bearbeiten → Links** (Titel „Impressum", an **erste** Stelle) **und** letzte Zeile der **Bio** |
+
+**Neuen Kanal hinzufügen (z. B. GitHub, YouTube, TikTok):**
+1. In `_data/social.yml` die **Vorlage ganz unten** kopieren und **nur** das `#` am Zeilenanfang entfernen (die Leerzeichen danach bleiben – sie sind die Einrückung).
+2. `id` festlegen (klein, ohne Leerzeichen, z. B. `github`) – daraus wird `/social-impressum/github/`.
+3. Block `rechtliches` ausfüllen: Betreiber + Anschrift und Datenschutz-Link (aus der Datenschutzerklärung der Plattform), Drittland-Text, ggf. Statistik.
+4. Speichern → Sprung-Button, Bereich auf der Übersicht, Unterseite und Datenschutztext entstehen automatisch.
+5. Den neuen Link in die Bio des Kanals eintragen.
+
+**Kanal aus dem Impressum entfernen:** `impressum_anzeigen: false` – Bereich, Button und Unterseite verschwinden komplett.
 
 ---
 

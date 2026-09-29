@@ -1,0 +1,26 @@
+{%- comment -%}
+  Allgemeiner Teil des Social-Media-Impressums – gilt für ALLE Kanäle.
+  Wird auf der Übersicht und auf jeder Kanal-Unterseite angezeigt.
+{%- endcomment -%}
+<section class="channel-general" aria-labelledby="fuer-alle-kanaele">
+  <h2 id="fuer-alle-kanaele">Für alle Kanäle</h2>
+
+  <h3>Ihre Rechte</h3>
+  <p>Ihnen stehen hinsichtlich Ihrer personenbezogenen Daten grundsätzlich folgende Rechte zu:</p>
+  {% include betroffenenrechte.html %}
+  <p>
+    Für Daten, die ich selbst verarbeite, genügt eine formlose Nachricht an die in der
+    Offenlegung genannten Kontaktdaten. Für Daten, die die Plattform verarbeitet, wenden
+    Sie sich bitte direkt an den jeweiligen Plattformbetreiber (Links beim jeweiligen Kanal).
+  </p>
+
+  <h3>Beschwerderecht</h3>
+  {% include beschwerderecht.html %}
+
+  <h3>Vollständige Datenschutzerklärung</h3>
+  <p>
+    Informationen zur Datenverarbeitung auf dieser Website finden Sie in der
+    <a href="{{ '/datenschutz/' | relative_url }}">Datenschutzerklärung</a>, das Impressum der
+    Website unter <a href="{{ '/impressum/' | relative_url }}">Impressum</a>.
+  </p>
+</section>

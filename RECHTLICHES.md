@@ -81,41 +81,85 @@ Solange das Gewerbe **nicht angemeldet** ist:
 
 ---
 
-## 4. Social-Media-Impressum einrichten
+## 4. Social-Media-Impressum – ein Bereich pro Kanal
 
-Auch deine **Social-Media-Profile** sind Medien im Sinne des MedienG und brauchen eine Offenlegung. Diese muss **„leicht und unmittelbar auffindbar"** sein – maximal **zwei Klicks** vom Profil entfernt, mit einer eindeutigen Bezeichnung wie **„Impressum"**.
+Auch deine **Social-Media-Profile** sind Medien im Sinne des MedienG und brauchen eine Offenlegung. Sie muss **„leicht und unmittelbar erreichbar"** sein: höchstens **zwei Klicks** vom Profil entfernt und mit einer eindeutigen Bezeichnung wie **„Impressum"**.
 
-Deine Adresse dafür:
+### Aufbau
 
-```
-https://sandro.exemail.at/social-impressum/
-```
+- **Übersicht:** `sandro.exemail.at/social-impressum/` – Einleitung, Sprung-Buttons, pro Kanal ein aufklappbarer Bereich, am Ende „Für alle Kanäle" (Betroffenenrechte, Beschwerderecht, Link zur Datenschutzerklärung).
+- **Eigene Unterseite pro Kanal** (automatisch erzeugt): `sandro.exemail.at/social-impressum/instagram/`, `…/linkedin/`
+- **Sprungmarke auf der Übersicht:** `…/social-impressum/#instagram` öffnet den Kanal, scrollt hin und hebt ihn kurz hervor.
 
-Welche Kanäle dort aufgelistet werden, steuerst du in `_data/social.yml` mit `impressum: true`.
+### Welcher Link gehört in die Bio? → die Unterseite
 
-### Instagram
+**Entscheidung: `/social-impressum/<kanal>/` statt `#<kanal>`.** Gründe:
 
+1. **Robuster:** Manche In-App-Browser (Instagram, LinkedIn) und Link-Kürzer schneiden den `#`-Teil ab oder scrollen nicht zuverlässig dorthin. Eine eigene Adresse funktioniert immer.
+2. **Unmittelbar:** Die Unterseite zeigt sofort genau diesen Kanal – ohne Aufklappen, ohne JavaScript.
+3. **Eigenständig:** Eigener Seitentitel („Instagram – Impressum & Datenschutz"), eigene Google-Vorschau.
+
+Die `#`-Sprungmarken bleiben zusätzlich für die Navigation auf der Übersicht erhalten.
+
+| Kanal | Link für die Bio |
+| --- | --- |
+| LinkedIn | `https://sandro.exemail.at/social-impressum/linkedin/` |
+| Instagram | `https://sandro.exemail.at/social-impressum/instagram/` |
+
+> ⚠️ Die `id` eines Kanals in `social.yml` **nie mehr ändern**, sobald der Link in einer Bio steht.
+
+### Wo genau eintragen?
+
+**Instagram**
 1. Profil → **Profil bearbeiten** → **Links** → **Externen Link hinzufügen**.
-2. URL: `https://sandro.exemail.at/social-impressum/`
-3. Titel: **Impressum**
-4. Wenn du mehrere Links hast: den Impressum-Link **an erste Stelle** ziehen, oder in der Bio ergänzen: `Impressum ⬇️` bzw. `Impressum: sandro.exemail.at/social-impressum`.
+2. URL: `https://sandro.exemail.at/social-impressum/instagram/` – Titel: **Impressum**
+3. Bei mehreren Links den Impressum-Link **an die erste Stelle** ziehen (nur der erste ist ohne weiteren Klick sichtbar).
+4. Zusätzlich in die **Bio** (Text) als letzte Zeile: `Impressum: sandro.exemail.at/social-impressum/instagram`
 
-### LinkedIn (persönliches Profil)
-
+**LinkedIn (persönliches Profil)**
 1. Profil → **Kontaktinfo** → Stift-Symbol → **Website hinzufügen**.
-2. URL: `https://sandro.exemail.at/social-impressum/` – Typ: **Sonstiges** – Bezeichnung: **Impressum**.
-3. Zusätzlich empfohlen: in den Abschnitt **Info** als letzte Zeile schreiben:
-   `Impressum: sandro.exemail.at/social-impressum`
+2. URL: `https://sandro.exemail.at/social-impressum/linkedin/` – Typ: **Sonstiges** – Bezeichnung: **Impressum**
+3. Zusätzlich im Abschnitt **Info** als letzte Zeile: `Impressum: sandro.exemail.at/social-impressum/linkedin`
+   (Die Kontaktinfo ist auf dem Handy nur über einen Extra-Klick erreichbar – der Hinweis im Info-Text macht es eindeutig.)
 
-### Weitere Plattformen (falls später)
+**Weitere Plattformen (falls später)**
 
 | Plattform | Wo eintragen |
 | --- | --- |
-| **LinkedIn-Unternehmensseite** | Seite bearbeiten → **Info** → **Website** bzw. benutzerdefinierter Button, plus Hinweis im Info-Text |
-| **YouTube** | Kanal anpassen → **Profil** → **Links** → Titel „Impressum", außerdem in der Kanalbeschreibung |
-| **TikTok** | **Website**-Feld im Profil (falls verfügbar) bzw. Bio: `Impressum: sandro.exemail.at/social-impressum` |
-| **GitHub** | Profil → **Edit profile** → **Website**, oder Link im Profil-README |
-| **Facebook** | Seite → **Info** → **Impressum**-Feld |
+| LinkedIn-Unternehmensseite | Seite bearbeiten → **Info** → **Website** + Hinweis im Info-Text |
+| YouTube | Kanal anpassen → **Profil** → **Links** → Titel „Impressum" + Kanalbeschreibung |
+| TikTok | **Website**-Feld (falls verfügbar), sonst Bio: `Impressum: sandro.exemail.at/social-impressum/tiktok` |
+| GitHub | **Edit profile** → **Website**, oder Link im Profil-README |
+
+### Pflicht oder freiwillig? (Block `rechtliches` je Kanal in `social.yml`)
+
+| Angabe | Status | Grundlage |
+| --- | --- | --- |
+| Offenlegung: Name, Wohnort (aus `rechtliches.yml`) | **Pflicht** | § 25 MedienG |
+| Kanal/Handle und Link zum Profil | **Pflicht** (Zuordnung, für welchen Kanal die Offenlegung gilt) | § 25 MedienG |
+| E-Mail als Kontakt des Verantwortlichen | **Pflicht** | Art. 13 DSGVO |
+| `betreiber_name`, `betreiber_anschrift` | **Pflicht** in den Datenschutzhinweisen (Empfänger/Verantwortlicher der Plattformverarbeitung) | Art. 13 DSGVO |
+| Welche Daten, Zweck, Rechtsgrundlage, Speicherdauer, Rechte, Beschwerderecht | **Pflicht** | Art. 13 DSGVO |
+| `drittland_text` | **Pflicht**, sobald die Plattform Daten in die USA übermittelt | Art. 13 Abs. 1 lit. f DSGVO |
+| `datenschutz_link_plattform` | dringend empfohlen | – |
+| `gemeinsame_verantwortung` + `vereinbarung_link` | **Pflicht nur** bei Unternehmens-/Fanseiten mit Seitenstatistik | Art. 26 DSGVO |
+| `grundlegende_richtung` | freiwillig (bei „kleiner Website"/persönlichem Profil) | § 25 Abs. 5 MedienG |
+| `insights_…`, `einstellungen_link_plattform`, `rechte_link_plattform`, `zusaetzliche_hinweise` | freiwillig (Transparenz) | – |
+| § 5 ECG | erst im Modus `unternehmen` | ECG |
+
+### Einschätzung: Gemeinsame Verantwortlichkeit bei persönlichen Profilen
+
+Das EuGH-Urteil C-210/16 („Fanpage", 2018) betraf den Betreiber einer **Unternehmens-/Fanseite**, der über Facebook Insights mitbestimmt, welche Statistiken über Besucher erstellt werden. Bei einem **persönlichen Profil** legst du weder Zwecke noch Mittel der Plattform-Verarbeitung fest. LinkedIn bietet seine Vereinbarung nach Art. 26 DSGVO („Page Insights Joint Controller Addendum") ausdrücklich **nur für Unternehmensseiten** an.
+➡️ Deshalb steht bei LinkedIn und Instagram `gemeinsame_verantwortung: false`, und der Text erklärt das offen.
+
+### Stellen, bei denen ich mir rechtlich nicht sicher bin
+
+- **[RECHTLICH PRÜFEN]** Keine gemeinsame Verantwortlichkeit bei persönlichem Profil (siehe oben) – insbesondere bei LinkedIn, weil LinkedIn auch persönlichen Profilen Statistiken anzeigt, und bei Instagram, **falls** du auf ein professionelles Konto (Creator/Business) mit Insights umstellst. Dann `insights_genutzt: true` setzen und klären, ob Metas „Controller Addendum" (<https://www.facebook.com/legal/controller_addendum>) für Instagram gilt.
+- **[RECHTLICH PRÜFEN]** Kein § 5 ECG für private, nicht wirtschaftlich genutzte Kanäle.
+- **[RECHTLICH PRÜFEN]** Drittland-Grundlagen (DPF + Standardvertragsklauseln) für LinkedIn Corporation und Meta Platforms, Inc. – Zertifizierung auf <https://www.dataprivacyframework.gov/list> nachsehen.
+- **[RECHTLICH PRÜFEN]** Anschriften der Betreiber (Stand September 2026, aus den Datenschutzerklärungen der Plattformen) – einmal jährlich kontrollieren.
+
+Die Markierungen stehen auch als Kommentare in `_includes/social-kanal.html` und sind auf der Website nicht sichtbar.
 
 ---
 
@@ -141,5 +185,5 @@ Sobald du etwas Neues einbaust, das Daten verarbeitet: eingebettete Videos (YouT
 ## 6. Regelmäßig prüfen
 
 - [ ] Einmal im Jahr: Sind alle Angaben noch aktuell (Wohnort, E-Mail, Kanäle)?
-- [ ] Neuer Social-Media-Kanal → in `social.yml` mit `impressum: true` eintragen **und** Impressum-Link im neuen Profil setzen.
+- [ ] Neuer Social-Media-Kanal → Vorlage in `social.yml` kopieren (inkl. Block `rechtliches`) **und** den Link `/social-impressum/<id>/` im neuen Profil setzen.
 - [ ] Nach jeder inhaltlichen Änderung der Rechtstexte: `stand` in `rechtliches.yml` aktualisieren.
