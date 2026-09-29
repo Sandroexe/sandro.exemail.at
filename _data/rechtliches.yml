@@ -115,7 +115,7 @@ hosting:
 #           Dann läuft kein Besucher-Traffic über Cloudflare.
 #   true  = Cloudflare-Proxy ist aktiv (orange Wolke). Dann wird automatisch
 #           ein eigener Abschnitt in der Datenschutzerklärung eingeblendet.
-cloudflare_proxy: true
+cloudflare_proxy: false
 
 
 # ═══════════════════════════════ E-MAIL-ANBIETER ═══════════════════════════
@@ -123,7 +123,15 @@ cloudflare_proxy: true
 #     Datenschutzerklärung beim Punkt "Kontaktaufnahme" genannt.
 #     Leer lassen = allgemeiner Satz ohne Anbietername.
 
-email_anbieter: ""                  # z. B. "World4You Internet Services GmbH, Linz"
+email_anbieter: "ALL-INKL.COM – Neue Medien Münnich, Friedersdorf (Deutschland)"
+
+
+# ═══════════════════════════ WHATSAPP / SMS ════════════════════════════════
+# true = die Datenschutzerklärung erklärt, was bei Nachrichten per WhatsApp
+#        und SMS passiert (weil die Kontaktseite WhatsApp/SMS nennt).
+# Es gibt bewusst KEINEN WhatsApp-Button – nur diesen Hinweis.
+
+whatsapp_sms_kontakt: true
 
 
 # ════════════════════════════ DATENSCHUTZBEHÖRDE ═══════════════════════════

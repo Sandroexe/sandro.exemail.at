@@ -65,8 +65,8 @@ foto:
   datei: "profil.jpg"               # Dateiname in assets/img/ (JPG, PNG oder SVG)
   webp: "profil.webp"               # Optional: WebP-Version, z. B. "profil.webp"
   alt: "Porträtfoto von Sandro Exenberger"   # Beschreibung für Screenreader
-  breite: 800                       # Bildbreite in Pixel
-  hoehe: 800                        # Bildhöhe in Pixel
+  breite: 1000                      # Bildbreite in Pixel
+  hoehe: 1000                       # Bildhöhe in Pixel
 
 
 # ════════════════════════════ BUTTONS (STARTSEITE) ═════════════════════════

@@ -41,16 +41,30 @@ abhaengig_von:
 
     <!-- Kopfzeile nur für Druck/PDF -->
     <header class="print-only print-header">
-      <h1>{{ p.vorname }} {{ p.nachname }}</h1>
-      <p class="print-header__subtitle">{{ p.kurztitel }}</p>
-      <ul class="print-header__contact">
-        <li>{% include icon.html name="map-pin" %} {{ p.standort.ort }}{% if p.standort.region != "" %} {{ p.standort.region }}{% endif %}, {{ p.standort.land }}</li>
-        {%- for k in site.data.social.kanaele %}
-        {%- if k.anzeigen and k.orte contains "kontakt" %}
-        <li>{% include icon.html name=k.icon %} {% include kontakt-link.html kanal=k %}</li>
+      <div class="print-header__text">
+        <h1>{{ p.vorname }} {{ p.nachname }}</h1>
+        <p class="print-header__subtitle">{{ p.kurztitel }}</p>
+        <ul class="print-header__contact">
+          <li>{% include icon.html name="map-pin" %} {{ p.standort.ort }}{% if p.standort.region != "" %} {{ p.standort.region }}{% endif %}, {{ p.standort.land }}</li>
+          {%- for k in site.data.social.kanaele %}
+          {%- if k.anzeigen and k.orte contains "kontakt" %}
+          <li>{% include icon.html name=k.icon %} {% include kontakt-link.html kanal=k %}</li>
+          {%- endif %}
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- comment -%}
+        Profilfoto aus person.yml – "eager", damit es beim Drucken sicher
+        geladen ist (die Kopfzeile ist am Bildschirm unsichtbar).
+      {%- endcomment -%}
+      {%- if p.foto.datei and p.foto.datei != "" %}
+      <picture class="print-header__photo">
+        {%- if p.foto.webp and p.foto.webp != "" %}
+        <source type="image/webp" srcset="{{ '/assets/img/' | append: p.foto.webp | relative_url }}">
         {%- endif %}
-        {%- endfor %}
-      </ul>
+        <img src="{{ '/assets/img/' | append: p.foto.datei | relative_url }}" alt="{{ p.foto.alt | escape }}" width="{{ p.foto.breite }}" height="{{ p.foto.hoehe }}" loading="eager" decoding="async">
+      </picture>
+      {%- endif %}
     </header>
 
     <div class="cv-layout">

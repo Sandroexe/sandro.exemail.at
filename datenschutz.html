@@ -155,6 +155,28 @@ abhaengig_von:
   per E-Mail.
 </p>
 
+{%- if r.whatsapp_sms_kontakt %}
+<h3 id="whatsapp-sms">Nachrichten per WhatsApp oder SMS</h3>
+<p>
+  Sie können mir auch per SMS oder WhatsApp an die oben genannte Telefonnummer schreiben.
+  Dabei verarbeite ich Ihre Telefonnummer, Ihren Namen (soweit hinterlegt) und den Inhalt
+  Ihrer Nachricht zu denselben Zwecken, auf denselben Rechtsgrundlagen und mit derselben
+  Speicherdauer wie bei der Kontaktaufnahme per E-Mail oder Telefon. SMS werden technisch
+  über Ihren und meinen Mobilfunkanbieter übertragen.
+</p>
+<p>
+  Wenn Sie <strong>WhatsApp</strong> nutzen, ist für die Verarbeitung durch den Dienst
+  die WhatsApp Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland, verantwortlich.
+  Die Inhalte der Nachrichten sind Ende-zu-Ende-verschlüsselt; WhatsApp verarbeitet aber
+  Metadaten (z.&nbsp;B. Telefonnummer, Zeitpunkt der Nachricht) und übermittelt Daten auch
+  an Unternehmen der Meta-Gruppe in den USA. Grundlage dafür sind das EU-US Data Privacy
+  Framework (Art.&nbsp;45 DSGVO) und Standardvertragsklauseln (Art.&nbsp;46 DSGVO). Ich nutze
+  WhatsApp nur, um Ihre Nachricht zu beantworten. Wenn Sie das nicht möchten, schreiben
+  Sie mir bitte per E-Mail oder SMS. Weitere Informationen:
+  <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener noreferrer">Datenschutzrichtlinie von WhatsApp</a>.
+</p>
+{%- endif %}
+
 {%- if kf.aktiv and kf.action_url != "" %}
 <h2 id="kontaktformular">6a. Kontaktformular</h2>
 <p>
@@ -188,8 +210,8 @@ abhaengig_von:
 <h2 id="social-media">7. Links zu Social-Media-Plattformen</h2>
 {%- assign _plattformen = site.data.social.kanaele | where: "typ", "link" | where_exp: "k", "k.anzeigen != false" | map: "name" %}
 <p>
-  Auf dieser Website finden Sie Links zu meinen Profilen auf Social-Media-Plattformen
-  ({% for n in _plattformen %}{% if forloop.first %}{% elsif forloop.last %} und {% else %}, {% endif %}{{ n }}{% endfor %}). Es handelt sich um <strong>einfache Links</strong>, nicht
+  Auf dieser Website finden Sie Links zu meinen Profilen auf Social-Media-Plattformen:
+  {% for n in _plattformen %}{% if forloop.first %}{% elsif forloop.last %} und {% else %}, {% endif %}{{ n }}{% endfor %}. Es handelt sich um <strong>einfache Links</strong>, nicht
   um eingebettete Plugins: Beim bloßen Aufruf dieser Website werden
   <strong>keine Daten</strong> an die Plattformen übertragen. Erst wenn Sie einen Link
   anklicken, gelangen Sie auf die Website des jeweiligen Anbieters, der dann eigenständig

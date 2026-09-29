@@ -211,6 +211,43 @@ kanaele:
         persönliches Facebook-Profil. Anfragen zu den Seitenstatistiken leite ich
         gemäß der Vereinbarung mit Meta an Meta weiter.
 
+  # ─────────────────────────── FACEBOOK (PROFIL) ───────────────────────────
+  # Sandros PERSÖNLICHES Facebook-Profil (öffentlich) – nicht die Seite oben.
+  # Persönliches Profil → keine Seitenstatistik, keine gemeinsame
+  # Verantwortlichkeit mit Meta (anders als bei der Facebook-Seite).
+  - id: "facebook-profil"
+    name: "Facebook (Profil)"
+    typ: "link"
+    wert: "https://www.facebook.com/sandro.exenberger/"
+    anzeigetext: "Sandro Exenberger"
+    beschreibung: "Mein persönliches Facebook-Profil."
+    icon: "facebook"
+    anzeigen: true
+    orte: [header, footer, startseite, kontakt]
+    rechtliches:
+      impressum_anzeigen: true
+      betreiber_name: "Meta Platforms Ireland Limited"
+      betreiber_anschrift: "Merrion Road, Dublin 4, D04 X2K5, Irland"
+      datenschutz_link_plattform: "https://www.facebook.com/privacy/policy/"
+      einstellungen_link_plattform: "https://accountscenter.facebook.com/"
+      rechte_link_plattform: "https://www.facebook.com/privacy/center/"
+      grundlegende_richtung: >-
+        Persönliches Facebook-Profil von Sandro Exenberger mit Beiträgen und
+        Einblicken aus Ausbildung, Technik, Engagement und Alltag.
+      insights_genutzt: false
+      insights_bezeichnung: ""
+      insights_hinweis: ""
+      gemeinsame_verantwortung: false
+      vereinbarung_link: ""
+      drittland_text: >-
+        Meta übermittelt Daten auch an die Meta Platforms, Inc. in den USA. Die
+        Übermittlung stützt sich auf das EU-US Data Privacy Framework
+        (Angemessenheitsbeschluss, Art. 45 DSGVO) sowie auf
+        Standardvertragsklauseln der EU-Kommission (Art. 46 DSGVO).
+      zusaetzliche_hinweise: >-
+        Bei diesem Kanal handelt es sich um mein persönliches Facebook-Profil. Für
+        meine Facebook-Seite gelten eigene Hinweise (siehe Kanal „Facebook“).
+
   # ──────────────────────────────── TIKTOK ─────────────────────────────────
   - id: "tiktok"
     name: "TikTok"
@@ -260,7 +297,7 @@ kanaele:
     typ: "telefon"
     wert: "+43 676 7406799"
     anzeigetext: ""
-    beschreibung: "Werktags nach der Schule gut erreichbar."
+    beschreibung: "Am liebsten per WhatsApp oder SMS – Anruf nach Vereinbarung."
     icon: "phone"
     anzeigen: true
     orte: [kontakt]

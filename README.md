@@ -76,7 +76,7 @@ sandro/
 │
 ├── _data/                   ✏️ HIER BEARBEITEST DU DEINE INHALTE
 │   ├── person.yml              Name, Titel, Foto, Wohnort, Highlights, Galerie
-│   ├── social.yml              LinkedIn, Instagram, Facebook, TikTok, Telefon, E-Mail
+│   ├── social.yml              LinkedIn, Instagram, Facebook (Seite + Profil), TikTok, Telefon, E-Mail
 │   ├── navigation.yml          Hauptmenü
 │   ├── lebenslauf.yml          Berufserfahrung, Praktika, Ausbildung, Skills …
 │   ├── zertifikate.yml         Zertifikate & Kategorien
@@ -276,7 +276,7 @@ In `_data/social.yml`:
 
 - **Ausblenden:** beim Kanal `anzeigen: false`.
 - **Nur an bestimmten Stellen zeigen:** `orte: [footer, kontakt]` (möglich: `header`, `footer`, `startseite`, `kontakt`).
-- **Aktuelle Kanäle:** LinkedIn, Instagram, Facebook (Seite), TikTok, Telefon, E-Mail (Reihenfolge = Reihenfolge in `social.yml`). Vorhandene Icons: `mail`, `phone`, `linkedin`, `instagram`, `facebook`, `tiktok`.
+- **Aktuelle Kanäle:** LinkedIn, Instagram, Facebook (Seite), Facebook (Profil), TikTok, Telefon, E-Mail (Reihenfolge = Reihenfolge in `social.yml`). Vorhandene Icons: `mail`, `phone`, `linkedin`, `instagram`, `facebook`, `tiktok`.
 - **Neue Plattform (später):** die inaktive Vorlage am Dateiende kopieren, siehe [5.10](#510-social-media-impressum-neuer-kanal--direktlinks).
 - **Eigenes Icon:** SVG-Datei (24 × 24, am besten von [lucide.dev](https://lucide.dev) oder [simpleicons.org](https://simpleicons.org)) nach `assets/icons/` legen, z. B. `meinkanal.svg`, und im Eintrag `icon: "meinkanal"` schreiben. Das Icon wird automatisch eingebunden.
 - Social-Media-Profile brauchen zusätzlich den Block `rechtliches` – siehe [5.10](#510-social-media-impressum-neuer-kanal--direktlinks).
@@ -344,6 +344,7 @@ Jeder Social-Media-Kanal hat im Impressum einen **eigenen Bereich** (Offenlegung
 | LinkedIn | `https://sandro.exemail.at/social-impressum/linkedin/` | **Kontaktinfo → Website hinzufügen** (Typ „Sonstiges", Bezeichnung „Impressum") **und** letzte Zeile im Abschnitt **Info** |
 | Instagram | `https://sandro.exemail.at/social-impressum/instagram/` | **Profil bearbeiten → Links** (Titel „Impressum", an **erste** Stelle) **und** letzte Zeile der **Bio** |
 | Facebook (Seite) | `https://sandro.exemail.at/social-impressum/facebook/` | **Seite → Info/Intro → Website** hinzufügen **und** im **Intro/Beschreibung**; Details siehe RECHTLICHES.md |
+| Facebook (Profil) | `https://sandro.exemail.at/social-impressum/facebook-profil/` | **Profil → Details bearbeiten → Links/Website hinzufügen** **und** in der **Kurzbeschreibung (Bio)**; Details siehe RECHTLICHES.md |
 | TikTok | `https://sandro.exemail.at/social-impressum/tiktok/` | **Profil bearbeiten → Website** (falls vorhanden) **und** in der **Bio**; Details siehe RECHTLICHES.md |
 
 **Neuen Kanal hinzufügen (später):**

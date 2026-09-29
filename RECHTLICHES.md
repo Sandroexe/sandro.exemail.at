@@ -106,6 +106,7 @@ Die `#`-Sprungmarken bleiben zusätzlich für die Navigation auf der Übersicht 
 | LinkedIn | `https://sandro.exemail.at/social-impressum/linkedin/` |
 | Instagram | `https://sandro.exemail.at/social-impressum/instagram/` |
 | Facebook (Seite) | `https://sandro.exemail.at/social-impressum/facebook/` |
+| Facebook (Profil) | `https://sandro.exemail.at/social-impressum/facebook-profil/` |
 | TikTok | `https://sandro.exemail.at/social-impressum/tiktok/` |
 
 > ⚠️ Die `id` eines Kanals in `social.yml` **nie mehr ändern**, sobald der Link in einer Bio steht.
@@ -132,7 +133,13 @@ Der Direktlink gehört auf die **Facebook-Seite**, die auf der Website verlinkt 
 2. **Intro/Beschreibung (Bio):** Seite → **Intro bearbeiten** → als letzte Zeile: `Impressum: sandro.exemail.at/social-impressum/facebook` (der Text-Link ist anklickbar).
 3. Optional zusätzlich: einen Beitrag „Impressum & Datenschutz" mit dem Link erstellen und **oben anpinnen**.
 
-> **Dein persönliches Facebook-Profil** steht (bewusst) nicht auf der Website. Ist es **öffentlich** und veröffentlichst du dort Inhalte an einen größeren Personenkreis, braucht auch das eine Offenlegung. Dann: Profil als eigenen Kanal in `social.yml` ergänzen (Vorlage) oder mir den sauberen Profil-Link schicken. **[RECHTLICH PRÜFEN]** ob ein nur für Freunde sichtbares Profil ein Medium im Sinne des MedienG ist.
+**Facebook (dein persönliches Profil `facebook.com/sandro.exenberger`)**
+
+Das öffentliche persönliche Profil ist ein eigener Kanal mit eigener Offenlegung – **ohne** gemeinsame Verantwortlichkeit mit Meta, weil persönliche Profile keine Seitenstatistik haben.
+
+1. **Website/Link:** Profil → **Details bearbeiten** (bzw. **Intro bearbeiten**) → **Links** → **Link hinzufügen** → `https://sandro.exemail.at/social-impressum/facebook-profil/`
+2. **Kurzbeschreibung (Bio, max. 101 Zeichen):** `Impressum: sandro.exemail.at/social-impressum/facebook-profil`
+3. Sichtbarkeit von Link und Bio auf **Öffentlich** stellen (Weltkugel-Symbol).
 
 **TikTok**
 
