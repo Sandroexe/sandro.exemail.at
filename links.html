@@ -1,0 +1,91 @@
+---
+# Linkseite für QR-Code & Visitenkarte – Texte aus _data/linkseite.yml,
+# Links aus _data/social.yml und _data/navigation.yml.
+# ⚠ Die Adresse /links/ steht im QR-Code – nicht ändern.
+title: "Links"
+description: "Alle Kontaktwege, Profile und Seiten von Sandro Exenberger auf einen Blick."
+permalink: /links/
+hero: false
+---
+{%- assign ls = site.data.linkseite -%}
+{%- assign p = site.data.person -%}
+
+<div class="section">
+  <div class="container linkhub">
+    <header class="linkhub__head">
+      <div class="linkhub__photo">
+        {% include bild.html datei=p.foto.datei webp=p.foto.webp alt=p.foto.alt breite=p.foto.breite hoehe=p.foto.hoehe eager=true %}
+      </div>
+      <h1>{{ p.vorname }} {{ p.nachname }}</h1>
+      <p class="linkhub__subtitle">{{ p.kurztitel }}</p>
+      {%- if ls.einleitung and ls.einleitung != "" %}
+      <p class="linkhub__lead">{{ ls.einleitung }}</p>
+      {%- endif %}
+      {%- if ls.vcard_anzeigen %}
+      <a class="btn btn--primaer" href="{{ ls.vcard_datei | relative_url }}" download>
+        {% include icon.html name="download" %} {{ ls.vcard_text }}
+      </a>
+      {%- endif %}
+    </header>
+
+    <section aria-labelledby="links-kontakt">
+      <h2 class="linkhub__title" id="links-kontakt">{{ ls.titel_kontakt }}</h2>
+      <ul class="linkhub__list">
+        <li>
+          <a class="linkhub__item" href="{{ '/kontakt/' | relative_url }}">
+            <span class="icon-badge">{% include icon.html name="send" %}</span>
+            <span>Kontaktseite</span>
+            {% include icon.html name="arrow-right" klasse="linkhub__go" %}
+          </a>
+        </li>
+        {%- for k in site.data.social.kanaele %}
+        {%- if k.anzeigen != false and k.typ != "link" %}
+        <li>
+          {%- capture _code %}{% include obf.html wert=k.wert %}{% endcapture %}
+          <a class="linkhub__item" href="{{ '/kontakt/' | relative_url }}" data-obf="{{ _code }}" data-obf-typ="{% if k.typ == 'email' %}mailto{% else %}tel{% endif %}">
+            <span class="icon-badge">{% include icon.html name=k.icon %}</span>
+            <span>{{ k.name }}</span>
+            {% include icon.html name="arrow-right" klasse="linkhub__go" %}
+          </a>
+        </li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+    </section>
+
+    <section aria-labelledby="links-profile">
+      <h2 class="linkhub__title" id="links-profile">{{ ls.titel_profile }}</h2>
+      <ul class="linkhub__list">
+        {%- for k in site.data.social.kanaele %}
+        {%- if k.anzeigen != false and k.typ == "link" %}
+        <li>
+          <a class="linkhub__item" href="{{ k.wert | escape }}" target="_blank" rel="noopener noreferrer me">
+            <span class="icon-badge">{% include icon.html name=k.icon %}</span>
+            <span>{{ k.name }}{% if k.anzeigetext and k.anzeigetext != "" %} <small class="linkhub__handle">{{ k.anzeigetext }}</small>{% endif %}<span class="visually-hidden"> (öffnet in neuem Tab)</span></span>
+            {% include icon.html name="external-link" klasse="linkhub__go" %}
+          </a>
+        </li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+    </section>
+
+    {%- if ls.seiten_anzeigen %}
+    <section aria-labelledby="links-seiten">
+      <h2 class="linkhub__title" id="links-seiten">{{ ls.titel_seiten }}</h2>
+      <ul class="linkhub__list">
+        {%- for item in site.data.navigation.hauptmenue %}
+        {%- if item.anzeigen != false %}
+        <li>
+          <a class="linkhub__item" href="{{ item.url | relative_url }}">
+            <span>{{ item.titel }}</span>
+            {% include icon.html name="arrow-right" klasse="linkhub__go" %}
+          </a>
+        </li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endif %}
+  </div>
+</div>

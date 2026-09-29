@@ -1,0 +1,20 @@
+{%- comment -%}
+  Weiterleitungsseite für alte Adressen (erzeugt aus _data/weiterleitungen.yml).
+  Funktioniert ohne JavaScript über <meta http-equiv="refresh">.
+{%- endcomment -%}
+{%- assign _ziel = page.ziel | relative_url -%}
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Weiterleitung · {{ site.title }}</title>
+<meta http-equiv="refresh" content="0; url={{ _ziel }}">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="{{ page.ziel | absolute_url }}">
+</head>
+<body>
+<p>Diese Seite ist umgezogen: <a href="{{ _ziel }}">{{ page.ziel | absolute_url }}</a></p>
+</body>
+</html>

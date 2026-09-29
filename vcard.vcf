@@ -1,0 +1,26 @@
+---
+# Digitale Visitenkarte – vollständig aus _data/ erzeugt.
+# ⚠ Die Adresse steht im QR-Code/auf der Visitenkarte. Wenn du sie änderst,
+#   auch "vcard_datei" in _data/linkseite.yml anpassen.
+permalink: /Sandro_Exenberger.vcf
+layout: null
+sitemap: false
+---
+{%- assign p = site.data.person -%}
+{%- assign m = site.data.rechtliches.medieninhaber -%}
+{%- assign schule = site.data.lebenslauf.ausbildung.eintraege | first -%}
+{%- assign email = site.data.social.kanaele | where: "typ", "email" | first -%}
+{%- assign tel = site.data.social.kanaele | where: "typ", "telefon" | first -%}
+BEGIN:VCARD
+VERSION:3.0
+N:{{ p.nachname }};{{ p.vorname }};;;
+FN:{{ p.vorname }} {{ p.nachname }}
+TITLE:{{ p.kurztitel }}
+{% if schule %}ORG:{{ schule.schule }}
+{% endif %}{% if email and email.wert contains "@" %}EMAIL;TYPE=INTERNET,PREF:{{ email.wert }}
+{% endif %}{% if tel and tel.wert contains "+" %}TEL;TYPE=CELL,VOICE:{{ tel.wert }}
+{% endif %}ADR;TYPE=HOME:;;{{ m.strasse }};{{ m.ort }};;{{ m.plz }};{{ m.land }}
+URL:{{ '/' | absolute_url }}
+{% for k in site.data.social.kanaele %}{% if k.anzeigen != false and k.typ == "link" and k.wert contains "://" %}X-SOCIALPROFILE;TYPE={{ k.id | default: k.name | downcase }}:{{ k.wert }}
+{% endif %}{% endfor %}REV:{{ site.time | date: "%Y%m%dT%H%M%SZ" }}
+END:VCARD

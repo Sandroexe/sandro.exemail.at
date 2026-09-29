@@ -1,0 +1,59 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  weiterleitungen.yml – ALTE ADRESSEN → NEUE ADRESSEN                  ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Adressen, die es früher gab (alte Website, Visitenkarte, QR-Code,     ║
+# ║    Bios), leiten hier automatisch auf die neue Seite weiter. So läuft    ║
+# ║    kein gedruckter oder geteilter Link ins Leere.                        ║
+# ║                                                                          ║
+# ║  Was darf ich ändern?                                                    ║
+# ║    Einträge hinzufügen oder das Ziel ("nach") ändern.                    ║
+# ║                                                                          ║
+# ║  Was sollte ich NICHT ändern?                                            ║
+# ║    Einträge mit "⚠ NIE LÖSCHEN" – diese Adressen sind gedruckt oder      ║
+# ║    stehen in Profilen.                                                   ║
+# ║                                                                          ║
+# ║  Regeln:                                                                 ║
+# ║    • "von" endet mit "/" (Ordner) oder mit ".html" (Datei)               ║
+# ║    • "nach" ist eine Adresse dieser Website, z. B. "/kontakt/"           ║
+# ║                                                                          ║
+# ║  Beispiel:                                                               ║
+# ║    - von: "/about/"                                                      ║
+# ║      nach: "/"                                                           ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+
+weiterleitungen:
+
+  # ═══ ⚠ NIE LÖSCHEN – gedruckt auf der Visitenkarte ═══
+  - von: "/contact/"
+    nach: "/kontakt/"
+  - von: "/contact.html"
+    nach: "/kontakt/"
+
+  # ═══ ⚠ NIE LÖSCHEN – stand im alten Social-Media-Impressum / in Bios ═══
+  - von: "/impressum/social/"
+    nach: "/social-impressum/"
+
+  # ═══ Alte Website (bis September 2026) ═══
+  - von: "/links.html"
+    nach: "/links/"
+  - von: "/cv/"
+    nach: "/lebenslauf/"
+  - von: "/cv.html"
+    nach: "/lebenslauf/"
+  - von: "/certificates/"
+    nach: "/zertifikate/"
+  - von: "/certificates.html"
+    nach: "/zertifikate/"
+  - von: "/projects/"
+    nach: "/"
+  - von: "/projects.html"
+    nach: "/"
+  - von: "/lab/"
+    nach: "/"
+  - von: "/lab.html"
+    nach: "/"
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#  - von: "/alte-adresse/"
+#    nach: "/neue-adresse/"

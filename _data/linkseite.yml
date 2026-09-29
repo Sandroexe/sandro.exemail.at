@@ -1,0 +1,30 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  linkseite.yml – LINKSEITE FÜR QR-CODE & VISITENKARTE (/links/)       ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Texte der Seite sandro.exemail.at/links/ – eine kompakte Übersicht    ║
+# ║    aller Kontaktwege, Profile und Seiten (Ziel des QR-Codes).            ║
+# ║    Die Links selbst kommen automatisch aus social.yml und                ║
+# ║    navigation.yml – hier stehen nur Überschriften und Schalter.          ║
+# ║                                                                          ║
+# ║  Was darf ich ändern?   Alle Texte und Schalter.                         ║
+# ║  Was NICHT?             Die Adresse /links/ (steht im QR-Code).          ║
+# ║                                                                          ║
+# ║  Beispiel:                                                               ║
+# ║    titel: "Alle Links"                                                   ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+
+titel: "Links"
+einleitung: "Alle Wege zu mir auf einen Blick."
+
+# ═══ vCard (digitale Visitenkarte) ═══
+vcard_anzeigen: true
+vcard_text: "Kontakt speichern (vCard)"
+# Dateiname der vCard – muss mit "permalink" in vcard.vcf übereinstimmen
+vcard_datei: "/Sandro_Exenberger.vcf"
+
+# ═══ Abschnitte ═══
+titel_kontakt: "Kontakt"
+titel_profile: "Profile"
+titel_seiten: "Website"
+seiten_anzeigen: true           # Menüpunkte aus navigation.yml mit anzeigen?
