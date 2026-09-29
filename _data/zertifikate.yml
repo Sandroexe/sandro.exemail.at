@@ -19,8 +19,8 @@
 # ║     Daten wie Geburtsdatum oder Adresse, bevor du sie hochlädst.         ║
 # ║                                                                          ║
 # ║  Beispiel:                                                               ║
-# ║    - name: "Cisco CCNA"                                                  ║
-# ║      aussteller: "Cisco"                                                 ║
+# ║    - name: "Python Essentials 1"                                         ║
+# ║      aussteller: "Cisco Networking Academy"                              ║
 # ║      kategorie: "Netzwerk"                                               ║
 # ╚══════════════════════════════════════════════════════════════════════════╝
 
@@ -48,16 +48,17 @@ kategorien:
 
 zertifikate:
 
-  - name: "Cisco Certified Network Associate (CCNA)"   # Name des Zertifikats
-    aussteller: "Cisco Systems (geprüft an der HTBLVA Anichstraße)"   # Wer hat es ausgestellt?
+  - name: "CCNA: Switching, Routing, and Wireless Essentials"   # Name des Zertifikats
+    aussteller: "Cisco Networking Academy (über die HTBLVA Anichstraße)"   # Wer hat es ausgestellt?
     kategorie: "Netzwerk & Security"                   # Eine der Kategorien oben
     ausgestellt: "2025-06"                             # Datum, z. B. "2025-06"
-    ablauf: "2028-06"                                  # Optional: Ablaufdatum
+    ablauf: ""                                         # Optional: Ablaufdatum
     credential_id: ""                                  # Optional: Zertifikats-ID
     verifizierung_link: "https://www.linkedin.com/in/sandro-exenberger-1a5486315/details/certifications/"   # Optional: Link zur Online-Prüfung
     beschreibung: >-
-      Fundierte Kenntnisse in Netzwerktopologien, Routing und Switching,
-      IP-Adressierung, VLANs, STP, OSPF, ACLs und grundlegender Netzwerksicherheit.
+      Kurs der Cisco-Networking-Academy-Reihe zur CCNA: Switching-Konzepte, VLANs
+      und Inter-VLAN-Routing, STP, EtherChannel, FHRP, DHCP, WLAN-Grundlagen und
+      statisches Routing.
     bild: ""                                           # Optional: Logo/Bild in assets/zertifikate/
     bild_alt: ""                                       # Beschreibung des Bildes
     datei: ""                                          # Optional: PDF in assets/zertifikate/
@@ -133,6 +134,32 @@ zertifikate:
     beschreibung: >-
       Typische Fehler in Verhandlungen erkennen und vermeiden sowie praktische
       Techniken für Kommunikation und Konfliktlösung im beruflichen Umfeld.
+    bild: ""
+    bild_alt: ""
+    datei: ""
+    anzeigen: true
+
+  - name: "Claude Code 101"
+    aussteller: "Claude Academy (Anthropic)"
+    kategorie: "KI & Technologie"
+    ausgestellt: ""
+    ablauf: ""
+    credential_id: ""
+    verifizierung_link: ""
+    beschreibung: ""
+    bild: ""
+    bild_alt: ""
+    datei: ""
+    anzeigen: true
+
+  - name: "Claude Platform 101"
+    aussteller: "Claude Academy (Anthropic)"
+    kategorie: "KI & Technologie"
+    ausgestellt: ""
+    ablauf: ""
+    credential_id: ""
+    verifizierung_link: ""
+    beschreibung: ""
     bild: ""
     bild_alt: ""
     datei: ""

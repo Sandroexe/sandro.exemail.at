@@ -51,8 +51,8 @@ download_text: "Lebenslauf herunterladen"
 
 titel: "Lebenslauf"
 einleitung: >-
-  Mein bisheriger Weg – von der HTL über die ersten Jobs in der IT bis zum
-  Engagement als Schulsprecher.
+  Mein bisheriger Weg – von der HTL über Praktika in der Netzwerktechnik bis
+  zu meinem Engagement in Schülervertretung und Politik.
 
 
 # ═══════════════════════════ BERUFSERFAHRUNG ═══════════════════════════════
@@ -62,19 +62,15 @@ berufserfahrung:
   icon: "briefcase"
   eintraege:
 
-    - position: "IT-Verantwortlicher (Teilzeit)"   # Jobtitel
-      unternehmen: "Eder Elektrotechnik GmbH"      # Firma
+    - position: "IT-Techniker"                     # Jobtitel
+      unternehmen: "EDER Elektrotechnik GmbH"      # Firma
       unternehmen_link: ""                         # Optional: Website der Firma
       ort: "Kirchbichl, Tirol"                     # Arbeitsort
-      art: "Teilzeit"                              # Vollzeit / Teilzeit / Freiberuflich …
-      von: "[BITTE AUSFÜLLEN]"                     # Beginn, z. B. "2024-09"
-      bis: ""                                      # Ende – leer = "heute"
-      beschreibung: >-
-        Verantwortlich für die gesamte IT-Infrastruktur des Unternehmens.
-      aufgaben:                                    # Optional: Stichpunkte
-        - "Betreuung von Netzwerk, Servern und Arbeitsplätzen"
-        - "Anwender-Support und Einrichtung neuer Geräte"
-        - "Planung und Umsetzung von IT-Verbesserungen"
+      art: ""                                      # Vollzeit / Teilzeit / Freiberuflich …
+      von: "2026-08"                               # Beginn, z. B. "2024-09"
+      bis: "2026-09"                               # Ende – leer = "heute"
+      beschreibung: ""
+      aufgaben: []                                 # Optional: Stichpunkte
       anzeigen: true                               # false = ausblenden
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
@@ -100,19 +96,35 @@ praktika:
   icon: "wrench"
   eintraege:
 
-    - position: "Praktikum WörglWeb"
-      unternehmen: "Stadtwerke Wörgl GmbH"
+    - position: "Telekommunikationstechniker"
+      unternehmen: "Stadtwerke Wörgl GmbH – WörglWeb"
       unternehmen_link: ""
       ort: "Wörgl, Tirol"
-      art: "Pflichtpraktikum"
+      art: "Sommerpraktikum, 4 Wochen"
+      von: "2025-07"
+      bis: "2025-08"
+      beschreibung: >-
+        Zweites Praktikum im Bereich Netzwerkinfrastruktur und Kundensupport:
+        Aufbauend auf dem Vorjahr konnte ich schneller Verantwortung übernehmen,
+        einfache Konfigurationsaufgaben und Bürovorbereitungen selbstständig
+        erledigen und das Außendienstteam bei Kundenbesuchen und
+        Routineinstallationen unterstützen.
+      aufgaben: []
+      anzeigen: true
+
+    - position: "Telekommunikationstechniker"
+      unternehmen: "Stadtwerke Wörgl GmbH – WörglWeb"
+      unternehmen_link: ""
+      ort: "Wörgl, Tirol"
+      art: "Sommerpraktikum, 4 Wochen"
       von: "2024-07"
       bis: "2024-08"
       beschreibung: >-
-        Netzwerktechnik im Außendienst beim Internetanbieter WörglWeb.
+        Erstes Sommerpraktikum im Bereich Netzwerkinfrastruktur und Kundenservice.
       aufgaben:
-        - "Installation und Wartung von Netzwerkinfrastruktur"
-        - "Außendiensteinsätze und Fehlerbehebung beim Kunden"
-        - "Vorkonfiguration von Hardware"
+        - "Außendienst: Installation und Konfiguration von Routern, Modems und Endgeräten"
+        - "Diagnose grundlegender Netzwerkprobleme vor Ort"
+        - "Vorkonfiguration von Hardware und Pflege von Kunden- und Netzwerkdaten"
       anzeigen: true
 
 # ─── Vorlage: wie bei Berufserfahrung ─────────────────────────────────────
@@ -127,7 +139,7 @@ ausbildung:
 
     - schule: "HTBLVA Innsbruck Anichstraße"       # Name der Schule
       schule_link: "https://www.htlinn.ac.at/"     # Optional: Website der Schule
-      abschluss: "Reife- und Diplomprüfung (Matura)"   # Abschluss
+      abschluss: "Elektroniker / Netzwerktechniker, Reife- und Diplomprüfung (Matura)"   # Abschluss
       fachrichtung: "Elektronik & Technische Informatik"  # Fachrichtung
       ort: "Innsbruck, Tirol"
       von: "2022-09"
@@ -137,7 +149,7 @@ ausbildung:
         Aktuell in der Abschlussklasse 5bHEL. Schwerpunkte: Netzwerktechnik, Routing &
         Switching, Mikrocontroller und Embedded Systems, Software-Entwicklung und
         Automatisierung.
-      aktivitaeten: "Schulsprecher, Leitung HTL-Incubator"   # Optional: Aktivitäten & Vereine
+      aktivitaeten: "Stellvertretender Schulsprecher, Kernteam HTL-Incubator"   # Optional: Aktivitäten & Vereine
       anzeigen: true
 
     - schule: "Mittelschule 2 Kufstein"
@@ -165,9 +177,9 @@ ausbildung:
       anzeigen: true
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
-#    - schule: "Mittelschule XY"
+#    - schule: "Name der Schule"
 #      schule_link: ""
-#      abschluss: "Pflichtschulabschluss"
+#      abschluss: "Abschluss"
 #      fachrichtung: ""
 #      ort: "Ort"
 #      von: "2018-09"
@@ -186,6 +198,40 @@ engagement:
   icon: "users"
   eintraege:
 
+    - rolle: "Landesleitung 26/27 – Tirol"         # Deine Funktion
+      organisation: "Schülerunion Österreich"      # Organisation / Verein
+      organisation_link: ""
+      bereich: "Bildung"                           # LinkedIn "Cause" (optional)
+      von: "2026-08"
+      bis: ""
+      beschreibung: ""
+      anzeigen: true
+
+    - rolle: "Stellvertretender Schulsprecher"
+      organisation: "HTBLVA Innsbruck Anichstraße"
+      organisation_link: ""
+      bereich: "Bildung"
+      von: "2026-05"
+      bis: ""
+      beschreibung: >-
+        Vertretung der Schülerinteressen, Organisation von Projekten und
+        Vermittlung zwischen Schülerschaft und Lehrkörper.
+      anzeigen: true
+
+    - rolle: "Gewählte Schülervertretung"
+      organisation: "HTBLVA Innsbruck Anichstraße"
+      organisation_link: ""
+      bereich: "Bildung"
+      von: "2025-10"
+      bis: ""
+      beschreibung: >-
+        Vertretung von rund 1.600 Schülerinnen und Schülern gegenüber Schulleitung
+        und Lehrkörper. Im Schulgemeinschaftsausschuss (SGA) bringe ich die
+        Perspektive der Schüler zu Schulveranstaltungen, Schulordnung und Budget
+        ein; bei den Tiroler Schülerparlamenten vertrete ich meine Schule auf
+        überregionaler Ebene.
+      anzeigen: true
+
     - rolle: "Regionalvorstand Tiroler Unterland"
       organisation: "Schülerunion Österreich"
       organisation_link: ""
@@ -193,31 +239,33 @@ engagement:
       von: "2025-10"
       bis: ""
       beschreibung: >-
-        Einsatz für die Anliegen von Schülerinnen und Schülern in der Region,
-        Organisation von Veranstaltungen sowie Kommunikation und Konfliktlösung
-        zwischen Schulen, Schülervertretungen und Organisation.
+        Vertretung und Förderung der Interessen von Schülerinnen und Schülern im
+        Tiroler Unterland: Planung und Organisation regionaler Veranstaltungen,
+        Aufbau von Netzwerken und Mitgestaltung der lokalen Bildungslandschaft.
       anzeigen: true
 
-    - rolle: "Schulsprecher"                       # Deine Funktion
-      organisation: "HTBLVA Innsbruck Anichstraße" # Organisation / Verein
-      organisation_link: ""
-      bereich: "Bildung"                           # LinkedIn "Cause" (optional)
-      von: "2025-10"
-      bis: ""
-      beschreibung: >-
-        Gewählte Vertretung für rund 1.600 Schülerinnen und Schüler, unter anderem im
-        Schulgemeinschaftsausschuss.
-      anzeigen: true
-
-    - rolle: "Leitung HTL-Incubator"
+    - rolle: "Kernteam Open Maker Space „HTL-Incubator“"
       organisation: "HTBLVA Innsbruck Anichstraße"
       organisation_link: ""
       bereich: "Bildung & Technik"
       von: "2025-06"
       bis: ""
       beschreibung: >-
-        Leitung eines Open Maker Space: Unterstützung von Mitschülerinnen und
-        Mitschülern bei der Nutzung moderner Technologien und bei eigenen Projekten.
+        Als Raumverantwortlicher leite ich den von Schülern für Schüler betriebenen
+        Makerspace: sicherer Betrieb von 3D-Druckern, Lasercutter, Dreh- und
+        Fräsmaschinen sowie Löt- und Messstationen und Anleitung von Mitschülern
+        bei deren Nutzung.
+      anzeigen: true
+
+    - rolle: "Sympathisant"
+      organisation: "Schülerunion Österreich"
+      organisation_link: ""
+      bereich: "Bildung"
+      von: "2025-02"
+      bis: ""
+      beschreibung: >-
+        Aktive Unterstützung der Organisation durch die Teilnahme an Events und
+        den Austausch mit anderen engagierten Schülerinnen und Schülern.
       anzeigen: true
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
@@ -231,6 +279,47 @@ engagement:
 #      anzeigen: true
 
 
+# ═══════════════════════════ POLITISCHES ENGAGEMENT ════════════════════════
+# ⚠ Politische Inhalte: Die Website ist damit KEINE "kleine Website" mehr –
+#   die grundlegende Richtung (Blattlinie) in rechtliches.yml ist Pflicht und
+#   muss das politische Engagement nennen. Siehe RECHTLICHES.md.
+#   Gleiche Felder wie bei ENGAGEMENT.
+
+politik:
+  titel: "Politisches Engagement"
+  icon: "landmark"
+  eintraege:
+
+    - rolle: "Kandidat für den Tiroler Landtag – Bezirksliste Kufstein"
+      organisation: "FPÖ – Freiheitliche Partei Österreichs"
+      organisation_link: ""
+      bereich: ""
+      von: "2026-09"
+      bis: ""
+      beschreibung: >-
+        Kandidatur auf der Bezirksliste Kufstein der FPÖ für die Tiroler
+        Landtagswahl.
+      anzeigen: true
+
+    - rolle: "Mitglied"
+      organisation: "FPÖ – Freiheitliche Partei Österreichs"
+      organisation_link: ""
+      bereich: ""
+      von: "2026-08"
+      bis: ""
+      beschreibung: ""
+      anzeigen: true
+
+    - rolle: "Mitglied"
+      organisation: "Freiheitliche Jugend Tirol"
+      organisation_link: ""
+      bereich: ""
+      von: "2024-03"
+      bis: ""
+      beschreibung: ""
+      anzeigen: true
+
+
 # ═════════════════════════════════ SKILLS ══════════════════════════════════
 # In Gruppen sortiert. "icon" = Icon-Name aus assets/icons/.
 
@@ -241,33 +330,38 @@ skills:
     - gruppe: "Netzwerk"
       icon: "network"
       eintraege:
-        - "Cisco IOS (CCNA)"
-        - "Routing & Switching"
-        - "VLANs, Subnetting"
-        - "WLAN & Firewall-Grundlagen"
+        - "Routing & Switching (Cisco NetAcad)"
+        - "VLANs"
+        - "FHRP"
+        - "Router- & Modem-Konfiguration"
 
-    - gruppe: "Programmierung & Web"
-      icon: "code"
-      eintraege:
-        - "HTML, CSS, JavaScript"
-        - "Python"
-        - "C"
-        - "Git (Versionsverwaltung)"
-
-    - gruppe: "Hardware & Elektronik"
+    - gruppe: "Linux & Server"
       icon: "cpu"
       eintraege:
-        - "Schaltungsentwicklung"
-        - "Mikrocontroller"
-        - "Messtechnik"
-        - "PC- & Server-Hardware"
+        - "Debian"
+        - "CachyOS"
+        - "Homelab"
 
-    - gruppe: "IT-Betrieb"
+    - gruppe: "Programmierung"
+      icon: "code"
+      eintraege:
+        - "Python & Chatbots"
+
+    - gruppe: "Elektronik & Maker"
       icon: "wrench"
       eintraege:
-        - "Windows & Microsoft 365"
-        - "Benutzer-Support"
-        - "Backup & Datensicherheit"
+        - "IoT"
+        - "Mikrocontroller & Embedded Systems"
+        - "3D-Druck & Lasercutter"
+        - "Löt- und Messtechnik"
+
+    - gruppe: "Soft Skills"
+      icon: "users"
+      eintraege:
+        - "Kommunikation"
+        - "Konfliktlösung"
+        - "Gremienarbeit"
+        - "Projektmanagement"
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
 #    - gruppe: "Sonstiges"
@@ -288,7 +382,7 @@ sprachen:
       niveau: "Muttersprache"
       stufe: 5
     - sprache: "Englisch"
-      niveau: "[BITTE AUSFÜLLEN: z. B. B2 / fließend]"
+      niveau: "B2 – gute Kenntnisse"
       stufe: 4
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────

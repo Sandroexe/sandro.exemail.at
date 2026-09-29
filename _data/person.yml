@@ -33,16 +33,18 @@ nachname: "Exenberger"
 kurztitel: "Elektronik & IT | Netzwerke | Webentwicklung"
 
 # Berufsbezeichnung für Google (schema.org "jobTitle")
-berufsbezeichnung: "IT-Verantwortlicher & Schüler für Elektronik und Technische Informatik"
+berufsbezeichnung: "Schüler für Elektronik und Technische Informatik"
 
 # Kleine Begrüßungszeile über dem Namen (leer lassen = ausblenden)
 begruessung: "Hallo, ich bin"
 
 # 1–2 Sätze Vorstellung für die Startseite
 vorstellung: >-
-  Ich bin Schüler der HTL Anichstraße in Innsbruck und betreue nebenbei die IT eines
-  Tiroler Elektrotechnik-Unternehmens. Mich begeistern Netzwerke, saubere Technik
-  und Websites, die einfach funktionieren.
+  Ich lerne Elektronik und Technische Informatik an der HTL Anichstraße in Innsbruck
+  und setze mich als Schülervertreter und in der Schülerunion Tirol für die Anliegen
+  von Schülerinnen und Schülern ein. In meiner Freizeit baue ich Netzwerke, Server
+  und Projekte an der Schnittstelle von Hardware, Software und Mechanik – vom
+  Homelab bis zum Smart Home.
 
 
 # ═══════════════════════════════ WOHNORT ═══════════════════════════════════
@@ -100,19 +102,19 @@ highlights:
     text: "Elektronik & Technische Informatik, Abschlussklasse 5bHEL – Matura voraussichtlich Juni 2027."
     link: "/lebenslauf/"
 
-  - icon: "briefcase"
-    titel: "IT-Verantwortlicher"
-    text: "Teilzeit bei Eder Elektrotechnik GmbH in Kirchbichl – Netzwerk, Geräte und Support."
+  - icon: "cpu"
+    titel: "HTL-Incubator"
+    text: "Kernteam des Open Maker Space – 3D-Druck, Lasercutter, Löt- und Messtechnik."
     link: "/lebenslauf/"
 
   - icon: "network"
-    titel: "Cisco CCNA"
-    text: "Zertifiziert in Netzwerkgrundlagen, Routing, Switching und Netzwerksicherheit."
+    titel: "Netzwerktechnik"
+    text: "Cisco Networking Academy: Switching, Routing & Wireless Essentials."
     link: "/zertifikate/"
 
   - icon: "users"
-    titel: "Schulsprecher"
-    text: "Gewählte Vertretung für rund 1.600 Schülerinnen und Schüler."
+    titel: "Schülervertretung"
+    text: "Stellvertretender Schulsprecher für rund 1.600 Schülerinnen und Schüler, Landesleitung der Schülerunion Tirol."
     link: "/lebenslauf/"
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────

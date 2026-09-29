@@ -53,13 +53,21 @@ medieninhaber:
 
 
 # ═══════════════════════ GRUNDLEGENDE RICHTUNG (BLATTLINIE) ════════════════
-# (O) Für eine "kleine Website" wie diese nicht verpflichtend, schadet aber
-#     nicht. Leer lassen ("") = Abschnitt wird ausgeblendet.
+# kleine_website:
+#   true  = die Website stellt nur die Person vor, ohne Inhalte, die die
+#           öffentliche Meinung beeinflussen können (§ 25 Abs. 5 MedienG) →
+#           verkürzte Offenlegung, Blattlinie freiwillig, Hinweissatz im Impressum
+#   false = es gibt z. B. politische Inhalte → volle Offenlegung,
+#           Blattlinie ist PFLICHT (aktuell wegen "Politisches Engagement")
+kleine_website: false
 
+# (P) solange kleine_website: false – muss auch die politische Ausrichtung nennen
 grundlegende_richtung: >-
   Persönliche Website von Sandro Exenberger mit Informationen über Ausbildung,
-  beruflichen Werdegang, Qualifikationen und Projekte in den Bereichen
-  Elektronik, IT und Webentwicklung.
+  beruflichen Werdegang, Qualifikationen und Projekte in Elektronik, IT und
+  Netzwerktechnik sowie über sein schul- und parteipolitisches Engagement
+  (u. a. Schülerunion Österreich und FPÖ). Die Inhalte geben die persönliche
+  Auffassung des Medieninhabers wieder.
 
 
 # ═══════════════════════════ UNTERNEHMEN ═══════════════════════════════════
@@ -157,5 +165,8 @@ social_impressum:
   #     Alle weiteren Angaben pro Kanal (Betreiber, Datenschutz, Statistik …)
   #     stehen ebenfalls in social.yml im Block "rechtliches".
   grundlegende_richtung: >-
-    Persönliche Social-Media-Kanäle mit Einblicken in Ausbildung, beruflichen
-    Werdegang, Technik und Alltag von Sandro Exenberger.
+    Persönliche Social-Media-Kanäle von Sandro Exenberger mit Einblicken in
+    Ausbildung, beruflichen Werdegang, Technik und Alltag sowie Beiträgen zu
+    bildungs- und gesellschaftspolitischen Themen und zum politischen Engagement
+    des Medieninhabers (u. a. FPÖ). Die Inhalte geben die persönliche Auffassung
+    des Medieninhabers wieder.

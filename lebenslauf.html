@@ -1,7 +1,7 @@
 ---
 # Lebenslauf – Inhalte kommen aus _data/lebenslauf.yml
 title: "Lebenslauf"
-description: "Lebenslauf von Sandro Exenberger: Ausbildung an der HTL Anichstraße, IT-Erfahrung, Praktika, Engagement, Kenntnisse und Sprachen."
+description: "Lebenslauf von Sandro Exenberger: Ausbildung an der HTL Anichstraße, Praktika, Schülervertretung, politisches Engagement, Kenntnisse und Sprachen."
 permalink: /lebenslauf/
 hero: false
 # Für das Änderungsdatum in der Sitemap: Dateien, aus denen der Inhalt stammt
@@ -69,7 +69,7 @@ abhaengig_von:
 
     <div class="cv-layout">
       <div class="cv-layout__main">
-        {%- assign abschnitte = "berufserfahrung,praktika,ausbildung,engagement" | split: "," %}
+        {%- assign abschnitte = "berufserfahrung,praktika,ausbildung,engagement,politik" | split: "," %}
         {%- for key in abschnitte %}
         {%- assign a = cv[key] %}
         {%- assign eintraege = a.eintraege | where_exp: "e", "e.anzeigen != false" %}
@@ -96,7 +96,7 @@ abhaengig_von:
                   {%- if e.ort and e.ort != "" %}<li>{{ e.ort }}</li>{% endif %}
                   {%- if e.schule_link and e.schule_link != "" %}<li><a href="{{ e.schule_link }}" target="_blank" rel="noopener noreferrer">Website<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></li>{% endif %}
                 </ul>
-                {%- when "engagement" %}
+                {%- when "engagement", "politik" %}
                 <h3 class="timeline__title">{{ e.rolle }}</h3>
                 <ul class="timeline__meta">
                   {%- if e.organisation and e.organisation != "" %}<li>{% if e.organisation_link and e.organisation_link != "" %}<a href="{{ e.organisation_link }}" target="_blank" rel="noopener noreferrer">{{ e.organisation }}<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>{% else %}{{ e.organisation }}{% endif %}</li>{% endif %}

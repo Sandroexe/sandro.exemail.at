@@ -18,6 +18,16 @@ Alle Angaben stehen zentral in **`_data/rechtliches.yml`** und werden automatisc
 | **DSGVO / DSG** | ✅ **Ja** | Sobald Daten verarbeitet werden (schon die IP-Adresse beim Hosting). Eine öffentlich zugängliche Website fällt nicht unter die „Haushaltsausnahme". |
 | **TKG 2021 § 165** (Cookies & Co.) | ✅ Ja, aber erfüllt | Die Website speichert nur nach aktivem Klick die Hell/Dunkel-Auswahl – das ist ohne Einwilligung erlaubt. Deshalb **kein Cookie-Banner nötig**. |
 
+### ⚠ Aktuelle Einstufung: KEINE „kleine Website" mehr
+
+Seit dem Abschnitt **„Politisches Engagement"** im Lebenslauf (u. a. FPÖ-Kandidatur zum Tiroler Landtag) enthält die Website Inhalte, die geeignet sind, die öffentliche Meinung zu beeinflussen. Deshalb gilt die **volle Offenlegung nach § 25 Abs. 2–4 MedienG**:
+
+- Name und Wohnort des Medieninhabers (Gemeinde genügt weiterhin – **keine Straße nötig**)
+- **grundlegende Richtung (Blattlinie) ist PFLICHT** und nennt das politische Engagement – für die Website (`rechtliches.yml` → `grundlegende_richtung`) **und** für jeden Social-Media-Kanal (`social.yml` → `rechtliches` → `grundlegende_richtung`)
+- Schalter `kleine_website: false` in `rechtliches.yml` – der Hinweissatz „kleine Website" im Impressum ist damit ausgeblendet
+
+Solltest du die politischen Einträge wieder entfernen, kannst du `kleine_website: true` setzen.
+
 ### „Kleine Website" nach § 25 Abs. 5 MedienG
 
 Diese Website ist eine sogenannte **„kleine Website"**: Sie stellt nur dich persönlich vor und enthält keine Inhalte, die darüber hinaus die öffentliche Meinung beeinflussen sollen (keine politischen Kommentare, kein Blog mit Meinungsbeiträgen). Dann genügt eine **verkürzte Offenlegung**: Name, Wohnort (bzw. bei Unternehmen: Firma, Unternehmensgegenstand, Sitz). Eine „grundlegende Richtung" (Blattlinie) ist **nicht** Pflicht.
@@ -184,6 +194,7 @@ Das EuGH-Urteil C-210/16 („Fanpage", 2018) betraf den Betreiber einer **Untern
 - **[RECHTLICH PRÜFEN]** TikTok: gemeinsame Verantwortlichkeit über das „Analytics Joint Controller Addendum" auch beim persönlichen Konto (derzeit so angenommen).
 - **[RECHTLICH PRÜFEN]** TikTok: Darstellung der Übermittlungen in Drittländer (USA, Malaysia, Singapur; Entscheidung der irischen Datenschutzbehörde vom 2. Mai 2025 zu China) – Stand des Verfahrens prüfen.
 - **[RECHTLICH PRÜFEN]** TikTok ohne anklickbaren Bio-Link: genügt Name + Wohnort + Kurzadresse als Text in der Bio?
+- **[RECHTLICH PRÜFEN]** Politische Inhalte: Reichen Name + Wohnort + Blattlinie als Offenlegung nach § 25 Abs. 2–4 MedienG, und passt die Formulierung der Blattlinie (Website + alle Kanäle)?
 - **[RECHTLICH PRÜFEN]** Kein § 5 ECG für private, nicht wirtschaftlich genutzte Kanäle.
 - **[RECHTLICH PRÜFEN]** Drittland-Grundlagen (DPF + Standardvertragsklauseln) für LinkedIn Corporation und Meta Platforms, Inc. – Zertifizierung auf <https://www.dataprivacyframework.gov/list> nachsehen.
 - **[RECHTLICH PRÜFEN]** Anschriften der Betreiber (Stand September 2026, aus den Datenschutzerklärungen der Plattformen) – einmal jährlich kontrollieren.

@@ -107,7 +107,7 @@ module SeitenGenerator
       namen.concat((d.dig("person", "buttons") || []).map { |b| b["icon"] })
       namen.concat((d.dig("person", "highlights") || []).map { |h| h["icon"] })
       lv = d["lebenslauf"] || {}
-      %w[berufserfahrung praktika ausbildung engagement].each { |a| namen << lv.dig(a, "icon") }
+      %w[berufserfahrung praktika ausbildung engagement politik].each { |a| namen << lv.dig(a, "icon") }
       namen.concat((lv.dig("skills", "gruppen") || []).map { |g| g["icon"] })
 
       namen.compact.map(&:to_s).reject(&:empty?).uniq.each do |name|

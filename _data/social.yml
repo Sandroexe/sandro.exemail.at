@@ -114,8 +114,11 @@ kanaele:
       einstellungen_link_plattform: "https://www.linkedin.com/mypreferences/d/categories/privacy"
       rechte_link_plattform: "https://www.linkedin.com/help/linkedin/ask/TSO-DPO"
       grundlegende_richtung: >-
-        Berufliches Profil von Sandro Exenberger mit Informationen und Beiträgen
-        zu Ausbildung, beruflichem Werdegang, Netzwerktechnik und IT.
+        Berufliches Profil von Sandro Exenberger mit Informationen und Beiträgen zu
+        Ausbildung, beruflichem Werdegang, Netzwerktechnik und IT sowie Beiträgen zu
+        bildungs- und gesellschaftspolitischen Themen und zum politischen Engagement
+        des Medieninhabers (u. a. FPÖ). Die Inhalte geben die persönliche Auffassung
+        des Medieninhabers wieder.
       # LinkedIn zeigt jedem persönlichen Profil automatisch Statistiken an.
       insights_genutzt: true
       insights_bezeichnung: "Profil- und Beitragsstatistiken (z. B. Profilaufrufe, Impressionen, „Wer hat Ihr Profil angesehen“)"
@@ -154,7 +157,10 @@ kanaele:
       rechte_link_plattform: "https://privacycenter.instagram.com/"
       grundlegende_richtung: >-
         Persönlicher Kanal von Sandro Exenberger mit Einblicken in Ausbildung,
-        Technik, Projekte und Alltag.
+        Technik, Projekte und Alltag sowie Beiträgen zu bildungs- und
+        gesellschaftspolitischen Themen und zum politischen Engagement des
+        Medieninhabers (u. a. FPÖ). Die Inhalte geben die persönliche Auffassung des
+        Medieninhabers wieder.
       # Privates/persönliches Konto: keine Insights → false.
       # Bei Umstellung auf ein "professionelles Konto" (Creator/Business)
       # stellt Instagram Insights bereit → auf true setzen.
@@ -192,7 +198,10 @@ kanaele:
       rechte_link_plattform: "https://www.facebook.com/privacy/center/"
       grundlegende_richtung: >-
         Facebook-Seite von Sandro Exenberger mit Informationen und Beiträgen zu
-        Ausbildung, beruflichem Werdegang, Technik und Engagement.
+        Ausbildung, beruflichem Werdegang, Technik und Engagement sowie Beiträgen zu
+        bildungs- und gesellschaftspolitischen Themen und zum politischen Engagement
+        des Medieninhabers (u. a. FPÖ). Die Inhalte geben die persönliche Auffassung
+        des Medieninhabers wieder.
       # Facebook-Seiten erhalten automatisch Seitenstatistiken ("Insights").
       insights_genutzt: true
       insights_bezeichnung: "Seitenstatistiken („Insights“, z. B. Reichweite, Seitenaufrufe, Interaktionen sowie Alter, Geschlecht und Herkunft der Follower in zusammengefasster Form)"
@@ -233,7 +242,10 @@ kanaele:
       rechte_link_plattform: "https://www.facebook.com/privacy/center/"
       grundlegende_richtung: >-
         Persönliches Facebook-Profil von Sandro Exenberger mit Beiträgen und
-        Einblicken aus Ausbildung, Technik, Engagement und Alltag.
+        Einblicken aus Ausbildung, Technik, Engagement und Alltag sowie Beiträgen zu
+        bildungs- und gesellschaftspolitischen Themen und zum politischen Engagement
+        des Medieninhabers (u. a. FPÖ). Die Inhalte geben die persönliche Auffassung
+        des Medieninhabers wieder.
       insights_genutzt: false
       insights_bezeichnung: ""
       insights_hinweis: ""
@@ -267,7 +279,10 @@ kanaele:
       rechte_link_plattform: "https://www.tiktok.com/legal/report/privacy"
       grundlegende_richtung: >-
         Persönlicher Kanal von Sandro Exenberger mit kurzen Videos zu Technik,
-        Ausbildung, Projekten und Alltag.
+        Ausbildung, Projekten und Alltag sowie Beiträgen zu bildungs- und
+        gesellschaftspolitischen Themen und zum politischen Engagement des
+        Medieninhabers (u. a. FPÖ). Die Inhalte geben die persönliche Auffassung des
+        Medieninhabers wieder.
       # TikTok stellt jedem Konto "TikTok Analytics" bereit.
       insights_genutzt: true
       insights_bezeichnung: "TikTok Analytics (z. B. Videoaufrufe, Wiedergabezeit, Anzahl und Herkunftsländer der Follower)"
