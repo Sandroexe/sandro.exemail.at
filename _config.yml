@@ -92,6 +92,7 @@ exclude:
   - README.md
   - DEPLOYMENT.md
   - RECHTLICHES.md
+  - CLAUDE.md
   - Gemfile
   - Gemfile.lock
   - tools/

@@ -23,6 +23,7 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 6. [YAML-Spickzettel](#6-yaml-spickzettel)
 7. [Technische Entscheidungen](#7-technische-entscheidungen)
 8. [Fehlerbehebung](#8-fehlerbehebung)
+9. [Branches, Backups & Notfall](#9-branches-backups--notfall)
 
 ---
 
@@ -64,6 +65,7 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 sandro/
 ├── _config.yml              ✏️ Globale Einstellungen (Titel, Domain, Kontaktformular)
 ├── CNAME                       Domain für GitHub Pages (sandro.exemail.at)
+├── CLAUDE.md                   Projektregeln für KI-Assistenten (Claude Code)
 ├── README.md                   Diese Anleitung
 ├── DEPLOYMENT.md               Anleitung: online stellen
 ├── RECHTLICHES.md              Erklärung der Rechtstexte
@@ -76,14 +78,17 @@ sandro/
 │   ├── lebenslauf.yml          Berufserfahrung, Praktika, Ausbildung, Skills …
 │   ├── zertifikate.yml         Zertifikate & Kategorien
 │   ├── rechtliches.yml         Impressum, Offenlegung, Datenschutz
-│   └── footer.yml              Footer-Texte und -Links
+│   ├── footer.yml              Footer-Texte und -Links
+│   ├── linkseite.yml           Texte der QR-Linkseite /links/
+│   └── weiterleitungen.yml     Alte Adressen → neue Adressen
 │
 ├── _sass/
 │   ├── _theme.scss          ✏️ ZENTRALE DESIGN-DATEI
 │   └── _*.scss                 Technische Stil-Dateien (nicht anfassen)
 │
 ├── _includes/                  Bausteine: Header, Footer, Social-Icons, SEO …
-├── _layouts/                   Seitenvorlagen: default, page, legal
+├── _layouts/                   Seitenvorlagen: default, page, legal, weiterleitung
+├── _plugins/                   Erzeugt Weiterleitungen & Social-Impressum-Unterseiten
 │
 ├── index.html                  Startseite
 ├── lebenslauf.html             /lebenslauf/
@@ -91,7 +96,9 @@ sandro/
 ├── kontakt.html                /kontakt/
 ├── impressum.html              /impressum/
 ├── datenschutz.html            /datenschutz/
-├── social-impressum.html       /social-impressum/
+├── social-impressum.html       /social-impressum/ (+ /social-impressum/<kanal>/ automatisch)
+├── links.html                  /links/ – Ziel des QR-Codes (⚠ Adresse nie ändern)
+├── vcard.vcf                   /Sandro_Exenberger.vcf – digitale Visitenkarte
 ├── 404.html                    Fehlerseite
 ├── robots.txt, site.webmanifest, favicon.ico
 │
@@ -156,7 +163,7 @@ Dann im Browser öffnen: **http://localhost:4000**
 
 Sobald das Repository eingerichtet ist (siehe [DEPLOYMENT.md](DEPLOYMENT.md)), gilt:
 
-**Jede Änderung, die auf GitHub im Branch `main` landet, wird automatisch in 1–2 Minuten veröffentlicht.**
+**Jede Änderung, die auf GitHub im Branch `main` landet, wird automatisch in 1–2 Minuten veröffentlicht.** `main` ist immer die Live-Version – kleine Textänderungen kannst du direkt dort machen, größere Umbauten laufen über einen Arbeitsbranch (siehe [Abschnitt 9](#9-branches-backups--notfall)).
 
 **Variante A – GitHub Desktop (empfohlen für Einsteiger)**
 1. Dateien lokal ändern und speichern.
@@ -398,3 +405,27 @@ Kurz dokumentiert, damit du (oder jemand anderes) später versteht, warum etwas 
 | **Icon wird nicht angezeigt** | Stimmt der Name in der YAML-Datei exakt mit dem Dateinamen in `assets/icons/` überein (ohne `.svg`)? |
 | **Bild wird nicht angezeigt** | Groß-/Kleinschreibung prüfen: `Profil.JPG` ≠ `profil.jpg`. |
 | **Datum erscheint als Text** | Format `"JJJJ-MM"` in Anführungszeichen verwenden. |
+
+---
+
+## 9. Branches, Backups & Notfall
+
+**Grundregel:** `main` ist die einzige Hauptversion. Was in `main` liegt, ist live und muss immer funktionieren.
+
+| Was | Schema | Beispiel |
+| --- | --- | --- |
+| Arbeitsbranch | `<typ>/<JJJJ-MM-TT>-<beschreibung>` (typ: `feat`, `fix`, `chore`, `docs`) | `feat/2026-10-05-projekte-seite` |
+| Backup (bevorzugt) | Git-Tag `stand-JJJJ-MM-TT-<beschreibung>` | `stand-2026-09-29-vor-aufraeumen` |
+| Backup, das weiterbearbeitet wird | Branch `backup/JJJJ-MM-TT-<beschreibung>` | `backup/2026-10-01-alte-farben` |
+
+Ablauf: Arbeitsbranch anlegen → ändern → lokal testen → in `main` mergen → Arbeitsbranch löschen. Vor großen oder riskanten Schritten wird zuerst ein Backup-Tag gesetzt. Es bleiben höchstens die letzten 3 Backup-Branches; Tags dürfen bleiben.
+
+**Im Notfall einen alten Stand zurückholen:** Alle gesicherten Stände findest du auf GitHub unter **Code → Tags**; dort kannst du jeden Stand ansehen und als ZIP herunterladen, ohne etwas zu verändern. Um einen Stand wieder live zu schalten, stellst du im Projektordner den Inhalt von `main` auf den Tag zurück und veröffentlichst das als neuen Commit (die Zwischenstände bleiben dabei in der Historie erhalten):
+
+```bash
+git switch main && git pull
+git rm -r -q . && git checkout stand-2026-09-29-vor-aufraeumen -- .
+git commit -m "Zurück auf stand-2026-09-29-vor-aufraeumen" && git push
+```
+
+Nach 1–2 Minuten ist der alte Stand online. Ausnahme: Die ganz alte Website (`stand-2026-09-29-vor-umstellung-neue-seite`) wurde noch ohne GitHub Actions veröffentlicht – dafür zusätzlich unter **Settings → Pages → Source** wieder „Deploy from a branch" (`main`) wählen.

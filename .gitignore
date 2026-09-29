@@ -1,17 +1,32 @@
-# Von Jekyll erzeugt – nicht ins Repository
+# ════════════════════════════════════════════════════════════════════
+#  Dateien, die NIE ins Repository gehören
+# ════════════════════════════════════════════════════════════════════
+
+# ─── Von Jekyll erzeugt (Build & Cache) ─────────────────────────────
 _site/
 .jekyll-cache/
 .jekyll-metadata
 .sass-cache/
 
-# Ruby / Bundler
+# ─── Ruby / Bundler / Node ──────────────────────────────────────────
 .bundle/
 vendor/
+node_modules/
 
-# LinkedIn-Export (persönliche Daten!) und Import-Ergebnisse
+# ─── Persönliche Daten: LinkedIn-Export und Import-Ergebnisse ──────
 tools/linkedin-export/
 tools/ausgabe/
 
-# Betriebssystem
+# ─── Betriebssystem ─────────────────────────────────────────────────
 .DS_Store
+._*
 Thumbs.db
+desktop.ini
+Icon?
+
+# ─── Editoren ───────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
