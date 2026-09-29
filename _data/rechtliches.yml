@@ -115,7 +115,7 @@ hosting:
 #           Dann läuft kein Besucher-Traffic über Cloudflare.
 #   true  = Cloudflare-Proxy ist aktiv (orange Wolke). Dann wird automatisch
 #           ein eigener Abschnitt in der Datenschutzerklärung eingeblendet.
-cloudflare_proxy: false
+cloudflare_proxy: true
 
 
 # ═══════════════════════════════ E-MAIL-ANBIETER ═══════════════════════════
