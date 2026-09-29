@@ -85,32 +85,12 @@ kontaktseite:
     liebsten ist – ich melde mich so schnell wie möglich.
 
 
-# ═══════════════════════════════ KONTAKT ═══════════════════════════════════
+# ═══════════════════════════════ ALLE KANÄLE ═══════════════════════════════
 
 kanaele:
 
-  - id: "email"
-    name: "E-Mail"
-    typ: "email"
-    wert: "sandro@exemail.at"
-    anzeigetext: ""
-    beschreibung: "Der schnellste Weg zu mir."
-    icon: "mail"
-    anzeigen: true
-    orte: [header, footer, startseite, kontakt]
-
-  - id: "telefon"
-    name: "Telefon"
-    typ: "telefon"
-    wert: "+43 676 7406799"
-    anzeigetext: ""
-    beschreibung: "Werktags nach der Schule gut erreichbar."
-    icon: "phone"
-    anzeigen: true
-    orte: [kontakt]
-
-
 # ═════════════════════════════ SOCIAL MEDIA ════════════════════════════════
+# Reihenfolge hier = Reihenfolge der Buttons auf der Website.
 
   # ─────────────────────────────── LINKEDIN ────────────────────────────────
   - id: "linkedin"
@@ -186,6 +166,70 @@ kanaele:
         Standardvertragsklauseln der EU-Kommission (Art. 46 DSGVO).
       zusaetzliche_hinweise: ""
 
+  # ──────────────────────────────── TIKTOK ─────────────────────────────────
+  - id: "tiktok"
+    name: "TikTok"
+    typ: "link"
+    wert: "https://www.tiktok.com/@sandro_exenberger"
+    anzeigetext: "@sandro_exenberger"
+    beschreibung: "Kurze Videos rund um Technik, Schule und Alltag."
+    icon: "tiktok"
+    anzeigen: true
+    orte: [header, footer, startseite, kontakt]
+    rechtliches:
+      impressum_anzeigen: true
+      betreiber_name: "TikTok Technology Limited"
+      betreiber_anschrift: "10 Earlsfort Terrace, Dublin, D02 T380, Irland"
+      datenschutz_link_plattform: "https://www.tiktok.com/legal/page/eea/privacy-policy/de"
+      einstellungen_link_plattform: "https://www.tiktok.com/setting"
+      rechte_link_plattform: "https://www.tiktok.com/legal/report/privacy"
+      grundlegende_richtung: >-
+        Persönlicher Kanal von Sandro Exenberger mit kurzen Videos zu Technik,
+        Ausbildung, Projekten und Alltag.
+      # TikTok stellt jedem Konto "TikTok Analytics" bereit.
+      insights_genutzt: true
+      insights_bezeichnung: "TikTok Analytics (z. B. Videoaufrufe, Wiedergabezeit, Anzahl und Herkunftsländer der Follower)"
+      insights_hinweis: ""
+      # [RECHTLICH PRÜFEN] TikToks "Analytics Joint Controller Addendum" gilt
+      # laut Wortlaut für JEDES Konto, das TikTok Analytics erhält – nicht nur
+      # für Unternehmenskonten. Deshalb hier vorsichtshalber true.
+      gemeinsame_verantwortung: true
+      vereinbarung_link: "https://www.tiktok.com/legal/page/global/tiktok-analytics-joint-controller-addendum/en"
+      # [RECHTLICH PRÜFEN] Stand der Verfahren zu Übermittlungen nach China.
+      drittland_text: >-
+        TikTok speichert Daten laut eigener Datenschutzerklärung auf Servern in den
+        USA, Malaysia und Singapur und übermittelt sie an Unternehmen der
+        TikTok-Unternehmensgruppe. Grundlage sind laut Anbieter
+        Angemessenheitsbeschlüsse (Art. 45 DSGVO) sowie Standardvertragsklauseln
+        der EU-Kommission (Art. 46 DSGVO). Die irische Datenschutzbehörde hat mit
+        Entscheidung vom 2. Mai 2025 festgestellt, dass Übermittlungen von
+        EWR-Nutzerdaten per Fernzugriff nach China nicht ausreichend abgesichert
+        waren.
+      zusaetzliche_hinweise: ""
+
+
+# ═══════════════════════════════ KONTAKT ═══════════════════════════════════
+
+  - id: "telefon"
+    name: "Telefon"
+    typ: "telefon"
+    wert: "+43 676 7406799"
+    anzeigetext: ""
+    beschreibung: "Werktags nach der Schule gut erreichbar."
+    icon: "phone"
+    anzeigen: true
+    orte: [kontakt]
+
+  - id: "email"
+    name: "E-Mail"
+    typ: "email"
+    wert: "sandro@exemail.at"
+    anzeigetext: ""
+    beschreibung: "Der schnellste Weg zu mir."
+    icon: "mail"
+    anzeigen: true
+    orte: [header, footer, startseite, kontakt]
+
 
 # ═══════════════════ VORLAGE – INAKTIV (wird NICHT angezeigt) ═══════════════
 #  Nur für später: Kopieren, alle Platzhalter <…> ersetzen und dann NUR die
@@ -218,5 +262,5 @@ kanaele:
 #        <Wer erhält Daten außerhalb der EU und auf welcher Grundlage?>
 #      zusaetzliche_hinweise: ""
 #
-#  Vorhandene Icons: mail, phone, linkedin, instagram.
+#  Vorhandene Icons: mail, phone, linkedin, instagram, tiktok.
 #  Für eine neue Plattform ihr SVG-Icon nach assets/icons/ legen (siehe README).

@@ -105,6 +105,7 @@ Die `#`-Sprungmarken bleiben zusätzlich für die Navigation auf der Übersicht 
 | --- | --- |
 | LinkedIn | `https://sandro.exemail.at/social-impressum/linkedin/` |
 | Instagram | `https://sandro.exemail.at/social-impressum/instagram/` |
+| TikTok | `https://sandro.exemail.at/social-impressum/tiktok/` |
 
 > ⚠️ Die `id` eines Kanals in `social.yml` **nie mehr ändern**, sobald der Link in einer Bio steht.
 
@@ -121,6 +122,16 @@ Die `#`-Sprungmarken bleiben zusätzlich für die Navigation auf der Übersicht 
 2. URL: `https://sandro.exemail.at/social-impressum/linkedin/` – Typ: **Sonstiges** – Bezeichnung: **Impressum**
 3. Zusätzlich im Abschnitt **Info** als letzte Zeile: `Impressum: sandro.exemail.at/social-impressum/linkedin`
    (Die Kontaktinfo ist auf dem Handy nur über einen Extra-Klick erreichbar – der Hinweis im Info-Text macht es eindeutig.)
+
+**TikTok**
+
+TikTok zeigt das anklickbare **Website-Feld** (Profil bearbeiten → **Website**) nur bei **Unternehmenskonten** oder bei **persönlichen Konten ab ca. 1.000 Followern**; es lässt sich nur in der App bearbeiten und die Adresse muss mit `https://` beginnen.
+
+1. **Website-Feld vorhanden?** → `https://sandro.exemail.at/social-impressum/tiktok/` eintragen.
+2. **Zusätzlich immer in die Bio** (Text, TikTok erlaubt max. 80 Zeichen). Dafür gibt es die Kurzadresse `sandro.exemail.at/i/tiktok`, die auf die TikTok-Unterseite weiterleitet:
+   `Sandro Exenberger, Schwoich · Impressum: sandro.exemail.at/i/tiktok` (67 Zeichen)
+3. **Kein Website-Feld (persönliches Konto unter 1.000 Followern)?** Dann ist genau diese Bio-Zeile die beste Alternative: Name und Wohnort sind bei einer „kleinen Website" bereits die vollständige Offenlegung nach § 25 Abs. 5 MedienG und damit **ohne Klick** sichtbar; die Kurzadresse führt zu Datenschutzhinweisen und Details. **[RECHTLICH PRÜFEN]** ob das als „leicht und unmittelbar erreichbar" genügt.
+4. Umstellen auf ein **Unternehmenskonto** schaltet den Link sofort frei, schränkt aber die Musikbibliothek ein und passt erst, wenn du tatsächlich unternehmerisch auftrittst.
 
 **Weitere Plattformen (falls später):** Link zur Kanal-Unterseite `/social-impressum/<id>/` ins **Website-/Link-Feld** des Profils und zusätzlich als letzte Zeile in die **Bio/Beschreibung**, jeweils mit der Bezeichnung „Impressum".
 
@@ -145,9 +156,14 @@ Die `#`-Sprungmarken bleiben zusätzlich für die Navigation auf der Übersicht 
 Das EuGH-Urteil C-210/16 („Fanpage", 2018) betraf den Betreiber einer **Unternehmens-/Fanseite**, der über die Seitenstatistiken („Insights") der Plattform mitbestimmt, welche Statistiken über Besucher erstellt werden. Bei einem **persönlichen Profil** legst du weder Zwecke noch Mittel der Plattform-Verarbeitung fest. LinkedIn bietet seine Vereinbarung nach Art. 26 DSGVO („Page Insights Joint Controller Addendum") ausdrücklich **nur für Unternehmensseiten** an.
 ➡️ Deshalb steht bei LinkedIn und Instagram `gemeinsame_verantwortung: false`, und der Text erklärt das offen.
 
+**Ausnahme TikTok:** TikToks „Analytics Joint Controller Addendum" gilt laut Wortlaut für **jedes Konto, das TikTok Analytics erhält** – unabhängig vom Kontotyp. TikTok Analytics steht allen Konten zur Verfügung. Deshalb ist bei TikTok vorsichtshalber `gemeinsame_verantwortung: true` gesetzt und die Vereinbarung verlinkt. TikTok übernimmt darin u. a. Rechtsgrundlage, Information und die Erfüllung der Betroffenenrechte für diese Statistikdaten.
+
 ### Stellen, bei denen ich mir rechtlich nicht sicher bin
 
 - **[RECHTLICH PRÜFEN]** Keine gemeinsame Verantwortlichkeit bei persönlichem Profil (siehe oben) – insbesondere bei LinkedIn, weil LinkedIn auch persönlichen Profilen Statistiken anzeigt, und bei Instagram, **falls** du auf ein professionelles Konto (Creator/Business) mit Insights umstellst. Dann `insights_genutzt: true` setzen und klären, ob Metas „Controller Addendum" (Vereinbarung zur gemeinsamen Verantwortlichkeit, auf den Rechtsseiten von Meta) für Instagram gilt.
+- **[RECHTLICH PRÜFEN]** TikTok: gemeinsame Verantwortlichkeit über das „Analytics Joint Controller Addendum" auch beim persönlichen Konto (derzeit so angenommen).
+- **[RECHTLICH PRÜFEN]** TikTok: Darstellung der Übermittlungen in Drittländer (USA, Malaysia, Singapur; Entscheidung der irischen Datenschutzbehörde vom 2. Mai 2025 zu China) – Stand des Verfahrens prüfen.
+- **[RECHTLICH PRÜFEN]** TikTok ohne anklickbaren Bio-Link: genügt Name + Wohnort + Kurzadresse als Text in der Bio?
 - **[RECHTLICH PRÜFEN]** Kein § 5 ECG für private, nicht wirtschaftlich genutzte Kanäle.
 - **[RECHTLICH PRÜFEN]** Drittland-Grundlagen (DPF + Standardvertragsklauseln) für LinkedIn Corporation und Meta Platforms, Inc. – Zertifizierung auf <https://www.dataprivacyframework.gov/list> nachsehen.
 - **[RECHTLICH PRÜFEN]** Anschriften der Betreiber (Stand September 2026, aus den Datenschutzerklärungen der Plattformen) – einmal jährlich kontrollieren.

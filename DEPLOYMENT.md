@@ -142,7 +142,7 @@ Damit niemand sonst `exemail.at`-Subdomains auf GitHub verwenden kann:
 - [ ] Keine `[BITTE AUSFÜLLEN]`-Stellen mehr (in der lokalen Vorschau erscheint sonst ein gelber Balken; zusätzlich im Projektordner suchen)
 - [ ] Echtes Profilfoto eingesetzt, Alt-Text passt
 - [ ] E-Mail-Link öffnet das Mailprogramm mit richtiger Adresse, Telefon-Link wählt richtige Nummer (am Handy testen)
-- [ ] LinkedIn- und Instagram-Links führen zum richtigen Profil
+- [ ] LinkedIn-, Instagram- und TikTok-Links führen zum richtigen Profil
 - [ ] Lebenslauf-Daten und Zertifikatsdaten stimmen
 - [ ] „Lebenslauf herunterladen" erzeugt ein sauberes PDF (Chrome, Safari)
 
@@ -150,7 +150,7 @@ Damit niemand sonst `exemail.at`-Subdomains auf GitHub verwenden kann:
 - [ ] Impressum, Datenschutz und Social-Media-Impressum vollständig und geprüft (siehe RECHTLICHES.md)
 - [ ] Stand-Datum in `rechtliches.yml` aktuell
 - [ ] Nichts auf der Website bietet Leistungen von „Exenberger IT Services" an, solange das Gewerbe nicht angemeldet ist
-- [ ] Link `sandro.exemail.at/social-impressum` in Instagram- und LinkedIn-Profil eingetragen
+- [ ] Impressum-Links (`sandro.exemail.at/social-impressum/<kanal>/`) in LinkedIn, Instagram und TikTok eingetragen
 
 **Technik**
 - [ ] Hell/Dunkel-Umschalter funktioniert, Auswahl bleibt nach Neuladen erhalten

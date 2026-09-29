@@ -73,7 +73,7 @@ sandro/
 │
 ├── _data/                   ✏️ HIER BEARBEITEST DU DEINE INHALTE
 │   ├── person.yml              Name, Titel, Foto, Wohnort, Highlights, Galerie
-│   ├── social.yml              E-Mail, Telefon, LinkedIn, Instagram …
+│   ├── social.yml              LinkedIn, Instagram, TikTok, Telefon, E-Mail
 │   ├── navigation.yml          Hauptmenü
 │   ├── lebenslauf.yml          Berufserfahrung, Praktika, Ausbildung, Skills …
 │   ├── zertifikate.yml         Zertifikate & Kategorien
@@ -272,7 +272,7 @@ In `_data/social.yml`:
 
 - **Ausblenden:** beim Kanal `anzeigen: false`.
 - **Nur an bestimmten Stellen zeigen:** `orte: [footer, kontakt]` (möglich: `header`, `footer`, `startseite`, `kontakt`).
-- **Aktuelle Kanäle:** LinkedIn, Instagram, Telefon, E-Mail. Vorhandene Icons: `mail`, `phone`, `linkedin`, `instagram`.
+- **Aktuelle Kanäle:** LinkedIn, Instagram, TikTok, Telefon, E-Mail (Reihenfolge = Reihenfolge in `social.yml`). Vorhandene Icons: `mail`, `phone`, `linkedin`, `instagram`, `tiktok`.
 - **Neue Plattform (später):** die inaktive Vorlage am Dateiende kopieren, siehe [5.10](#510-social-media-impressum-neuer-kanal--direktlinks).
 - **Eigenes Icon:** SVG-Datei (24 × 24, am besten von [lucide.dev](https://lucide.dev) oder [simpleicons.org](https://simpleicons.org)) nach `assets/icons/` legen, z. B. `meinkanal.svg`, und im Eintrag `icon: "meinkanal"` schreiben. Das Icon wird automatisch eingebunden.
 - Social-Media-Profile brauchen zusätzlich den Block `rechtliches` – siehe [5.10](#510-social-media-impressum-neuer-kanal--direktlinks).
@@ -339,6 +339,7 @@ Jeder Social-Media-Kanal hat im Impressum einen **eigenen Bereich** (Offenlegung
 | --- | --- | --- |
 | LinkedIn | `https://sandro.exemail.at/social-impressum/linkedin/` | **Kontaktinfo → Website hinzufügen** (Typ „Sonstiges", Bezeichnung „Impressum") **und** letzte Zeile im Abschnitt **Info** |
 | Instagram | `https://sandro.exemail.at/social-impressum/instagram/` | **Profil bearbeiten → Links** (Titel „Impressum", an **erste** Stelle) **und** letzte Zeile der **Bio** |
+| TikTok | `https://sandro.exemail.at/social-impressum/tiktok/` | **Profil bearbeiten → Website** (falls vorhanden) **und** in der **Bio**; Details siehe RECHTLICHES.md |
 
 **Neuen Kanal hinzufügen (später):**
 1. In `_data/social.yml` die **Vorlage ganz unten** kopieren und **nur** das `#` am Zeilenanfang entfernen (die Leerzeichen danach bleiben – sie sind die Einrückung).
