@@ -62,8 +62,8 @@ standort:
 #   4. Unten die Dateinamen eintragen.
 
 foto:
-  datei: "profil-platzhalter.svg"   # Dateiname in assets/img/ (JPG, PNG oder SVG)
-  webp: ""                          # Optional: WebP-Version, z. B. "profil.webp"
+  datei: "profil.jpg"               # Dateiname in assets/img/ (JPG, PNG oder SVG)
+  webp: "profil.webp"               # Optional: WebP-Version, z. B. "profil.webp"
   alt: "Porträtfoto von Sandro Exenberger"   # Beschreibung für Screenreader
   breite: 800                       # Bildbreite in Pixel
   hoehe: 800                        # Bildhöhe in Pixel
@@ -141,10 +141,10 @@ galerie:
   anzeigen: false
   titel: "Einblicke"
   bilder:
-    - datei: "galerie-1.jpg"        # Dateiname in assets/img/
-      webp: ""                      # Optional: WebP-Version
-      alt: "[BITTE AUSFÜLLEN: Was ist auf dem Foto zu sehen?]"
-      bildunterschrift: ""          # Optional: Text unter dem Bild
+    - datei: "pc-setup.jpg"         # Dateiname in assets/img/
+      webp: "pc-setup.webp"         # Optional: WebP-Version
+      alt: "Der Arbeitsplatz mit dem selbst zusammengestellten Rechner"
+      bildunterschrift: "Mein Arbeitsplatz"   # Optional: Text unter dem Bild
       breite: 1200
       hoehe: 900
 

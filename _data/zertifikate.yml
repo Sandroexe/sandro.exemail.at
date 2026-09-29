@@ -38,10 +38,10 @@ einleitung: >-
 # Kategorien ohne Zertifikat werden automatisch ausgeblendet.
 
 kategorien:
-  - "Netzwerk"
-  - "Programmierung"
-  - "Schule"
-  - "Sonstiges"
+  - "Netzwerk & Security"
+  - "Linux & Open Source"
+  - "KI & Technologie"
+  - "Soft Skills & Management"
 
 
 # ═══════════════════════════════ ZERTIFIKATE ═══════════════════════════════
@@ -49,19 +49,94 @@ kategorien:
 zertifikate:
 
   - name: "Cisco Certified Network Associate (CCNA)"   # Name des Zertifikats
-    aussteller: "Cisco"                                # Wer hat es ausgestellt?
-    kategorie: "Netzwerk"                              # Eine der Kategorien oben
-    ausgestellt: "[BITTE AUSFÜLLEN]"                   # Datum, z. B. "2025-06"
-    ablauf: ""                                         # Optional: Ablaufdatum
+    aussteller: "Cisco Systems (geprüft an der HTBLVA Anichstraße)"   # Wer hat es ausgestellt?
+    kategorie: "Netzwerk & Security"                   # Eine der Kategorien oben
+    ausgestellt: "2025-06"                             # Datum, z. B. "2025-06"
+    ablauf: "2028-06"                                  # Optional: Ablaufdatum
     credential_id: ""                                  # Optional: Zertifikats-ID
-    verifizierung_link: ""                             # Optional: Link zur Online-Prüfung (z. B. Credly)
+    verifizierung_link: "https://www.linkedin.com/in/sandro-exenberger-1a5486315/details/certifications/"   # Optional: Link zur Online-Prüfung
     beschreibung: >-
-      Netzwerkgrundlagen, IP-Adressierung, Routing & Switching, Wireless,
-      Netzwerksicherheit und Automatisierung.
+      Fundierte Kenntnisse in Netzwerktopologien, Routing und Switching,
+      IP-Adressierung, VLANs, STP, OSPF, ACLs und grundlegender Netzwerksicherheit.
     bild: ""                                           # Optional: Logo/Bild in assets/zertifikate/
     bild_alt: ""                                       # Beschreibung des Bildes
     datei: ""                                          # Optional: PDF in assets/zertifikate/
     anzeigen: true                                     # false = ausblenden
+
+  - name: "Linux-Installation und -Paketverwaltung (LPIC-1 101)"
+    aussteller: "LinkedIn Learning"
+    kategorie: "Linux & Open Source"
+    ausgestellt: "2026-02"
+    ablauf: ""
+    credential_id: ""
+    verifizierung_link: "https://www.linkedin.com/learning/certificates/24b23a74face5621181ae08e6c3f86d867aecdcb79fc3f608d8e53521051656a"
+    beschreibung: >-
+      Installation und Konfiguration von Linux-Systemen, Paketverwaltung mit apt,
+      yum und dnf sowie grundlegende Systemadministration als Vorbereitung auf LPIC-1.
+    bild: ""
+    bild_alt: ""
+    datei: ""
+    anzeigen: true
+
+  - name: "Einführung und Einstieg in Linux"
+    aussteller: "LinkedIn Learning"
+    kategorie: "Linux & Open Source"
+    ausgestellt: "2026-02"
+    ablauf: ""
+    credential_id: ""
+    verifizierung_link: "https://www.linkedin.com/learning/certificates/183ace0ee3ecccc9eb57a20691117b291e0668baa38794de997adefe538c10a1"
+    beschreibung: >-
+      Grundlagen des Linux-Betriebssystems, Terminal-Bedienung,
+      Dateisystem-Navigation und grundlegende Shell-Befehle.
+    bild: ""
+    bild_alt: ""
+    datei: ""
+    anzeigen: true
+
+  - name: "GPTs mit ChatGPT erstellen"
+    aussteller: "LinkedIn Learning"
+    kategorie: "KI & Technologie"
+    ausgestellt: "2026-02"
+    ablauf: ""
+    credential_id: ""
+    verifizierung_link: "https://www.linkedin.com/learning/certificates/4397f4e2191041b1a12ac5dd73b4487daf95641b56ddf8e0c90613d96cf9c130"
+    beschreibung: >-
+      Erstellung und Konfiguration eigener GPT-Modelle mit ChatGPT, Prompt
+      Engineering und praktischer Einsatz von KI-Werkzeugen in Arbeitsabläufen.
+    bild: ""
+    bild_alt: ""
+    datei: ""
+    anzeigen: true
+
+  - name: "IoT-Grundlagen für Entwickler:innen – Elektronik-Basiswissen"
+    aussteller: "LinkedIn Learning"
+    kategorie: "KI & Technologie"
+    ausgestellt: "2026-02"
+    ablauf: ""
+    credential_id: ""
+    verifizierung_link: "https://www.linkedin.com/learning/certificates/258d34aa5a0d75ca6b1bb6b9f4a95cad6b09fe18613a759b354c905793d88c5d"
+    beschreibung: >-
+      Grundlagen der Elektronik für die IoT-Entwicklung: Schaltkreise, Sensoren,
+      Mikrocontroller und praktische Hardware-Konzepte für vernetzte Geräte.
+    bild: ""
+    bild_alt: ""
+    datei: ""
+    anzeigen: true
+
+  - name: "Die 7 schlimmsten Verhandlungsfehler"
+    aussteller: "LinkedIn Learning"
+    kategorie: "Soft Skills & Management"
+    ausgestellt: "2026-02"
+    ablauf: ""
+    credential_id: ""
+    verifizierung_link: "https://www.linkedin.com/learning/certificates/9562762db2385660a0b08325ef794aaf4f2d9170bd6f5965a4c8cf1863afd26c"
+    beschreibung: >-
+      Typische Fehler in Verhandlungen erkennen und vermeiden sowie praktische
+      Techniken für Kommunikation und Konfliktlösung im beruflichen Umfeld.
+    bild: ""
+    bild_alt: ""
+    datei: ""
+    anzeigen: true
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
 #  - name: "Name des Zertifikats"

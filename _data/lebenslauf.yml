@@ -100,16 +100,19 @@ praktika:
   icon: "wrench"
   eintraege:
 
-    - position: "Praktikant"                       # [BITTE AUSFÜLLEN: genaue Bezeichnung prüfen]
-      unternehmen: "Stadtwerke Wörgl – WörglWeb"
+    - position: "Praktikum WörglWeb"
+      unternehmen: "Stadtwerke Wörgl GmbH"
       unternehmen_link: ""
       ort: "Wörgl, Tirol"
       art: "Pflichtpraktikum"
-      von: "[BITTE AUSFÜLLEN]"
-      bis: "[BITTE AUSFÜLLEN]"
+      von: "2024-07"
+      bis: "2024-08"
       beschreibung: >-
-        [BITTE AUSFÜLLEN: 1–2 Sätze zu deinen Aufgaben bei WörglWeb.]
-      aufgaben: []
+        Netzwerktechnik im Außendienst beim Internetanbieter WörglWeb.
+      aufgaben:
+        - "Installation und Wartung von Netzwerkinfrastruktur"
+        - "Außendiensteinsätze und Fehlerbehebung beim Kunden"
+        - "Vorkonfiguration von Hardware"
       anzeigen: true
 
 # ─── Vorlage: wie bei Berufserfahrung ─────────────────────────────────────
@@ -123,7 +126,7 @@ ausbildung:
   eintraege:
 
     - schule: "HTBLVA Innsbruck Anichstraße"       # Name der Schule
-      schule_link: ""                              # Optional: Website der Schule
+      schule_link: "https://www.htlinn.ac.at/"     # Optional: Website der Schule
       abschluss: "Reife- und Diplomprüfung (Matura)"   # Abschluss
       fachrichtung: "Elektronik & Technische Informatik"  # Fachrichtung
       ort: "Innsbruck, Tirol"
@@ -131,8 +134,34 @@ ausbildung:
       bis: "2027-06"
       voraussichtlich: true                        # true = "voraussichtlich" vor dem Enddatum
       beschreibung: >-
-        Aktuell in der Abschlussklasse 5bHEL.
-      aktivitaeten: "Schulsprecher"                # Optional: Aktivitäten & Vereine
+        Aktuell in der Abschlussklasse 5bHEL. Schwerpunkte: Netzwerktechnik, Routing &
+        Switching, Mikrocontroller und Embedded Systems, Software-Entwicklung und
+        Automatisierung.
+      aktivitaeten: "Schulsprecher, Leitung HTL-Incubator"   # Optional: Aktivitäten & Vereine
+      anzeigen: true
+
+    - schule: "Mittelschule 2 Kufstein"
+      schule_link: ""
+      abschluss: "Pflichtschulabschluss"
+      fachrichtung: ""
+      ort: "Kufstein, Tirol"
+      von: "2018-09"
+      bis: "2022-07"
+      voraussichtlich: false
+      beschreibung: ""
+      aktivitaeten: ""
+      anzeigen: true
+
+    - schule: "Volksschule Schwoich"
+      schule_link: ""
+      abschluss: ""
+      fachrichtung: ""
+      ort: "Schwoich, Tirol"
+      von: "2014-09"
+      bis: "2018-07"
+      voraussichtlich: false
+      beschreibung: ""
+      aktivitaeten: ""
       anzeigen: true
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
@@ -157,16 +186,38 @@ engagement:
   icon: "users"
   eintraege:
 
+    - rolle: "Regionalvorstand Tiroler Unterland"
+      organisation: "Schülerunion Österreich"
+      organisation_link: ""
+      bereich: "Bildung"
+      von: "2025-10"
+      bis: ""
+      beschreibung: >-
+        Einsatz für die Anliegen von Schülerinnen und Schülern in der Region,
+        Organisation von Veranstaltungen sowie Kommunikation und Konfliktlösung
+        zwischen Schulen, Schülervertretungen und Organisation.
+      anzeigen: true
+
     - rolle: "Schulsprecher"                       # Deine Funktion
       organisation: "HTBLVA Innsbruck Anichstraße" # Organisation / Verein
       organisation_link: ""
       bereich: "Bildung"                           # LinkedIn "Cause" (optional)
-      von: "[BITTE AUSFÜLLEN]"
+      von: "2025-10"
       bis: ""
       beschreibung: >-
-        Gewählte Vertretung für rund 1.600 Schülerinnen und Schüler – Ansprechpartner
-        für Anliegen, Bindeglied zu Direktion und Lehrkörper und Organisation von
-        Schulveranstaltungen.
+        Gewählte Vertretung für rund 1.600 Schülerinnen und Schüler, unter anderem im
+        Schulgemeinschaftsausschuss.
+      anzeigen: true
+
+    - rolle: "Leitung HTL-Incubator"
+      organisation: "HTBLVA Innsbruck Anichstraße"
+      organisation_link: ""
+      bereich: "Bildung & Technik"
+      von: "2025-06"
+      bis: ""
+      beschreibung: >-
+        Leitung eines Open Maker Space: Unterstützung von Mitschülerinnen und
+        Mitschülern bei der Nutzung moderner Technologien und bei eigenen Projekten.
       anzeigen: true
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
