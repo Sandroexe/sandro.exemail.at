@@ -1,0 +1,5 @@
+{%- comment -%}
+  Verschlüsselt E-Mail/Telefon gegen Spam-Bots (umgedreht + Zeichen ersetzt).
+  assets/js/main.js macht es im Browser wieder lesbar.
+{%- endcomment -%}
+{{- include.wert | strip | split: "" | reverse | join: "" | replace: "@", "|" | replace: ".", "~" | escape -}}

@@ -1,44 +1,109 @@
-# ═══════════════════════════════════════════════════════════════════
-#  _config.yml — nur Jekyll-Technik.
-#  Inhaltliche Angaben (Name, Domain, Sprachen, Meta) stehen in
-#  _data/site.yml. Was hier steht, braucht Jekyll selbst.
-# ═══════════════════════════════════════════════════════════════════
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  _config.yml – GLOBALE EINSTELLUNGEN DER WEBSITE                       ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Die "Schaltzentrale": Titel, Domain, Sprache, Beschreibung für        ║
+# ║    Google und der Schalter für das (optionale) Kontaktformular.          ║
+# ║                                                                          ║
+# ║  Was darf ich ändern?                                                    ║
+# ║    Alles im Abschnitt "WEBSITE" und "KONTAKTFORMULAR".                   ║
+# ║                                                                          ║
+# ║  Was sollte ich NICHT ändern?                                            ║
+# ║    Den Abschnitt "TECHNIK" (ganz unten) – außer du weißt genau, was du   ║
+# ║    tust.                                                                 ║
+# ║                                                                          ║
+# ║  ⚠️  WICHTIG: Änderungen an DIESER Datei werden bei der lokalen Vorschau  ║
+# ║     erst nach einem Neustart von "bundle exec jekyll serve" sichtbar     ║
+# ║     (Strg + C, dann Befehl erneut starten). Alle anderen Dateien werden  ║
+# ║     automatisch neu geladen.                                             ║
+# ║                                                                          ║
+# ║  Beispiel:                                                               ║
+# ║    title: "Sandro Exenberger"                                            ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
 
+
+# ═══════════════════════════════ WEBSITE ═══════════════════════════════════
+
+# Titel der Website – erscheint im Browser-Tab und bei Google
+title: "Sandro Exenberger"
+
+# Kurzbeschreibung für Google & Social-Media-Vorschau (max. ca. 155 Zeichen)
+description: >-
+  Portfolio von Sandro Exenberger aus Tirol – Elektronik & Technische Informatik,
+  Netzwerke (Cisco CCNA) und Webentwicklung.
+
+# Vollständige Adresse der Website (ohne "/" am Ende)
 url: "https://sandro.exemail.at"
+
+# Nicht ändern, solange die Website direkt auf der (Sub-)Domain liegt
 baseurl: ""
 
-# jekyll-seo-tag und jekyll-sitemap greifen auf diese beiden zu.
-title: "Sandro Exenberger"
-description: "Portfolio von Sandro Exenberger — Elektronik, Netzwerktechnik (CCNA), Linux und Home Lab aus Tirol."
+# Sprache der Website (de-AT = Deutsch, Österreich)
+lang: "de-AT"
 
-# GitHub-Pages-Whitelist, keine eigenen Plugins.
-plugins:
-  - jekyll-sitemap
-  - jekyll-redirect-from
+# Sprache für Social-Media-Vorschauen (Unterstrich statt Bindestrich!)
+locale: "de_AT"
+
+# Standard-Vorschaubild für Social Media (1200 × 630 Pixel, JPG oder PNG)
+og_image: "/assets/img/og-image.png"
+
+# Zeitzone (für Datumsangaben)
+timezone: "Europe/Vienna"
 
 
-# Saubere URLs ohne .html
+# ═══════════════════════════ KONTAKTFORMULAR ═══════════════════════════════
+# Standardmäßig AUS. Die Website braucht kein Formular – E-Mail und Telefon
+# funktionieren ohne Drittanbieter.
+#
+# Wenn du es einschaltest (aktiv: true):
+#   1. Such dir einen Formular-Dienst mit Serverstandort in der EU und einem
+#      Auftragsverarbeitungsvertrag (AVV/DPA) nach Art. 28 DSGVO.
+#   2. Trag unten die Daten des Dienstes ein.
+#   3. Die Datenschutzerklärung bekommt AUTOMATISCH einen eigenen Abschnitt,
+#      und die Sicherheitsrichtlinie (CSP) erlaubt automatisch diesen Dienst.
+#   4. Datenschutzerklärung danach unbedingt noch einmal durchlesen.
+
+kontaktformular:
+  aktiv: false                  # true = Formular auf der Kontaktseite anzeigen
+  action_url: ""                # Formular-Adresse vom Dienst, z. B. "https://dienst.example/f/abc123"
+  anbieter_name: ""             # Firmenname des Dienstes
+  anbieter_adresse: ""          # Anschrift des Dienstes
+  anbieter_datenschutz_url: ""  # Link zur Datenschutzerklärung des Dienstes
+  drittland: false              # true, wenn Daten außerhalb der EU/des EWR verarbeitet werden
+  drittland_grundlage: ""       # z. B. "EU-US Data Privacy Framework" oder "Standardvertragsklauseln"
+  speicherdauer: "Die Nachrichten werden gelöscht, sobald die Anfrage erledigt ist, spätestens jedoch nach 6 Monaten, sofern keine gesetzlichen Aufbewahrungspflichten bestehen."
+
+
+# ════════════════════════════════ TECHNIK ══════════════════════════════════
+# Ab hier: bitte nur ändern, wenn du weißt, was du tust.
+
 permalink: pretty
 
+plugins:
+  - jekyll-sitemap
+
+sass:
+  sass_dir: _sass
+  style: compressed
+  sourcemap: never
+
+# Pfade, die NICHT auf die Website kommen
 exclude:
   - README.md
-  - CLAUDE.md
-  - LICENSE
+  - DEPLOYMENT.md
+  - RECHTLICHES.md
   - Gemfile
   - Gemfile.lock
-  - docs/
   - tools/
-  - scratchpad/
-  - .github/
   - vendor/
-  - node_modules/
+  - .bundle/
+  - .jekyll-cache/
+  - .github/
+  - "**/LIESMICH.txt"
 
-include:
-  - .well-known
-
-
+# Standardwerte für alle Seiten
 defaults:
-  - scope: { path: "" }
+  - scope:
+      path: ""
     values:
-      layout: default
-      lang: de
+      layout: "page"

@@ -1,0 +1,157 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  person.yml – ÜBER MICH                                               ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Deine Basisdaten: Name, Titel, Vorstellungstext, Profilfoto, Wohnort, ║
+# ║    die Highlight-Karten und die (optionale) Fotogalerie der Startseite.  ║
+# ║    Diese Daten werden auf der GANZEN Website verwendet (Startseite,      ║
+# ║    Header, Footer, Lebenslauf-Druckversion, Google-Daten).               ║
+# ║                                                                          ║
+# ║  Was darf ich ändern?                                                    ║
+# ║    Alle Texte rechts vom Doppelpunkt.                                    ║
+# ║                                                                          ║
+# ║  Was sollte ich NICHT ändern?                                            ║
+# ║    Die Namen links vom Doppelpunkt (z. B. "kurztitel:") und die          ║
+# ║    Einrückung (immer 2 Leerzeichen, KEINE Tabulatoren).                  ║
+# ║                                                                          ║
+# ║  Regeln für YAML (dieses Dateiformat):                                   ║
+# ║    • Texte mit Doppelpunkt, # oder Anführungszeichen in "..." setzen.    ║
+# ║    • Ein leeres Feld ("") wird auf der Website einfach ausgeblendet.     ║
+# ║    • Zeilen mit # am Anfang sind Kommentare und werden ignoriert.        ║
+# ║                                                                          ║
+# ║  Beispiel:                                                               ║
+# ║    kurztitel: "Elektronik & IT | Netzwerke | Webentwicklung"             ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+
+
+# ═══════════════════════════════ NAME & TITEL ══════════════════════════════
+
+vorname: "Sandro"
+nachname: "Exenberger"
+
+# Kurzer Untertitel unter deinem Namen (Startseite & Lebenslauf)
+kurztitel: "Elektronik & IT | Netzwerke | Webentwicklung"
+
+# Berufsbezeichnung für Google (schema.org "jobTitle")
+berufsbezeichnung: "IT-Verantwortlicher & Schüler für Elektronik und Technische Informatik"
+
+# Kleine Begrüßungszeile über dem Namen (leer lassen = ausblenden)
+begruessung: "Hallo, ich bin"
+
+# 1–2 Sätze Vorstellung für die Startseite
+vorstellung: >-
+  Ich bin Schüler der HTL Anichstraße in Innsbruck und betreue nebenbei die IT eines
+  Tiroler Elektrotechnik-Unternehmens. Mich begeistern Netzwerke, saubere Technik
+  und Websites, die einfach funktionieren.
+
+
+# ═══════════════════════════════ WOHNORT ═══════════════════════════════════
+
+standort:
+  ort: "Schwoich"                 # Gemeinde
+  region: "bei Kufstein, Tirol"   # Zusatz direkt nach dem Ort (leer lassen = ausblenden)
+  land: "Österreich"
+
+
+# ═══════════════════════════════ PROFILFOTO ════════════════════════════════
+# So tauschst du das Foto:
+#   1. Foto quadratisch zuschneiden (ideal: 800 × 800 Pixel).
+#   2. Als JPG nach  assets/img/  kopieren, z. B. "profil.jpg".
+#   3. Optional zusätzlich als WebP speichern ("profil.webp") – lädt schneller.
+#      (Kostenlos z. B. mit https://squoosh.app – läuft komplett im Browser.)
+#   4. Unten die Dateinamen eintragen.
+
+foto:
+  datei: "profil-platzhalter.svg"   # Dateiname in assets/img/ (JPG, PNG oder SVG)
+  webp: ""                          # Optional: WebP-Version, z. B. "profil.webp"
+  alt: "Porträtfoto von Sandro Exenberger"   # Beschreibung für Screenreader
+  breite: 800                       # Bildbreite in Pixel
+  hoehe: 800                        # Bildhöhe in Pixel
+
+
+# ════════════════════════════ BUTTONS (STARTSEITE) ═════════════════════════
+# stil: "primaer" (gefüllt) oder "sekundaer" (nur Rahmen)
+
+buttons:
+  - text: "Lebenslauf ansehen"
+    link: "/lebenslauf/"
+    icon: "file-text"
+    stil: "primaer"
+  - text: "Kontakt aufnehmen"
+    link: "/kontakt/"
+    icon: "send"
+    stil: "sekundaer"
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#  - text: "Zertifikate"          # Beschriftung
+#    link: "/zertifikate/"        # Ziel
+#    icon: "award"                # Icon-Name aus assets/icons/ (ohne .svg)
+#    stil: "sekundaer"            # "primaer" oder "sekundaer"
+
+
+# ═════════════════════════ HIGHLIGHTS (STARTSEITE) ═════════════════════════
+# Kleine Karten unter dem Hero-Bereich. 3 oder 6 Karten sehen am besten aus.
+
+highlights_titel: "Auf einen Blick"
+
+highlights:
+  - icon: "graduation-cap"
+    titel: "HTL Anichstraße"
+    text: "Elektronik & Technische Informatik, Abschlussklasse 5bHEL – Matura voraussichtlich Juni 2027."
+    link: "/lebenslauf/"
+
+  - icon: "briefcase"
+    titel: "IT-Verantwortlicher"
+    text: "Teilzeit bei Eder Elektrotechnik GmbH in Kirchbichl – Netzwerk, Geräte und Support."
+    link: "/lebenslauf/"
+
+  - icon: "network"
+    titel: "Cisco CCNA"
+    text: "Zertifiziert in Netzwerkgrundlagen, Routing, Switching und Netzwerksicherheit."
+    link: "/zertifikate/"
+
+  - icon: "users"
+    titel: "Schulsprecher"
+    text: "Gewählte Vertretung für rund 1.600 Schülerinnen und Schüler."
+    link: "/lebenslauf/"
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#  - icon: "code"                 # Icon-Name aus assets/icons/ (ohne .svg)
+#    titel: "Webentwicklung"      # Überschrift der Karte
+#    text: "Kurzer Satz dazu."    # Beschreibung
+#    link: ""                     # Optional: Ziel beim Klick (leer = kein Link)
+
+
+# ═══════════════════════ KONTAKT-AUFRUF (STARTSEITE) ═══════════════════════
+# Der Kasten ganz unten auf der Startseite. anzeigen: false = ausblenden
+
+kontakt_aufruf:
+  anzeigen: true
+  titel: "Lust auf ein Gespräch?"
+  text: "Ob Praktikum, Projekt oder einfach eine Frage – ich freue mich über Ihre Nachricht."
+  button_text: "Kontakt aufnehmen"
+  button_link: "/kontakt/"
+
+
+# ════════════════════════════ FOTOGALERIE (OPTIONAL) ═══════════════════════
+# anzeigen: true  → Galerie erscheint auf der Startseite
+# anzeigen: false → Galerie ist ausgeblendet
+
+galerie:
+  anzeigen: false
+  titel: "Einblicke"
+  bilder:
+    - datei: "galerie-1.jpg"        # Dateiname in assets/img/
+      webp: ""                      # Optional: WebP-Version
+      alt: "[BITTE AUSFÜLLEN: Was ist auf dem Foto zu sehen?]"
+      bildunterschrift: ""          # Optional: Text unter dem Bild
+      breite: 1200
+      hoehe: 900
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#    - datei: "galerie-2.jpg"
+#      webp: "galerie-2.webp"
+#      alt: "Beschreibung des Fotos"
+#      bildunterschrift: "Bildunterschrift"
+#      breite: 1200
+#      hoehe: 900

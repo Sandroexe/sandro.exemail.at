@@ -1,31 +1,234 @@
 ---
+# Datenschutzerklärung – Daten aus _data/rechtliches.yml, _data/social.yml
+# und _config.yml (Kontaktformular). Optionale Abschnitte erscheinen automatisch.
 layout: legal
+title: "Datenschutzerklärung"
+description: "Datenschutzerklärung der Website von Sandro Exenberger: keine Cookies, kein Tracking, Hosting über GitHub Pages."
+einleitung: "Kurz gesagt: keine Cookies, kein Tracking, keine Analyse-Tools. Hier steht im Detail, welche Daten beim Besuch dieser Website trotzdem anfallen."
 permalink: /datenschutz/
-redirect_from:
-  - /datenschutz.html
-  - /privacy/
-title_key: nav.privacy
-title: Datenschutz
 ---
-{%- assign P = site.data.profile -%}
-{%- assign C = site.data.contact -%}
-{%- assign L = site.data.legal -%}
+{%- assign r = site.data.rechtliches -%}
+{%- assign m = r.medieninhaber -%}
+{%- assign h = r.hosting -%}
+{%- assign d = r.datenschutzbehoerde -%}
+{%- assign kf = site.kontaktformular -%}
+{%- assign email = site.data.social.kanaele | where: "typ", "email" | first -%}
+{%- assign tel = site.data.social.kanaele | where: "typ", "telefon" | first -%}
 
-<p>{% include t.html de=L.privacy.intro en=L.privacy.intro_en %}</p>
+<h2 id="verantwortlicher">1. Verantwortlicher</h2>
+<p>Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
+<dl class="facts">
+  <dt>Name</dt>
+  <dd>{% if r.modus == "unternehmen" %}{{ r.unternehmen.firmenname }}, Inhaber {% endif %}{{ m.name }}</dd>
+  <dt>Anschrift</dt>
+  <dd>{% if m.strasse != "" %}{{ m.strasse }}, {% endif %}{% if m.plz != "" %}{{ m.plz }} {% endif %}{{ m.ort }}, {{ m.land }}</dd>
+  {%- if email and email.wert != "" %}
+  <dt>E-Mail</dt>
+  <dd>{% include kontakt-link.html kanal=email %}</dd>
+  {%- endif %}
+  {%- if tel and tel.wert != "" and m.telefon_anzeigen %}
+  <dt>Telefon</dt>
+  <dd>{% include kontakt-link.html kanal=tel %}</dd>
+  {%- endif %}
+</dl>
+<p>Ein Datenschutzbeauftragter ist nicht bestellt, da hierzu keine gesetzliche Pflicht besteht.</p>
 
-<h2>{% include t.html key="legal.operator" %}</h2>
+<h2 id="ueberblick">2. Das Wichtigste auf einen Blick</h2>
+<ul>
+  <li><strong>Keine Cookies:</strong> Diese Website setzt keine Cookies.</li>
+  <li><strong>Kein Tracking:</strong> Es werden keine Analyse-, Statistik- oder Werbedienste (z.&nbsp;B. Google Analytics) und keine Tracking-Pixel verwendet.</li>
+  <li><strong>Keine eingebetteten Inhalte Dritter:</strong> Schriftarten, Symbole und Bilder werden ausschließlich von dieser Website selbst geladen. Es gibt keine Social-Media-Plugins, eingebetteten Videos oder Karten.</li>
+  <li><strong>Verschlüsselung:</strong> Die Verbindung zu dieser Website ist per HTTPS (TLS) verschlüsselt.</li>
+</ul>
+
+<h2 id="hosting">3. Hosting und Server-Logfiles</h2>
 <p>
-  {{ P.name }}, {{ C.address.zip }} {{ C.address.city }},
-  {% include t.html de=C.address.country en=C.address.country_en %} —
-  <a href="mailto:{{ C.email }}">{{ C.email }}</a>
+  Diese Website wird über den Dienst <strong>{{ h.dienst }}</strong> des Anbieters
+  {{ h.anbieter }}, {{ h.adresse }} (einer Tochtergesellschaft der Microsoft Corporation),
+  bereitgestellt. Beim Aufruf der Website verarbeitet {{ h.anbieter }} technisch
+  notwendige Daten, die Ihr Browser automatisch übermittelt, insbesondere:
+</p>
+<ul>
+  <li>IP-Adresse des anfragenden Geräts,</li>
+  <li>Datum und Uhrzeit des Zugriffs,</li>
+  <li>aufgerufene Seite bzw. Datei,</li>
+  <li>Referrer-URL (die zuvor besuchte Seite), soweit übermittelt,</li>
+  <li>verwendeter Browser und Betriebssystem (User-Agent).</li>
+</ul>
+<p>
+  <strong>Zweck:</strong> Auslieferung der Website sowie Gewährleistung der Sicherheit und
+  Stabilität des Dienstes (z.&nbsp;B. Abwehr von Angriffen).<br>
+  <strong>Rechtsgrundlage:</strong> Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO. Mein berechtigtes
+  Interesse liegt in einer sicheren und zuverlässigen Bereitstellung dieser Website.<br>
+  <strong>Speicherdauer:</strong> Die Logfiles werden von {{ h.anbieter }} gespeichert und nach
+  deren Vorgaben gelöscht. Ich selbst habe keinen Zugriff auf diese Logfiles und führe
+  keine Auswertungen durch.
+</p>
+<p>
+  <strong>Übermittlung in die USA:</strong> Dabei können Daten in die USA übermittelt werden.
+  {{ h.anbieter }} ist unter dem
+  <a href="{{ h.dpf_url }}" target="_blank" rel="noopener noreferrer">EU-US Data Privacy Framework</a>
+  zertifiziert. Für zertifizierte Unternehmen hat die Europäische Kommission ein
+  angemessenes Datenschutzniveau festgestellt (Angemessenheitsbeschluss vom 10.&nbsp;Juli&nbsp;2023,
+  Art.&nbsp;45 DSGVO).
+</p>
+<p>
+  Weitere Informationen:
+  <a href="{{ h.datenschutz_url }}" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von GitHub</a>.
 </p>
 
-{%- for s in L.privacy.sections %}
-<h2>{% include t.html de=s.title en=s.title_en %}</h2>
-<p>{% include t.html de=s.body en=s.body_en %}</p>
-{%- if s.link %}
-<p><a href="{{ s.link.url }}" target="_blank" rel="noopener noreferrer">{% include t.html de=s.link.label en=s.link.label_en %}</a></p>
+{%- if r.cloudflare_proxy %}
+<h2 id="cloudflare">3a. Content Delivery Network (Cloudflare)</h2>
+<p>
+  Zur Beschleunigung und zum Schutz vor Angriffen wird der Datenverkehr dieser Website über
+  das Netzwerk der Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA,
+  geleitet. Dabei verarbeitet Cloudflare insbesondere Ihre IP-Adresse und technische
+  Verbindungsdaten. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes
+  Interesse an einer sicheren und schnellen Auslieferung). Cloudflare ist unter dem
+  EU-US Data Privacy Framework zertifiziert. Mit Cloudflare besteht ein
+  Auftragsverarbeitungsvertrag. Weitere Informationen:
+  <a href="https://www.cloudflare.com/de-de/privacypolicy/" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von Cloudflare</a>.
+</p>
 {%- endif %}
-{%- endfor %}
 
-<p><a href="/impressum/">{% include t.html key="legal.to_imprint" %}</a></p>
+<h2 id="schriften">4. Lokal gehostete Schriftarten und Symbole</h2>
+<p>
+  Die auf dieser Website verwendeten Schriftarten (Inter, JetBrains Mono) und Symbole
+  (Lucide Icons) sind direkt auf dem Webserver dieser Website gespeichert. Beim Laden der
+  Seite wird <strong>keine Verbindung</strong> zu Servern Dritter wie Google Fonts oder
+  anderen Content-Delivery-Networks aufgebaut.
+</p>
+
+<h2 id="localstorage">5. Speicherung Ihrer Farbauswahl (Local Storage)</h2>
+<p>
+  Die Website lässt sich zwischen hellem und dunklem Design umschalten. Standardmäßig
+  richtet sie sich nach der Einstellung Ihres Geräts. Nur wenn Sie den Umschalter
+  <strong>aktiv anklicken</strong>, wird Ihre Auswahl im sogenannten <em>Local Storage</em>
+  Ihres Browsers gespeichert (Eintrag <code>theme</code> mit dem Wert <code>light</code> oder
+  <code>dark</code>), damit sie beim nächsten Seitenaufruf erhalten bleibt.
+</p>
+<ul>
+  <li>Es handelt sich um <strong>kein Cookie</strong> und um keine personenbezogenen Daten.</li>
+  <li>Der Eintrag bleibt ausschließlich auf Ihrem Gerät und wird <strong>nicht</strong> an mich oder Dritte übertragen.</li>
+  <li>Sie können ihn jederzeit löschen, indem Sie die Website-Daten in Ihrem Browser entfernen.</li>
+</ul>
+<p>
+  <strong>Rechtsgrundlage:</strong> § 165 Abs.&nbsp;3 Telekommunikationsgesetz 2021 (TKG&nbsp;2021).
+  Die Speicherung ist unbedingt erforderlich, um die von Ihnen ausdrücklich gewünschte
+  Funktion (Beibehaltung der Farbauswahl) bereitzustellen; eine Einwilligung ist dafür
+  nicht erforderlich.
+</p>
+
+<h2 id="kontakt">6. Kontaktaufnahme per E-Mail oder Telefon</h2>
+<p>
+  Wenn Sie mich per E-Mail oder Telefon kontaktieren, verarbeite ich die von Ihnen
+  übermittelten Daten (z.&nbsp;B. Name, E-Mail-Adresse, Telefonnummer, Inhalt Ihrer
+  Nachricht sowie Datum und Uhrzeit) ausschließlich zur Bearbeitung Ihrer Anfrage und
+  für mögliche Anschlussfragen.
+</p>
+<p>
+  <strong>Rechtsgrundlage:</strong> Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO, sofern Ihre Anfrage mit
+  der Anbahnung oder Durchführung eines Vertrags (z.&nbsp;B. Praktikum, Anstellung, Auftrag)
+  zusammenhängt, andernfalls Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an
+  der Beantwortung von Anfragen).<br>
+  <strong>Speicherdauer:</strong> Ihre Daten werden gelöscht, sobald Ihre Anfrage
+  abschließend bearbeitet ist und keine weitere Kommunikation zu erwarten ist, sofern
+  keine gesetzlichen Aufbewahrungspflichten entgegenstehen.<br>
+  <strong>Weitergabe:</strong> Eine Weitergabe an Dritte erfolgt nicht.
+  {%- if r.email_anbieter and r.email_anbieter != "" %}
+  E-Mails werden über meinen E-Mail-Anbieter {{ r.email_anbieter }} empfangen und gespeichert,
+  der als Auftragsverarbeiter tätig ist.
+  {%- else %}
+  E-Mails werden technisch über meinen E-Mail-Anbieter empfangen und gespeichert, der als
+  Auftragsverarbeiter tätig ist.
+  {%- endif %}
+</p>
+<p>
+  Hinweis: E-Mails werden auf dem Übertragungsweg nicht in jedem Fall durchgehend
+  verschlüsselt. Bitte senden Sie mir sensible Informationen daher nicht unverschlüsselt
+  per E-Mail.
+</p>
+
+{%- if kf.aktiv and kf.action_url != "" %}
+<h2 id="kontaktformular">6a. Kontaktformular</h2>
+<p>
+  Auf der Kontaktseite steht Ihnen ein Kontaktformular zur Verfügung. Die dort
+  eingegebenen Daten (Name, E-Mail-Adresse, Nachricht) sowie technische Daten
+  (IP-Adresse, Zeitpunkt der Übermittlung) werden an den Formular-Dienst
+  <strong>{{ kf.anbieter_name }}</strong>{% if kf.anbieter_adresse != "" %}, {{ kf.anbieter_adresse }}{% endif %},
+  übermittelt, dort verarbeitet und an mich per E-Mail weitergeleitet. Der Dienst ist als
+  Auftragsverarbeiter gemäß Art.&nbsp;28 DSGVO für mich tätig.
+</p>
+<p>
+  <strong>Zweck:</strong> Bearbeitung Ihrer Anfrage.<br>
+  <strong>Rechtsgrundlage:</strong> Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO bzw. Art.&nbsp;6 Abs.&nbsp;1
+  lit.&nbsp;f DSGVO (siehe Punkt&nbsp;6).<br>
+  <strong>Speicherdauer:</strong> {{ kf.speicherdauer }}
+</p>
+{%- if kf.drittland %}
+<p>
+  <strong>Übermittlung in ein Drittland:</strong> Dabei werden Daten außerhalb der EU bzw.
+  des EWR verarbeitet. Die Übermittlung erfolgt auf Grundlage von: {{ kf.drittland_grundlage }}.
+</p>
+{%- endif %}
+{%- if kf.anbieter_datenschutz_url != "" %}
+<p>
+  Weitere Informationen:
+  <a href="{{ kf.anbieter_datenschutz_url }}" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von {{ kf.anbieter_name }}</a>.
+</p>
+{%- endif %}
+{%- endif %}
+
+<h2 id="social-media">7. Links zu Social-Media-Plattformen</h2>
+<p>
+  Auf dieser Website finden Sie Links zu meinen Profilen auf Social-Media-Plattformen
+  (z.&nbsp;B. LinkedIn, Instagram). Es handelt sich um <strong>einfache Links</strong>, nicht
+  um eingebettete Plugins: Beim bloßen Aufruf dieser Website werden
+  <strong>keine Daten</strong> an die Plattformen übertragen. Erst wenn Sie einen Link
+  anklicken, gelangen Sie auf die Website des jeweiligen Anbieters, der dann eigenständig
+  für die Verarbeitung Ihrer Daten verantwortlich ist. Es gelten die
+  Datenschutzbestimmungen der jeweiligen Plattform.
+</p>
+
+<h2 id="rechte">8. Ihre Rechte</h2>
+<p>Ihnen stehen hinsichtlich Ihrer personenbezogenen Daten grundsätzlich folgende Rechte zu:</p>
+<ul>
+  <li>Recht auf <strong>Auskunft</strong> (Art.&nbsp;15 DSGVO)</li>
+  <li>Recht auf <strong>Berichtigung</strong> (Art.&nbsp;16 DSGVO)</li>
+  <li>Recht auf <strong>Löschung</strong> (Art.&nbsp;17 DSGVO)</li>
+  <li>Recht auf <strong>Einschränkung der Verarbeitung</strong> (Art.&nbsp;18 DSGVO)</li>
+  <li>Recht auf <strong>Datenübertragbarkeit</strong> (Art.&nbsp;20 DSGVO)</li>
+  <li>Recht auf <strong>Widerspruch</strong> gegen Verarbeitungen, die auf Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO beruhen (Art.&nbsp;21 DSGVO)</li>
+</ul>
+<p>
+  Um diese Rechte auszuüben, genügt eine formlose Nachricht an die oben unter
+  „Verantwortlicher“ genannten Kontaktdaten.
+</p>
+
+<h2 id="beschwerde">9. Beschwerderecht bei der Aufsichtsbehörde</h2>
+<p>
+  Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht
+  verstößt oder Ihre datenschutzrechtlichen Ansprüche sonst verletzt wurden, können Sie
+  sich bei der zuständigen Aufsichtsbehörde beschweren. In Österreich ist dies die:
+</p>
+<dl class="facts">
+  <dt>Behörde</dt>
+  <dd>{{ d.name }}</dd>
+  <dt>Anschrift</dt>
+  <dd>{{ d.adresse }}</dd>
+  <dt>E-Mail</dt>
+  <dd>{{ d.email }}</dd>
+  <dt>Website</dt>
+  <dd><a href="{{ d.website }}" target="_blank" rel="noopener noreferrer">{{ d.website | remove: "https://" }}</a></dd>
+</dl>
+
+<h2 id="sonstiges">10. Sonstiges</h2>
+<p>
+  Die Bereitstellung Ihrer Daten ist weder gesetzlich noch vertraglich vorgeschrieben.
+  Eine automatisierte Entscheidungsfindung einschließlich Profiling (Art.&nbsp;22 DSGVO)
+  findet nicht statt.
+</p>
+<p>
+  Ich passe diese Datenschutzerklärung an, sobald sich die Website oder die rechtlichen
+  Rahmenbedingungen ändern. Es gilt die jeweils hier veröffentlichte Fassung.
+</p>

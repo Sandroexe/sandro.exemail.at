@@ -1,0 +1,79 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  zertifikate.yml – ZERTIFIKATE & NACHWEISE                            ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Alle Karten auf der Seite "Zertifikate" inklusive Filter und          ║
+# ║    Detailansicht.                                                        ║
+# ║                                                                          ║
+# ║  Was darf ich ändern?                                                    ║
+# ║    Alle Werte. Zertifikate hinzufügen, löschen, umsortieren              ║
+# ║    (Reihenfolge hier = Reihenfolge auf der Website).                     ║
+# ║                                                                          ║
+# ║  Was sollte ich NICHT ändern?                                            ║
+# ║    Die Feldnamen und die Einrückung.                                     ║
+# ║                                                                          ║
+# ║  Dateien (PDF, Bilder) legst du nach:  assets/zertifikate/               ║
+# ║  und trägst hier nur den DATEINAMEN ein (z. B. "ccna.pdf").              ║
+# ║                                                                          ║
+# ║  ⚠️  Datenschutz-Tipp: Schwärze auf gescannten Zertifikaten persönliche   ║
+# ║     Daten wie Geburtsdatum oder Adresse, bevor du sie hochlädst.         ║
+# ║                                                                          ║
+# ║  Beispiel:                                                               ║
+# ║    - name: "Cisco CCNA"                                                  ║
+# ║      aussteller: "Cisco"                                                 ║
+# ║      kategorie: "Netzwerk"                                               ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+
+
+# ═══════════════════════════════ SEITENTEXT ════════════════════════════════
+
+titel: "Zertifikate"
+einleitung: >-
+  Nachweise über Weiterbildungen und Qualifikationen. Ein Klick auf eine Karte
+  öffnet die Details.
+
+
+# ═══════════════════════════════ KATEGORIEN ════════════════════════════════
+# Reihenfolge der Filter-Buttons. Jedes Zertifikat braucht eine davon.
+# Kategorien ohne Zertifikat werden automatisch ausgeblendet.
+
+kategorien:
+  - "Netzwerk"
+  - "Programmierung"
+  - "Schule"
+  - "Sonstiges"
+
+
+# ═══════════════════════════════ ZERTIFIKATE ═══════════════════════════════
+
+zertifikate:
+
+  - name: "Cisco Certified Network Associate (CCNA)"   # Name des Zertifikats
+    aussteller: "Cisco"                                # Wer hat es ausgestellt?
+    kategorie: "Netzwerk"                              # Eine der Kategorien oben
+    ausgestellt: "[BITTE AUSFÜLLEN]"                   # Datum, z. B. "2025-06"
+    ablauf: ""                                         # Optional: Ablaufdatum
+    credential_id: ""                                  # Optional: Zertifikats-ID
+    verifizierung_link: ""                             # Optional: Link zur Online-Prüfung (z. B. Credly)
+    beschreibung: >-
+      Netzwerkgrundlagen, IP-Adressierung, Routing & Switching, Wireless,
+      Netzwerksicherheit und Automatisierung.
+    bild: ""                                           # Optional: Logo/Bild in assets/zertifikate/
+    bild_alt: ""                                       # Beschreibung des Bildes
+    datei: ""                                          # Optional: PDF in assets/zertifikate/
+    anzeigen: true                                     # false = ausblenden
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#  - name: "Name des Zertifikats"
+#    aussteller: "Aussteller"
+#    kategorie: "Sonstiges"
+#    ausgestellt: "2026-01"
+#    ablauf: ""
+#    credential_id: ""
+#    verifizierung_link: ""
+#    beschreibung: >-
+#      Kurze Beschreibung.
+#    bild: "mein-zertifikat.jpg"
+#    bild_alt: "Scan des Zertifikats"
+#    datei: "mein-zertifikat.pdf"
+#    anzeigen: true

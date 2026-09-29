@@ -1,0 +1,95 @@
+---
+# Kontakt – Kontaktwege kommen aus _data/social.yml,
+# das optionale Formular wird in _config.yml eingeschaltet.
+title: "Kontakt"
+description: "So erreichen Sie Sandro Exenberger: E-Mail, Telefon, LinkedIn und Instagram."
+permalink: /kontakt/
+hero: false
+---
+{%- assign ks = site.data.social.kontaktseite -%}
+{%- assign kf = site.kontaktformular -%}
+
+<header class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Kontakt</p>
+    <h1>{{ ks.titel }}</h1>
+    {%- if ks.einleitung and ks.einleitung != "" %}
+    <p class="page-hero__lead">{{ ks.einleitung }}</p>
+    {%- endif %}
+  </div>
+</header>
+
+<div class="section section--tight">
+  <div class="container">
+    <ul class="contact-grid">
+      {%- for k in site.data.social.kanaele %}
+      {%- unless k.anzeigen and k.orte contains "kontakt" %}{% continue %}{% endunless %}
+      <li data-reveal data-reveal-delay="{{ forloop.index0 | modulo: 4 }}">
+        <article class="card card--interaktiv contact-card">
+          <span class="icon-badge">{% include icon.html name=k.icon %}</span>
+          {%- if k.typ == "email" or k.typ == "telefon" %}
+          {%- capture _code %}{% include obf.html wert=k.wert %}{% endcapture %}
+          {%- if k.typ == "email" %}{% assign _typ = "mailto" %}{% assign _aktion = "schreiben" %}{% else %}{% assign _typ = "tel" %}{% assign _aktion = "anrufen" %}{% endif %}
+          <h2><a class="card__link-overlay" href="{{ '/kontakt/' | relative_url }}" data-obf="{{ _code }}" data-obf-typ="{{ _typ }}">{{ k.name }}<span class="visually-hidden"> – {{ _aktion }}</span></a></h2>
+          <p class="contact-card__value">
+            {%- if k.anzeigetext and k.anzeigetext != "" -%}
+            {{ k.anzeigetext }}
+            {%- elsif k.typ == "email" -%}
+            <span data-obf="{{ _code }}" data-obf-typ="text">{{ k.wert | replace: "@", " [at] " | replace: ".", " [punkt] " }}</span>
+            {%- else -%}
+            <span data-obf="{{ _code }}" data-obf-typ="text">{{ k.wert | split: "" | join: "&#8203;" }}</span>
+            {%- endif -%}
+          </p>
+          <span class="contact-card__arrow" aria-hidden="true">{% include icon.html name="arrow-right" %}</span>
+          {%- else %}
+          <h2><a class="card__link-overlay" href="{{ k.wert | escape }}" target="_blank" rel="noopener noreferrer me">{{ k.name }}<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></h2>
+          <p class="contact-card__value">{{ k.anzeigetext | default: k.wert }}</p>
+          <span class="contact-card__arrow" aria-hidden="true">{% include icon.html name="external-link" %}</span>
+          {%- endif %}
+          {%- if k.beschreibung and k.beschreibung != "" %}
+          <p class="contact-card__text">{{ k.beschreibung }}</p>
+          {%- endif %}
+        </article>
+      </li>
+      {%- endfor %}
+    </ul>
+
+    {%- if kf.aktiv and kf.action_url != "" %}
+    <!-- ═══ KONTAKTFORMULAR (in _config.yml eingeschaltet) ═══ -->
+    <section class="section" aria-labelledby="formular-titel">
+      <div class="section-head">
+        <h2 id="formular-titel">Nachricht schreiben</h2>
+        <p>Oder schreiben Sie mir direkt hier.</p>
+      </div>
+      <form class="contact-form" action="{{ kf.action_url }}" method="post">
+        <div class="contact-form__row">
+          <div>
+            <label for="kf-name">Name</label>
+            <input id="kf-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="kf-email">E-Mail</label>
+            <input id="kf-email" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div>
+          <label for="kf-nachricht">Nachricht</label>
+          <textarea id="kf-nachricht" name="nachricht" required></textarea>
+        </div>
+        <div class="contact-form__hp" aria-hidden="true">
+          <label for="kf-website">Bitte leer lassen</label>
+          <input id="kf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <p class="contact-form__hint">
+          Ihre Angaben werden nur zur Beantwortung Ihrer Anfrage verwendet und über
+          {{ kf.anbieter_name }} übermittelt. Details finden Sie in der
+          <a href="{{ '/datenschutz/' | relative_url }}#kontaktformular">Datenschutzerklärung</a>.
+        </p>
+        <div>
+          <button class="btn btn--primaer" type="submit">{% include icon.html name="send" %} Nachricht senden</button>
+        </div>
+      </form>
+    </section>
+    {%- endif %}
+  </div>
+</div>

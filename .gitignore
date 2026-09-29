@@ -1,9 +1,17 @@
+# Von Jekyll erzeugt – nicht ins Repository
 _site/
 .jekyll-cache/
 .jekyll-metadata
 .sass-cache/
-Gemfile.lock
+
+# Ruby / Bundler
+.bundle/
 vendor/
-node_modules/
-.lighthouseci/
-scratchpad/
+
+# LinkedIn-Export (persönliche Daten!) und Import-Ergebnisse
+tools/linkedin-export/
+tools/ausgabe/
+
+# Betriebssystem
+.DS_Store
+Thumbs.db

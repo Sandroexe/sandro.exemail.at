@@ -1,64 +1,47 @@
 {%- comment -%}
-  header.html — Navigation kommt vollständig aus _data/navigation.yml.
-  Ein neuer Menüpunkt ist eine Zeile YAML, keine Änderung hier.
+  Zentraler Header: Logo/Name, Hauptmenü (aus _data/navigation.yml),
+  Social-Icons (orte: header in _data/social.yml), Hell/Dunkel-Umschalter
+  und Burger-Menü für kleine Bildschirme.
 {%- endcomment -%}
-{%- assign N = site.data.navigation -%}
-{%- assign S = site.data.site -%}
-{%- assign P = site.data.profile -%}
-{%- assign here = page.url | remove: "index.html" -%}
-
-<header class="siteheader">
-  <div class="shell siteheader__inner">
-
-    <a class="brand" href="/"{% if here == "/" %} aria-current="page"{% endif %}>
-      <span class="brand__mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="6" cy="16" r="3"/><circle cx="26" cy="7" r="3"/><circle cx="26" cy="25" r="3"/>
-          <path d="M9 15 23 8M9 17l14 7"/>
-        </svg>
-      </span>
-      <span class="brand__name">{{ P.name }}</span>
+{%- assign _p = site.data.person -%}
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <span class="brand__mark" aria-hidden="true">{{ _p.vorname | slice: 0 }}{{ _p.nachname | slice: 0 }}</span>
+      <span class="brand__name">{{ _p.vorname }} {{ _p.nachname }}</span>
+      <span class="visually-hidden"> – zur Startseite</span>
     </a>
 
-    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="mainnav"
-            data-i18n-attr="aria-label:nav.menu" aria-label="{% include t-plain.html key='nav.menu' %}">
-      {% include icon.html name="menu" class="navtoggle__open" size="22" %}
-      {% include icon.html name="close" class="navtoggle__close" size="22" %}
-    </button>
-
-    <nav class="mainnav" id="mainnav" data-i18n-attr="aria-label:a11y.main_nav"
-         aria-label="{% include t-plain.html key='a11y.main_nav' %}">
-      <ul class="mainnav__list" role="list">
-        {%- for item in N.header %}
-        <li>
-          <a href="{{ item.url }}"{% if here == item.url %} aria-current="page"{% endif %}>
-            {% include t.html key=item.key %}
-          </a>
-        </li>
+    <nav class="site-nav" id="site-nav" aria-label="Hauptmenü" data-nav>
+      <ul class="site-nav__list">
+        {%- for item in site.data.navigation.hauptmenue %}
+        {%- unless item.anzeigen == false %}
+        {%- assign _aktiv = false -%}
+        {%- if item.url == "/" -%}
+          {%- if page.url == "/" -%}{%- assign _aktiv = true -%}{%- endif -%}
+        {%- else -%}
+          {%- assign _anfang = page.url | slice: 0, item.url.size -%}
+          {%- if _anfang == item.url -%}{%- assign _aktiv = true -%}{%- endif -%}
+        {%- endif %}
+        <li><a class="site-nav__link" href="{{ item.url | relative_url }}"{% if _aktiv %} aria-current="page"{% endif %}>{{ item.titel }}</a></li>
+        {%- endunless %}
         {%- endfor %}
       </ul>
-
-      <div class="mainnav__end">
-        <a class="btn btn--accent btn--sm" href="{{ N.header_cta.url }}"{% if here == N.header_cta.url %} aria-current="page"{% endif %}>
-          {% include t.html key=N.header_cta.key %}
-        </a>
-
-        {%- if S.features.lang_toggle %}
-        <button class="iconbtn" type="button" id="lang-toggle"
-                data-i18n-attr="aria-label:a11y.lang_toggle" aria-label="{% include t-plain.html key='a11y.lang_toggle' %}">
-          <span class="iconbtn__label" id="lang-label">DE</span>
-        </button>
-        {%- endif %}
-
-        {%- if S.features.theme_toggle %}
-        <button class="iconbtn" type="button" id="theme-toggle"
-                data-i18n-attr="aria-label:a11y.theme_toggle" aria-label="{% include t-plain.html key='a11y.theme_toggle' %}">
-          {% include icon.html name="sun" class="iconbtn__sun" size="18" %}
-          {% include icon.html name="moon" class="iconbtn__moon" size="18" %}
-        </button>
-        {%- endif %}
-      </div>
+      {%- capture _header_social %}{% include social-icons.html ort="header" flach=true %}{% endcapture %}
+      {%- if _header_social != "" %}
+      <div class="site-nav__social">{{ _header_social }}</div>
+      {%- endif %}
     </nav>
 
+    <div class="site-header__actions">
+      <button type="button" class="icon-btn theme-toggle js-only" data-theme-toggle aria-label="Farbschema wechseln">
+        {% include icon.html name="moon" klasse="icon--moon" %}
+        {% include icon.html name="sun" klasse="icon--sun" %}
+      </button>
+      <button type="button" class="icon-btn nav-toggle js-only" data-nav-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menü öffnen">
+        {% include icon.html name="menu" klasse="icon--menu" %}
+        {% include icon.html name="x" klasse="icon--close" %}
+      </button>
+    </div>
   </div>
 </header>

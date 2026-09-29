@@ -1,0 +1,76 @@
+{%- comment -%}
+  Suchmaschinen & Social-Media-Vorschau: Titel, Beschreibung, Open Graph,
+  Twitter Card und (auf der Startseite) strukturierte Daten (schema.org).
+  Pro Seite steuerbar über das Front Matter: title, description, image, noindex
+{%- endcomment -%}
+{%- assign _p = site.data.person -%}
+{%- assign _name = _p.vorname | append: " " | append: _p.nachname -%}
+{%- if page.url == "/" -%}
+  {%- assign _titel = site.title | append: " · " | append: _p.kurztitel -%}
+{%- else -%}
+  {%- assign _titel = page.title | append: " · " | append: site.title -%}
+{%- endif -%}
+{%- assign _beschr = page.description | default: site.description | strip_newlines | strip -%}
+{%- assign _url = page.url | replace: "index.html", "" | absolute_url -%}
+{%- assign _bild = page.image | default: site.og_image | absolute_url -%}
+<title>{{ _titel | escape }}</title>
+<meta name="description" content="{{ _beschr | escape }}">
+<meta name="author" content="{{ _name | escape }}">
+<link rel="canonical" href="{{ _url }}">
+{%- if page.noindex %}
+<meta name="robots" content="noindex, follow">
+{%- endif %}
+
+<meta property="og:type" content="{% if page.url == '/' %}profile{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:locale" content="{{ site.locale }}">
+<meta property="og:title" content="{{ _titel | escape }}">
+<meta property="og:description" content="{{ _beschr | escape }}">
+<meta property="og:url" content="{{ _url }}">
+<meta property="og:image" content="{{ _bild }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ _name | escape }} – {{ _p.kurztitel | escape }}">
+{%- if page.url == "/" %}
+<meta property="profile:first_name" content="{{ _p.vorname | escape }}">
+<meta property="profile:last_name" content="{{ _p.nachname | escape }}">
+{%- endif %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ _titel | escape }}">
+<meta name="twitter:description" content="{{ _beschr | escape }}">
+<meta name="twitter:image" content="{{ _bild }}">
+{%- if page.url == "/" %}
+{%- assign _same = "" | split: "" -%}
+{%- for k in site.data.social.kanaele -%}
+  {%- if k.anzeigen and k.typ == "link" and k.wert contains "://" -%}
+    {%- assign _same = _same | push: k.wert -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign _job = site.data.lebenslauf.berufserfahrung.eintraege | where: "bis", "" | first -%}
+{%- assign _schule = site.data.lebenslauf.ausbildung.eintraege | first -%}
+{%- assign _foto = "/assets/img/" | append: _p.foto.datei | absolute_url %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ _name | jsonify }},
+  "givenName": {{ _p.vorname | jsonify }},
+  "familyName": {{ _p.nachname | jsonify }},
+  "url": {{ "/" | absolute_url | jsonify }},
+  "image": {{ _foto | jsonify }},
+  "jobTitle": {{ _p.berufsbezeichnung | jsonify }},
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": {{ _p.standort.ort | jsonify }},
+    "addressCountry": "AT"
+  },
+  {%- if _job %}
+  "worksFor": { "@type": "Organization", "name": {{ _job.unternehmen | jsonify }} },
+  {%- endif %}
+  {%- if _schule %}
+  "affiliation": { "@type": "EducationalOrganization", "name": {{ _schule.schule | jsonify }} },
+  {%- endif %}
+  "sameAs": {{ _same | jsonify }}
+}
+</script>
+{%- endif %}

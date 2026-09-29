@@ -1,24 +1,20 @@
 ---
-layout: base
+# Fehlerseite „Seite nicht gefunden“ (GitHub Pages zeigt sie automatisch an)
+layout: default
+title: "Seite nicht gefunden"
+description: "Diese Seite gibt es leider nicht."
 permalink: /404.html
-title: 404
+noindex: true
 sitemap: false
 ---
-{%- comment -%}
-  Hilft weiter, statt nur zu melden, dass etwas fehlt. Die
-  angebotenen Ziele kommen aus navigation.yml.
-{%- endcomment -%}
-<section>
-  <div class="shell notfound">
-    <p class="notfound__code">{% include t.html key="error.code" %}</p>
-    <h1>{% include t.html key="error.title" %}</h1>
-    <p class="pagehead__lead">{% include t.html key="error.lead" %}</p>
-
-    <p class="stat__label">{% include t.html key="error.suggest" %}</p>
-    <div class="notfound__links">
-      {%- for item in site.data.navigation.notfound %}
-      <a class="btn btn--ghost" href="{{ item.url }}">{% include t.html key=item.key %}</a>
-      {%- endfor %}
+<section class="error-page">
+  <div class="container">
+    <p class="error-page__code" aria-hidden="true">404</p>
+    <h1>Seite nicht gefunden</h1>
+    <p>Die angeforderte Seite existiert nicht (mehr). Vielleicht hat sich ein Tippfehler in die Adresse geschlichen?</p>
+    <div class="btn-group">
+      <a class="btn btn--primaer" href="{{ '/' | relative_url }}">{% include icon.html name="arrow-left" %} Zur Startseite</a>
+      <a class="btn btn--sekundaer" href="{{ '/kontakt/' | relative_url }}">Kontakt</a>
     </div>
   </div>
 </section>

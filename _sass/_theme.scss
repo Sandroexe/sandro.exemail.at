@@ -1,0 +1,162 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  ✏️  _theme.scss – ZENTRALE DESIGN-DATEI                                  ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║  Was ist diese Datei?                                                    ║
+// ║    ALLE Design-Werte der Website: Farben, Schriften, Abstände,           ║
+// ║    Rundungen, Schatten und Animationstempo – für Hell UND Dunkel.        ║
+// ║    Jede Änderung hier wirkt automatisch auf der gesamten Website.        ║
+// ║                                                                          ║
+// ║  Was darf ich ändern?                                                    ║
+// ║    Die Werte rechts vom Doppelpunkt (Farbcodes, Größen, Zeiten).         ║
+// ║                                                                          ║
+// ║  Was sollte ich NICHT ändern?                                            ║
+// ║    Die Namen links (z. B. "$farbe-haupt") und den Strichpunkt am Ende.   ║
+// ║    Alle anderen Dateien in _sass/ brauchst du nicht anzufassen.          ║
+// ║                                                                          ║
+// ║  Farbcodes:                                                              ║
+// ║    Hex-Format "#RRGGBB". Farben aussuchen z. B. mit dem Farbwähler in    ║
+// ║    VS Code oder auf https://oklch.com. Nach dem Ändern den Kontrast      ║
+// ║    prüfen (Text muss gut lesbar bleiben), z. B. mit                      ║
+// ║    https://webaim.org/resources/contrastchecker/                         ║
+// ║                                                                          ║
+// ║  Beispiel – die ganze Website blau statt petrol:                         ║
+// ║    $farbe-haupt: #1d4ed8;                                                ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+@use "sass:color";
+
+
+// ═══════════════════════════════ FARBEN – HELL ═════════════════════════════
+
+// Hauptfarbe – wird für Buttons, Links, aktive Menüpunkte, Icons und Akzente
+// verwendet. Das ist DIE Farbe, die du ändern willst, um alles umzufärben.
+$farbe-haupt: #0e7490;
+
+// Zweitfarbe – für Farbverläufe (z. B. Ring ums Profilfoto, Hintergrund-Animation)
+$farbe-akzent: #0d9488;
+
+// Textfarbe auf Buttons in der Hauptfarbe
+$farbe-text-auf-haupt: #ffffff;
+
+$hell-hintergrund:   #f8fafc;   // Seitenhintergrund
+$hell-flaeche:       #ffffff;   // Karten, Header, Dialoge
+$hell-flaeche-2:     #eef3f7;   // leicht abgesetzte Bereiche (z. B. Tags)
+$hell-text:          #0f172a;   // Haupttext & Überschriften
+$hell-text-leise:    #475569;   // Nebentext (Datum, Beschreibungen)
+$hell-rand:          #dbe3ea;   // Linien und Kartenränder
+
+
+// ═══════════════════════════════ FARBEN – DUNKEL ═══════════════════════════
+
+// Haupt- und Zweitfarbe im Dark Mode.
+// "auto" = wird automatisch aus den hellen Farben oben abgeleitet
+// (heller gemacht, damit sie auf dunklem Grund gut lesbar sind).
+// Du kannst auch einen eigenen Farbcode eintragen, z. B. #22d3ee
+$dunkel-farbe-haupt:  auto;
+$dunkel-farbe-akzent: auto;
+
+// Textfarbe auf Buttons in der Hauptfarbe (Dark Mode)
+$dunkel-farbe-text-auf-haupt: #04141a;
+
+$dunkel-hintergrund: #0b1120;   // Seitenhintergrund
+$dunkel-flaeche:     #111a2e;   // Karten, Header, Dialoge
+$dunkel-flaeche-2:   #18233b;   // leicht abgesetzte Bereiche
+$dunkel-text:        #e2e8f0;   // Haupttext & Überschriften
+$dunkel-text-leise:  #9aa9bf;   // Nebentext
+$dunkel-rand:        #22304d;   // Linien und Kartenränder
+
+
+// ═══════════════════════════════ TYPOGRAFIE ════════════════════════════════
+// Die Schriften liegen lokal in assets/fonts/ (keine Verbindung zu Google).
+
+// Schrift für Fließtext und Überschriften
+$schrift-text: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+// Technische Schrift für Untertitel, Datumsangaben und kleine Labels
+$schrift-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+// Grundschriftgröße des Fließtexts (1rem = 16 Pixel)
+$schrift-groesse: 1.0625rem;
+
+// Zeilenabstand im Fließtext
+$zeilenhoehe: 1.65;
+
+// Größen der Überschriften (min, bevorzugt, max) – wachsen mit der Bildschirmbreite
+$groesse-h1: clamp(2.4rem, 1.7rem + 3.2vw, 4rem);
+$groesse-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+$groesse-h3: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
+
+// Schriftstärken (100 = sehr dünn … 900 = sehr fett)
+$staerke-normal: 400;
+$staerke-mittel: 550;
+$staerke-fett: 700;
+$staerke-ueberschrift: 750;
+
+
+// ═══════════════════════════════ ABSTÄNDE & LAYOUT ═════════════════════════
+
+// Maximale Breite des Inhaltsbereichs
+$inhalt-breite: 72rem;
+
+// Maximale Breite von Textblöcken (bessere Lesbarkeit)
+$text-breite: 42rem;
+
+// Seitenabstand links/rechts (am Handy mindestens 1.25rem)
+$rand-seite: clamp(1.25rem, 4vw, 2.5rem);
+
+// Abstand zwischen großen Bereichen (Sektionen)
+$abstand-sektion: clamp(4rem, 3rem + 5vw, 7rem);
+
+// Grundabstand – daraus werden kleinere und größere Abstände berechnet
+$abstand: 1rem;
+
+
+// ═══════════════════════════════ FORMEN & EFFEKTE ══════════════════════════
+
+// Rundung von Ecken
+$rundung-klein: 0.5rem;     // Buttons, Tags
+$rundung: 1rem;             // Karten
+$rundung-gross: 1.5rem;     // große Flächen, Dialoge
+
+// Form des Profilfotos: 50% = rund, 1.5rem = abgerundetes Quadrat
+$rundung-foto: 50%;
+
+// Schatten (hell)
+$schatten: 0 1px 2px rgb(15 23 42 / 0.05), 0 4px 16px rgb(15 23 42 / 0.06);
+$schatten-hover: 0 2px 4px rgb(15 23 42 / 0.06), 0 16px 40px rgb(15 23 42 / 0.12);
+
+// Schatten (dunkel)
+$dunkel-schatten: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+$dunkel-schatten-hover: 0 2px 4px rgb(0 0 0 / 0.4), 0 16px 40px rgb(0 0 0 / 0.5);
+
+
+// ═══════════════════════════════ ANIMATIONEN ═══════════════════════════════
+// Bei "Bewegung reduzieren" in den Systemeinstellungen sind alle
+// Animationen automatisch aus.
+
+// Tempo für Hover-Effekte und Übergänge
+$tempo: 200ms;
+
+// Tempo für das sanfte Einblenden beim Scrollen
+$tempo-einblenden: 700ms;
+
+// Bewegungskurve (wie "weich" Animationen starten und enden)
+$kurve: cubic-bezier(0.22, 1, 0.36, 1);
+
+// Animierter Netzwerk-Hintergrund auf der Startseite
+$hintergrund-animation: true;   // true = an, false = aus
+$hintergrund-dichte: 1;         // 0.5 = weniger Punkte, 1.5 = mehr Punkte
+$hintergrund-tempo: 1;          // 0.5 = langsamer, 2 = schneller
+
+
+// ══════════════════════ AB HIER NICHTS ÄNDERN (Berechnungen) ═══════════════
+
+@function _dunkel-variante($wert, $basis) {
+  @if $wert == auto {
+    @return color.scale($basis, $lightness: 42%, $saturation: 10%);
+  }
+  @return $wert;
+}
+
+$dunkel-farbe-haupt-final: _dunkel-variante($dunkel-farbe-haupt, $farbe-haupt);
+$dunkel-farbe-akzent-final: _dunkel-variante($dunkel-farbe-akzent, $farbe-akzent);

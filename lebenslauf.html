@@ -1,0 +1,156 @@
+---
+# Lebenslauf – Inhalte kommen aus _data/lebenslauf.yml
+title: "Lebenslauf"
+description: "Lebenslauf von Sandro Exenberger: Ausbildung an der HTL Anichstraße, IT-Erfahrung, Praktika, Engagement, Kenntnisse und Sprachen."
+permalink: /lebenslauf/
+hero: false
+---
+{%- assign cv = site.data.lebenslauf -%}
+{%- assign p = site.data.person -%}
+
+<header class="page-hero no-print">
+  <div class="container">
+    <p class="eyebrow">Werdegang</p>
+    <h1>{{ cv.titel }}</h1>
+    {%- if cv.einleitung and cv.einleitung != "" %}
+    <p class="page-hero__lead">{{ cv.einleitung }}</p>
+    {%- endif %}
+    <div class="page-hero__actions">
+      {%- if cv.pdf_datei and cv.pdf_datei != "" %}
+      <a class="btn btn--primaer" href="{{ '/assets/lebenslauf/' | append: cv.pdf_datei | relative_url }}" download>
+        {% include icon.html name="download" %}
+        {{ cv.download_text }}<span class="visually-hidden"> (PDF)</span>
+      </a>
+      {%- else %}
+      <button type="button" class="btn btn--primaer js-only" data-action="print" aria-describedby="druck-hinweis">
+        {% include icon.html name="download" %}
+        {{ cv.download_text }}
+      </button>
+      <p class="page-hero__hint js-only" id="druck-hinweis">Öffnet den Druckdialog – dort „Als PDF speichern“ wählen.</p>
+      {%- endif %}
+    </div>
+  </div>
+</header>
+
+<div class="section section--tight">
+  <div class="container">
+
+    <!-- Kopfzeile nur für Druck/PDF -->
+    <header class="print-only print-header">
+      <h1>{{ p.vorname }} {{ p.nachname }}</h1>
+      <p class="print-header__subtitle">{{ p.kurztitel }}</p>
+      <ul class="print-header__contact">
+        <li>{% include icon.html name="map-pin" %} {{ p.standort.ort }}{% if p.standort.region != "" %} {{ p.standort.region }}{% endif %}, {{ p.standort.land }}</li>
+        {%- for k in site.data.social.kanaele %}
+        {%- if k.anzeigen and k.orte contains "kontakt" %}
+        <li>{% include icon.html name=k.icon %} {% include kontakt-link.html kanal=k %}</li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+    </header>
+
+    <div class="cv-layout">
+      <div class="cv-layout__main">
+        {%- assign abschnitte = "berufserfahrung,praktika,ausbildung,engagement" | split: "," %}
+        {%- for key in abschnitte %}
+        {%- assign a = cv[key] %}
+        {%- assign eintraege = a.eintraege | where_exp: "e", "e.anzeigen != false" %}
+        {%- if eintraege.size > 0 %}
+        <section class="cv-section" aria-labelledby="cv-{{ key }}">
+          <h2 class="cv-section__title" id="cv-{{ key }}">
+            <span class="icon-badge">{% include icon.html name=a.icon %}</span>
+            {{ a.titel }}
+          </h2>
+          <ol class="timeline">
+            {%- for e in eintraege %}
+            {%- assign _bis = e.bis | append: "" | strip %}
+            <li class="timeline__item{% if _bis == '' %} timeline__item--aktuell{% endif %}" data-reveal>
+              <span class="timeline__dot" aria-hidden="true"></span>
+              <article class="card timeline__card">
+                <p class="timeline__date">{% include zeitraum.html von=e.von bis=e.bis voraussichtlich=e.voraussichtlich %}</p>
+
+                {%- case key %}
+                {%- when "ausbildung" %}
+                <h3 class="timeline__title">{{ e.schule }}</h3>
+                <ul class="timeline__meta">
+                  {%- if e.abschluss and e.abschluss != "" %}<li>{{ e.abschluss }}</li>{% endif %}
+                  {%- if e.fachrichtung and e.fachrichtung != "" %}<li>{{ e.fachrichtung }}</li>{% endif %}
+                  {%- if e.ort and e.ort != "" %}<li>{{ e.ort }}</li>{% endif %}
+                  {%- if e.schule_link and e.schule_link != "" %}<li><a href="{{ e.schule_link }}" target="_blank" rel="noopener noreferrer">Website<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></li>{% endif %}
+                </ul>
+                {%- when "engagement" %}
+                <h3 class="timeline__title">{{ e.rolle }}</h3>
+                <ul class="timeline__meta">
+                  {%- if e.organisation and e.organisation != "" %}<li>{% if e.organisation_link and e.organisation_link != "" %}<a href="{{ e.organisation_link }}" target="_blank" rel="noopener noreferrer">{{ e.organisation }}<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>{% else %}{{ e.organisation }}{% endif %}</li>{% endif %}
+                  {%- if e.bereich and e.bereich != "" %}<li>{{ e.bereich }}</li>{% endif %}
+                </ul>
+                {%- else %}
+                <h3 class="timeline__title">{{ e.position }}</h3>
+                <ul class="timeline__meta">
+                  {%- if e.unternehmen and e.unternehmen != "" %}<li>{% if e.unternehmen_link and e.unternehmen_link != "" %}<a href="{{ e.unternehmen_link }}" target="_blank" rel="noopener noreferrer">{{ e.unternehmen }}<span class="visually-hidden"> (öffnet in neuem Tab)</span></a>{% else %}{{ e.unternehmen }}{% endif %}</li>{% endif %}
+                  {%- if e.ort and e.ort != "" %}<li>{{ e.ort }}</li>{% endif %}
+                  {%- if e.art and e.art != "" %}<li>{{ e.art }}</li>{% endif %}
+                </ul>
+                {%- endcase %}
+
+                {%- if e.beschreibung and e.beschreibung != "" %}
+                <p class="timeline__text">{{ e.beschreibung }}</p>
+                {%- endif %}
+                {%- if e.aufgaben.size > 0 %}
+                <ul class="timeline__list">
+                  {%- for aufgabe in e.aufgaben %}
+                  <li>{{ aufgabe }}</li>
+                  {%- endfor %}
+                </ul>
+                {%- endif %}
+                {%- if e.aktivitaeten and e.aktivitaeten != "" %}
+                <p class="timeline__extra"><strong>Aktivitäten:</strong> {{ e.aktivitaeten }}</p>
+                {%- endif %}
+              </article>
+            </li>
+            {%- endfor %}
+          </ol>
+        </section>
+        {%- endif %}
+        {%- endfor %}
+      </div>
+
+      <aside class="cv-layout__aside" aria-label="Kenntnisse und Sprachen">
+        {%- if cv.skills.gruppen.size > 0 %}
+        <section class="card" aria-labelledby="cv-skills" data-reveal>
+          <h2 class="aside-title" id="cv-skills">{{ cv.skills.titel }}</h2>
+          {%- for g in cv.skills.gruppen %}
+          <div class="skill-group">
+            <h3>{% include icon.html name=g.icon %}{{ g.gruppe }}</h3>
+            <ul class="tag-list">
+              {%- for s in g.eintraege %}
+              <li class="tag">{{ s }}</li>
+              {%- endfor %}
+            </ul>
+          </div>
+          {%- endfor %}
+        </section>
+        {%- endif %}
+
+        {%- if cv.sprachen.eintraege.size > 0 %}
+        <section class="card" aria-labelledby="cv-sprachen" data-reveal>
+          <h2 class="aside-title" id="cv-sprachen">{{ cv.sprachen.titel }}</h2>
+          <ul class="lang-list">
+            {%- for s in cv.sprachen.eintraege %}
+            <li>
+              <span class="lang-list__name">{{ s.sprache }}</span>
+              <span class="lang-list__level">{{ s.niveau }}</span>
+              {%- if s.stufe %}
+              <span class="level" aria-hidden="true">
+                {%- for i in (1..5) %}<span class="level__dot{% if i <= s.stufe %} is-on{% endif %}"></span>{% endfor -%}
+              </span>
+              {%- endif %}
+            </li>
+            {%- endfor %}
+          </ul>
+        </section>
+        {%- endif %}
+      </aside>
+    </div>
+  </div>
+</div>

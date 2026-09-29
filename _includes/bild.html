@@ -1,0 +1,22 @@
+{%- comment -%}
+  Bild mit optionaler WebP-Version und Lazy Loading.
+  Parameter:
+    datei   – Dateiname (Pflicht)
+    webp    – Dateiname der WebP-Version (optional)
+    alt     – Alternativtext (leer = dekoratives Bild)
+    breite, hoehe – Abmessungen in Pixel (verhindert Springen beim Laden)
+    pfad    – Ordner (Standard: /assets/img/)
+    klasse  – CSS-Klasse für das <img>
+    eager   – true = sofort laden (nur für Bilder ganz oben)
+{%- endcomment -%}
+{%- assign _bild_pfad = include.pfad | default: "/assets/img/" -%}
+<picture>
+  {%- if include.webp and include.webp != "" %}
+  <source type="image/webp" srcset="{{ _bild_pfad | append: include.webp | relative_url }}">
+  {%- endif %}
+  <img src="{{ _bild_pfad | append: include.datei | relative_url }}" alt="{{ include.alt | escape }}"
+    {%- if include.breite %} width="{{ include.breite }}"{% endif %}
+    {%- if include.hoehe %} height="{{ include.hoehe }}"{% endif %}
+    {%- if include.eager %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async"
+    {%- if include.klasse %} class="{{ include.klasse }}"{% endif %}>
+</picture>

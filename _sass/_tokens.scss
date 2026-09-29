@@ -1,0 +1,105 @@
+// ─────────────────────────────────────────────────────────────────────────
+//  Design-Tokens: wandelt die Werte aus _theme.scss in CSS-Variablen um.
+//  Hier muss nichts geändert werden – alle Werte kommen aus _theme.scss.
+// ─────────────────────────────────────────────────────────────────────────
+@use "sass:meta";
+@use "theme" as t;
+
+// Hintergrund-Animation an/aus als Zahl (1/0) für JavaScript
+$_bg-anim: 0;
+@if t.$hintergrund-animation {
+  $_bg-anim: 1;
+}
+
+@mixin hell {
+  color-scheme: light;
+  --c-bg: #{t.$hell-hintergrund};
+  --c-surface: #{t.$hell-flaeche};
+  --c-surface-2: #{t.$hell-flaeche-2};
+  --c-text: #{t.$hell-text};
+  --c-text-muted: #{t.$hell-text-leise};
+  --c-border: #{t.$hell-rand};
+  --c-primary: #{t.$farbe-haupt};
+  --c-accent: #{t.$farbe-akzent};
+  --c-on-primary: #{t.$farbe-text-auf-haupt};
+  --shadow: #{t.$schatten};
+  --shadow-hover: #{t.$schatten-hover};
+  --show-sun: none;
+  --show-moon: block;
+}
+
+@mixin dunkel {
+  color-scheme: dark;
+  --c-bg: #{t.$dunkel-hintergrund};
+  --c-surface: #{t.$dunkel-flaeche};
+  --c-surface-2: #{t.$dunkel-flaeche-2};
+  --c-text: #{t.$dunkel-text};
+  --c-text-muted: #{t.$dunkel-text-leise};
+  --c-border: #{t.$dunkel-rand};
+  --c-primary: #{t.$dunkel-farbe-haupt-final};
+  --c-accent: #{t.$dunkel-farbe-akzent-final};
+  --c-on-primary: #{t.$dunkel-farbe-text-auf-haupt};
+  --shadow: #{t.$dunkel-schatten};
+  --shadow-hover: #{t.$dunkel-schatten-hover};
+  --show-sun: block;
+  --show-moon: none;
+}
+
+:root {
+  @include hell;
+
+  // Abgeleitete Farben (passen sich automatisch an Hell/Dunkel an)
+  --c-primary-soft: color-mix(in srgb, var(--c-primary) 12%, transparent);
+  --c-primary-hover: color-mix(in srgb, var(--c-primary) 82%, var(--c-text));
+  --c-header: color-mix(in srgb, var(--c-bg) 82%, transparent);
+  --c-focus: var(--c-primary);
+
+  // Typografie
+  --font-text: #{meta.inspect(t.$schrift-text)};
+  --font-mono: #{meta.inspect(t.$schrift-mono)};
+  --fs-base: #{t.$schrift-groesse};
+  --lh: #{t.$zeilenhoehe};
+  --fs-h1: #{t.$groesse-h1};
+  --fs-h2: #{t.$groesse-h2};
+  --fs-h3: #{t.$groesse-h3};
+  --fw-normal: #{t.$staerke-normal};
+  --fw-medium: #{t.$staerke-mittel};
+  --fw-bold: #{t.$staerke-fett};
+  --fw-heading: #{t.$staerke-ueberschrift};
+
+  // Layout & Abstände
+  --container: #{t.$inhalt-breite};
+  --measure: #{t.$text-breite};
+  --gutter: #{t.$rand-seite};
+  --section: #{t.$abstand-sektion};
+  --space: #{t.$abstand};
+  --header-h: 4.25rem;
+
+  // Formen
+  --radius-sm: #{t.$rundung-klein};
+  --radius: #{t.$rundung};
+  --radius-lg: #{t.$rundung-gross};
+  --radius-photo: #{t.$rundung-foto};
+
+  // Bewegung
+  --tempo: #{t.$tempo};
+  --tempo-reveal: #{t.$tempo-einblenden};
+  --ease: #{t.$kurve};
+
+  // Hintergrund-Animation (wird von hero-canvas.js gelesen)
+  --bg-anim: #{$_bg-anim};
+  --bg-density: #{t.$hintergrund-dichte};
+  --bg-speed: #{t.$hintergrund-tempo};
+}
+
+// Dunkel: per Umschalter gewählt …
+:root[data-theme="dark"] {
+  @include dunkel;
+}
+
+// … oder per Systemeinstellung (solange nichts gewählt wurde)
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dunkel;
+  }
+}

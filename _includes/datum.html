@@ -1,0 +1,24 @@
+{%- comment -%}
+  Formatiert ein Datum auf Österreichisch.
+    "2024-09"    → Sep. 2024          (format="lang": September 2024)
+    "2024"       → 2024
+    "2024-09-15" → 15. Sep. 2024      (format="lang": 15. September 2024)
+  Alles andere (z. B. "[BITTE AUSFÜLLEN]") wird unverändert ausgegeben.
+{%- endcomment -%}
+{%- assign _dat = include.wert | append: "" | strip -%}
+{%- assign _dat_teile = _dat | split: "-" -%}
+{%- assign _dat_jahr = _dat_teile[0] | plus: 0 -%}
+{%- if _dat_jahr > 1900 and _dat_teile[0].size == 4 and _dat_teile.size <= 3 -%}
+  {%- if include.format == "lang" -%}
+    {%- assign _dat_monate = "Jänner,Februar,März,April,Mai,Juni,Juli,August,September,Oktober,November,Dezember" | split: "," -%}
+  {%- else -%}
+    {%- assign _dat_monate = "Jän.,Feb.,März,Apr.,Mai,Juni,Juli,Aug.,Sep.,Okt.,Nov.,Dez." | split: "," -%}
+  {%- endif -%}
+  <time datetime="{{ _dat }}">
+    {%- if _dat_teile.size == 3 -%}{{ _dat_teile[2] | plus: 0 }}. {% endif -%}
+    {%- if _dat_teile.size >= 2 -%}{%- assign _dat_mi = _dat_teile[1] | plus: 0 | minus: 1 -%}{{ _dat_monate[_dat_mi] }} {% endif -%}
+    {{- _dat_teile[0] -}}
+  </time>
+{%- else -%}
+  {{- _dat -}}
+{%- endif -%}

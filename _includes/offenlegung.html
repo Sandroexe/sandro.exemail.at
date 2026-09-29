@@ -1,0 +1,42 @@
+{%- comment -%}
+  Offenlegung gemäß § 25 Mediengesetz – wird im Impressum UND im
+  Social-Media-Impressum verwendet. Alle Daten aus _data/rechtliches.yml.
+  Parameter: richtung – abweichende grundlegende Richtung (optional)
+{%- endcomment -%}
+{%- assign _r = site.data.rechtliches -%}
+{%- assign _m = _r.medieninhaber -%}
+{%- assign _u = _r.unternehmen -%}
+{%- assign _email = site.data.social.kanaele | where: "typ", "email" | first -%}
+{%- assign _tel = site.data.social.kanaele | where: "typ", "telefon" | first -%}
+{%- assign _richtung = include.richtung | default: _r.grundlegende_richtung -%}
+<dl class="facts">
+  {%- if _r.modus == "unternehmen" %}
+  <dt>Medieninhaber</dt>
+  <dd>{{ _u.firmenname }}{% if _u.rechtsform != "" %} ({{ _u.rechtsform }}){% endif %}<br>Inhaber: {{ _m.name }}</dd>
+  {%- if _u.unternehmensgegenstand != "" %}
+  <dt>Unternehmensgegenstand</dt>
+  <dd>{{ _u.unternehmensgegenstand }}</dd>
+  {%- endif %}
+  <dt>Sitz</dt>
+  {%- else %}
+  <dt>Medieninhaber</dt>
+  <dd>{{ _m.name }}</dd>
+  <dt>Wohnort</dt>
+  {%- endif %}
+  <dd>
+    {%- if _m.strasse != "" %}{{ _m.strasse }}<br>{% endif -%}
+    {%- if _m.plz != "" %}{{ _m.plz }} {% endif %}{{ _m.ort }}, {{ _m.land -}}
+  </dd>
+  {%- if _email and _email.wert != "" %}
+  <dt>E-Mail</dt>
+  <dd>{% include kontakt-link.html kanal=_email %}</dd>
+  {%- endif %}
+  {%- if _m.telefon_anzeigen and _tel and _tel.wert != "" %}
+  <dt>Telefon</dt>
+  <dd>{% include kontakt-link.html kanal=_tel %}</dd>
+  {%- endif %}
+</dl>
+{%- if _richtung and _richtung != "" %}
+<h3>Grundlegende Richtung</h3>
+<p>{{ _richtung }}</p>
+{%- endif %}

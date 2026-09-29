@@ -1,0 +1,117 @@
+---
+# Zertifikate – Inhalte kommen aus _data/zertifikate.yml
+title: "Zertifikate"
+description: "Zertifikate und Nachweise von Sandro Exenberger, u. a. Cisco CCNA."
+permalink: /zertifikate/
+hero: false
+---
+{%- assign z = site.data.zertifikate -%}
+{%- assign certs = z.zertifikate | where_exp: "c", "c.anzeigen != false" -%}
+
+<header class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Nachweise</p>
+    <h1>{{ z.titel }}</h1>
+    {%- if z.einleitung and z.einleitung != "" %}
+    <p class="page-hero__lead">{{ z.einleitung }}</p>
+    {%- endif %}
+  </div>
+</header>
+
+<div class="section section--tight">
+  <div class="container">
+    {%- if certs.size == 0 %}
+    <p class="empty-state">Hier erscheinen bald die ersten Zertifikate.</p>
+    {%- else %}
+
+    <!-- Filter (nur mit JavaScript) -->
+    <ul class="filter-bar js-only" aria-label="Zertifikate nach Kategorie filtern">
+      <li><button type="button" class="filter-btn" data-filter="alle" aria-pressed="true">Alle<span class="filter-btn__count">{{ certs.size }}</span></button></li>
+      {%- for kat in z.kategorien %}
+      {%- assign _anzahl = certs | where: "kategorie", kat | size %}
+      {%- if _anzahl > 0 %}
+      <li><button type="button" class="filter-btn" data-filter="{{ kat | escape }}" aria-pressed="false">{{ kat }}<span class="filter-btn__count">{{ _anzahl }}</span></button></li>
+      {%- endif %}
+      {%- endfor %}
+    </ul>
+    <p class="visually-hidden" aria-live="polite" data-filter-status></p>
+
+    <ul class="cert-grid">
+      {%- for c in certs %}
+      {%- assign _id = "zertifikat-" | append: forloop.index %}
+      <li class="card card--interaktiv cert-card" data-kategorie="{{ c.kategorie | escape }}" data-reveal data-reveal-delay="{{ forloop.index0 | modulo: 3 }}">
+        <div class="cert-card__media">
+          {%- if c.bild and c.bild != "" %}
+          {% include bild.html pfad="/assets/zertifikate/" datei=c.bild alt="" %}
+          {%- else %}
+          {% include icon.html name="award" %}
+          {%- endif %}
+        </div>
+        <div class="cert-card__body">
+          <span><span class="tag tag--akzent">{{ c.kategorie }}</span></span>
+          <h2 class="cert-card__title">
+            <button type="button" class="cert-card__open" data-dialog-open="{{ _id }}" aria-haspopup="dialog">{{ c.name }}</button>
+          </h2>
+          <p class="cert-card__issuer">{{ c.aussteller }}</p>
+          {%- if c.ausgestellt and c.ausgestellt != "" %}
+          <p class="cert-card__date">Ausgestellt: {% include datum.html wert=c.ausgestellt %}</p>
+          {%- endif %}
+        </div>
+        <span class="cert-card__hint js-only" aria-hidden="true">{% include icon.html name="zoom-in" %}</span>
+
+        <!-- Detailansicht -->
+        <dialog class="cert-dialog" id="{{ _id }}" aria-labelledby="{{ _id }}-titel">
+          <div class="cert-dialog__head">
+            <div>
+              <span class="tag tag--akzent">{{ c.kategorie }}</span>
+              <h2 id="{{ _id }}-titel">{{ c.name }}</h2>
+            </div>
+            <button type="button" class="icon-btn" data-dialog-close aria-label="Detailansicht schließen">{% include icon.html name="x" %}</button>
+          </div>
+          <div class="cert-dialog__body">
+            {%- if c.bild and c.bild != "" %}
+            <div class="cert-dialog__media">
+              {% include bild.html pfad="/assets/zertifikate/" datei=c.bild alt=c.bild_alt %}
+            </div>
+            {%- endif %}
+            {%- if c.beschreibung and c.beschreibung != "" %}
+            <p class="cert-dialog__text">{{ c.beschreibung }}</p>
+            {%- endif %}
+            <dl class="cert-dialog__facts">
+              <dt>Aussteller</dt>
+              <dd>{{ c.aussteller }}</dd>
+              {%- if c.ausgestellt and c.ausgestellt != "" %}
+              <dt>Ausgestellt</dt>
+              <dd>{% include datum.html wert=c.ausgestellt format="lang" %}</dd>
+              {%- endif %}
+              {%- if c.ablauf and c.ablauf != "" %}
+              <dt>Gültig bis</dt>
+              <dd>{% include datum.html wert=c.ablauf format="lang" %}</dd>
+              {%- endif %}
+              {%- if c.credential_id and c.credential_id != "" %}
+              <dt>Credential-ID</dt>
+              <dd class="mono">{{ c.credential_id }}</dd>
+              {%- endif %}
+            </dl>
+            {%- if c.datei != "" or c.verifizierung_link != "" %}
+            <div class="btn-group">
+              {%- if c.datei and c.datei != "" %}
+              <a class="btn btn--primaer btn--klein" href="{{ '/assets/zertifikate/' | append: c.datei | relative_url }}" target="_blank" rel="noopener">
+                {% include icon.html name="file-text" %} Zertifikat öffnen<span class="visually-hidden"> (öffnet in neuem Tab)</span>
+              </a>
+              {%- endif %}
+              {%- if c.verifizierung_link and c.verifizierung_link != "" %}
+              <a class="btn btn--sekundaer btn--klein" href="{{ c.verifizierung_link }}" target="_blank" rel="noopener noreferrer">
+                {% include icon.html name="badge-check" %} Online prüfen<span class="visually-hidden"> (öffnet in neuem Tab)</span>
+              </a>
+              {%- endif %}
+            </div>
+            {%- endif %}
+          </div>
+        </dialog>
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</div>

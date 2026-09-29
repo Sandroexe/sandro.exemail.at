@@ -1,34 +1,52 @@
-# ═══════════════════════════════════════════════════════════════════
-#  navigation.yml — jede Navigation genau einmal
-#  `label` ist ein Schlüssel aus _data/i18n/*.yml (nav.*), kein Text.
-# ═══════════════════════════════════════════════════════════════════
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  navigation.yml – HAUPTMENÜ                                           ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Die Menüpunkte oben im Header (am Handy im Burger-Menü).              ║
+# ║    Die Reihenfolge hier = Reihenfolge im Menü.                           ║
+# ║                                                                          ║
+# ║  Was darf ich ändern?                                                    ║
+# ║    • titel     → Beschriftung umbenennen                                 ║
+# ║    • anzeigen  → true = sichtbar, false = ausgeblendet                   ║
+# ║    • Einträge verschieben, hinzufügen, löschen                           ║
+# ║                                                                          ║
+# ║  Was sollte ich NICHT ändern?                                            ║
+# ║    Die "url" nur ändern, wenn du auch den "permalink" der Seite änderst. ║
+# ║    URLs beginnen und enden immer mit "/".                                ║
+# ║                                                                          ║
+# ║  Rechtliche Seiten (Impressum, Datenschutz) stehen im Footer             ║
+# ║  → siehe footer.yml                                                      ║
+# ║                                                                          ║
+# ║  Beispiel – neue Seite "Projekte":                                       ║
+# ║    1. Datei  projekte.md  im Hauptordner anlegen (siehe README)          ║
+# ║    2. Hier eintragen:                                                    ║
+# ║         - titel: "Projekte"                                              ║
+# ║           url: "/projekte/"                                              ║
+# ║           anzeigen: true                                                 ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
 
-header:
-  - { key: "nav.projects", url: "/projects/" }
-  - { key: "nav.cv", url: "/cv/" }
-  - { key: "nav.certificates", url: "/certificates/" }
-  - { key: "nav.lab", url: "/lab/" }
-  - { key: "nav.links", url: "/links/" }
 
-# Der Kontakt-Button steht optisch abgesetzt neben der Navigation.
-header_cta: { key: "nav.contact", url: "/contact/" }
+# ═══════════════════════════════ HAUPTMENÜ ═════════════════════════════════
 
-footer:
-  - { key: "nav.home", url: "/" }
-  - { key: "nav.projects", url: "/projects/" }
-  - { key: "nav.cv", url: "/cv/" }
-  - { key: "nav.certificates", url: "/certificates/" }
-  - { key: "nav.lab", url: "/lab/" }
-  - { key: "nav.links", url: "/links/" }
-  - { key: "nav.contact", url: "/contact/" }
+hauptmenue:
 
-legal:
-  - { key: "nav.imprint", url: "/impressum/" }
-  - { key: "nav.social_imprint", url: "/impressum/social/" }
-  - { key: "nav.privacy", url: "/datenschutz/" }
+  - titel: "Start"            # Beschriftung im Menü
+    url: "/"                  # Adresse der Seite
+    anzeigen: true            # true = sichtbar, false = ausgeblendet
 
-# Auf der 404-Seite angebotene Ziele
-notfound:
-  - { key: "nav.home", url: "/" }
-  - { key: "nav.projects", url: "/projects/" }
-  - { key: "nav.contact", url: "/contact/" }
+  - titel: "Lebenslauf"
+    url: "/lebenslauf/"
+    anzeigen: true
+
+  - titel: "Zertifikate"
+    url: "/zertifikate/"
+    anzeigen: true
+
+  - titel: "Kontakt"
+    url: "/kontakt/"
+    anzeigen: true
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#  - titel: "Projekte"
+#    url: "/projekte/"
+#    anzeigen: true

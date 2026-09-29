@@ -1,83 +1,122 @@
 ---
+# Impressum & Offenlegung – alle Angaben kommen aus _data/rechtliches.yml
 layout: legal
+title: "Impressum"
+description: "Impressum und Offenlegung gemäß § 25 Mediengesetz der Website von Sandro Exenberger."
 permalink: /impressum/
-redirect_from:
-  - /impressum.html
-  - /imprint/
-title_key: nav.imprint
-title: Impressum
 ---
-{%- assign P = site.data.profile -%}
-{%- assign C = site.data.contact -%}
-{%- assign A = C.address -%}
-{%- assign L = site.data.legal -%}
+{%- assign r = site.data.rechtliches -%}
+{%- assign m = r.medieninhaber -%}
+{%- assign u = r.unternehmen -%}
+{%- assign email = site.data.social.kanaele | where: "typ", "email" | first -%}
+{%- assign tel = site.data.social.kanaele | where: "typ", "telefon" | first -%}
 
-<p>{% include t.html de=L.basis en=L.basis_en %}</p>
-
-<h2>{% include t.html key="legal.operator" %}</h2>
-<dl class="datalist">
-  <div>
-    <dt>{% include t.html de="Name" en="Name" %}</dt>
-    <dd>{{ P.name }}</dd>
-  </div>
-  <div>
-    <dt>{% include t.html de="Anschrift" en="Address" %}</dt>
-    <dd>
-      {%- if A.street contains "TODO" -%}
-        {%- comment -%}
-          Sichtbarer Platzhalter statt stiller Lücke: eine unvollständige
-          Anschrift ist ein Rechtsmangel und soll auffallen.
-        {%- endcomment -%}
-        <span class="todo">{{ A.street }}</span><br>
-      {%- else -%}
-        {{ A.street }}<br>
-      {%- endif -%}
-      {{ A.zip }} {{ A.city }}<br>
-      {% include t.html de=A.country en=A.country_en %}
-    </dd>
-  </div>
+{%- if r.modus == "unternehmen" %}
+<h2>Angaben gemäß § 5 E-Commerce-Gesetz, § 14 UGB und § 63 Gewerbeordnung</h2>
+<dl class="facts">
+  <dt>Unternehmen</dt>
+  <dd>{{ u.firmenname }}</dd>
+  {%- if u.rechtsform != "" %}
+  <dt>Rechtsform</dt>
+  <dd>{{ u.rechtsform }}</dd>
+  {%- endif %}
+  <dt>Inhaber</dt>
+  <dd>{{ m.name }}</dd>
+  <dt>Anschrift</dt>
+  <dd>{% if m.strasse != "" %}{{ m.strasse }}<br>{% endif %}{{ m.plz }} {{ m.ort }}, {{ m.land }}</dd>
+  {%- if u.unternehmensgegenstand != "" %}
+  <dt>Unternehmensgegenstand</dt>
+  <dd>{{ u.unternehmensgegenstand }}</dd>
+  {%- endif %}
+  {%- if email and email.wert != "" %}
+  <dt>E-Mail</dt>
+  <dd>{% include kontakt-link.html kanal=email %}</dd>
+  {%- endif %}
+  {%- if tel and tel.wert != "" %}
+  <dt>Telefon</dt>
+  <dd>{% include kontakt-link.html kanal=tel %}</dd>
+  {%- endif %}
+  {%- if u.uid != "" %}
+  <dt>UID-Nummer</dt>
+  <dd>{{ u.uid }}</dd>
+  {%- endif %}
+  {%- if u.gisa != "" %}
+  <dt>GISA-Zahl</dt>
+  <dd>{{ u.gisa }}</dd>
+  {%- endif %}
+  {%- if u.firmenbuchnummer != "" %}
+  <dt>Firmenbuchnummer</dt>
+  <dd>{{ u.firmenbuchnummer }}</dd>
+  {%- endif %}
+  {%- if u.firmenbuchgericht != "" %}
+  <dt>Firmenbuchgericht</dt>
+  <dd>{{ u.firmenbuchgericht }}</dd>
+  {%- endif %}
+  {%- if u.gewerbe != "" %}
+  <dt>Gewerbe</dt>
+  <dd>{{ u.gewerbe }}{% if u.verleihungsstaat != "" %} (Berufsbezeichnung verliehen in {{ u.verleihungsstaat }}){% endif %}</dd>
+  {%- endif %}
+  {%- if u.gewerbebehoerde != "" %}
+  <dt>Gewerbebehörde</dt>
+  <dd>{{ u.gewerbebehoerde }}</dd>
+  {%- endif %}
+  {%- if u.kammer != "" %}
+  <dt>Kammer&shy;zugehörigkeit</dt>
+  <dd>{{ u.kammer }}{% if u.fachgruppe != "" %}, {{ u.fachgruppe }}{% endif %}</dd>
+  {%- endif %}
+  {%- if u.rechtsvorschriften != "" %}
+  <dt>Rechts&shy;vorschriften</dt>
+  <dd>{{ u.rechtsvorschriften }}{% if u.rechtsvorschriften_link != "" %} – abrufbar unter <a href="{{ u.rechtsvorschriften_link }}" target="_blank" rel="noopener noreferrer">{{ u.rechtsvorschriften_link | remove: "https://" }}</a>{% endif %}</dd>
+  {%- endif %}
 </dl>
+{%- endif %}
 
-<h2>{% include t.html key="legal.contact" %}</h2>
-<dl class="datalist">
-  <div>
-    <dt>{% include t.html key="contact.email_label" %}</dt>
-    <dd><a href="mailto:{{ C.email }}">{{ C.email }}</a></dd>
-  </div>
-  <div>
-    <dt>{% include t.html key="contact.phone_label" %}</dt>
-    <dd><a href="tel:{{ C.phone.href }}">{{ C.phone.display }}</a></dd>
-  </div>
-</dl>
+<h2>Offenlegung gemäß § 25 Mediengesetz</h2>
+{% include offenlegung.html %}
+{%- if r.modus != "unternehmen" %}
+<p>
+  Dies ist eine private Website ohne kommerzielle Absicht. Sie dient der persönlichen
+  Vorstellung des Medieninhabers und enthält keine darüber hinausgehenden Inhalte,
+  die geeignet sind, die öffentliche Meinungsbildung zu beeinflussen
+  (§ 25 Abs. 5 MedienG).
+</p>
+{%- endif %}
+<p>
+  Die Offenlegung für meine Social-Media-Kanäle finden Sie im
+  <a href="{{ '/social-impressum/' | relative_url }}">Social-Media-Impressum</a>.
+</p>
 
-<h2>{% include t.html key="legal.purpose" %}</h2>
-<p>{% include t.html de=L.purpose en=L.purpose_en %}</p>
+{%- if r.haftung_links_anzeigen %}
+<h2>Haftung für Links</h2>
+<p>
+  Diese Website enthält Links zu externen Websites Dritter. Auf deren Inhalte habe ich
+  keinen Einfluss; für sie ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
+  Zum Zeitpunkt der Verlinkung waren keine rechtswidrigen Inhalte erkennbar. Sollten mir
+  Rechtsverletzungen bekannt werden, entferne ich die betreffenden Links umgehend.
+</p>
+{%- endif %}
 
-{%- unless L.commercial %}
-<h2>{% include t.html key="legal.commercial" %}</h2>
-<p>{% include t.html de=L.commercial_note en=L.commercial_note_en %}</p>
-{%- endunless %}
+{%- if r.urheberrecht_anzeigen %}
+<h2>Urheberrecht</h2>
+<p>
+  Die Inhalte dieser Website – insbesondere Texte, Fotos und Grafiken – sind
+  urheberrechtlich geschützt. Jede Verwendung außerhalb der Grenzen des Urheberrechts
+  bedarf meiner vorherigen schriftlichen Zustimmung.
+</p>
+<p>
+  Verwendete Schriftarten und Symbole: <em>Inter</em> und <em>JetBrains Mono</em>
+  (SIL Open Font License 1.1) sowie <em>Lucide Icons</em> (ISC-Lizenz). Alle werden
+  lokal auf dieser Website bereitgestellt.
+</p>
+{%- endif %}
 
-{%- for s in L.sections %}
-<h2>{% include t.html de=s.title en=s.title_en %}</h2>
-<p>{% include t.html de=s.body en=s.body_en %}</p>
-{%- endfor %}
-
-{%- comment -%}
-  Verweis auf das Social-Media-Impressum — der Link, der in die
-  Profil-Bios gehört.
-{%- endcomment -%}
-<div class="callout">
-  {% include icon.html name="external" class="callout__icon" size="22" %}
-  <div>
-    <h2 class="callout__title">{% include t.html key="legal.to_social" %}</h2>
-    <p>{% include t.html key="legal.to_social_text" %}</p>
-    <p class="callout__action">
-      <a class="btn btn--accent" href="/impressum/social/">
-        {% include t.html key="nav.social_imprint" %}{% include icon.html name="arrow-right" size="16" %}
-      </a>
-    </p>
-  </div>
-</div>
-
-<p><a href="/datenschutz/">{% include t.html key="legal.to_privacy" %}</a></p>
+{%- if r.bildnachweise.size > 0 %}
+<h2>Bildnachweise</h2>
+<ul>
+  {%- for b in r.bildnachweise %}
+  <li>
+    {{ b.beschreibung }}: {% if b.link and b.link != "" %}<a href="{{ b.link }}" target="_blank" rel="noopener noreferrer">{{ b.urheber }}</a>{% else %}{{ b.urheber }}{% endif %}
+  </li>
+  {%- endfor %}
+</ul>
+{%- endif %}

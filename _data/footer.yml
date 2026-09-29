@@ -1,0 +1,57 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  footer.yml – FUSSZEILE                                               ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Alles, was ganz unten auf jeder Seite steht: kurzer Text, Links       ║
+# ║    (Impressum, Datenschutz …) und die Copyright-Zeile.                   ║
+# ║    Social-Media-Icons im Footer steuerst du in social.yml (orte: footer).║
+# ║                                                                          ║
+# ║  Was darf ich ändern?                                                    ║
+# ║    Alle Texte und Links.                                                 ║
+# ║                                                                          ║
+# ║  Was sollte ich NICHT ändern?                                            ║
+# ║    Impressum und Datenschutz müssen von JEDER Seite aus erreichbar       ║
+# ║    bleiben – diese beiden Links bitte nicht löschen oder ausblenden.     ║
+# ║                                                                          ║
+# ║  Beispiel:                                                               ║
+# ║    kurztext: "Gebaut mit Sorgfalt in Tirol."                             ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+
+
+# ═══════════════════════════════ TEXTE ═════════════════════════════════════
+
+# Kurzer Satz unter dem Namen im Footer (leer = ausblenden)
+kurztext: "Elektronik, Netzwerke und Webentwicklung – aus Tirol."
+
+# Name in der Copyright-Zeile (leer = Name aus person.yml)
+copyright_name: ""
+
+# Jahr, ab dem das Copyright gilt (leer = nur aktuelles Jahr)
+copyright_ab: "2026"
+
+# Zusatz nach dem Copyright (leer = ausblenden)
+copyright_zusatz: "Alle Rechte vorbehalten."
+
+# Link "Nach oben" anzeigen?
+nach_oben_anzeigen: true
+
+
+# ═══════════════════════════════ LINKS ═════════════════════════════════════
+
+links:
+  - titel: "Impressum"                # Beschriftung
+    url: "/impressum/"                # Ziel
+    anzeigen: true                    # PFLICHT – bitte true lassen
+
+  - titel: "Datenschutz"
+    url: "/datenschutz/"
+    anzeigen: true                    # PFLICHT – bitte true lassen
+
+  - titel: "Social-Media-Impressum"
+    url: "/social-impressum/"
+    anzeigen: true
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#  - titel: "Barrierefreiheit"
+#    url: "/barrierefreiheit/"
+#    anzeigen: true

@@ -1,0 +1,13 @@
+{%- comment -%}
+  Zeitraum "von – bis". Leeres "bis" = "heute".
+  Parameter: von, bis, voraussichtlich (true/false)
+{%- endcomment -%}
+{%- assign _zr_von = include.von | append: "" | strip -%}
+{%- assign _zr_bis = include.bis | append: "" | strip -%}
+{%- if _zr_von != "" -%}{% include datum.html wert=_zr_von %} – {% endif -%}
+{%- if _zr_bis == "" -%}
+  heute
+{%- else -%}
+  {%- if include.voraussichtlich -%}voraussichtlich {% endif -%}
+  {%- include datum.html wert=_zr_bis -%}
+{%- endif -%}

@@ -1,0 +1,25 @@
+{%- comment -%}
+  Ein Kontakt-Link aus social.yml als Text-Link.
+  E-Mail und Telefon werden gegen Spam-Bots geschützt:
+  ohne JavaScript erscheint z. B. "name [at] domain [punkt] at".
+  Parameter: kanal (Eintrag aus social.yml), klasse (optional)
+{%- endcomment -%}
+{%- assign _kl = include.kanal -%}
+{%- if _kl.typ == "email" or _kl.typ == "telefon" -%}
+  {%- if _kl.typ == "email" -%}
+    {%- assign _kl_typ = "mailto" -%}
+    {%- assign _kl_fallback = _kl.wert | replace: "@", " [at] " | replace: ".", " [punkt] " | escape -%}
+  {%- else -%}
+    {%- assign _kl_typ = "tel" -%}
+    {%- assign _kl_fallback = _kl.wert | escape | split: "" | join: "&#8203;" -%}
+  {%- endif -%}
+  {%- capture _kl_code %}{% include obf.html wert=_kl.wert %}{% endcapture -%}
+  <a{% if include.klasse %} class="{{ include.klasse }}"{% endif %} href="{{ '/kontakt/' | relative_url }}" data-obf="{{ _kl_code }}" data-obf-typ="{{ _kl_typ }}">
+    {%- if _kl.anzeigetext and _kl.anzeigetext != "" -%}{{ _kl.anzeigetext | escape }}{%- else -%}<span data-obf="{{ _kl_code }}" data-obf-typ="text">{{ _kl_fallback }}</span>{%- endif -%}
+  </a>
+{%- else -%}
+  <a{% if include.klasse %} class="{{ include.klasse }}"{% endif %} href="{{ _kl.wert | escape }}" rel="noopener noreferrer me" target="_blank">
+    {%- if _kl.anzeigetext and _kl.anzeigetext != "" -%}{{ _kl.anzeigetext | escape }}{%- else -%}{{ _kl.wert | remove: "https://" | remove: "http://" | remove: "www." | escape }}{%- endif -%}
+    <span class="visually-hidden"> ({{ _kl.name | escape }}, öffnet in neuem Tab)</span>
+  </a>
+{%- endif -%}

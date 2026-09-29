@@ -1,0 +1,246 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  lebenslauf.yml – DEIN LEBENSLAUF                                     ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Alle Inhalte der Seite "Lebenslauf" UND der Druck-/PDF-Version:       ║
+# ║    Berufserfahrung, Praktika, Ausbildung, Engagement, Skills, Sprachen.  ║
+# ║    Die Felder heißen so ähnlich wie bei LinkedIn, damit du deine Daten   ║
+# ║    einfach übertragen kannst (siehe Tabelle unten).                      ║
+# ║                                                                          ║
+# ║  Was darf ich ändern?                                                    ║
+# ║    Alle Werte. Einträge hinzufügen, löschen, umsortieren.                ║
+# ║    Innerhalb eines Abschnitts: NEUESTER Eintrag zuerst.                  ║
+# ║    Ein Abschnitt ohne Einträge wird automatisch ausgeblendet.            ║
+# ║                                                                          ║
+# ║  Was sollte ich NICHT ändern?                                            ║
+# ║    Die Feldnamen (links vom Doppelpunkt) und die Einrückung.             ║
+# ║                                                                          ║
+# ║  DATUMSFORMAT:  "JJJJ-MM"  (z. B. "2024-09")  oder nur  "JJJJ"           ║
+# ║                 Immer in Anführungszeichen!                              ║
+# ║                 bis: ""  →  wird als "heute" angezeigt                   ║
+# ║                                                                          ║
+# ║  Beispiel:                                                               ║
+# ║    von: "2024-09"                                                        ║
+# ║    bis: ""            ← aktueller Job                                    ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+#
+#  LINKEDIN → DIESE DATEI
+#  ─────────────────────────────────────────────────────────────────────────
+#  LinkedIn "Title"            → position        LinkedIn "School Name" → schule
+#  LinkedIn "Company Name"     → unternehmen     LinkedIn "Degree Name" → abschluss
+#  LinkedIn "Location"         → ort             LinkedIn "Field of study" → fachrichtung
+#  LinkedIn "Employment type"  → art             LinkedIn "Activities"  → aktivitaeten
+#  LinkedIn "Started On"       → von             LinkedIn "Role" (Ehrenamt) → rolle
+#  LinkedIn "Finished On"      → bis             LinkedIn "Organization" → organisation
+#  LinkedIn "Description"      → beschreibung    LinkedIn "Cause"       → bereich
+#
+#  Automatisch übertragen? → tools/linkedin-import.py (Anleitung in tools/LIESMICH.md)
+
+
+# ═══════════════════════════ PDF-DOWNLOAD ══════════════════════════════════
+# Möchtest du ein eigenes, fertig gestaltetes PDF anbieten?
+#   → PDF nach  assets/lebenslauf/  legen und den Dateinamen hier eintragen.
+# Leer lassen ("") → Der Button öffnet stattdessen den Druckdialog mit einem
+#   automatisch erzeugten, sauberen A4-Layout ("Als PDF speichern").
+
+pdf_datei: ""                        # z. B. "Lebenslauf-Sandro-Exenberger.pdf"
+download_text: "Lebenslauf herunterladen"
+
+
+# ═══════════════════════════ EINLEITUNG ════════════════════════════════════
+
+titel: "Lebenslauf"
+einleitung: >-
+  Mein bisheriger Weg – von der HTL über die ersten Jobs in der IT bis zum
+  Engagement als Schulsprecher.
+
+
+# ═══════════════════════════ BERUFSERFAHRUNG ═══════════════════════════════
+
+berufserfahrung:
+  titel: "Berufserfahrung"
+  icon: "briefcase"
+  eintraege:
+
+    - position: "IT-Verantwortlicher (Teilzeit)"   # Jobtitel
+      unternehmen: "Eder Elektrotechnik GmbH"      # Firma
+      unternehmen_link: ""                         # Optional: Website der Firma
+      ort: "Kirchbichl, Tirol"                     # Arbeitsort
+      art: "Teilzeit"                              # Vollzeit / Teilzeit / Freiberuflich …
+      von: "[BITTE AUSFÜLLEN]"                     # Beginn, z. B. "2024-09"
+      bis: ""                                      # Ende – leer = "heute"
+      beschreibung: >-
+        Verantwortlich für die gesamte IT-Infrastruktur des Unternehmens.
+      aufgaben:                                    # Optional: Stichpunkte
+        - "Betreuung von Netzwerk, Servern und Arbeitsplätzen"
+        - "Anwender-Support und Einrichtung neuer Geräte"
+        - "Planung und Umsetzung von IT-Verbesserungen"
+      anzeigen: true                               # false = ausblenden
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#    - position: "Jobtitel"
+#      unternehmen: "Firmenname"
+#      unternehmen_link: ""
+#      ort: "Ort"
+#      art: "Vollzeit"
+#      von: "2025-01"
+#      bis: "2025-06"
+#      beschreibung: >-
+#        Ein bis zwei Sätze zur Tätigkeit.
+#      aufgaben:
+#        - "Stichpunkt 1"
+#        - "Stichpunkt 2"
+#      anzeigen: true
+
+
+# ═══════════════════════════════ PRAKTIKA ══════════════════════════════════
+
+praktika:
+  titel: "Praktika"
+  icon: "wrench"
+  eintraege:
+
+    - position: "Praktikant"                       # [BITTE AUSFÜLLEN: genaue Bezeichnung prüfen]
+      unternehmen: "Stadtwerke Wörgl – WörglWeb"
+      unternehmen_link: ""
+      ort: "Wörgl, Tirol"
+      art: "Pflichtpraktikum"
+      von: "[BITTE AUSFÜLLEN]"
+      bis: "[BITTE AUSFÜLLEN]"
+      beschreibung: >-
+        [BITTE AUSFÜLLEN: 1–2 Sätze zu deinen Aufgaben bei WörglWeb.]
+      aufgaben: []
+      anzeigen: true
+
+# ─── Vorlage: wie bei Berufserfahrung ─────────────────────────────────────
+
+
+# ═══════════════════════════════ AUSBILDUNG ════════════════════════════════
+
+ausbildung:
+  titel: "Ausbildung"
+  icon: "graduation-cap"
+  eintraege:
+
+    - schule: "HTBLVA Innsbruck Anichstraße"       # Name der Schule
+      schule_link: ""                              # Optional: Website der Schule
+      abschluss: "Reife- und Diplomprüfung (Matura)"   # Abschluss
+      fachrichtung: "Elektronik & Technische Informatik"  # Fachrichtung
+      ort: "Innsbruck, Tirol"
+      von: "2022-09"
+      bis: "2027-06"
+      voraussichtlich: true                        # true = "voraussichtlich" vor dem Enddatum
+      beschreibung: >-
+        Aktuell in der Abschlussklasse 5bHEL.
+      aktivitaeten: "Schulsprecher"                # Optional: Aktivitäten & Vereine
+      anzeigen: true
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#    - schule: "Mittelschule XY"
+#      schule_link: ""
+#      abschluss: "Pflichtschulabschluss"
+#      fachrichtung: ""
+#      ort: "Ort"
+#      von: "2018-09"
+#      bis: "2022-06"
+#      voraussichtlich: false
+#      beschreibung: ""
+#      aktivitaeten: ""
+#      anzeigen: true
+
+
+# ═══════════════════════════════ ENGAGEMENT ════════════════════════════════
+# Ehrenamt, Schulvertretung, Vereine (LinkedIn: "Volunteer experience")
+
+engagement:
+  titel: "Engagement"
+  icon: "users"
+  eintraege:
+
+    - rolle: "Schulsprecher"                       # Deine Funktion
+      organisation: "HTBLVA Innsbruck Anichstraße" # Organisation / Verein
+      organisation_link: ""
+      bereich: "Bildung"                           # LinkedIn "Cause" (optional)
+      von: "[BITTE AUSFÜLLEN]"
+      bis: ""
+      beschreibung: >-
+        Gewählte Vertretung für rund 1.600 Schülerinnen und Schüler – Ansprechpartner
+        für Anliegen, Bindeglied zu Direktion und Lehrkörper und Organisation von
+        Schulveranstaltungen.
+      anzeigen: true
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#    - rolle: "Mitglied"
+#      organisation: "Verein XY"
+#      organisation_link: ""
+#      bereich: "Sport"
+#      von: "2020"
+#      bis: ""
+#      beschreibung: ""
+#      anzeigen: true
+
+
+# ═════════════════════════════════ SKILLS ══════════════════════════════════
+# In Gruppen sortiert. "icon" = Icon-Name aus assets/icons/.
+
+skills:
+  titel: "Kenntnisse"
+  gruppen:
+
+    - gruppe: "Netzwerk"
+      icon: "network"
+      eintraege:
+        - "Cisco IOS (CCNA)"
+        - "Routing & Switching"
+        - "VLANs, Subnetting"
+        - "WLAN & Firewall-Grundlagen"
+
+    - gruppe: "Programmierung & Web"
+      icon: "code"
+      eintraege:
+        - "HTML, CSS, JavaScript"
+        - "Python"
+        - "C"
+        - "Git & GitHub"
+
+    - gruppe: "Hardware & Elektronik"
+      icon: "cpu"
+      eintraege:
+        - "Schaltungsentwicklung"
+        - "Mikrocontroller"
+        - "Messtechnik"
+        - "PC- & Server-Hardware"
+
+    - gruppe: "IT-Betrieb"
+      icon: "wrench"
+      eintraege:
+        - "Windows & Microsoft 365"
+        - "Benutzer-Support"
+        - "Backup & Datensicherheit"
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#    - gruppe: "Sonstiges"
+#      icon: "award"
+#      eintraege:
+#        - "Skill 1"
+#        - "Skill 2"
+
+
+# ════════════════════════════════ SPRACHEN ═════════════════════════════════
+# niveau: frei wählbar (z. B. "Muttersprache", "C1", "Fließend")
+# stufe:  1–5 für die Balkenanzeige (leer = kein Balken)
+
+sprachen:
+  titel: "Sprachen"
+  eintraege:
+    - sprache: "Deutsch"
+      niveau: "Muttersprache"
+      stufe: 5
+    - sprache: "Englisch"
+      niveau: "[BITTE AUSFÜLLEN: z. B. B2 / fließend]"
+      stufe: 4
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#    - sprache: "Italienisch"
+#      niveau: "Grundkenntnisse (A2)"
+#      stufe: 2

@@ -1,0 +1,35 @@
+---
+layout: default
+---
+{%- comment -%}
+  Standard-Layout für Unterseiten.
+  Front Matter:
+    title        – Seitentitel (Pflicht)
+    einleitung   – Text unter der Überschrift (optional)
+    eyebrow      – kleine Zeile über der Überschrift (optional)
+    hero: false  – Seite gestaltet den Kopfbereich selbst
+{%- endcomment -%}
+{%- if page.hero == false -%}
+{{ content }}
+{%- else -%}
+<header class="page-hero">
+  <div class="container">
+    {%- if page.eyebrow %}
+    <p class="eyebrow">{{ page.eyebrow }}</p>
+    {%- endif %}
+    <h1>{{ page.title }}</h1>
+    {%- if page.einleitung %}
+    <p class="page-hero__lead">{{ page.einleitung }}</p>
+    {%- endif %}
+  </div>
+</header>
+<div class="section section--tight">
+  <div class="container">
+    {%- if page.ext == ".md" %}
+    <div class="prose">{{ content }}</div>
+    {%- else %}
+    {{ content }}
+    {%- endif %}
+  </div>
+</div>
+{%- endif -%}

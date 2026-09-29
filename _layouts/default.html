@@ -1,28 +1,26 @@
----
-layout: base
----
+<!DOCTYPE html>
 {%- comment -%}
-  default.html — Standardseite mit Kopfbereich.
-
-  Die Seite liefert im Front Matter nur Schlüssel, keinen Text:
-    title_key: "projects.title"
-    lead_key:  "projects.lead"
-{%- endcomment -%}
-
-{%- if page.title_key or page.lead_key %}
-<header class="pagehead">
-  <div class="shell">
-    {%- if page.eyebrow_key %}
-    <p class="pagehead__eyebrow">{% include t.html key=page.eyebrow_key %}</p>
-    {%- endif %}
-    {%- if page.title_key %}
-    <h1 class="pagehead__title">{% include t.html key=page.title_key %}</h1>
-    {%- endif %}
-    {%- if page.lead_key %}
-    <p class="pagehead__lead">{% include t.html key=page.lead_key %}</p>
-    {%- endif %}
+  Grundgerüst jeder Seite: <head>, Header, Inhalt, Footer.
+  Header und Footer kommen aus _includes/ – nur dort ändern.
+{%- endcomment %}
+<html lang="{{ site.lang }}" class="no-js">
+<head>
+{% include head.html %}
+</head>
+<body id="top">
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+  {%- if jekyll.environment == "development" and content contains "[BITTE AUSFÜLLEN" %}
+  <div class="dev-banner" role="note">
+    Nur in der lokalen Vorschau sichtbar: Auf dieser Seite gibt es noch <code>[BITTE AUSFÜLLEN]</code>-Stellen.
   </div>
-</header>
-{%- endif %}
+  {%- endif %}
 
-{{ content }}
+  {% include header.html %}
+
+  <main id="inhalt" tabindex="-1">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+</body>
+</html>

@@ -1,7 +1,9 @@
 ---
 layout: null
+sitemap: false
 ---
+# Suchmaschinen dürfen die ganze Website lesen.
 User-agent: *
 Allow: /
 
-Sitemap: {{ site.url }}/sitemap.xml
+Sitemap: {{ '/sitemap.xml' | absolute_url }}

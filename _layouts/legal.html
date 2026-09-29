@@ -2,24 +2,23 @@
 layout: default
 ---
 {%- comment -%}
-  legal.html — Rechtsseiten: schmalere Spalte, ruhiger Satz,
-  Datumsstempel und Haftungshinweis automatisch aus legal.yml.
+  Layout für Rechtstexte (Impressum, Datenschutz, Social-Media-Impressum).
+  Das Stand-Datum kommt aus _data/rechtliches.yml.
 {%- endcomment -%}
-{%- assign L = site.data.legal -%}
-
-<div class="shell">
-  <article class="prose">
-    {{ content }}
-
-    <hr class="prose__rule">
-
-    <p class="prose__meta">
-      <strong>{% include t.html key="legal.updated" %}:</strong>
-      <time datetime="{{ L.last_updated }}">{{ L.last_updated | date: "%d.%m.%Y" }}</time>
-    </p>
-    <p class="prose__disclaimer">
-      <strong>{% include t.html key="legal.disclaimer" %}:</strong>
-      {% include t.html de=L.disclaimer en=L.disclaimer_en %}
-    </p>
-  </article>
+<header class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Rechtliches</p>
+    <h1>{{ page.title }}</h1>
+    {%- if page.einleitung %}
+    <p class="page-hero__lead">{{ page.einleitung }}</p>
+    {%- endif %}
+  </div>
+</header>
+<div class="section section--tight">
+  <div class="container">
+    <div class="prose">
+      {{ content }}
+      <p class="legal-stand">Stand: {% include datum.html wert=site.data.rechtliches.stand format="lang" %}</p>
+    </div>
+  </div>
 </div>

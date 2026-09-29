@@ -1,0 +1,15 @@
+---
+# Erzeugt automatisch EINE Icon-Datei aus allen SVGs in diesem Ordner.
+# Nicht bearbeiten – neue Icons einfach als .svg-Datei hierher legen.
+layout: null
+sitemap: false
+---
+<svg xmlns="http://www.w3.org/2000/svg">
+{%- for datei in site.static_files %}
+{%- if datei.path contains "/assets/icons/" and datei.extname == ".svg" %}
+{%- capture _svg %}{% include_relative {{ datei.name }} %}{% endcapture %}
+{%- assign _svg = _svg | split: "<svg" | last %}
+<symbol id="{{ datei.basename }}" {{ _svg | replace: "</svg>", "</symbol>" | strip }}
+{%- endif %}
+{%- endfor %}
+</svg>

@@ -1,8 +1,7 @@
 {%- comment -%}
-  icon.html — der einzige Weg, ein Icon einzusetzen.
-    include icon.html name="github"
-    include icon.html name="arrow-right" class="btn__icon" size="18"
-  Icons sind rein dekorativ; die Bedeutung steht immer im Text daneben.
+  Zeigt ein Icon aus assets/icons/ an.
+  Aufruf:  {% include icon.html name="mail" %}
+  Optional: klasse="icon--gross"
+  Unbekannte Namen zeigen einfach nichts an (kein Fehler).
 {%- endcomment -%}
-{%- assign _s = include.size | default: 20 -%}
-<svg class="icon{% if include.class %} {{ include.class }}{% endif %}" width="{{ _s }}" height="{{ _s }}" aria-hidden="true" focusable="false"><use href="#i-{{ include.name }}"></use></svg>
+<svg class="icon{% if include.klasse %} {{ include.klasse }}{% endif %}" aria-hidden="true" focusable="false"><use href="{{ '/assets/icons/sprite.svg' | relative_url }}#{{ include.name }}"></use></svg>

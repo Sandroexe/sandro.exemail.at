@@ -1,0 +1,25 @@
+{%- comment -%}
+  Reihe von Social-/Kontakt-Buttons aus _data/social.yml.
+  Aufruf:  {% include social-icons.html ort="footer" %}
+  ort:     header | footer | startseite | kontakt  (siehe "orte" in social.yml)
+  klasse:  zusätzliche CSS-Klasse (optional)
+  flach:   true = Buttons ohne Rahmen
+{%- endcomment -%}
+{%- assign _si_ort = include.ort -%}
+{%- capture _si_items -%}
+  {%- for k in site.data.social.kanaele -%}
+    {%- unless k.anzeigen and k.orte contains _si_ort -%}{%- continue -%}{%- endunless -%}
+    {%- if k.typ == "email" or k.typ == "telefon" -%}
+      {%- if k.typ == "email" -%}{%- assign _si_typ = "mailto" -%}{%- assign _si_label = k.name | append: " schreiben" -%}{%- else -%}{%- assign _si_typ = "tel" -%}{%- assign _si_label = k.name | append: " – anrufen" -%}{%- endif %}
+    <li><a class="social-btn{% if include.flach %} social-btn--flach{% endif %}" href="{{ '/kontakt/' | relative_url }}" data-obf="{% include obf.html wert=k.wert %}" data-obf-typ="{{ _si_typ }}" aria-label="{{ _si_label | escape }}" title="{{ k.name | escape }}">{% include icon.html name=k.icon %}</a></li>
+    {%- else %}
+    <li><a class="social-btn{% if include.flach %} social-btn--flach{% endif %}" href="{{ k.wert | escape }}" target="_blank" rel="noopener noreferrer me" aria-label="{{ k.name | escape }} (öffnet in neuem Tab)" title="{{ k.name | escape }}">{% include icon.html name=k.icon %}</a></li>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign _si_items = _si_items | strip -%}
+{%- if _si_items != "" %}
+<ul class="social-list{% if include.klasse %} {{ include.klasse }}{% endif %}" aria-label="Kontakt und Social Media">
+  {{ _si_items }}
+</ul>
+{%- endif -%}

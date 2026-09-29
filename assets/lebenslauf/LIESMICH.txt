@@ -1,0 +1,4 @@
+Optional: Hier kannst du ein fertig gestaltetes Lebenslauf-PDF ablegen.
+Dann in _data/lebenslauf.yml eintragen:
+    pdf_datei: "Lebenslauf-Sandro-Exenberger.pdf"
+Ohne PDF erzeugt der Button automatisch eine Druckversion ("Als PDF speichern").

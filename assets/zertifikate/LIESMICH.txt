@@ -1,0 +1,5 @@
+Hier legst du Zertifikat-Dateien ab (PDF, JPG, PNG, WebP).
+Danach in _data/zertifikate.yml nur den Dateinamen eintragen, z. B.:
+    datei: "ccna.pdf"
+    bild: "ccna.jpg"
+Tipp: Persönliche Daten (Geburtsdatum, Adresse) auf Scans vorher schwärzen.

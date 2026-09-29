@@ -1,0 +1,150 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  rechtliches.yml – IMPRESSUM, OFFENLEGUNG & DATENSCHUTZ               ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Alle Angaben für die drei Rechtsseiten:                               ║
+# ║      • /impressum/          (Impressum & Offenlegung der Website)        ║
+# ║      • /social-impressum/   (Offenlegung für deine Social-Media-Kanäle)  ║
+# ║      • /datenschutz/        (Datenschutzerklärung)                       ║
+# ║    Die Daten werden auf allen drei Seiten automatisch gleich verwendet.  ║
+# ║    E-Mail und Telefon kommen automatisch aus social.yml.                 ║
+# ║                                                                          ║
+# ║  Was darf ich ändern?                                                    ║
+# ║    Alle Werte. Leere Felder ("") werden auf der Website ausgeblendet.    ║
+# ║                                                                          ║
+# ║  Was sollte ich NICHT ändern?                                            ║
+# ║    Die Feldnamen. Bei "modus" nur "privat" oder "unternehmen".           ║
+# ║                                                                          ║
+# ║  ⚖️  Welche Angaben Pflicht sind, steht in  RECHTLICHES.md               ║
+# ║     Kurz: PFLICHT = mit (P) markiert, OPTIONAL = mit (O) markiert.       ║
+# ║                                                                          ║
+# ║  Beispiel – später auf Firma umstellen:                                  ║
+# ║    modus: "unternehmen"   und den Abschnitt UNTERNEHMEN ausfüllen.       ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+
+
+# ═══════════════════════════════ MODUS ═════════════════════════════════════
+# "privat"      → Private Portfolio-Website (aktueller Stand)
+# "unternehmen" → Zusätzlich alle Pflichtangaben für ein Unternehmen
+#                 (ECG, UGB, GewO). Erst umstellen, wenn das Gewerbe
+#                 angemeldet ist!
+
+modus: "privat"
+
+
+# ═══════════════════════════ STAND-DATUM ═══════════════════════════════════
+# Wann hast du die Rechtstexte zuletzt geprüft? Format "JJJJ-MM-TT".
+# Bei jeder inhaltlichen Änderung aktualisieren.
+
+stand: "2026-09-29"
+
+
+# ═════════════════════ MEDIENINHABER / VERANTWORTLICHER ════════════════════
+# Das bist du. Wird im Impressum, im Social-Media-Impressum und in der
+# Datenschutzerklärung (als "Verantwortlicher") angezeigt.
+
+medieninhaber:
+  name: "Sandro Exenberger"         # (P) Vor- und Nachname
+  strasse: ""                       # (O) im Privat-Modus; (P) im Unternehmens-Modus
+  plz: "6334"                       # (O) Postleitzahl
+  ort: "Schwoich"                   # (P) Wohnort (Gemeinde genügt bei privater Website)
+  land: "Österreich"                # (P)
+  telefon_anzeigen: false           # (O) true = Telefonnummer aus social.yml im Impressum zeigen
+
+
+# ═══════════════════════ GRUNDLEGENDE RICHTUNG (BLATTLINIE) ════════════════
+# (O) Für eine "kleine Website" wie diese nicht verpflichtend, schadet aber
+#     nicht. Leer lassen ("") = Abschnitt wird ausgeblendet.
+
+grundlegende_richtung: >-
+  Persönliche Website von Sandro Exenberger mit Informationen über Ausbildung,
+  beruflichen Werdegang, Qualifikationen und Projekte in den Bereichen
+  Elektronik, IT und Webentwicklung.
+
+
+# ═══════════════════════════ UNTERNEHMEN ═══════════════════════════════════
+# Wird NUR angezeigt, wenn oben  modus: "unternehmen"  eingestellt ist.
+# Leere Felder werden ausgeblendet. (P) = im Unternehmens-Modus Pflicht,
+# sofern auf dich zutreffend.
+
+unternehmen:
+  firmenname: "Exenberger IT Services"      # (P) Name des Unternehmens
+  rechtsform: "Einzelunternehmen"           # (P) z. B. Einzelunternehmen, e.U., GmbH
+  unternehmensgegenstand: "IT-Beratung und Webentwicklung"   # (P)
+  uid: ""                                   # (P) falls vorhanden, z. B. "ATU12345678"
+  gisa: ""                                  # (P) GISA-Zahl aus dem Gewerbeinformationssystem
+  firmenbuchnummer: ""                      # (P) nur bei Eintragung, z. B. "FN 123456a"
+  firmenbuchgericht: ""                     # (P) nur bei Eintragung, z. B. "Landesgericht Innsbruck"
+  gewerbe: "Dienstleistungen in der automatischen Datenverarbeitung und Informationstechnik"  # Gewerbewortlaut
+  verleihungsstaat: "Österreich"            # (P) Staat, in dem die Berufsbezeichnung verliehen wurde
+  gewerbebehoerde: "Bezirkshauptmannschaft Kufstein"   # (P) Aufsichts-/Gewerbebehörde
+  kammer: "Wirtschaftskammer Tirol"         # (P) Kammerzugehörigkeit
+  fachgruppe: "Fachgruppe Unternehmensberatung, Buchhaltung und Informationstechnologie"  # (O)
+  rechtsvorschriften: "Gewerbeordnung (GewO)"   # (P) anwendbare Rechtsvorschriften
+  rechtsvorschriften_link: "https://www.ris.bka.gv.at"
+
+
+# ═══════════════════════════ HINWEISE IM IMPRESSUM ═════════════════════════
+
+haftung_links_anzeigen: true        # (O) Haftungshinweis für externe Links
+urheberrecht_anzeigen: true         # (O) Urheberrechtshinweis
+
+# (O) Bildnachweise – nur nötig, wenn du fremde Fotos/Grafiken verwendest
+bildnachweise: []
+
+# ─── Vorlage zum Kopieren (statt "[]" oben) ───────────────────────────────
+# bildnachweise:
+#   - beschreibung: "Profilfoto"
+#     urheber: "Max Mustermann"
+#     link: ""
+
+
+# ═══════════════════════════════ HOSTING ═══════════════════════════════════
+# Wird in der Datenschutzerklärung verwendet. Nur ändern, wenn du den
+# Hoster wechselst.
+
+hosting:
+  anbieter: "GitHub, Inc."
+  adresse: "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA"
+  dienst: "GitHub Pages"
+  datenschutz_url: "https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
+  dpf_url: "https://www.dataprivacyframework.gov/"
+
+# DNS über Cloudflare:
+#   false = Cloudflare nur als DNS ("DNS only", graue Wolke) – EMPFOHLEN.
+#           Dann läuft kein Besucher-Traffic über Cloudflare.
+#   true  = Cloudflare-Proxy ist aktiv (orange Wolke). Dann wird automatisch
+#           ein eigener Abschnitt in der Datenschutzerklärung eingeblendet.
+cloudflare_proxy: false
+
+
+# ═══════════════════════════════ E-MAIL-ANBIETER ═══════════════════════════
+# (O) Bei welchem Anbieter liegt dein E-Mail-Postfach? Wird in der
+#     Datenschutzerklärung beim Punkt "Kontaktaufnahme" genannt.
+#     Leer lassen = allgemeiner Satz ohne Anbietername.
+
+email_anbieter: ""                  # z. B. "World4You Internet Services GmbH, Linz"
+
+
+# ════════════════════════════ DATENSCHUTZBEHÖRDE ═══════════════════════════
+# Zuständige Aufsichtsbehörde in Österreich (normalerweise nicht ändern).
+
+datenschutzbehoerde:
+  name: "Österreichische Datenschutzbehörde"
+  adresse: "Barichgasse 40–42, 1030 Wien"
+  email: "dsb@dsb.gv.at"
+  website: "https://www.dsb.gv.at"
+
+
+# ═══════════════════════════ SOCIAL-MEDIA-IMPRESSUM ════════════════════════
+
+social_impressum:
+  # Einleitungssatz der Seite
+  einleitung: >-
+    Diese Offenlegung gilt für die unten aufgeführten Social-Media-Kanäle
+    von Sandro Exenberger.
+  # (O) Blattlinie für ALLE Kanäle gemeinsam. Leer = die allgemeine von oben.
+  #     Pro Kanal abweichend? → in social.yml bei "grundlegende_richtung".
+  grundlegende_richtung: >-
+    Persönliche Social-Media-Kanäle mit Einblicken in Ausbildung, beruflichen
+    Werdegang, Technik und Alltag von Sandro Exenberger.

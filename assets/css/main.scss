@@ -1,0 +1,16 @@
+---
+# Diese Zeilen (Front Matter) müssen bleiben, damit Jekyll die Datei verarbeitet.
+---
+
+// ═══════════════════════════════════════════════════════════════════════
+//  Haupt-Stylesheet: bindet alle Teile aus _sass/ zusammen.
+//  Design-Werte (Farben, Schriften …) änderst du in  _sass/_theme.scss
+// ═══════════════════════════════════════════════════════════════════════
+
+@use "fonts";
+@use "tokens";
+@use "base";
+@use "components";
+@use "header-footer";
+@use "pages";
+@use "print";

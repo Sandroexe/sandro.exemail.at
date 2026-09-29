@@ -1,0 +1,244 @@
+// ─────────────────────────────────────────────────────────────────────────
+//  Druck-Layout (A4) – wird beim Drucken bzw. "Als PDF speichern" verwendet.
+//  Optimiert für den Lebenslauf: ohne Navigation, ohne Animationen,
+//  Kontaktdaten oben, immer helle Farben.
+// ─────────────────────────────────────────────────────────────────────────
+@use "tokens";
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 16mm 16mm;
+  }
+
+  // Immer helles Farbschema drucken
+  :root,
+  :root[data-theme="dark"],
+  :root:not([data-theme="light"]) {
+    @include tokens.hell;
+    --shadow: none;
+    --shadow-hover: none;
+  }
+
+  html {
+    font-size: 10pt;
+  }
+
+  body {
+    display: block;
+    background: #fff;
+    color: #111;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  // Alles ausblenden, was im Druck nichts verloren hat
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .dev-banner,
+  .hero__canvas,
+  .btn,
+  .btn-group,
+  .social-list,
+  .filter-bar,
+  .cert-card__hint,
+  .cert-dialog,
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  // Animationen & Effekte aus
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .page-hero::before,
+  .hero::before {
+    display: none;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .section {
+    padding-block: 0;
+  }
+
+  .page-hero {
+    padding: 0 0 6mm;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .card {
+    box-shadow: none;
+    transform: none !important;
+  }
+
+  // ─── Lebenslauf ───────────────────────────────────────────────────────
+
+  .print-header {
+    margin-bottom: 7mm;
+    padding-bottom: 5mm;
+    border-bottom: 2px solid var(--c-primary);
+
+    h1 {
+      margin: 0 0 1mm;
+      font-size: 24pt;
+      letter-spacing: -0.03em;
+    }
+
+    &__subtitle {
+      margin: 0 0 3mm;
+      font-family: var(--font-mono);
+      font-size: 9.5pt;
+      color: var(--c-primary);
+    }
+
+    &__contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1mm 5mm;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 9pt;
+
+      li {
+        display: inline-flex;
+        align-items: center;
+        gap: 1.5mm;
+      }
+
+      .icon {
+        width: 3.5mm;
+        height: 3.5mm;
+        color: var(--c-primary);
+      }
+    }
+  }
+
+  .cv-layout {
+    display: block;
+
+    &__aside {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm 8mm;
+      margin-top: 6mm;
+      break-inside: avoid;
+    }
+  }
+
+  .cv-section + .cv-section {
+    margin-top: 6mm;
+  }
+
+  .cv-section__title {
+    margin-bottom: 3mm;
+    font-size: 13pt;
+
+    .icon-badge {
+      width: 7mm;
+      height: 7mm;
+    }
+  }
+
+  .timeline {
+    padding-left: 6mm;
+
+    &::before {
+      left: 1.2mm;
+    }
+
+    &__item {
+      break-inside: avoid;
+      page-break-inside: avoid;
+
+      & + & {
+        margin-top: 3mm;
+      }
+    }
+
+    &__dot {
+      left: calc(-6mm + 1.2mm - 4px);
+      top: 1.2mm;
+      width: 10px;
+      height: 10px;
+    }
+
+    &__card.card {
+      padding: 0;
+      border: 0;
+      background: none;
+    }
+
+    &__date {
+      font-size: 8.5pt;
+      margin-bottom: 0.5mm;
+    }
+
+    &__title {
+      font-size: 11pt;
+    }
+
+    &__meta {
+      font-size: 9pt;
+      margin-bottom: 1.5mm;
+    }
+  }
+
+  .skill-group,
+  .cv-layout__aside > .card {
+    padding: 0;
+    border: 0;
+    background: none;
+    break-inside: avoid;
+  }
+
+  .tag {
+    padding: 0.5mm 2mm;
+    font-size: 8.5pt;
+  }
+
+  // ─── Rechtstexte & Zertifikate ────────────────────────────────────────
+
+  .prose {
+    max-width: none;
+  }
+
+  .cert-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cert-card {
+    break-inside: avoid;
+  }
+}

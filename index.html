@@ -1,122 +1,131 @@
 ---
-layout: base
-scripts: [egg.js]
+# Startseite – Inhalte kommen aus _data/person.yml und _data/social.yml
+layout: default
+title: "Start"
+skripte:
+  - hero-canvas.js
 ---
-{%- comment -%}
-  Startseite. Kein eigener Text, kein eigenes CSS — alles kommt aus
-  _data und den Includes. Wer etwas ändern will, ändert die YAML.
-{%- endcomment -%}
-{%- assign P = site.data.profile -%}
-{%- assign S = site.data.site -%}
+{%- assign p = site.data.person -%}
 
-<section class="hero">
-  <div class="shell hero__grid">
-    <div>
-      <p class="hero__eyebrow">{% include t.html de=P.role en=P.role_en %}</p>
-      <h1 class="hero__name">{{ P.name }}</h1>
-      <p class="hero__role">{% include t.html de=P.headline en=P.headline_en %}</p>
-      <p class="hero__bio">{% include t.html de=P.bio_short en=P.bio_short_en %}</p>
+<!-- ═══ HERO ═══ -->
+<section class="hero" aria-labelledby="hero-titel">
+  <canvas class="hero__canvas" data-hero-canvas aria-hidden="true"></canvas>
+  <div class="container hero__grid">
+    <div class="hero__text">
+      {%- if p.begruessung and p.begruessung != "" %}
+      <p class="hero__greeting" data-hero-in="0">{{ p.begruessung }}</p>
+      {%- endif %}
+      <h1 class="hero__name" id="hero-titel" data-hero-in="1">
+        {{ p.vorname }} <span class="hero__name-accent">{{ p.nachname }}</span>
+      </h1>
+      {%- if p.kurztitel and p.kurztitel != "" %}
+      <p class="hero__subtitle" data-hero-in="1">{{ p.kurztitel }}</p>
+      {%- endif %}
+      {%- if p.vorstellung and p.vorstellung != "" %}
+      <p class="hero__intro" data-hero-in="2">{{ p.vorstellung }}</p>
+      {%- endif %}
 
-      <div class="hero__actions">
-        <a class="btn btn--accent btn--lg" href="/contact/">
-          {% include t.html key="home.cta_button" %}{% include icon.html name="arrow-right" size="18" %}
+      {%- if p.buttons.size > 0 %}
+      <div class="btn-group" data-hero-in="3">
+        {%- for b in p.buttons %}
+        <a class="btn btn--{{ b.stil | default: 'primaer' }}" href="{{ b.link | relative_url }}">
+          {%- if b.icon and b.icon != "" %}{% include icon.html name=b.icon %}{% endif %}
+          {{ b.text }}
         </a>
-        <a class="btn btn--ghost btn--lg" href="/projects/">
-          {% include t.html key="nav.projects" %}
-        </a>
+        {%- endfor %}
       </div>
+      {%- endif %}
 
-      <p class="hero__status">
-        <span class="hero__dot" aria-hidden="true"></span>
-        {% include t.html de=P.status en=P.status_en %}
-      </p>
-    </div>
-
-    <div class="hero__portrait">
-      {% include img.html photo=P.photo priority=true sizes="(min-width: 768px) 30vw, 80vw" %}
-    </div>
-  </div>
-
-  <div class="shell">{% include hero-network.html %}</div>
-</section>
-
-{%- comment -%} ── Über mich ────────────────────────────────────── {%- endcomment -%}
-<section class="reveal">
-  <div class="shell">
-    {% include section.html key="home.intro" id="ueber-mich" %}
-    <div class="prose prose--flush">
-      {%- for para in P.bio_long %}
-      {%- comment -%} Jekylls include-Tag erlaubt keinen Klammer-Index im Parameter. {%- endcomment -%}
-      {%- assign para_en = P.bio_long_en[forloop.index0] -%}
-      <p>{% include t.html de=para en=para_en %}</p>
-      {%- endfor %}
-    </div>
-  </div>
-</section>
-
-{%- comment -%} ── Tech-Stack ───────────────────────────────────── {%- endcomment -%}
-<section>
-  <div class="shell">
-    {% include section.html key="home.skills" note_key="home.skills_note" id="skills" %}
-    <div class="skills">
-      {%- for s in P.skills %}
-      <div class="skill">
-        <div class="skill__row">
-          <span class="skill__label">{% include t.html de=s.label en=s.label_en %}</span>
-          <span class="skill__rating">{% include t.html de=s.rating en=s.rating_en %}</span>
-        </div>
-        <div class="skill__track" role="meter" aria-valuenow="{{ s.level }}" aria-valuemin="0" aria-valuemax="100"
-             aria-label="{% include t-plain.html de=s.label en=s.label_en %}">
-          <div class="skill__fill" style="--level:{{ s.level }}%"></div>
-        </div>
+      <div data-hero-in="3">
+        {% include social-icons.html ort="startseite" klasse="hero__social" %}
       </div>
-      {%- endfor %}
+    </div>
+
+    <div class="hero__media" data-hero-in="1">
+      <div class="profile-photo">
+        {% include bild.html datei=p.foto.datei webp=p.foto.webp alt=p.foto.alt breite=p.foto.breite hoehe=p.foto.hoehe eager=true %}
+        {%- if p.standort.ort and p.standort.ort != "" %}
+        <span class="profile-photo__badge">
+          {% include icon.html name="map-pin" %}
+          {{ p.standort.ort }}{% if p.standort.region and p.standort.region != "" %} {{ p.standort.region }}{% endif %}
+        </span>
+        {%- endif %}
+      </div>
     </div>
   </div>
 </section>
 
-{%- comment -%} ── Ausgewählte Projekte ─────────────────────────── {%- endcomment -%}
-<section class="reveal">
-  <div class="shell">
-    {% include section.html key="home.featured" link_url="/projects/" link_key="home.featured_all" %}
-    {% include project-grid.html featured=true %}
-  </div>
-</section>
-
-{%- comment -%} ── Werdegang in Kurzform ────────────────────────── {%- endcomment -%}
-<section class="reveal">
-  <div class="shell">
-    {% include section.html key="home.cv_teaser" link_url="/cv/" link_key="home.cv_all" %}
-    {% include timeline.html entries=site.data.cv.experience limit=3 compact=true %}
-  </div>
-</section>
-
-{%- comment -%} ── Zertifikate in Kurzform ──────────────────────── {%- endcomment -%}
-<section class="reveal">
-  <div class="shell">
-    {% include section.html key="home.certs_teaser" link_url="/certificates/" link_key="home.certs_all" %}
-    <div class="certgrid">
-      {%- for c in site.data.certificates.items limit: 3 %}
-      {% include cert-card.html cert=c %}
-      {%- endfor %}
+<!-- ═══ HIGHLIGHTS ═══ -->
+{%- if p.highlights.size > 0 %}
+<section class="section section--tight" aria-labelledby="highlights-titel">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Überblick</p>
+      <h2 id="highlights-titel">{{ p.highlights_titel }}</h2>
     </div>
+    <ul class="highlight-grid">
+      {%- for h in p.highlights %}
+      {%- assign _hat_link = false -%}
+      {%- if h.link and h.link != "" -%}{%- assign _hat_link = true -%}{%- endif %}
+      <li data-reveal data-reveal-delay="{{ forloop.index0 | modulo: 4 }}">
+        <article class="card highlight-card{% if _hat_link %} card--interaktiv{% endif %}">
+          <span class="icon-badge">{% include icon.html name=h.icon %}</span>
+          <h3>
+            {%- if _hat_link -%}
+            <a class="card__link-overlay" href="{{ h.link | relative_url }}">{{ h.titel }}</a>
+            {%- else -%}
+            {{ h.titel }}
+            {%- endif -%}
+          </h3>
+          <p>{{ h.text }}</p>
+        </article>
+      </li>
+      {%- endfor %}
+    </ul>
   </div>
 </section>
+{%- endif %}
 
-{%- comment -%} ── Kontakt-Aufruf ───────────────────────────────── {%- endcomment -%}
-<section class="reveal">
-  <div class="shell">
-    <div class="callout">
-      {% include icon.html name="mail" class="callout__icon" size="24" %}
+<!-- ═══ GALERIE (optional) ═══ -->
+{%- if p.galerie.anzeigen and p.galerie.bilder.size > 0 %}
+<section class="section section--tight" aria-labelledby="galerie-titel">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Galerie</p>
+      <h2 id="galerie-titel">{{ p.galerie.titel }}</h2>
+    </div>
+    <ul class="gallery">
+      {%- for bild in p.galerie.bilder %}
+      <li data-reveal data-reveal-delay="{{ forloop.index0 | modulo: 4 }}">
+        <figure>
+          <div class="gallery__img">
+            {% include bild.html datei=bild.datei webp=bild.webp alt=bild.alt breite=bild.breite hoehe=bild.hoehe %}
+          </div>
+          {%- if bild.bildunterschrift and bild.bildunterschrift != "" %}
+          <figcaption>{{ bild.bildunterschrift }}</figcaption>
+          {%- endif %}
+        </figure>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
+<!-- ═══ KONTAKT-AUFRUF ═══ -->
+{%- if p.kontakt_aufruf.anzeigen %}
+<section class="section section--tight" aria-labelledby="cta-titel">
+  <div class="container">
+    <div class="cta" data-reveal>
       <div>
-        <h2 class="callout__title">{% include t.html key="home.cta_title" %}</h2>
-        <p>{% include t.html key="home.cta_text" %}</p>
-        <p class="callout__action">
-          <a class="btn btn--accent" href="/contact/">
-            {% include t.html key="home.cta_button" %}{% include icon.html name="arrow-right" size="16" %}
-          </a>
-        </p>
+        <h2 id="cta-titel">{{ p.kontakt_aufruf.titel }}</h2>
+        <p>{{ p.kontakt_aufruf.text }}</p>
       </div>
+      <a class="btn btn--primaer" href="{{ p.kontakt_aufruf.button_link | relative_url }}">
+        {% include icon.html name="send" %}
+        {{ p.kontakt_aufruf.button_text }}
+      </a>
     </div>
   </div>
 </section>
+{%- endif %}

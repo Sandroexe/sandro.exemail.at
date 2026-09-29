@@ -1,0 +1,335 @@
+// ─────────────────────────────────────────────────────────────────────────
+//  Header (mit Navigation, Burger-Menü, Theme-Umschalter) und Footer
+// ─────────────────────────────────────────────────────────────────────────
+
+$nav-breakpoint: 56em;
+
+// ═══ HEADER ═══════════════════════════════════════════════════════════════
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--c-header);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--tempo) ease, background-color var(--tempo) ease;
+
+  &.is-scrolled {
+    border-bottom-color: var(--c-border);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: var(--header-h);
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: auto;
+  }
+}
+
+// Logo / Name
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--c-text);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--c-text);
+  }
+
+  &__mark {
+    display: grid;
+    place-items: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 0.65rem;
+    background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
+    color: var(--c-on-primary);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: 0;
+    transition: transform var(--tempo) var(--ease);
+  }
+
+  &:hover &__mark {
+    transform: rotate(-6deg) scale(1.05);
+  }
+}
+
+// Runde Icon-Buttons im Header (Theme, Burger)
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 0.7rem;
+  background: transparent;
+  color: var(--c-text);
+  transition: background-color var(--tempo) ease, color var(--tempo) ease;
+
+  &:hover {
+    background: var(--c-primary-soft);
+    color: var(--c-primary);
+  }
+}
+
+// Sonne/Mond je nach aktivem Theme
+.theme-toggle {
+  .icon--sun {
+    display: var(--show-sun);
+  }
+
+  .icon--moon {
+    display: var(--show-moon);
+  }
+}
+
+.nav-toggle {
+  .icon--close {
+    display: none;
+  }
+
+  &[aria-expanded="true"] {
+    .icon--menu {
+      display: none;
+    }
+
+    .icon--close {
+      display: block;
+    }
+  }
+}
+
+// ─── Navigation ─────────────────────────────────────────────────────────
+
+.site-nav {
+  &__list {
+    display: flex;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__link {
+    position: relative;
+    display: block;
+    padding: 0.55rem 0.85rem;
+    border-radius: var(--radius-sm);
+    color: var(--c-text-muted);
+    font-weight: var(--fw-medium);
+    font-size: 0.975rem;
+    text-decoration: none;
+    transition: color var(--tempo) ease, background-color var(--tempo) ease;
+
+    &:hover {
+      color: var(--c-text);
+      background: var(--c-surface-2);
+    }
+
+    // Aktiver Menüpunkt
+    &[aria-current="page"] {
+      color: var(--c-primary);
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0.85rem;
+        right: 0.85rem;
+        bottom: 0.2rem;
+        height: 2px;
+        border-radius: 2px;
+        background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
+      }
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+  }
+}
+
+// Desktop
+@media (min-width: $nav-breakpoint) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+
+    &__social {
+      padding-left: 1rem;
+      border-left: 1px solid var(--c-border);
+    }
+  }
+
+  .site-header__actions {
+    margin-left: 0;
+  }
+}
+
+// Mobil: Burger-Menü
+@media (max-width: #{$nav-breakpoint - 0.01em}) {
+  .js .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 0.75rem var(--gutter) 1.5rem;
+    background: var(--c-bg);
+    border-bottom: 1px solid var(--c-border);
+    box-shadow: var(--shadow-hover);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity var(--tempo) ease,
+      transform var(--tempo) var(--ease),
+      visibility 0s linear var(--tempo);
+
+    &.is-open {
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      transition-delay: 0s;
+    }
+  }
+
+  .site-nav__list {
+    flex-direction: column;
+  }
+
+  .site-nav__link {
+    padding: 0.85rem 0.75rem;
+    font-size: 1.1rem;
+
+    &[aria-current="page"] {
+      background: var(--c-primary-soft);
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .site-nav__social {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--c-border);
+  }
+
+  // Ohne JavaScript: Menü einfach unter dem Header anzeigen
+  .no-js .site-header__inner {
+    flex-wrap: wrap;
+  }
+
+  .no-js .site-nav {
+    order: 3;
+    width: 100%;
+    padding-bottom: 0.75rem;
+  }
+
+  .no-js .nav-toggle {
+    display: none;
+  }
+}
+
+// ═══ FOOTER ═══════════════════════════════════════════════════════════════
+
+.site-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--c-border);
+  background: var(--c-surface);
+  padding-block: 3rem 2rem;
+  font-size: 0.95rem;
+
+  &__top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  &__intro {
+    max-width: 26rem;
+
+    p {
+      margin: 0.75rem 0 0;
+      color: var(--c-text-muted);
+    }
+  }
+
+  &__nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__nav a {
+    color: var(--c-text-muted);
+    text-decoration: none;
+
+    &:hover,
+    &[aria-current="page"] {
+      color: var(--c-primary);
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--c-border);
+    color: var(--c-text-muted);
+    font-size: 0.875rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__top-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--c-text-muted);
+    text-decoration: none;
+
+    .icon {
+      transform: rotate(-90deg);
+      width: 1rem;
+      height: 1rem;
+    }
+
+    &:hover {
+      color: var(--c-primary);
+    }
+  }
+}

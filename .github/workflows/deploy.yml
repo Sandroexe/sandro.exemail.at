@@ -1,0 +1,58 @@
+# ════════════════════════════════════════════════════════════════════
+#  Baut die Website mit Jekyll 4 und veröffentlicht sie auf GitHub Pages.
+#  Läuft automatisch bei jedem Push auf den Branch "neue-seite"
+#  (oder manuell unter: GitHub → Actions → "Website bauen & veröffentlichen").
+#  Voraussetzung: Settings → Pages → Source = "GitHub Actions".
+# ════════════════════════════════════════════════════════════════════
+name: Website bauen & veröffentlichen
+
+on:
+  push:
+    branches: ["neue-seite"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Immer nur eine Veröffentlichung gleichzeitig; laufende nicht abbrechen
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+
+      - name: Ruby einrichten
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+
+      - name: GitHub Pages konfigurieren
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Website mit Jekyll bauen
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+
+      - name: Ergebnis hochladen
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Auf GitHub Pages veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4
