@@ -93,6 +93,32 @@ module SeitenGenerator
     end
   end
 
+  # Warnt, wenn ein in _data/ eingetragenes Icon als Datei in assets/icons/
+  # fehlt (z. B. Tippfehler oder nicht mit hochgeladen). Im GitHub-Actions-Log
+  # erscheint das als gelbe Warnung.
+  class IconPruefung < Jekyll::Generator
+    safe true
+    priority :low
+
+    def generate(site)
+      d = site.data
+      namen = []
+      namen.concat((d.dig("social", "kanaele") || []).map { |k| k["icon"] })
+      namen.concat((d.dig("person", "buttons") || []).map { |b| b["icon"] })
+      namen.concat((d.dig("person", "highlights") || []).map { |h| h["icon"] })
+      lv = d["lebenslauf"] || {}
+      %w[berufserfahrung praktika ausbildung engagement].each { |a| namen << lv.dig(a, "icon") }
+      namen.concat((lv.dig("skills", "gruppen") || []).map { |g| g["icon"] })
+
+      namen.compact.map(&:to_s).reject(&:empty?).uniq.each do |name|
+        next if File.exist?(File.join(site.source, "assets", "icons", "#{name}.svg"))
+
+        Jekyll.logger.warn "Icon fehlt:", "assets/icons/#{name}.svg"
+        puts "::warning title=Icon fehlt::assets/icons/#{name}.svg wird in _data/ verwendet, existiert aber nicht" if ENV["GITHUB_ACTIONS"]
+      end
+    end
+  end
+
   class SocialImpressum < Jekyll::Generator
     safe true
     priority :normal

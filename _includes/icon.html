@@ -2,6 +2,10 @@
   Zeigt ein Icon aus assets/icons/ an.
   Aufruf:  {% include icon.html name="mail" %}
   Optional: klasse="icon--gross"
-  Unbekannte Namen zeigen einfach nichts an (kein Fehler).
+  Unbekannte Namen zeigen einfach nichts an (beim Bauen gibt es aber eine
+  Warnung, siehe _plugins/seiten-generator.rb).
+  Das "?v=…" sorgt dafür, dass Browser nach jeder Veröffentlichung die neue
+  Icon-Datei laden statt einer zwischengespeicherten alten (sonst fehlen
+  neu hinzugefügte Icons bis zu 4 Stunden lang).
 {%- endcomment -%}
-<svg class="icon{% if include.klasse %} {{ include.klasse }}{% endif %}" aria-hidden="true" focusable="false"><use href="{{ '/assets/icons/sprite.svg' | relative_url }}#{{ include.name }}"></use></svg>
+<svg class="icon{% if include.klasse %} {{ include.klasse }}{% endif %}" aria-hidden="true" focusable="false"><use href="{{ '/assets/icons/sprite.svg' | relative_url }}?v={{ site.time | date: '%s' }}#{{ include.name }}"></use></svg>
