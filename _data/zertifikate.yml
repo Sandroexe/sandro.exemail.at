@@ -139,14 +139,33 @@ zertifikate:
     datei: ""
     anzeigen: true
 
+  - name: "Claude 101"
+    aussteller: "Claude Academy (Anthropic)"
+    kategorie: "KI & Technologie"
+    ausgestellt: "2026-08"
+    ablauf: ""
+    credential_id: "3f45d44fc8b647687978fae31f9fd8f9"
+    verifizierung_link: "https://academy.claude.com/verify/3f45d44fc8b647687978fae31f9fd8f9"
+    beschreibung: >-
+      Grundlagen im Umgang mit Claude: Einsatzmöglichkeiten im Arbeitsalltag,
+      wirkungsvolles Prompting sowie Arbeiten mit Projekten, Artifacts und
+      verbundenen Tools.
+    bild: ""
+    bild_alt: ""
+    datei: ""
+    anzeigen: true
+
   - name: "Claude Code 101"
     aussteller: "Claude Academy (Anthropic)"
     kategorie: "KI & Technologie"
-    ausgestellt: ""
+    ausgestellt: "2026-08"
     ablauf: ""
-    credential_id: ""
-    verifizierung_link: ""
-    beschreibung: ""
+    credential_id: "b765a64a5767a529d723c860c64b8469"
+    verifizierung_link: "https://academy.claude.com/verify/b765a64a5767a529d723c860c64b8469"
+    beschreibung: >-
+      Claude Code als agentisches Coding-Werkzeug im Terminal einsetzen:
+      Codebasen erkunden, Änderungen planen und umsetzen, Projektkontext über
+      CLAUDE.md steuern und den Funktionsumfang mit MCP-Servern erweitern.
     bild: ""
     bild_alt: ""
     datei: ""
@@ -155,11 +174,30 @@ zertifikate:
   - name: "Claude Platform 101"
     aussteller: "Claude Academy (Anthropic)"
     kategorie: "KI & Technologie"
-    ausgestellt: ""
+    ausgestellt: "2026-08"
     ablauf: ""
-    credential_id: ""
-    verifizierung_link: ""
-    beschreibung: ""
+    credential_id: "5c90b87e10a399f20732dbcb864e6f1e"
+    verifizierung_link: "https://academy.claude.com/verify/5c90b87e10a399f20732dbcb864e6f1e"
+    beschreibung: >-
+      Grundlagen der Claude Developer Platform: Arbeiten mit der API,
+      Modellauswahl, Prompt-Gestaltung, Tool Use und die Einbindung von Claude
+      in eigene Anwendungen.
+    bild: ""
+    bild_alt: ""
+    datei: ""
+    anzeigen: true
+
+  - name: "Introduction to Claude Cowork"
+    aussteller: "Claude Academy (Anthropic)"
+    kategorie: "KI & Technologie"
+    ausgestellt: "2026-09"
+    ablauf: ""
+    credential_id: "4020ab3f15cc9459e71271f20d114798"
+    verifizierung_link: "https://academy.claude.com/verify/4020ab3f15cc9459e71271f20d114798"
+    beschreibung: >-
+      Einführung in Claude Cowork: Aufgaben an Claude delegieren, mit Dateien
+      und verbundenen Diensten arbeiten und mehrstufige Arbeitsabläufe
+      automatisieren.
     bild: ""
     bild_alt: ""
     datei: ""
