@@ -74,6 +74,25 @@ kontaktformular:
   speicherdauer: "Die Nachrichten werden gelöscht, sobald die Anfrage erledigt ist, spätestens jedoch nach 6 Monaten, sofern keine gesetzlichen Aufbewahrungspflichten bestehen."
 
 
+# ═══════════════════════════ SUCHMASCHINEN ═════════════════════════════════
+# Anleitung: README.md → Abschnitt "Suchmaschinen"
+
+# Bestätigungscodes der Suchmaschinen – NUR den Code, nicht das ganze Meta-Tag.
+# Leer lassen ("") = es wird kein Meta-Tag ausgegeben.
+# Google ist derzeit per DNS-TXT-Eintrag bei exemail.at bestätigt (Cloudflare) –
+# dafür ist hier nichts nötig. Diesen DNS-Eintrag NIEMALS löschen.
+verifizierung:
+  google: ""        # aus <meta name="google-site-verification" content="HIER">
+  bing: ""          # aus <meta name="msvalidate.01" content="HIER">
+
+# IndexNow: meldet geänderte Seiten nach jedem Deploy automatisch an Bing & Co.
+# Die Schlüsseldatei /<schluessel>.txt wird daraus automatisch erzeugt.
+# ⚠ NICHT ändern oder löschen – sonst lehnt IndexNow die Meldungen ab.
+indexnow:
+  aktiv: true
+  schluessel: "47c07f7ba9589a1160b2a52814ca828d"
+
+
 # ════════════════════════════════ TECHNIK ══════════════════════════════════
 # Ab hier: bitte nur ändern, wenn du weißt, was du tust.
 
@@ -108,3 +127,12 @@ defaults:
       path: ""
     values:
       layout: "page"
+  # Zertifikat- und Lebenslauf-PDFs nicht in die Sitemap
+  - scope:
+      path: "assets/zertifikate"
+    values:
+      sitemap: false
+  - scope:
+      path: "assets/lebenslauf"
+    values:
+      sitemap: false

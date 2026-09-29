@@ -11,6 +11,9 @@
 #     /social-impressum/<id>/ für jeden Kanal mit
 #     rechtliches → impressum_anzeigen: true
 #
+#  3. IndexNow-Schlüsseldatei   aus _config.yml (indexnow → schluessel)
+#     /<schluessel>.txt im Wurzelverzeichnis – ⚠ nie löschen
+#
 #  Plugins funktionieren, weil die Website über GitHub Actions gebaut wird
 #  (nicht über das eingeschränkte github-pages-Gem).
 # ═══════════════════════════════════════════════════════════════════════════
@@ -68,6 +71,28 @@ module SeitenGenerator
     end
   end
 
+  class IndexNowSchluessel < Jekyll::Generator
+    safe true
+    priority :normal
+
+    def generate(site)
+      cfg = site.config["indexnow"] || {}
+      schluessel = cfg["schluessel"].to_s.strip
+      return unless cfg["aktiv"] && !schluessel.empty?
+
+      unless schluessel.match?(/\A[a-zA-Z0-9-]{8,128}\z/)
+        Jekyll.logger.warn "IndexNow:", "Schlüssel ungültig (8–128 Zeichen a–z, A–Z, 0–9, -)"
+        return
+      end
+
+      site.pages << DatenSeite.new(
+        site, "/#{schluessel}.txt",
+        { "layout" => nil, "sitemap" => false, "permalink" => "/#{schluessel}.txt" },
+        schluessel
+      )
+    end
+  end
+
   class SocialImpressum < Jekyll::Generator
     safe true
     priority :normal
@@ -91,7 +116,10 @@ module SeitenGenerator
             "layout" => "legal",
             "title" => "#{k['name']} – Impressum & Datenschutz",
             "description" => "Offenlegung gemäß § 25 Mediengesetz und Datenschutzhinweise für den #{k['name']}-Kanal von Sandro Exenberger.",
-            "kanal_id" => id
+            "kanal_id" => id,
+            # Für das Änderungsdatum in der Sitemap (_plugins/letzte-aenderung.rb)
+            "abhaengig_von" => ["_data/social.yml", "_data/rechtliches.yml",
+                                "_includes/social-kanal.html", "_includes/social-allgemein.html"]
           },
           "{% include social-kanal-seite.html %}"
         )

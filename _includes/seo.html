@@ -17,6 +17,12 @@
 <meta name="description" content="{{ _beschr | escape }}">
 <meta name="author" content="{{ _name | escape }}">
 <link rel="canonical" href="{{ _url }}">
+{%- if site.verifizierung.google and site.verifizierung.google != "" %}
+<meta name="google-site-verification" content="{{ site.verifizierung.google | escape }}">
+{%- endif %}
+{%- if site.verifizierung.bing and site.verifizierung.bing != "" %}
+<meta name="msvalidate.01" content="{{ site.verifizierung.bing | escape }}">
+{%- endif %}
 {%- if page.noindex %}
 <meta name="robots" content="noindex, follow">
 {%- endif %}

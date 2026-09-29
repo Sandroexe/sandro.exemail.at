@@ -23,6 +23,8 @@ Jekyll 4, gebaut und veröffentlicht über GitHub Actions (`.github/workflows/de
 | `/contact/`, `/links/`, `/Sandro_Exenberger.vcf`, `/impressum/social/` müssen erreichbar bleiben | Gedruckte Visitenkarte, QR-Code, alte Bio-Links → `_data/weiterleitungen.yml`. |
 | `id` eines Kanals in `social.yml` nie ändern | Steht als `/social-impressum/<id>/` in Bios. |
 | `CNAME` nie ändern oder löschen | Domain-Zuordnung. |
+| Nie löschen: IndexNow-Schlüssel (`_config.yml` → `indexnow`), `verifizierung`, künftige `google*.html`/`BingSiteAuth.xml`, `links.html`, `vcard.vcf`, „⚠ NIE LÖSCHEN“-Weiterleitungen | Suchmaschinen, QR-Code, Visitenkarte – vollständige Liste: README Abschnitt 11. Google ist per DNS-TXT bei `exemail.at` bestätigt. |
+| Sitemap-`lastmod` kommt aus Git: neue datengetriebene Seiten brauchen `abhaengig_von` im Front Matter | `_plugins/letzte-aenderung.rb` |
 | Ohne JavaScript muss alles lesbar und bedienbar bleiben | Progressive Enhancement. |
 | `prefers-reduced-motion` respektieren, Kontrast ≥ 4,5:1 in beiden Themes | Barrierefreiheit, Lighthouse ≥ 95. |
 

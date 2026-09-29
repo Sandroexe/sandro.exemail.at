@@ -4,6 +4,11 @@ layout: legal
 title: "Impressum"
 description: "Impressum und Offenlegung gemäß § 25 Mediengesetz der Website von Sandro Exenberger."
 permalink: /impressum/
+# Für das Änderungsdatum in der Sitemap: Dateien, aus denen der Inhalt stammt
+abhaengig_von:
+  - _data/rechtliches.yml
+  - _includes/offenlegung.html
+  - _includes/ecg-angaben.html
 ---
 {%- assign r = site.data.rechtliches -%}
 {%- assign m = r.medieninhaber -%}

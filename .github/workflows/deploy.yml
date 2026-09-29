@@ -3,6 +3,9 @@
 #  Läuft automatisch bei jedem Push auf den Branch "main"
 #  (oder manuell unter: GitHub → Actions → "Website bauen & veröffentlichen").
 #  Voraussetzung: Settings → Pages → Source = "GitHub Actions".
+#
+#  Danach meldet der Job "IndexNow" geänderte Seiten an Bing & Co.
+#  Schlägt nur dieser Schritt fehl, ist die Website trotzdem online.
 # ════════════════════════════════════════════════════════════════════
 name: Website bauen & veröffentlichen
 
@@ -21,12 +24,17 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  HOST: sandro.exemail.at
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Code auschecken
+      - name: Code auschecken (mit Historie für die Änderungsdaten der Sitemap)
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Ruby einrichten
         uses: ruby/setup-ruby@v1
@@ -46,6 +54,35 @@ jobs:
       - name: Ergebnis hochladen
         uses: actions/upload-pages-artifact@v3
 
+      # ── IndexNow, Teil 1: geänderte URLs ermitteln (VOR dem Deploy,
+      #    solange noch die alte Sitemap online ist) ──────────────────────
+      - name: "IndexNow: geänderte Seiten ermitteln"
+        continue-on-error: true
+        env:
+          VORHER: ${{ github.event.before }}
+        run: |
+          ZUSAETZLICH=""
+          # Wurden Weiterleitungen geändert? Dann alte Adressen einmal mitmelden,
+          # damit Suchmaschinen die Umleitung schneller bemerken.
+          if [ -n "$VORHER" ] && git cat-file -e "$VORHER" 2>/dev/null \
+             && ! git diff --quiet "$VORHER" HEAD -- _data/weiterleitungen.yml; then
+            ZUSAETZLICH=$(ruby -ryaml -e 'puts YAML.load_file("_data/weiterleitungen.yml")["weiterleitungen"].map { |w| w["von"] }')
+          fi
+          python3 tools/indexnow.py aenderungen \
+            --neu _site/sitemap.xml \
+            --alt-url "https://$HOST/sitemap.xml" \
+            --host "$HOST" \
+            --ausgabe indexnow-urls.txt \
+            --zusaetzlich $ZUSAETZLICH
+
+      - name: "IndexNow: Liste für nach dem Deploy aufheben"
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: indexnow-urls
+          path: indexnow-urls.txt
+          retention-days: 1
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -56,3 +93,33 @@ jobs:
       - name: Auf GitHub Pages veröffentlichen
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # ── IndexNow, Teil 2: nach erfolgreichem Deploy melden ──────────────
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: read
+    steps:
+      - name: Skript und Einstellungen auschecken
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            tools/indexnow.py
+            _config.yml
+          sparse-checkout-cone-mode: false
+
+      - name: Liste der geänderten Seiten holen
+        uses: actions/download-artifact@v4
+        with:
+          name: indexnow-urls
+
+      - name: An IndexNow senden (Bing, Yandex, Seznam …)
+        run: |
+          SCHLUESSEL=$(ruby -ryaml -e 'c = YAML.load_file("_config.yml")["indexnow"] || {}; puts(c["aktiv"] ? c["schluessel"].to_s : "")')
+          if [ -z "$SCHLUESSEL" ]; then
+            echo "IndexNow ist in _config.yml ausgeschaltet – nichts zu tun."
+            exit 0
+          fi
+          python3 tools/indexnow.py senden --urls indexnow-urls.txt --host "$HOST" --schluessel "$SCHLUESSEL"

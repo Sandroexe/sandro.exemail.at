@@ -24,6 +24,8 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 7. [Technische Entscheidungen](#7-technische-entscheidungen)
 8. [Fehlerbehebung](#8-fehlerbehebung)
 9. [Branches, Backups & Notfall](#9-branches-backups--notfall)
+10. [Suchmaschinen](#10-suchmaschinen)
+11. [NIEMALS löschen](#11-niemals-löschen)
 
 ---
 
@@ -49,6 +51,7 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 | Social-Media-Impressum eines Kanals ändern         | `_data/social.yml`            | beim Kanal → Block `rechtliches`           |
 | alte Adresse auf eine neue umleiten                | `_data/weiterleitungen.yml`   | WEITERLEITUNGEN                            |
 | QR-Linkseite `/links/` anpassen                    | `_data/linkseite.yml`         | (Links selbst: `social.yml`, `navigation.yml`) |
+| Google/Bing-Bestätigungscode eintragen             | `_config.yml`                 | SUCHMASCHINEN → `verifizierung`            |
 | Farben, Schriften, Abstände, Rundungen ändern      | `_sass/_theme.scss`           | FARBEN / TYPOGRAFIE / …                    |
 | die Hintergrund-Animation abschalten               | `_sass/_theme.scss`           | ANIMATIONEN → `$hintergrund-animation: false;` |
 | Website-Titel oder Google-Beschreibung ändern      | `_config.yml`                 | WEBSITE                                    |
@@ -88,7 +91,8 @@ sandro/
 │
 ├── _includes/                  Bausteine: Header, Footer, Social-Icons, SEO …
 ├── _layouts/                   Seitenvorlagen: default, page, legal, weiterleitung
-├── _plugins/                   Erzeugt Weiterleitungen & Social-Impressum-Unterseiten
+├── _plugins/                   Weiterleitungen, Social-Impressum-Unterseiten,
+│                               IndexNow-Schlüssel, Änderungsdaten für die Sitemap
 │
 ├── index.html                  Startseite
 ├── lebenslauf.html             /lebenslauf/
@@ -113,6 +117,7 @@ sandro/
 │
 ├── tools/
 │   ├── linkedin-import.py      LinkedIn-CSV → YAML
+│   ├── indexnow.py             Meldet Änderungen an Bing & Co. (läuft automatisch)
 │   └── LIESMICH.md             Anleitung dazu
 │
 └── .github/workflows/deploy.yml   Baut & veröffentlicht automatisch
@@ -431,3 +436,87 @@ git commit -m "Zurück auf stand-2026-09-29-vor-aufraeumen" && git push
 ```
 
 Nach 1–2 Minuten ist der alte Stand online. Ausnahme: Die ganz alte Website (`stand-2026-09-29-vor-umstellung-neue-seite`) wurde noch ohne GitHub Actions veröffentlicht – dafür zusätzlich unter **Settings → Pages → Source** wieder „Deploy from a branch" (`main`) wählen.
+
+---
+
+## 10. Suchmaschinen
+
+### Was automatisch passiert (du musst nichts tun)
+
+| Was | Wie |
+| --- | --- |
+| **Sitemap** `sandro.exemail.at/sitemap.xml` | Wird bei jedem Build neu erzeugt. Jede Seite bekommt ihr echtes Änderungsdatum (`lastmod`) aus der Git-Historie – inklusive der Datendatei, aus der ihr Inhalt stammt (Front-Matter-Feld `abhaengig_von`). |
+| **Nicht in der Sitemap** | Linkseite `/links/`, 404-Seite, vCard, PDFs, Weiterleitungen, IndexNow-Schlüssel |
+| **robots.txt** | Erlaubt alles und verweist auf die Sitemap |
+| **Canonical-Tags** | Jede Seite zeigt auf ihre eindeutige Adresse `https://sandro.exemail.at/…/` (immer https, immer mit `/` am Ende) |
+| **Alte Adressen** | Leiten auf die neue Seite weiter (`_data/weiterleitungen.yml`, Tabelle unten) |
+| **IndexNow** (Bing, Yandex, Seznam, Naver …) | Nach jedem erfolgreichen Deploy meldet der Workflow alle neuen, geänderten und entfernten Seiten. Ergebnis: GitHub → **Actions** → letzter Lauf → Job **indexnow**. Schlägt nur dieser Job fehl, ist die Website trotzdem online. |
+| **Google** | Google unterstützt IndexNow nicht; es liest die Sitemap regelmäßig selbst. Die Google Indexing API wird bewusst **nicht** verwendet (nur für Stellenanzeigen/Livestreams erlaubt). |
+
+**Warum eigene Weiterleitungen statt `jekyll-redirect-from`?** Das Plugin baut ein Inline-Skript ein, das die Sicherheitsrichtlinie (CSP) dieser Website blockiert (Konsolenfehler). Unsere Weiterleitungsseiten machen dasselbe ohne Skript: sofortige Weiterleitung per `<meta http-equiv="refresh">`, Canonical auf die neue Adresse und `noindex`. GitHub Pages kann keine echten 301-Weiterleitungen; Google behandelt diese Seiten wie eine Weiterleitung.
+
+### Alte URL → neue URL
+
+Ermittelt aus allen 337 Commits der Git-Historie.
+
+| Alte URL | Neue URL |
+| --- | --- |
+| `/contact/`, `/contact.html` | `/kontakt/` |
+| `/cv/`, `/cv.html` | `/lebenslauf/` |
+| `/certificates/`, `/certificates.html` | `/zertifikate/` |
+| `/impressum.html`, `/imprint/` | `/impressum/` |
+| `/datenschutz.html`, `/privacy/` | `/datenschutz/` |
+| `/impressum/social/` | `/social-impressum/` |
+| `/links.html` | `/links/` |
+| `/projects/`, `/projects.html`, `/projekte/` | `/` (keine Projekte-Seite mehr) |
+| `/lab/`, `/lab.html` | `/` (keine Home-Lab-Seite mehr) |
+| `/`, `/impressum/`, `/datenschutz/`, `/links/`, `/Sandro_Exenberger.vcf` | unverändert |
+| `/default.html`, `/footer.html`, `/nav.html` (frühe Bausteine) | 404 – bewusst ohne Weiterleitung |
+
+### Einmalig: Google Search Console
+
+Deine Domain ist bei Google bereits bestätigt – über einen **DNS-TXT-Eintrag bei `exemail.at`** (Cloudflare). Das ist eine *Domain-Property* und gilt automatisch auch für `sandro.exemail.at`.
+
+1. [search.google.com/search-console](https://search.google.com/search-console) öffnen und die vorhandene Property **`exemail.at`** (Typ „Domain") wählen. Keine neue anlegen.
+2. **Sitemaps** (links): alte Einträge, die nicht `https://sandro.exemail.at/sitemap.xml` heißen, über die drei Punkte → **Sitemap entfernen**. Dann `https://sandro.exemail.at/sitemap.xml` eintragen → **Senden**. Status sollte nach kurzer Zeit „Erfolgreich" zeigen.
+3. **URL-Prüfung** (Suchfeld oben): nacheinander `https://sandro.exemail.at/`, `/lebenslauf/`, `/zertifikate/`, `/kontakt/`, `/impressum/` eingeben → **Indexierung beantragen**. (Google erlaubt nur ca. 10 Anträge pro Tag – die Hauptseiten reichen.)
+4. Nach 1–2 Wochen **Seiten** (Indexierung → Seiten) prüfen. Normal und kein Fehler: „Seite mit Weiterleitung" (alte Adressen) und „Nicht gefunden (404)" (frühe Bausteine). Handlungsbedarf nur bei „Serverfehler" oder wenn Hauptseiten „Gecrawlt – zurzeit nicht indexiert" bleiben.
+
+### Einmalig: Bing Webmaster Tools
+
+1. [bing.com/webmasters](https://www.bing.com/webmasters) öffnen und anmelden.
+2. Falls die Website fehlt: **Importieren** → **Google Search Console** → Konto verbinden → `exemail.at` übernehmen (bestätigt die Website automatisch).
+3. **Sitemaps** → `https://sandro.exemail.at/sitemap.xml` → **Senden**.
+4. **IndexNow** (linkes Menü): Nach dem nächsten Deploy sollten hier die gemeldeten URLs erscheinen.
+
+### Was du danach nie wieder manuell machen musst
+
+Sitemap aktualisieren, Änderungsdaten pflegen, Bing über neue oder geänderte Seiten informieren, alte Sitemaps einreichen – das passiert bei jedem Push auf `main` automatisch. Manuell nur noch: optional bei einer **wichtigen neuen Seite** in der Google Search Console „Indexierung beantragen", wenn es schnell gehen soll.
+
+### Wie lange dauert das?
+
+| Suchmaschine | Realistisch |
+| --- | --- |
+| Bing, Yandex, Seznam (IndexNow) | meist wenige Stunden bis 2–3 Tage |
+| Google, Hauptseiten nach „Indexierung beantragen" | einige Tage bis 2 Wochen |
+| Google, übrige Seiten über die Sitemap | 1–4 Wochen |
+| Alte Adressen verschwinden aus den Suchergebnissen | mehrere Wochen bis wenige Monate |
+
+---
+
+## 11. NIEMALS löschen
+
+Diese Dateien und Einträge sind für Domain, Druckmedien, Profile oder Suchmaschinen nötig – auch nicht beim Aufräumen:
+
+| Was | Warum |
+| --- | --- |
+| `CNAME`, `_config.yml`, `Gemfile`, `Gemfile.lock`, `.github/workflows/` | Domain, Einstellungen, Build & Deploy |
+| `_data/`, `_includes/`, `_layouts/`, `_sass/`, `_plugins/`, alle Seiten | Die Website selbst |
+| `links.html` (`/links/`) und `vcard.vcf` (`/Sandro_Exenberger.vcf`) | QR-Code und Visitenkarte |
+| Einträge mit „⚠ NIE LÖSCHEN" in `_data/weiterleitungen.yml` | Gedruckte Visitenkarte (`/contact/`), alte Bio-Links, TikTok-Kurzadresse |
+| `indexnow` → `schluessel` in `_config.yml` (erzeugt `/47c07f7ba9589a1160b2a52814ca828d.txt`) | IndexNow lehnt Meldungen sonst ab |
+| `verifizierung` in `_config.yml` sowie künftige Dateien wie `google*.html` oder `BingSiteAuth.xml` | Bestätigung bei Google/Bing |
+| **DNS-TXT-Eintrag `google-site-verification=…` bei `exemail.at` in Cloudflare** | Bestätigt die Google-Search-Console-Property (liegt nicht im Repository!) |
+| `README.md`, `DEPLOYMENT.md`, `RECHTLICHES.md`, `CLAUDE.md`, `.gitignore`, `tools/` | Anleitungen und Werkzeuge |
+| Alle Fotos/PDFs, die in `_data/` eingetragen sind | Werden auf der Website angezeigt |
+

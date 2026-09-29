@@ -7,6 +7,12 @@ layout: legal
 title: "Social-Media-Impressum"
 description: "Offenlegung gemäß § 25 Mediengesetz und Datenschutzhinweise für jeden Social-Media-Kanal von Sandro Exenberger."
 permalink: /social-impressum/
+# Für das Änderungsdatum in der Sitemap: Dateien, aus denen der Inhalt stammt
+abhaengig_von:
+  - _data/social.yml
+  - _data/rechtliches.yml
+  - _includes/social-kanal.html
+  - _includes/social-allgemein.html
 ---
 {%- assign si = site.data.rechtliches.social_impressum -%}
 {%- assign kanaele = site.data.social.kanaele | where_exp: "k", "k.rechtliches.impressum_anzeigen == true" -%}

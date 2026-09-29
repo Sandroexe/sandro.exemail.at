@@ -6,6 +6,12 @@ title: "Datenschutzerklärung"
 description: "Datenschutzerklärung der Website von Sandro Exenberger: keine Cookies, kein Tracking, Hosting über GitHub Pages."
 einleitung: "Kurz gesagt: keine Cookies, kein Tracking, keine Analyse-Tools. Hier steht im Detail, welche Daten beim Besuch dieser Website trotzdem anfallen."
 permalink: /datenschutz/
+# Für das Änderungsdatum in der Sitemap: Dateien, aus denen der Inhalt stammt
+abhaengig_von:
+  - _data/rechtliches.yml
+  - _data/social.yml
+  - _includes/betroffenenrechte.html
+  - _includes/beschwerderecht.html
 ---
 {%- assign r = site.data.rechtliches -%}
 {%- assign m = r.medieninhaber -%}

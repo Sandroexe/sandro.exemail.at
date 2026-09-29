@@ -4,6 +4,9 @@ title: "Zertifikate"
 description: "Zertifikate und Nachweise von Sandro Exenberger, u. a. Cisco CCNA."
 permalink: /zertifikate/
 hero: false
+# Für das Änderungsdatum in der Sitemap: Dateien, aus denen der Inhalt stammt
+abhaengig_von:
+  - _data/zertifikate.yml
 ---
 {%- assign z = site.data.zertifikate -%}
 {%- assign certs = z.zertifikate | where_exp: "c", "c.anzeigen != false" -%}

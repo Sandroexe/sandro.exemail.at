@@ -57,6 +57,16 @@ weiterleitungen:
     nach: "/"
   - von: "/lab.html"
     nach: "/"
+  - von: "/projekte/"
+    nach: "/"
+  - von: "/impressum.html"
+    nach: "/impressum/"
+  - von: "/imprint/"
+    nach: "/impressum/"
+  - von: "/datenschutz.html"
+    nach: "/datenschutz/"
+  - von: "/privacy/"
+    nach: "/datenschutz/"
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
 #  - von: "/alte-adresse/"
