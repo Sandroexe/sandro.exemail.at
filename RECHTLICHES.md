@@ -122,14 +122,7 @@ Die `#`-Sprungmarken bleiben zusätzlich für die Navigation auf der Übersicht 
 3. Zusätzlich im Abschnitt **Info** als letzte Zeile: `Impressum: sandro.exemail.at/social-impressum/linkedin`
    (Die Kontaktinfo ist auf dem Handy nur über einen Extra-Klick erreichbar – der Hinweis im Info-Text macht es eindeutig.)
 
-**Weitere Plattformen (falls später)**
-
-| Plattform | Wo eintragen |
-| --- | --- |
-| LinkedIn-Unternehmensseite | Seite bearbeiten → **Info** → **Website** + Hinweis im Info-Text |
-| YouTube | Kanal anpassen → **Profil** → **Links** → Titel „Impressum" + Kanalbeschreibung |
-| TikTok | **Website**-Feld (falls verfügbar), sonst Bio: `Impressum: sandro.exemail.at/social-impressum/tiktok` |
-| GitHub | **Edit profile** → **Website**, oder Link im Profil-README |
+**Weitere Plattformen (falls später):** Link zur Kanal-Unterseite `/social-impressum/<id>/` ins **Website-/Link-Feld** des Profils und zusätzlich als letzte Zeile in die **Bio/Beschreibung**, jeweils mit der Bezeichnung „Impressum".
 
 ### Pflicht oder freiwillig? (Block `rechtliches` je Kanal in `social.yml`)
 
@@ -149,12 +142,12 @@ Die `#`-Sprungmarken bleiben zusätzlich für die Navigation auf der Übersicht 
 
 ### Einschätzung: Gemeinsame Verantwortlichkeit bei persönlichen Profilen
 
-Das EuGH-Urteil C-210/16 („Fanpage", 2018) betraf den Betreiber einer **Unternehmens-/Fanseite**, der über Facebook Insights mitbestimmt, welche Statistiken über Besucher erstellt werden. Bei einem **persönlichen Profil** legst du weder Zwecke noch Mittel der Plattform-Verarbeitung fest. LinkedIn bietet seine Vereinbarung nach Art. 26 DSGVO („Page Insights Joint Controller Addendum") ausdrücklich **nur für Unternehmensseiten** an.
+Das EuGH-Urteil C-210/16 („Fanpage", 2018) betraf den Betreiber einer **Unternehmens-/Fanseite**, der über die Seitenstatistiken („Insights") der Plattform mitbestimmt, welche Statistiken über Besucher erstellt werden. Bei einem **persönlichen Profil** legst du weder Zwecke noch Mittel der Plattform-Verarbeitung fest. LinkedIn bietet seine Vereinbarung nach Art. 26 DSGVO („Page Insights Joint Controller Addendum") ausdrücklich **nur für Unternehmensseiten** an.
 ➡️ Deshalb steht bei LinkedIn und Instagram `gemeinsame_verantwortung: false`, und der Text erklärt das offen.
 
 ### Stellen, bei denen ich mir rechtlich nicht sicher bin
 
-- **[RECHTLICH PRÜFEN]** Keine gemeinsame Verantwortlichkeit bei persönlichem Profil (siehe oben) – insbesondere bei LinkedIn, weil LinkedIn auch persönlichen Profilen Statistiken anzeigt, und bei Instagram, **falls** du auf ein professionelles Konto (Creator/Business) mit Insights umstellst. Dann `insights_genutzt: true` setzen und klären, ob Metas „Controller Addendum" (<https://www.facebook.com/legal/controller_addendum>) für Instagram gilt.
+- **[RECHTLICH PRÜFEN]** Keine gemeinsame Verantwortlichkeit bei persönlichem Profil (siehe oben) – insbesondere bei LinkedIn, weil LinkedIn auch persönlichen Profilen Statistiken anzeigt, und bei Instagram, **falls** du auf ein professionelles Konto (Creator/Business) mit Insights umstellst. Dann `insights_genutzt: true` setzen und klären, ob Metas „Controller Addendum" (Vereinbarung zur gemeinsamen Verantwortlichkeit, auf den Rechtsseiten von Meta) für Instagram gilt.
 - **[RECHTLICH PRÜFEN]** Kein § 5 ECG für private, nicht wirtschaftlich genutzte Kanäle.
 - **[RECHTLICH PRÜFEN]** Drittland-Grundlagen (DPF + Standardvertragsklauseln) für LinkedIn Corporation und Meta Platforms, Inc. – Zertifizierung auf <https://www.dataprivacyframework.gov/list> nachsehen.
 - **[RECHTLICH PRÜFEN]** Anschriften der Betreiber (Stand September 2026, aus den Datenschutzerklärungen der Plattformen) – einmal jährlich kontrollieren.
@@ -178,7 +171,7 @@ Die Markierungen stehen auch als Kommentare in `_includes/social-kanal.html` und
 | Betroffenenrechte & Beschwerde | Art. 15–21 DSGVO, Österreichische Datenschutzbehörde |
 
 **Wann musst du die Datenschutzerklärung anpassen?**
-Sobald du etwas Neues einbaust, das Daten verarbeitet: eingebettete Videos (YouTube), Karten (Google Maps), Analyse-Tools, Newsletter, externe Schriften, einen anderen Hoster. Dann `stand` aktualisieren.
+Sobald du etwas Neues einbaust, das Daten verarbeitet: eingebettete Videos, Karten, Analyse-Tools, Newsletter, externe Schriften, einen anderen Hoster. Dann `stand` aktualisieren.
 
 ---
 

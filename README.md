@@ -217,7 +217,7 @@ Datei im Repository öffnen → Stift-Symbol ✏️ → ändern → **Commit cha
        ausgestellt: "2026-03"
        ablauf: ""
        credential_id: ""
-       verifizierung_link: "https://www.credly.com/badges/…"
+       verifizierung_link: "https://… (Link zur Online-Prüfung)"
        beschreibung: >-
          Grundlagen der Programmierung mit Python.
        bild: ""
@@ -272,8 +272,9 @@ In `_data/social.yml`:
 
 - **Ausblenden:** beim Kanal `anzeigen: false`.
 - **Nur an bestimmten Stellen zeigen:** `orte: [footer, kontakt]` (möglich: `header`, `footer`, `startseite`, `kontakt`).
-- **Neue Plattform:** Vorlage am Dateiende kopieren. Mitgelieferte Icons: `mail`, `phone`, `linkedin`, `instagram`, `github`, `youtube`, `facebook`, `twitter`, `globe`, `message-circle`.
-- **Eigenes Icon:** SVG-Datei (24 × 24, am besten von [lucide.dev](https://lucide.dev) oder [simpleicons.org](https://simpleicons.org)) nach `assets/icons/` legen, z. B. `tiktok.svg`, und im Eintrag `icon: "tiktok"` schreiben. Das Icon wird automatisch eingebunden.
+- **Aktuelle Kanäle:** LinkedIn, Instagram, Telefon, E-Mail. Vorhandene Icons: `mail`, `phone`, `linkedin`, `instagram`.
+- **Neue Plattform (später):** die inaktive Vorlage am Dateiende kopieren, siehe [5.10](#510-social-media-impressum-neuer-kanal--direktlinks).
+- **Eigenes Icon:** SVG-Datei (24 × 24, am besten von [lucide.dev](https://lucide.dev) oder [simpleicons.org](https://simpleicons.org)) nach `assets/icons/` legen, z. B. `meinkanal.svg`, und im Eintrag `icon: "meinkanal"` schreiben. Das Icon wird automatisch eingebunden.
 - Social-Media-Profile brauchen zusätzlich den Block `rechtliches` – siehe [5.10](#510-social-media-impressum-neuer-kanal--direktlinks).
 
 ### 5.6 Menüpunkt hinzufügen, umbenennen, ausblenden
@@ -339,9 +340,9 @@ Jeder Social-Media-Kanal hat im Impressum einen **eigenen Bereich** (Offenlegung
 | LinkedIn | `https://sandro.exemail.at/social-impressum/linkedin/` | **Kontaktinfo → Website hinzufügen** (Typ „Sonstiges", Bezeichnung „Impressum") **und** letzte Zeile im Abschnitt **Info** |
 | Instagram | `https://sandro.exemail.at/social-impressum/instagram/` | **Profil bearbeiten → Links** (Titel „Impressum", an **erste** Stelle) **und** letzte Zeile der **Bio** |
 
-**Neuen Kanal hinzufügen (z. B. GitHub, YouTube, TikTok):**
+**Neuen Kanal hinzufügen (später):**
 1. In `_data/social.yml` die **Vorlage ganz unten** kopieren und **nur** das `#` am Zeilenanfang entfernen (die Leerzeichen danach bleiben – sie sind die Einrückung).
-2. `id` festlegen (klein, ohne Leerzeichen, z. B. `github`) – daraus wird `/social-impressum/github/`.
+2. `id` festlegen (klein, ohne Leerzeichen, z. B. `meinkanal`) – daraus wird `/social-impressum/meinkanal/`. Alle Platzhalter `<…>` ersetzen.
 3. Block `rechtliches` ausfüllen: Betreiber + Anschrift und Datenschutz-Link (aus der Datenschutzerklärung der Plattform), Drittland-Text, ggf. Statistik.
 4. Speichern → Sprung-Button, Bereich auf der Übersicht, Unterseite und Datenschutztext entstehen automatisch.
 5. Den neuen Link in die Bio des Kanals eintragen.

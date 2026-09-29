@@ -252,7 +252,7 @@ skills:
         - "HTML, CSS, JavaScript"
         - "Python"
         - "C"
-        - "Git & GitHub"
+        - "Git (Versionsverwaltung)"
 
     - gruppe: "Hardware & Elektronik"
       icon: "cpu"

@@ -25,7 +25,7 @@
 # ║    Seite geschrieben und erst im Browser lesbar gemacht. Du trägst sie   ║
 # ║    hier ganz normal ein.                                                 ║
 # ║                                                                          ║
-# ║  Neuer Kanal (z. B. GitHub, YouTube, TikTok)?                            ║
+# ║  Neuer Kanal (später)?                                                   ║
 # ║    → Vorlage ganz unten kopieren. Ein Block = alles (Buttons, Kontakt-   ║
 # ║      karte, Impressum, Datenschutz, Unterseite, Sprung-Button).          ║
 # ╚══════════════════════════════════════════════════════════════════════════╝
@@ -155,8 +155,8 @@ kanaele:
   - id: "instagram"
     name: "Instagram"
     typ: "link"
-    wert: "https://www.instagram.com/sandro_exe_2008/"
-    anzeigetext: "@sandro_exe_2008"
+    wert: "https://www.instagram.com/sandro_exenberger/"
+    anzeigetext: "@sandro_exenberger"
     beschreibung: "Einblicke abseits vom Lebenslauf."
     icon: "instagram"
     anzeigen: true
@@ -186,213 +186,27 @@ kanaele:
         Standardvertragsklauseln der EU-Kommission (Art. 46 DSGVO).
       zusaetzliche_hinweise: ""
 
-  # ──────────────────────────────── GITHUB ─────────────────────────────────
-  - id: "github"
-    name: "GitHub"
-    typ: "link"
-    wert: "https://github.com/Sandroexe"
-    anzeigetext: "@Sandroexe"
-    beschreibung: "Technische Projekte und Quellcode."
-    icon: "github"
-    anzeigen: true
-    orte: [footer, kontakt]
-    rechtliches:
-      impressum_anzeigen: true
-      # [RECHTLICH PRÜFEN] GitHub nennt GitHub B.V. (Amsterdam) als
-      # EU-Vertreter; Verantwortlicher laut Datenschutzerklärung ist GitHub, Inc.
-      betreiber_name: "GitHub, Inc."
-      betreiber_anschrift: "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA"
-      datenschutz_link_plattform: "https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
-      einstellungen_link_plattform: "https://github.com/settings/profile"
-      rechte_link_plattform: ""
-      grundlegende_richtung: >-
-        Technische Projekte, Quellcode und Beiträge zu Open-Source-Software.
-      insights_genutzt: false
-      insights_bezeichnung: ""
-      insights_hinweis: ""
-      gemeinsame_verantwortung: false
-      vereinbarung_link: ""
-      drittland_text: >-
-        GitHub, Inc. hat seinen Sitz in den USA; Ihre Daten werden dort verarbeitet.
-        GitHub ist unter dem EU-US Data Privacy Framework zertifiziert
-        (Angemessenheitsbeschluss, Art. 45 DSGVO).
-      zusaetzliche_hinweise: ""
 
-  # ───────────────────────────────── XING ──────────────────────────────────
-  - id: "xing"
-    name: "XING"
-    typ: "link"
-    wert: "https://www.xing.com/profile/Sandro_Exenberger"
-    anzeigetext: "Sandro_Exenberger"
-    beschreibung: "Beruflicher Werdegang und Ausbildung."
-    icon: "xing"
-    anzeigen: true
-    orte: []
-    rechtliches:
-      impressum_anzeigen: true
-      betreiber_name: "New Work SE"
-      betreiber_anschrift: "Am Strandkai 1, 20457 Hamburg, Deutschland"
-      datenschutz_link_plattform: "https://privacy.xing.com/de/datenschutzerklaerung"
-      einstellungen_link_plattform: ""
-      rechte_link_plattform: ""
-      grundlegende_richtung: >-
-        Beruflicher Werdegang und Ausbildung von Sandro Exenberger.
-      insights_genutzt: false
-      insights_bezeichnung: ""
-      insights_hinweis: ""
-      gemeinsame_verantwortung: false
-      vereinbarung_link: ""
-      # [RECHTLICH PRÜFEN] Betreiber mit Sitz in der EU – ob/wie XING Daten
-      # in Drittländer übermittelt, steht in dessen Datenschutzerklärung.
-      drittland_text: ""
-      zusaetzliche_hinweise: ""
-
-  # ──────────────────────────────── REDDIT ─────────────────────────────────
-  - id: "reddit"
-    name: "Reddit"
-    typ: "link"
-    wert: "https://www.reddit.com/user/Sandro_exe08/"
-    anzeigetext: "u/Sandro_exe08"
-    beschreibung: "Diskussionen zu Linux, Netzwerk und Self-Hosting."
-    icon: "reddit"
-    anzeigen: true
-    orte: []
-    rechtliches:
-      impressum_anzeigen: true
-      betreiber_name: "Reddit Netherlands B.V."
-      betreiber_anschrift: "Euro Business Center, Keizersgracht 62, 1015 CS Amsterdam, Niederlande"
-      datenschutz_link_plattform: "https://www.reddit.com/policies/privacy-policy"
-      einstellungen_link_plattform: "https://www.reddit.com/settings/privacy"
-      rechte_link_plattform: ""
-      grundlegende_richtung: >-
-        Fachliche Diskussionsbeiträge zu Linux, Netzwerktechnik und Self-Hosting.
-      insights_genutzt: false
-      insights_bezeichnung: ""
-      insights_hinweis: ""
-      gemeinsame_verantwortung: false
-      vereinbarung_link: ""
-      # [RECHTLICH PRÜFEN] Übermittlungsgrundlage laut Reddit-Datenschutzerklärung.
-      drittland_text: >-
-        Reddit übermittelt Daten auch an die Reddit, Inc. in den USA. Grundlage sind
-        laut Anbieter Standardvertragsklauseln der EU-Kommission (Art. 46 DSGVO).
-      zusaetzliche_hinweise: ""
-
-  # ──────────────────────────── STACK OVERFLOW ─────────────────────────────
-  - id: "stackoverflow"
-    name: "Stack Overflow"
-    typ: "link"
-    wert: "https://stackoverflow.com/users/32745248/sandro-exenberger"
-    anzeigetext: "sandro-exenberger"
-    beschreibung: "Fragen und Antworten zu Programmierung und Systemadministration."
-    icon: "stackoverflow"
-    anzeigen: true
-    orte: []
-    rechtliches:
-      impressum_anzeigen: true
-      betreiber_name: "Stack Exchange, Inc."
-      betreiber_anschrift: "110 William Street, 28th Floor, New York, NY 10038, USA"
-      datenschutz_link_plattform: "https://stackoverflow.com/legal/privacy-policy"
-      einstellungen_link_plattform: ""
-      rechte_link_plattform: ""
-      grundlegende_richtung: >-
-        Fragen und Antworten zu Programmierung und Systemadministration.
-      insights_genutzt: false
-      insights_bezeichnung: ""
-      insights_hinweis: ""
-      gemeinsame_verantwortung: false
-      vereinbarung_link: ""
-      # [RECHTLICH PRÜFEN] Übermittlungsgrundlage laut Stack-Overflow-Datenschutzerklärung.
-      drittland_text: >-
-        Stack Exchange, Inc. hat seinen Sitz in den USA; Ihre Daten werden dort
-        verarbeitet. Die Grundlage der Übermittlung nennt der Anbieter in seiner
-        Datenschutzerklärung.
-      zusaetzliche_hinweise: ""
-
-  # ──────────────────────────────── CREDLY ─────────────────────────────────
-  # Im Impressum vorerst AUS: Betreiber (Pearson) und Anschrift sind noch
-  # nicht eindeutig geklärt → GitHub-Issue. Erst dann auf true stellen.
-  - id: "credly"
-    name: "Credly"
-    typ: "link"
-    wert: "https://www.credly.com/users/sandro-exenberger"
-    anzeigetext: "sandro-exenberger"
-    beschreibung: "Verifizierbare Zertifikats-Badges."
-    icon: "award"
-    anzeigen: true
-    orte: []
-    rechtliches:
-      impressum_anzeigen: false
-      betreiber_name: "[BITTE AUSFÜLLEN: Betreiber laut https://www.credly.com/privacy]"
-      betreiber_anschrift: "[BITTE AUSFÜLLEN]"
-      datenschutz_link_plattform: "https://www.credly.com/privacy"
-      einstellungen_link_plattform: ""
-      rechte_link_plattform: ""
-      grundlegende_richtung: ""
-      insights_genutzt: false
-      insights_bezeichnung: ""
-      insights_hinweis: ""
-      gemeinsame_verantwortung: false
-      vereinbarung_link: ""
-      drittland_text: ""
-      zusaetzliche_hinweise: ""
-
-  # ──────────────────── INSTAGRAM (SCHULPOLITIK) ───────────────────────────
-  # Vorerst AUS, weil Handle und Adresse noch fehlen. ACHTUNG: Politische
-  # Inhalte → KEINE "kleine Website" mehr, die grundlegende Richtung ist
-  # für diesen Kanal PFLICHT (Text aus der alten Website übernommen).
-  - id: "instagram-schulpolitik"
-    name: "Instagram (Schulpolitik)"
-    typ: "link"
-    wert: "[BITTE AUSFÜLLEN: https://www.instagram.com/…]"
-    anzeigetext: "[BITTE AUSFÜLLEN: @handle]"
-    beschreibung: "Schulpolitische Information und Öffentlichkeitsarbeit."
-    icon: "instagram"
-    anzeigen: false
-    orte: []
-    rechtliches:
-      impressum_anzeigen: false
-      betreiber_name: "Meta Platforms Ireland Limited"
-      betreiber_anschrift: "Merrion Road, Dublin 4, D04 X2K5, Irland"
-      datenschutz_link_plattform: "https://privacycenter.instagram.com/policy"
-      einstellungen_link_plattform: "https://accountscenter.instagram.com/"
-      rechte_link_plattform: "https://privacycenter.instagram.com/"
-      grundlegende_richtung: >-
-        Information über die schulpolitische Tätigkeit des Medieninhabers
-        (u. a. als Regionalvorstand Tiroler Unterland der Schülerunion Österreich
-        und als gewählte Schülervertretung), über bildungspolitische Themen sowie
-        über die Anliegen von Schülerinnen und Schülern. Die Inhalte geben die
-        persönliche politische Auffassung des Medieninhabers wieder.
-      insights_genutzt: false
-      insights_bezeichnung: "Instagram Insights"
-      insights_hinweis: ""
-      gemeinsame_verantwortung: false
-      vereinbarung_link: ""
-      drittland_text: >-
-        Meta übermittelt Daten auch an die Meta Platforms, Inc. in den USA. Die
-        Übermittlung stützt sich auf das EU-US Data Privacy Framework
-        (Angemessenheitsbeschluss, Art. 45 DSGVO) sowie auf
-        Standardvertragsklauseln der EU-Kommission (Art. 46 DSGVO).
-      zusaetzliche_hinweise: ""
-
-
-# ─── Vorlage zum Kopieren (nur die Raute # am Zeilenanfang entfernen) ──────
-#     Alle Werte unten sind Beispiele für GitHub – vor der Verwendung prüfen!
+# ═══════════════════ VORLAGE – INAKTIV (wird NICHT angezeigt) ═══════════════
+#  Nur für später: Kopieren, alle Platzhalter <…> ersetzen und dann NUR die
+#  Raute # am Zeilenanfang entfernen (die Leerzeichen danach bleiben).
+#  Solange die Zeilen mit # beginnen, ist die Vorlage wirkungslos.
 #
-#  - id: "github"
-#    name: "GitHub"
+#  - id: "<kanal-id>"
+#    name: "<Name der Plattform>"
 #    typ: "link"
-#    wert: "https://github.com/Sandroexe"
-#    anzeigetext: "Sandroexe"
-#    beschreibung: "Meine Projekte und Code."
-#    icon: "github"
+#    wert: "<https://… Link zum Profil>"
+#    anzeigetext: "<@benutzername>"
+#    beschreibung: "<Kurzer Satz für die Kontaktseite>"
+#    icon: "<icon-dateiname ohne .svg>"
 #    anzeigen: true
-#    orte: [footer, startseite, kontakt]
+#    orte: [footer, kontakt]
 #    rechtliches:
 #      impressum_anzeigen: true
-#      betreiber_name: "GitHub B.V."
-#      betreiber_anschrift: "[BITTE AUSFÜLLEN: Anschrift aus der Datenschutzerklärung der Plattform]"
-#      datenschutz_link_plattform: "https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
-#      einstellungen_link_plattform: "https://github.com/settings/profile"
+#      betreiber_name: "<Betreiber für die EU laut Datenschutzerklärung der Plattform>"
+#      betreiber_anschrift: "<Anschrift des Betreibers>"
+#      datenschutz_link_plattform: "<https://… Datenschutzerklärung>"
+#      einstellungen_link_plattform: ""
 #      rechte_link_plattform: ""
 #      grundlegende_richtung: ""
 #      insights_genutzt: false
@@ -401,9 +215,8 @@ kanaele:
 #      gemeinsame_verantwortung: false
 #      vereinbarung_link: ""
 #      drittland_text: >-
-#        [BITTE AUSFÜLLEN: Wer erhält Daten in den USA und auf welcher Grundlage?]
+#        <Wer erhält Daten außerhalb der EU und auf welcher Grundlage?>
 #      zusaetzliche_hinweise: ""
 #
-#  Mitgelieferte Icons: mail, phone, linkedin, instagram, github, youtube,
-#  facebook, twitter, globe, message-circle
-#  Eigenes Icon? SVG-Datei nach assets/icons/ legen (siehe README).
+#  Vorhandene Icons: mail, phone, linkedin, instagram.
+#  Für eine neue Plattform ihr SVG-Icon nach assets/icons/ legen (siehe README).

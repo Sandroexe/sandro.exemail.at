@@ -1,6 +1,6 @@
 {%- comment -%}
-  Suchmaschinen & Social-Media-Vorschau: Titel, Beschreibung, Open Graph,
-  Twitter Card und (auf der Startseite) strukturierte Daten (schema.org).
+  Suchmaschinen & Social-Media-Vorschau: Titel, Beschreibung, Open Graph
+  und (auf der Startseite) strukturierte Daten (schema.org).
   Pro Seite steuerbar über das Front Matter: title, description, image, noindex
 {%- endcomment -%}
 {%- assign _p = site.data.person -%}
@@ -35,10 +35,6 @@
 <meta property="profile:first_name" content="{{ _p.vorname | escape }}">
 <meta property="profile:last_name" content="{{ _p.nachname | escape }}">
 {%- endif %}
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ _titel | escape }}">
-<meta name="twitter:description" content="{{ _beschr | escape }}">
-<meta name="twitter:image" content="{{ _bild }}">
 {%- if page.url == "/" %}
 {%- assign _same = "" | split: "" -%}
 {%- for k in site.data.social.kanaele -%}
