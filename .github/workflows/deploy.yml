@@ -1,6 +1,6 @@
 # ════════════════════════════════════════════════════════════════════
 #  Baut die Website mit Jekyll 4 und veröffentlicht sie auf GitHub Pages.
-#  Läuft automatisch bei jedem Push auf den Branch "neue-seite"
+#  Läuft automatisch bei jedem Push auf den Branch "main"
 #  (oder manuell unter: GitHub → Actions → "Website bauen & veröffentlichen").
 #  Voraussetzung: Settings → Pages → Source = "GitHub Actions".
 # ════════════════════════════════════════════════════════════════════
@@ -8,7 +8,7 @@ name: Website bauen & veröffentlichen
 
 on:
   push:
-    branches: ["neue-seite"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
