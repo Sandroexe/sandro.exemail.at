@@ -24,7 +24,8 @@
 
 weiterleitungen:
 
-  # ═══ ⚠ NIE LÖSCHEN – gedruckt auf der Visitenkarte ═══
+  # ═══ ⚠ NIE LÖSCHEN – gedruckt auf der Visitenkarte / im QR-Code ═══
+  # (/links/ selbst ist die Datei links.html und leitet ebenfalls zu /kontakt/)
   - von: "/contact/"
     nach: "/kontakt/"
   - von: "/contact.html"
@@ -40,7 +41,7 @@ weiterleitungen:
 
   # ═══ Alte Website (bis September 2026) ═══
   - von: "/links.html"
-    nach: "/links/"
+    nach: "/kontakt/"
   - von: "/cv/"
     nach: "/lebenslauf/"
   - von: "/cv.html"

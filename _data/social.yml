@@ -79,6 +79,10 @@
 # Überschrift und Einleitung der Seite /kontakt/
 
 kontaktseite:
+  # vCard (digitale Visitenkarte) als Button auf der Kontaktseite
+  vcard_anzeigen: true
+  vcard_text: "Kontakt speichern (vCard)"
+  vcard_datei: "/Sandro_Exenberger.vcf"   # muss zum "permalink" in vcard.vcf passen
   titel: "Kontakt"
   einleitung: >-
     Sie möchten mich erreichen? Wählen Sie einfach den Weg, der Ihnen am
@@ -165,6 +169,47 @@ kanaele:
         (Angemessenheitsbeschluss, Art. 45 DSGVO) sowie auf
         Standardvertragsklauseln der EU-Kommission (Art. 46 DSGVO).
       zusaetzliche_hinweise: ""
+
+  # ─────────────────────────────── FACEBOOK ────────────────────────────────
+  # Das ist die Facebook-SEITE (Kategorie „Person des öffentlichen Lebens“),
+  # NICHT das persönliche Profil. Link = saubere Profil-Adresse, NIE den
+  # Teilen-Link aus der Facebook-App (mit Tracking-Parameter) verwenden.
+  - id: "facebook"
+    name: "Facebook"
+    typ: "link"
+    wert: "https://www.facebook.com/profile.php?id=61593552483880"
+    anzeigetext: "Sandro Exenberger"
+    beschreibung: "Neuigkeiten und Einblicke auf meiner Facebook-Seite."
+    icon: "facebook"
+    anzeigen: true
+    orte: [header, footer, startseite, kontakt]
+    rechtliches:
+      impressum_anzeigen: true
+      betreiber_name: "Meta Platforms Ireland Limited"
+      betreiber_anschrift: "Merrion Road, Dublin 4, D04 X2K5, Irland"
+      datenschutz_link_plattform: "https://www.facebook.com/privacy/policy/"
+      einstellungen_link_plattform: "https://accountscenter.facebook.com/"
+      rechte_link_plattform: "https://www.facebook.com/privacy/center/"
+      grundlegende_richtung: >-
+        Facebook-Seite von Sandro Exenberger mit Informationen und Beiträgen zu
+        Ausbildung, beruflichem Werdegang, Technik und Engagement.
+      # Facebook-Seiten erhalten automatisch Seitenstatistiken ("Insights").
+      insights_genutzt: true
+      insights_bezeichnung: "Seitenstatistiken („Insights“, z. B. Reichweite, Seitenaufrufe, Interaktionen sowie Alter, Geschlecht und Herkunft der Follower in zusammengefasster Form)"
+      insights_hinweis: ""
+      # Facebook-SEITE → gemeinsame Verantwortlichkeit mit Meta für die
+      # Seitenstatistiken (EuGH C-210/16 betraf genau Facebook-Seiten).
+      gemeinsame_verantwortung: true
+      vereinbarung_link: "https://www.facebook.com/legal/terms/page_controller_addendum"
+      drittland_text: >-
+        Meta übermittelt Daten auch an die Meta Platforms, Inc. in den USA. Die
+        Übermittlung stützt sich auf das EU-US Data Privacy Framework
+        (Angemessenheitsbeschluss, Art. 45 DSGVO) sowie auf
+        Standardvertragsklauseln der EU-Kommission (Art. 46 DSGVO).
+      zusaetzliche_hinweise: >-
+        Bei diesem Kanal handelt es sich um meine Facebook-Seite, nicht um mein
+        persönliches Facebook-Profil. Anfragen zu den Seitenstatistiken leite ich
+        gemäß der Vereinbarung mit Meta an Meta weiter.
 
   # ──────────────────────────────── TIKTOK ─────────────────────────────────
   - id: "tiktok"
@@ -262,5 +307,5 @@ kanaele:
 #        <Wer erhält Daten außerhalb der EU und auf welcher Grundlage?>
 #      zusaetzliche_hinweise: ""
 #
-#  Vorhandene Icons: mail, phone, linkedin, instagram, tiktok.
+#  Vorhandene Icons: mail, phone, linkedin, instagram, facebook, tiktok.
 #  Für eine neue Plattform ihr SVG-Icon nach assets/icons/ legen (siehe README).

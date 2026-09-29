@@ -50,7 +50,7 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 | auf „Unternehmen" umschalten                       | `_data/rechtliches.yml`       | MODUS → `modus: "unternehmen"`             |
 | Social-Media-Impressum eines Kanals ändern         | `_data/social.yml`            | beim Kanal → Block `rechtliches`           |
 | alte Adresse auf eine neue umleiten                | `_data/weiterleitungen.yml`   | WEITERLEITUNGEN                            |
-| QR-Linkseite `/links/` anpassen                    | `_data/linkseite.yml`         | (Links selbst: `social.yml`, `navigation.yml`) |
+| vCard-Button auf der Kontaktseite ändern           | `_data/social.yml`            | KONTAKTSEITE → `vcard_…`                   |
 | Google/Bing-Bestätigungscode eintragen             | `_config.yml`                 | SUCHMASCHINEN → `verifizierung`            |
 | Farben, Schriften, Abstände, Rundungen ändern      | `_sass/_theme.scss`           | FARBEN / TYPOGRAFIE / …                    |
 | die Hintergrund-Animation abschalten               | `_sass/_theme.scss`           | ANIMATIONEN → `$hintergrund-animation: false;` |
@@ -76,13 +76,12 @@ sandro/
 │
 ├── _data/                   ✏️ HIER BEARBEITEST DU DEINE INHALTE
 │   ├── person.yml              Name, Titel, Foto, Wohnort, Highlights, Galerie
-│   ├── social.yml              LinkedIn, Instagram, TikTok, Telefon, E-Mail
+│   ├── social.yml              LinkedIn, Instagram, Facebook, TikTok, Telefon, E-Mail
 │   ├── navigation.yml          Hauptmenü
 │   ├── lebenslauf.yml          Berufserfahrung, Praktika, Ausbildung, Skills …
 │   ├── zertifikate.yml         Zertifikate & Kategorien
 │   ├── rechtliches.yml         Impressum, Offenlegung, Datenschutz
 │   ├── footer.yml              Footer-Texte und -Links
-│   ├── linkseite.yml           Texte der QR-Linkseite /links/
 │   └── weiterleitungen.yml     Alte Adressen → neue Adressen
 │
 ├── _sass/
@@ -101,7 +100,7 @@ sandro/
 ├── impressum.html              /impressum/
 ├── datenschutz.html            /datenschutz/
 ├── social-impressum.html       /social-impressum/ (+ /social-impressum/<kanal>/ automatisch)
-├── links.html                  /links/ – Ziel des QR-Codes (⚠ Adresse nie ändern)
+├── links.html                  /links/ – leitet auf /kontakt/ weiter (⚠ QR-Code, nie löschen)
 ├── vcard.vcf                   /Sandro_Exenberger.vcf – digitale Visitenkarte
 ├── 404.html                    Fehlerseite
 ├── robots.txt, site.webmanifest, favicon.ico
@@ -277,7 +276,7 @@ In `_data/social.yml`:
 
 - **Ausblenden:** beim Kanal `anzeigen: false`.
 - **Nur an bestimmten Stellen zeigen:** `orte: [footer, kontakt]` (möglich: `header`, `footer`, `startseite`, `kontakt`).
-- **Aktuelle Kanäle:** LinkedIn, Instagram, TikTok, Telefon, E-Mail (Reihenfolge = Reihenfolge in `social.yml`). Vorhandene Icons: `mail`, `phone`, `linkedin`, `instagram`, `tiktok`.
+- **Aktuelle Kanäle:** LinkedIn, Instagram, Facebook (Seite), TikTok, Telefon, E-Mail (Reihenfolge = Reihenfolge in `social.yml`). Vorhandene Icons: `mail`, `phone`, `linkedin`, `instagram`, `facebook`, `tiktok`.
 - **Neue Plattform (später):** die inaktive Vorlage am Dateiende kopieren, siehe [5.10](#510-social-media-impressum-neuer-kanal--direktlinks).
 - **Eigenes Icon:** SVG-Datei (24 × 24, am besten von [lucide.dev](https://lucide.dev) oder [simpleicons.org](https://simpleicons.org)) nach `assets/icons/` legen, z. B. `meinkanal.svg`, und im Eintrag `icon: "meinkanal"` schreiben. Das Icon wird automatisch eingebunden.
 - Social-Media-Profile brauchen zusätzlich den Block `rechtliches` – siehe [5.10](#510-social-media-impressum-neuer-kanal--direktlinks).
@@ -344,6 +343,7 @@ Jeder Social-Media-Kanal hat im Impressum einen **eigenen Bereich** (Offenlegung
 | --- | --- | --- |
 | LinkedIn | `https://sandro.exemail.at/social-impressum/linkedin/` | **Kontaktinfo → Website hinzufügen** (Typ „Sonstiges", Bezeichnung „Impressum") **und** letzte Zeile im Abschnitt **Info** |
 | Instagram | `https://sandro.exemail.at/social-impressum/instagram/` | **Profil bearbeiten → Links** (Titel „Impressum", an **erste** Stelle) **und** letzte Zeile der **Bio** |
+| Facebook (Seite) | `https://sandro.exemail.at/social-impressum/facebook/` | **Seite → Info/Intro → Website** hinzufügen **und** im **Intro/Beschreibung**; Details siehe RECHTLICHES.md |
 | TikTok | `https://sandro.exemail.at/social-impressum/tiktok/` | **Profil bearbeiten → Website** (falls vorhanden) **und** in der **Bio**; Details siehe RECHTLICHES.md |
 
 **Neuen Kanal hinzufügen (später):**
@@ -446,7 +446,7 @@ Nach 1–2 Minuten ist der alte Stand online. Ausnahme: Die ganz alte Website (`
 | Was | Wie |
 | --- | --- |
 | **Sitemap** `sandro.exemail.at/sitemap.xml` | Wird bei jedem Build neu erzeugt. Jede Seite bekommt ihr echtes Änderungsdatum (`lastmod`) aus der Git-Historie – inklusive der Datendatei, aus der ihr Inhalt stammt (Front-Matter-Feld `abhaengig_von`). |
-| **Nicht in der Sitemap** | Linkseite `/links/`, 404-Seite, vCard, PDFs, Weiterleitungen, IndexNow-Schlüssel |
+| **Nicht in der Sitemap** | `/links/` (Weiterleitung, noindex), 404-Seite, vCard, PDFs, alle Weiterleitungen, IndexNow-Schlüssel |
 | **robots.txt** | Erlaubt alles und verweist auf die Sitemap |
 | **Canonical-Tags** | Jede Seite zeigt auf ihre eindeutige Adresse `https://sandro.exemail.at/…/` (immer https, immer mit `/` am Ende) |
 | **Alte Adressen** | Leiten auf die neue Seite weiter (`_data/weiterleitungen.yml`, Tabelle unten) |
@@ -467,10 +467,10 @@ Ermittelt aus allen 337 Commits der Git-Historie.
 | `/impressum.html`, `/imprint/` | `/impressum/` |
 | `/datenschutz.html`, `/privacy/` | `/datenschutz/` |
 | `/impressum/social/` | `/social-impressum/` |
-| `/links.html` | `/links/` |
+| `/links`, `/links/`, `/links.html` | `/kontakt/` |
 | `/projects/`, `/projects.html`, `/projekte/` | `/` (keine Projekte-Seite mehr) |
 | `/lab/`, `/lab.html` | `/` (keine Home-Lab-Seite mehr) |
-| `/`, `/impressum/`, `/datenschutz/`, `/links/`, `/Sandro_Exenberger.vcf` | unverändert |
+| `/`, `/impressum/`, `/datenschutz/`, `/Sandro_Exenberger.vcf` | unverändert |
 | `/default.html`, `/footer.html`, `/nav.html` (frühe Bausteine) | 404 – bewusst ohne Weiterleitung |
 
 ### Einmalig: Google Search Console
@@ -512,7 +512,7 @@ Diese Dateien und Einträge sind für Domain, Druckmedien, Profile oder Suchmasc
 | --- | --- |
 | `CNAME`, `_config.yml`, `Gemfile`, `Gemfile.lock`, `.github/workflows/` | Domain, Einstellungen, Build & Deploy |
 | `_data/`, `_includes/`, `_layouts/`, `_sass/`, `_plugins/`, alle Seiten | Die Website selbst |
-| `links.html` (`/links/`) und `vcard.vcf` (`/Sandro_Exenberger.vcf`) | QR-Code und Visitenkarte |
+| `links.html` (`/links/` → `/kontakt/`) und `vcard.vcf` (`/Sandro_Exenberger.vcf`) | QR-Code und Visitenkarte |
 | Einträge mit „⚠ NIE LÖSCHEN" in `_data/weiterleitungen.yml` | Gedruckte Visitenkarte (`/contact/`), alte Bio-Links, TikTok-Kurzadresse |
 | `indexnow` → `schluessel` in `_config.yml` (erzeugt `/47c07f7ba9589a1160b2a52814ca828d.txt`) | IndexNow lehnt Meldungen sonst ab |
 | `verifizierung` in `_config.yml` sowie künftige Dateien wie `google*.html` oder `BingSiteAuth.xml` | Bestätigung bei Google/Bing |

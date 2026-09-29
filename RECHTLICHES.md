@@ -105,6 +105,7 @@ Die `#`-Sprungmarken bleiben zusätzlich für die Navigation auf der Übersicht 
 | --- | --- |
 | LinkedIn | `https://sandro.exemail.at/social-impressum/linkedin/` |
 | Instagram | `https://sandro.exemail.at/social-impressum/instagram/` |
+| Facebook (Seite) | `https://sandro.exemail.at/social-impressum/facebook/` |
 | TikTok | `https://sandro.exemail.at/social-impressum/tiktok/` |
 
 > ⚠️ Die `id` eines Kanals in `social.yml` **nie mehr ändern**, sobald der Link in einer Bio steht.
@@ -122,6 +123,16 @@ Die `#`-Sprungmarken bleiben zusätzlich für die Navigation auf der Übersicht 
 2. URL: `https://sandro.exemail.at/social-impressum/linkedin/` – Typ: **Sonstiges** – Bezeichnung: **Impressum**
 3. Zusätzlich im Abschnitt **Info** als letzte Zeile: `Impressum: sandro.exemail.at/social-impressum/linkedin`
    (Die Kontaktinfo ist auf dem Handy nur über einen Extra-Klick erreichbar – der Hinweis im Info-Text macht es eindeutig.)
+
+**Facebook (deine Seite „Sandro Exenberger“)**
+
+Der Direktlink gehört auf die **Facebook-Seite**, die auf der Website verlinkt ist. Beide Stellen nutzen:
+
+1. **Website-Feld:** Zur Seite wechseln → **Seite bearbeiten** bzw. **Info** → **Kontaktinfo und Basisinfo** → **Website hinzufügen** → `https://sandro.exemail.at/social-impressum/facebook/`. Erscheint im Intro-Bereich direkt unter dem Seitennamen.
+2. **Intro/Beschreibung (Bio):** Seite → **Intro bearbeiten** → als letzte Zeile: `Impressum: sandro.exemail.at/social-impressum/facebook` (der Text-Link ist anklickbar).
+3. Optional zusätzlich: einen Beitrag „Impressum & Datenschutz" mit dem Link erstellen und **oben anpinnen**.
+
+> **Dein persönliches Facebook-Profil** steht (bewusst) nicht auf der Website. Ist es **öffentlich** und veröffentlichst du dort Inhalte an einen größeren Personenkreis, braucht auch das eine Offenlegung. Dann: Profil als eigenen Kanal in `social.yml` ergänzen (Vorlage) oder mir den sauberen Profil-Link schicken. **[RECHTLICH PRÜFEN]** ob ein nur für Freunde sichtbares Profil ein Medium im Sinne des MedienG ist.
 
 **TikTok**
 
@@ -155,6 +166,8 @@ TikTok zeigt das anklickbare **Website-Feld** (Profil bearbeiten → **Website**
 
 Das EuGH-Urteil C-210/16 („Fanpage", 2018) betraf den Betreiber einer **Unternehmens-/Fanseite**, der über die Seitenstatistiken („Insights") der Plattform mitbestimmt, welche Statistiken über Besucher erstellt werden. Bei einem **persönlichen Profil** legst du weder Zwecke noch Mittel der Plattform-Verarbeitung fest. LinkedIn bietet seine Vereinbarung nach Art. 26 DSGVO („Page Insights Joint Controller Addendum") ausdrücklich **nur für Unternehmensseiten** an.
 ➡️ Deshalb steht bei LinkedIn und Instagram `gemeinsame_verantwortung: false`, und der Text erklärt das offen.
+
+**Ausnahme Facebook-Seite:** Genau diesen Fall hat der EuGH in C-210/16 entschieden: Betreiber einer Facebook-**Seite** sind für die Seitenstatistiken (Insights) gemeinsam mit Meta verantwortlich. Deshalb steht bei Facebook `gemeinsame_verantwortung: true`, verlinkt ist Metas **„Page Insights Controller Addendum"** (<https://www.facebook.com/legal/terms/page_controller_addendum>). Darin übernimmt Meta die Hauptverantwortung für die Insights-Daten, u. a. für die Erfüllung der Betroffenenrechte.
 
 **Ausnahme TikTok:** TikToks „Analytics Joint Controller Addendum" gilt laut Wortlaut für **jedes Konto, das TikTok Analytics erhält** – unabhängig vom Kontotyp. TikTok Analytics steht allen Konten zur Verfügung. Deshalb ist bei TikTok vorsichtshalber `gemeinsame_verantwortung: true` gesetzt und die Vereinbarung verlinkt. TikTok übernimmt darin u. a. Rechtsgrundlage, Information und die Erfüllung der Betroffenenrechte für diese Statistikdaten.
 

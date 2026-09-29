@@ -19,6 +19,13 @@ abhaengig_von:
     {%- if ks.einleitung and ks.einleitung != "" %}
     <p class="page-hero__lead">{{ ks.einleitung }}</p>
     {%- endif %}
+    {%- if ks.vcard_anzeigen %}
+    <div class="page-hero__actions">
+      <a class="btn btn--sekundaer" href="{{ ks.vcard_datei | relative_url }}" download>
+        {% include icon.html name="download" %} {{ ks.vcard_text }}
+      </a>
+    </div>
+    {%- endif %}
   </div>
 </header>
 

@@ -1,7 +1,7 @@
 ---
 # Digitale Visitenkarte – vollständig aus _data/ erzeugt.
-# ⚠ Die Adresse steht im QR-Code/auf der Visitenkarte. Wenn du sie änderst,
-#   auch "vcard_datei" in _data/linkseite.yml anpassen.
+# ⚠ Die Adresse kann auf Visitenkarten stehen. Wenn du sie änderst,
+#   auch "vcard_datei" in _data/social.yml (kontaktseite) anpassen.
 permalink: /Sandro_Exenberger.vcf
 layout: null
 sitemap: false

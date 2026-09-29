@@ -20,7 +20,7 @@ Jekyll 4, gebaut und veröffentlicht über GitHub Actions (`.github/workflows/de
 | --- | --- |
 | Keine externen Ressourcen (CDN, Google Fonts, Tracking, Cookies, Embeds) | Die Datenschutzerklärung sagt das ausdrücklich. |
 | Keine Inline-Skripte und keine `style=`-Attribute | Strenge Content-Security-Policy (`_includes/head.html`). Deshalb auch kein `jekyll-redirect-from`. |
-| `/contact/`, `/links/`, `/Sandro_Exenberger.vcf`, `/impressum/social/` müssen erreichbar bleiben | Gedruckte Visitenkarte, QR-Code, alte Bio-Links → `_data/weiterleitungen.yml`. |
+| `/contact/`, `/links/` (beide → `/kontakt/`), `/Sandro_Exenberger.vcf`, `/impressum/social/` müssen erreichbar bleiben | Gedruckte Visitenkarte, QR-Code, alte Bio-Links → `_data/weiterleitungen.yml`. |
 | `id` eines Kanals in `social.yml` nie ändern | Steht als `/social-impressum/<id>/` in Bios. |
 | `CNAME` nie ändern oder löschen | Domain-Zuordnung. |
 | Nie löschen: IndexNow-Schlüssel (`_config.yml` → `indexnow`), `verifizierung`, künftige `google*.html`/`BingSiteAuth.xml`, `links.html`, `vcard.vcf`, „⚠ NIE LÖSCHEN“-Weiterleitungen | Suchmaschinen, QR-Code, Visitenkarte – vollständige Liste: README Abschnitt 11. Google ist per DNS-TXT bei `exemail.at` bestätigt. |
