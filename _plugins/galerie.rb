@@ -92,6 +92,13 @@ module Galerie
     def eintrag(b, info, index)
       name = info["name"]
       fotograf = b["fotograf"].to_s.strip
+      # "[BITTE AUSFÜLLEN]" nie öffentlich zeigen – nur warnen
+      if fotograf.start_with?("[")
+        text = "#{b['datei']}: Fotograf fehlt noch (#{fotograf}) – Bildnachweis wird erst angezeigt, wenn er eingetragen ist"
+        Jekyll.logger.warn "Galerie:", text
+        puts "::warning title=Galerie::#{text}" if ENV["GITHUB_ACTIONS"]
+        fotograf = ""
+      end
       {
         "_index" => index,
         "id" => "bild-#{Jekyll::Utils.slugify(name)}",

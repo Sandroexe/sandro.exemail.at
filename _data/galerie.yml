@@ -52,6 +52,7 @@ kategorien:
   - "Projekte"
   - "Schule"
   - "Arbeit"
+  - "Porträts"
 
 
 # ═══════════════════════════ HIGHLIGHTS AUF DER STARTSEITE ═════════════════
@@ -69,27 +70,63 @@ bilder:
 
   - datei: "landtag-rede.jpg"            # (Pflicht) Dateiname in assets/img/galerie/
     titel: "Rede im Tiroler Landtag"     # (Pflicht) Überschrift in der Großansicht
-    alt_text: "[BITTE AUSFÜLLEN]"        # (Pflicht) Was ist zu sehen? Für blinde Besucher, z. B. "Sandro Exenberger spricht am Rednerpult"
+    alt_text: "Sandro Exenberger spricht am Rednerpult mit der Aufschrift „Tiroler Landtag“ und unterstreicht seine Worte mit einer Handbewegung"   # (Pflicht) Was ist zu sehen? Für blinde Besucher
     beschreibung: ""                     # (optional) 1–2 Sätze
-    datum: ""                            # (optional) "JJJJ-MM" oder "JJJJ-MM-TT", z. B. "2026-09-24"
-    ort: ""                              # (optional) z. B. "Landhaus Innsbruck"
+    datum: "2025-11-10"                  # (optional) "JJJJ-MM" oder "JJJJ-MM-TT" – hier aus den Kameradaten
+    ort: "Tiroler Landtag, Innsbruck"    # (optional)
     kategorie: "Veranstaltungen"         # eine der Kategorien oben
     fotograf: "[BITTE AUSFÜLLEN]"        # (optional) wer hat fotografiert? Leer = du selbst. Erscheint im Bildnachweis im Impressum.
     erlaubnis_eingeholt: false           # Merkhilfe NUR für dich (nie öffentlich): Erlaubnis von Fotograf und erkennbaren Personen?
     anzeigen: true                       # true = auf der Website zeigen, false = ausblenden
     hervorgehoben: true                  # true = zusätzlich auf der Startseite ("Einblicke")
 
-  - datei: "pc-setup.jpg"
-    titel: "Mein Arbeitsplatz"
-    alt_text: "Der Arbeitsplatz mit dem selbst zusammengestellten Rechner"
+  - datei: "landtag-rede-2.jpg"
+    titel: "Rede im Tiroler Landtag"
+    alt_text: "Sandro Exenberger am Rednerpult des Tiroler Landtags vor einem hellen Fenster"
+    beschreibung: ""
+    datum: "2025-11-10"
+    ort: "Tiroler Landtag, Innsbruck"
+    kategorie: "Veranstaltungen"
+    fotograf: "[BITTE AUSFÜLLEN]"
+    erlaubnis_eingeholt: false
+    anzeigen: true
+    hervorgehoben: false
+
+  - datei: "landtag-rede-3.jpg"
+    titel: "Rede im Tiroler Landtag"
+    alt_text: "Nahaufnahme: Sandro Exenberger spricht am Rednerpult ins Mikrofon"
+    beschreibung: ""
+    datum: "2025-11-10"
+    ort: "Tiroler Landtag, Innsbruck"
+    kategorie: "Veranstaltungen"
+    fotograf: "[BITTE AUSFÜLLEN]"
+    erlaubnis_eingeholt: false
+    anzeigen: true
+    hervorgehoben: false
+
+  - datei: "portraet.jpg"
+    titel: "Porträt"
+    alt_text: "Porträtfoto von Sandro Exenberger in dunklem Sakko und weißem Hemd vor schwarzem Hintergrund"
     beschreibung: ""
     datum: ""
     ort: ""
-    kategorie: "Projekte"
-    fotograf: ""
-    erlaubnis_eingeholt: true
+    kategorie: "Porträts"
+    fotograf: "[BITTE AUSFÜLLEN]"
+    erlaubnis_eingeholt: false
     anzeigen: true
-    hervorgehoben: false
+    hervorgehoben: true
+
+  - datei: "portraet-innenhof.jpg"
+    titel: "Im Anzug im Innenhof"
+    alt_text: "Sandro Exenberger steht in Anzug und gestreifter Krawatte lächelnd in einem gepflasterten Innenhof vor einem Baum und einem mehrstöckigen Gebäude"
+    beschreibung: ""
+    datum: ""
+    ort: ""
+    kategorie: "Porträts"
+    fotograf: "[BITTE AUSFÜLLEN]"
+    erlaubnis_eingeholt: false
+    anzeigen: true
+    hervorgehoben: true
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
 #  - datei: "mein-foto.jpg"
