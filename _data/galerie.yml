@@ -69,7 +69,7 @@ startseite:
 bilder:
 
   - datei: "landtag-rede.jpg"            # (Pflicht) Dateiname in assets/img/galerie/
-    titel: "Rede im Tiroler Landtag"     # (Pflicht) Überschrift in der Großansicht
+    titel: "Rede beim Tiroler Schülerinnen- und Schülerparlament"     # (Pflicht) Überschrift in der Großansicht
     alt_text: "Sandro Exenberger spricht am Rednerpult mit der Aufschrift „Tiroler Landtag“ und unterstreicht seine Worte mit einer Handbewegung"   # (Pflicht) Was ist zu sehen? Für blinde Besucher
     beschreibung: ""                     # (optional) 1–2 Sätze
     datum: "2025-11-10"                  # (optional) "JJJJ-MM" oder "JJJJ-MM-TT" – hier aus den Kameradaten
@@ -81,7 +81,7 @@ bilder:
     hervorgehoben: true                  # true = zusätzlich auf der Startseite ("Einblicke")
 
   - datei: "landtag-rede-2.jpg"
-    titel: "Rede im Tiroler Landtag"
+    titel: "Rede beim Tiroler Schülerinnen- und Schülerparlament"
     alt_text: "Sandro Exenberger am Rednerpult des Tiroler Landtags vor einem hellen Fenster"
     beschreibung: ""
     datum: "2025-11-10"
@@ -93,7 +93,7 @@ bilder:
     hervorgehoben: false
 
   - datei: "landtag-rede-3.jpg"
-    titel: "Rede im Tiroler Landtag"
+    titel: "Rede beim Tiroler Schülerinnen- und Schülerparlament"
     alt_text: "Nahaufnahme: Sandro Exenberger spricht am Rednerpult ins Mikrofon"
     beschreibung: ""
     datum: "2025-11-10"
