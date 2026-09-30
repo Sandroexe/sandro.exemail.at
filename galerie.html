@@ -1,0 +1,85 @@
+---
+# Galerie – Inhalte kommen aus _data/galerie.yml (aufbereitet von _plugins/galerie.rb)
+title: "Galerie"
+description: "Fotos von Sandro Exenberger aus Veranstaltungen, Projekten, Schule und Arbeit."
+permalink: /galerie/
+hero: false
+skripte:
+  - galerie.js
+# Für das Änderungsdatum in der Sitemap: Dateien, aus denen der Inhalt stammt
+abhaengig_von:
+  - _data/galerie.yml
+---
+{%- assign g = site.data.galerie -%}
+{%- assign bilder = site.data.galerie_liste -%}
+
+<header class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Einblicke</p>
+    <h1>{{ g.titel }}</h1>
+    {%- if g.einleitung and g.einleitung != "" %}
+    <p class="page-hero__lead">{{ g.einleitung }}</p>
+    {%- endif %}
+  </div>
+</header>
+
+<div class="section section--tight">
+  <div class="container">
+    {%- if jekyll.environment == "development" and site.data.galerie_fehlend.size > 0 %}
+    <div class="dev-banner dev-banner--block" role="note">
+      Nur in der lokalen Vorschau sichtbar – diese Fotos werden übersprungen:
+      <ul>
+        {%- for f in site.data.galerie_fehlend %}
+        <li><code>{{ f.datei }}</code>: {{ f.grund }}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+    {%- endif %}
+
+    {%- if bilder.size == 0 %}
+    <p class="empty-state">Hier erscheinen bald die ersten Fotos.</p>
+    {%- else %}
+
+    <!-- Filter (nur mit JavaScript) -->
+    {%- if site.data.galerie_kategorien.size > 1 %}
+    <ul class="filter-bar js-only" aria-label="Fotos nach Kategorie filtern" data-filter-einheit="Foto,Fotos">
+      <li><button type="button" class="filter-btn" data-filter="alle" aria-pressed="true">Alle<span class="filter-btn__count">{{ bilder.size }}</span></button></li>
+      {%- for kat in site.data.galerie_kategorien %}
+      <li><button type="button" class="filter-btn" data-filter="{{ kat.name | escape }}" aria-pressed="false">{{ kat.name }}<span class="filter-btn__count">{{ kat.anzahl }}</span></button></li>
+      {%- endfor %}
+    </ul>
+    <p class="visually-hidden" aria-live="polite" data-filter-status></p>
+    {%- endif %}
+
+    <div class="galerie">
+      <ul class="galerie-raster">
+        {%- for b in bilder %}
+        {% include galerie-kachel.html bild=b index=forloop.index0 %}
+        {%- endfor %}
+      </ul>
+    </div>
+    <p class="empty-state" data-filter-leer hidden>In dieser Kategorie gibt es noch keine Fotos.</p>
+
+    <!-- Großansicht (Lightbox) – wird von assets/js/galerie.js gesteuert -->
+    <dialog class="lightbox" aria-labelledby="lightbox-titel" data-lightbox>
+      <figure class="lightbox__figur">
+        <div class="lightbox__buehne" data-lightbox-buehne>
+          <picture>
+            <source type="image/webp" data-lightbox-webp>
+            <img class="lightbox__bild" alt="" data-lightbox-img>
+          </picture>
+        </div>
+        <figcaption class="lightbox__info">
+          <p class="lightbox__zaehler" data-lightbox-zaehler></p>
+          <h2 class="lightbox__titel" id="lightbox-titel" data-lightbox-titel></h2>
+          <p class="lightbox__text" data-lightbox-beschreibung></p>
+          <p class="lightbox__meta" data-lightbox-meta></p>
+        </figcaption>
+      </figure>
+      <button type="button" class="lightbox__btn lightbox__btn--zu" aria-label="Großansicht schließen" data-lightbox-zu>{% include icon.html name="x" %}</button>
+      <button type="button" class="lightbox__btn lightbox__btn--zurueck" aria-label="Vorheriges Foto" data-lightbox-zurueck>{% include icon.html name="arrow-left" %}</button>
+      <button type="button" class="lightbox__btn lightbox__btn--weiter" aria-label="Nächstes Foto" data-lightbox-weiter>{% include icon.html name="arrow-right" %}</button>
+    </dialog>
+    {%- endif %}
+  </div>
+</div>

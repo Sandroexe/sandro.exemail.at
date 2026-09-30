@@ -42,6 +42,10 @@ hauptmenue:
     url: "/zertifikate/"
     anzeigen: true
 
+  - titel: "Galerie"
+    url: "/galerie/"
+    anzeigen: true
+
   - titel: "Kontakt"
     url: "/kontakt/"
     anzeigen: true

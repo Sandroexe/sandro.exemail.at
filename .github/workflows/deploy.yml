@@ -42,6 +42,20 @@ jobs:
           ruby-version: "3.4"
           bundler-cache: true
 
+      # Galerie: Vorschaubilder + große Version (WebP & JPG) erzeugen,
+      # Metadaten inkl. GPS entfernen – siehe tools/bilder-optimieren.py
+      - name: Python einrichten (für die Galerie-Bilder)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tools/requirements.txt
+
+      - name: Galerie-Bilder aufbereiten
+        run: |
+          python -m pip install --quiet -r tools/requirements.txt
+          python tools/bilder-optimieren.py
+
       - name: GitHub Pages konfigurieren
         id: pages
         uses: actions/configure-pages@v5

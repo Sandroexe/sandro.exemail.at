@@ -1,0 +1,105 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  galerie.yml – FOTOGALERIE                                            ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Alle Fotos der Seite /galerie/ – inklusive Filter, Großansicht        ║
+# ║    (Lightbox), "Highlights" auf der Startseite und Bildnachweis im       ║
+# ║    Impressum. Du pflegst NUR diese Datei und den Bilder-Ordner.          ║
+# ║                                                                          ║
+# ║  Wohin mit den Fotos?                                                    ║
+# ║    Original-Foto nach  assets/img/galerie/  hochladen (JPG, PNG, WebP)   ║
+# ║    und hier nur den DATEINAMEN eintragen (z. B. "landtag-rede.jpg").     ║
+# ║    Verkleinern, WebP-Version, Vorschaubild und das Entfernen von         ║
+# ║    Kamera- und GPS-Daten passieren beim Veröffentlichen AUTOMATISCH.     ║
+# ║    Das Original selbst kommt nie auf die Website.                        ║
+# ║                                                                          ║
+# ║  Was darf ich ändern?                                                    ║
+# ║    Alle Werte. Fotos hinzufügen, löschen, ausblenden.                    ║
+# ║    Die Reihenfolge ergibt sich automatisch aus dem Datum (neueste        ║
+# ║    zuerst). Fotos ohne Datum stehen am Ende.                             ║
+# ║                                                                          ║
+# ║  Was sollte ich NICHT ändern?                                            ║
+# ║    Die Feldnamen und die Einrückung.                                     ║
+# ║                                                                          ║
+# ║  ⚖️  RECHT AM EIGENEN BILD – vor jedem Foto kurz prüfen:                  ║
+# ║    • Sind andere Personen erkennbar? → Deren Zustimmung einholen.        ║
+# ║    • Hat jemand anderes fotografiert? → Erlaubnis des Fotografen         ║
+# ║      einholen und ihn unter "fotograf" nennen.                           ║
+# ║    Merkhilfe: "erlaubnis_eingeholt" (wird nie öffentlich angezeigt).     ║
+# ║    Details: README.md → Abschnitt 5.11                                   ║
+# ║                                                                          ║
+# ║  Beispiel:                                                               ║
+# ║    - datei: "landtag-rede.jpg"                                           ║
+# ║      titel: "Rede im Tiroler Landtag"                                    ║
+# ║      alt_text: "Sandro Exenberger spricht am Rednerpult"                 ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+
+
+# ═══════════════════════════════ SEITENTEXT ════════════════════════════════
+
+titel: "Galerie"
+einleitung: >-
+  Momente aus Schule, Arbeit, Projekten und Veranstaltungen. Ein Klick auf ein
+  Foto öffnet die Großansicht.
+
+
+# ═══════════════════════════════ KATEGORIEN ════════════════════════════════
+# Reihenfolge der Filter-Buttons. Jedes Foto braucht eine davon.
+# Kategorien ohne sichtbares Foto werden automatisch ausgeblendet.
+
+kategorien:
+  - "Veranstaltungen"
+  - "Projekte"
+  - "Schule"
+  - "Arbeit"
+
+
+# ═══════════════════════════ HIGHLIGHTS AUF DER STARTSEITE ═════════════════
+# Zeigt die mit "hervorgehoben: true" markierten Fotos auf der Startseite.
+
+startseite:
+  anzeigen: true          # true = Bereich auf der Startseite zeigen, false = aus
+  titel: "Einblicke"      # Überschrift des Bereichs
+  anzahl: 4               # höchstens so viele Fotos (empfohlen: 3 oder 4)
+
+
+# ═══════════════════════════════ FOTOS ═════════════════════════════════════
+
+bilder:
+
+  - datei: "landtag-rede.jpg"            # (Pflicht) Dateiname in assets/img/galerie/
+    titel: "Rede im Tiroler Landtag"     # (Pflicht) Überschrift in der Großansicht
+    alt_text: "[BITTE AUSFÜLLEN]"        # (Pflicht) Was ist zu sehen? Für blinde Besucher, z. B. "Sandro Exenberger spricht am Rednerpult"
+    beschreibung: ""                     # (optional) 1–2 Sätze
+    datum: ""                            # (optional) "JJJJ-MM" oder "JJJJ-MM-TT", z. B. "2026-09-24"
+    ort: ""                              # (optional) z. B. "Landhaus Innsbruck"
+    kategorie: "Veranstaltungen"         # eine der Kategorien oben
+    fotograf: "[BITTE AUSFÜLLEN]"        # (optional) wer hat fotografiert? Leer = du selbst. Erscheint im Bildnachweis im Impressum.
+    erlaubnis_eingeholt: false           # Merkhilfe NUR für dich (nie öffentlich): Erlaubnis von Fotograf und erkennbaren Personen?
+    anzeigen: true                       # true = auf der Website zeigen, false = ausblenden
+    hervorgehoben: true                  # true = zusätzlich auf der Startseite ("Einblicke")
+
+  - datei: "pc-setup.jpg"
+    titel: "Mein Arbeitsplatz"
+    alt_text: "Der Arbeitsplatz mit dem selbst zusammengestellten Rechner"
+    beschreibung: ""
+    datum: ""
+    ort: ""
+    kategorie: "Projekte"
+    fotograf: ""
+    erlaubnis_eingeholt: true
+    anzeigen: true
+    hervorgehoben: false
+
+# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
+#  - datei: "mein-foto.jpg"
+#    titel: "Titel des Fotos"
+#    alt_text: "Was ist auf dem Foto zu sehen?"
+#    beschreibung: ""
+#    datum: "2026-10"
+#    ort: ""
+#    kategorie: "Veranstaltungen"
+#    fotograf: ""
+#    erlaubnis_eingeholt: false
+#    anzeigen: true
+#    hervorgehoben: false

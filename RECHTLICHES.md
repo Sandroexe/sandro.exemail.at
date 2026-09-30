@@ -215,10 +215,11 @@ Die Markierungen stehen auch als Kommentare in `_includes/social-kanal.html` und
 | Kontaktaufnahme | E-Mail/Telefon: Zweck, Rechtsgrundlage, Speicherdauer. Tipp: `email_anbieter` in `rechtliches.yml` eintragen. |
 | Kontaktformular | **Nur**, wenn in `_config.yml` aktiviert |
 | Social-Media-Links | Reine Links, keine Datenübertragung beim Seitenaufruf |
+| Galerie | **Kein eigener Abschnitt nötig:** Alle Fotos und die Großansicht liegen auf dieser Website selbst (kein Drittanbieter, keine Cookies, kein Local Storage). Das deckt der bestehende Satz „Schriftarten, Symbole und Bilder werden ausschließlich von dieser Website selbst geladen" ab. Siehe Abschnitt 7. |
 | Betroffenenrechte & Beschwerde | Art. 15–21 DSGVO, Österreichische Datenschutzbehörde |
 
 **Wann musst du die Datenschutzerklärung anpassen?**
-Sobald du etwas Neues einbaust, das Daten verarbeitet: eingebettete Videos, Karten, Analyse-Tools, Newsletter, externe Schriften, einen anderen Hoster. Dann `stand` aktualisieren.
+Sobald du etwas Neues einbaust, das Daten verarbeitet: eingebettete Videos, Karten, Analyse-Tools, Newsletter, externe Schriften, einen anderen Hoster. Dann `stand` aktualisieren. (Die Galerie gehört **nicht** dazu – siehe Abschnitt 7.)
 
 ---
 
@@ -227,3 +228,29 @@ Sobald du etwas Neues einbaust, das Daten verarbeitet: eingebettete Videos, Kart
 - [ ] Einmal im Jahr: Sind alle Angaben noch aktuell (Wohnort, E-Mail, Kanäle)?
 - [ ] Neuer Social-Media-Kanal → Vorlage in `social.yml` kopieren (inkl. Block `rechtliches`) **und** den Link `/social-impressum/<id>/` im neuen Profil setzen.
 - [ ] Nach jeder inhaltlichen Änderung der Rechtstexte: `stand` in `rechtliches.yml` aktualisieren.
+- [ ] Neues Foto in der Galerie → Erlaubnis von Fotograf und erkennbaren Personen? (`erlaubnis_eingeholt` in `galerie.yml`)
+
+---
+
+## 7. Fotos in der Galerie – Recht am eigenen Bild & Urheberrecht
+
+**Kurz:** Bevor ein Foto in `_data/galerie.yml` auf `anzeigen: true` steht, müssen zwei Fragen mit „Ja" beantwortet sein:
+
+| Frage | Warum | Was tun |
+| --- | --- | --- |
+| **Sind alle erkennbaren Personen einverstanden?** | Recht am eigenen Bild (§ 78 Urheberrechtsgesetz) und DSGVO: Ein Foto einer erkennbaren Person ist ein personenbezogenes Datum. Auf einer privaten Website ist die Einwilligung der sicherste Weg (Art. 6 Abs. 1 lit. a DSGVO). | Vorher fragen, am besten schriftlich (E-Mail/Nachricht genügt). Wer später widerruft, dessen Foto nimmst du heraus (`anzeigen: false`). |
+| **Darfst du das Foto verwenden, wenn jemand anderes es gemacht hat?** | Der Fotograf hat das Urheberrecht (§§ 1, 20 UrhG, auch bei Handyfotos) und das Recht, genannt zu werden. | Erlaubnis einholen und den Namen unter `fotograf` eintragen – er erscheint dann **automatisch** im Impressum unter „Bildnachweise". Nennt der Fotograf einen bestimmten Wortlaut (z. B. „Foto: Land Tirol/Name"), genau den verwenden. |
+
+`erlaubnis_eingeholt: true/false` ist nur eine Merkhilfe für dich und erscheint nirgends auf der Website. Den Nachweis (E-Mail, Nachricht) hebst du selbst auf.
+
+**Technisch schon erledigt:**
+- Auf der Website werden alle Metadaten entfernt (Kamera, Aufnahmezeit, **GPS-Standort**).
+- ⚠️ Das **Original** liegt aber im öffentlichen GitHub-Repository. Deshalb vor dem Hochladen den Standort entfernen (Anleitung: README 5.11). Der Build zeigt eine gelbe Warnung, wenn ein Original noch GPS-Daten enthält.
+
+**Datenschutzerklärung:** muss für die Galerie **nicht** angepasst werden – alle Bilder werden von dieser Website selbst ausgeliefert, es gibt keine Verbindung zu Dritten, keine Cookies und keinen Local Storage. Die Fotos selbst sind durch die Einwilligung der abgebildeten Personen gedeckt (siehe oben), nicht durch die Datenschutzerklärung.
+
+**Stellen, bei denen ich mir rechtlich nicht sicher bin:**
+- **[RECHTLICH PRÜFEN]** Fotos mit **Minderjährigen** (z. B. Mitschüler): Bis 14 entscheiden die Eltern; bei 14- bis 17-Jährigen ist unklar, ob ihre eigene Zustimmung allein reicht. Im Zweifel Zustimmung von Schüler **und** Eltern einholen oder nur Fotos ohne erkennbare Mitschüler verwenden.
+- **[RECHTLICH PRÜFEN]** Fotos, die der **Landtag, eine Partei oder die Schule** gemacht hat (z. B. „Rede im Tiroler Landtag"): Oft gibt es Nutzungsbedingungen (nur redaktionelle Nutzung, Pflicht-Bildnachweis). Vor der Veröffentlichung bei der Pressestelle nachfragen und den geforderten Bildnachweis unter `fotograf` eintragen.
+- **[RECHTLICH PRÜFEN]** Fotos von **öffentlichen Veranstaltungen** mit vielen Menschen im Hintergrund: Personen, die nur „Beiwerk" sind, müssen meist nicht einzeln zustimmen – die Grenze ist aber Einzelfallfrage. Deutlich erkennbare Einzelpersonen lieber fragen.
+

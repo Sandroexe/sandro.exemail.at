@@ -1,7 +1,8 @@
 // ─────────────────────────────────────────────────────────────────────────
-//  Seitenspezifische Stile: Startseite, Lebenslauf, Zertifikate, Kontakt,
-//  Rechtstexte, 404
+//  Seitenspezifische Stile: Startseite, Lebenslauf, Zertifikate, Galerie,
+//  Kontakt, Rechtstexte, 404
 // ─────────────────────────────────────────────────────────────────────────
+@use "tokens";
 
 // ═══ STARTSEITE – HERO ════════════════════════════════════════════════════
 
@@ -204,45 +205,6 @@
     margin: 0;
     color: var(--c-text-muted);
     font-size: 0.975rem;
-  }
-}
-
-// ─── Galerie ────────────────────────────────────────────────────────────
-
-.gallery {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr));
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  figure {
-    margin: 0;
-  }
-
-  &__img {
-    overflow: hidden;
-    border-radius: var(--radius);
-    border: 1px solid var(--c-border);
-    aspect-ratio: 4 / 3;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 600ms var(--ease);
-    }
-  }
-
-  figure:hover img {
-    transform: scale(1.04);
-  }
-
-  figcaption {
-    margin-top: 0.6rem;
-    font-size: 0.9rem;
-    color: var(--c-text-muted);
   }
 }
 
@@ -792,6 +754,272 @@
 
   .cert-dialog__body {
     padding: 1.25rem 1.4rem;
+  }
+}
+
+// ═══ GALERIE ══════════════════════════════════════════════════════════════
+// Gleichmäßiges Raster: Querformate belegen eine Zelle (4:3), Hochformate
+// zwei Zellen übereinander (ca. 2:3). Lücken füllt der Browser automatisch
+// ("dense"). Die Zeilenhöhe folgt der Spaltenbreite (Container-Query-Einheit
+// cqi), deshalb springt beim Laden nichts.
+
+.galerie {
+  container-type: inline-size;
+}
+
+.galerie-raster {
+  --spalten: 1;
+  --luecke: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(var(--spalten), minmax(0, 1fr));
+  grid-auto-rows: 14rem; // Rückfall für sehr alte Browser
+  grid-auto-rows: calc((100cqi - (var(--spalten) - 1) * var(--luecke)) / var(--spalten) * 0.75);
+  grid-auto-flow: dense;
+  gap: var(--luecke);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @container (min-width: 18rem) { --spalten: 2; }
+  @container (min-width: 42rem) { --spalten: 3; }
+  @container (min-width: 62rem) { --spalten: 4; }
+
+  &__eintrag {
+    min-width: 0;
+
+    &--hoch {
+      grid-row: span 2;
+    }
+  }
+
+  // Startseite: alle Fotos gleich groß, eine Reihe
+  &--startseite &__eintrag--hoch {
+    grid-row: auto;
+
+    img {
+      object-position: center 30%;
+    }
+  }
+}
+
+.galerie-kachel {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  background: var(--c-surface-2);
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--tempo) ease, border-color var(--tempo) ease;
+
+  picture,
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+    transition: transform 600ms var(--ease);
+  }
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: var(--shadow-hover);
+    border-color: color-mix(in srgb, var(--c-primary) 45%, var(--c-border));
+
+    img {
+      transform: scale(1.04);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-focus);
+    outline-offset: 3px;
+  }
+
+  // Titel auf dunklem Verlauf – Farben immer aus dem dunklen Theme
+  &__titel {
+    @include tokens.dunkel;
+    position: absolute;
+    inset: auto 0 0;
+    padding: 2.5rem 0.9rem 0.7rem;
+    background: linear-gradient(to top, color-mix(in srgb, var(--c-bg) 88%, transparent) 35%, transparent);
+    color: var(--c-text);
+    font-size: 0.9rem;
+    font-weight: var(--fw-medium);
+    line-height: 1.35;
+    transition: opacity var(--tempo) ease, transform var(--tempo) var(--ease);
+  }
+
+  // Mit Maus: Titel erst beim Darüberfahren; am Handy immer sichtbar
+  @media (hover: hover) {
+    &__titel {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    &:hover &__titel,
+    &:focus-visible &__titel {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+// "Alle Fotos ansehen" unter den Einblicken auf der Startseite
+.galerie-mehr {
+  margin: 1.5rem 0 0;
+}
+
+// ─── Großansicht (Lightbox) ─────────────────────────────────────────────
+
+.lightbox {
+  @include tokens.dunkel;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--c-bg) 97%, transparent);
+  color: var(--c-text);
+
+  &::backdrop {
+    background: transparent;
+  }
+
+  &__figur {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    height: 100%;
+    margin: 0;
+  }
+
+  // Das Bild füllt die Bühne; "contain" zeigt es vollständig und unverzerrt
+  &__buehne {
+    position: relative;
+    min-height: 0;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  &__bild {
+    position: absolute;
+    inset: 4.25rem 1rem 1rem;
+    width: calc(100% - 2rem);
+    height: calc(100% - 5.25rem);
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity var(--tempo) ease;
+
+    @media (min-width: 48em) {
+      inset-inline: 5rem;
+      width: calc(100% - 10rem);
+    }
+  }
+
+  &.is-geladen &__bild {
+    opacity: 1;
+  }
+
+  &__info {
+    width: 100%;
+    max-width: var(--measure);
+    margin-inline: auto;
+    padding: 0.25rem 1.25rem 1.5rem;
+    text-align: center;
+  }
+
+  &__zaehler {
+    margin: 0 0 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--c-text-muted);
+  }
+
+  &__titel {
+    margin: 0;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  }
+
+  &__text {
+    margin: 0.4rem 0 0;
+    font-size: 0.95rem;
+  }
+
+  &__meta {
+    margin: 0.4rem 0 0;
+    font-size: 0.85rem;
+    color: var(--c-text-muted);
+  }
+
+  &__btn {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 1px solid var(--c-border);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--c-surface) 85%, transparent);
+    color: var(--c-text);
+    cursor: pointer;
+    transition: background-color var(--tempo) ease, color var(--tempo) ease, border-color var(--tempo) ease;
+
+    &:hover {
+      background: var(--c-primary);
+      border-color: var(--c-primary);
+      color: var(--c-on-primary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--c-focus);
+      outline-offset: 2px;
+    }
+
+    &[hidden] {
+      display: none;
+    }
+
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    &--zu {
+      top: 1rem;
+      right: 1rem;
+    }
+
+    &--zurueck,
+    &--weiter {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &--zurueck {
+      left: 0.75rem;
+    }
+
+    &--weiter {
+      right: 0.75rem;
+    }
+  }
+}
+
+// Seite dahinter nicht mitscrollen, solange die Großansicht offen ist
+.lightbox-offen {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox[open] {
+    animation: einblenden 250ms ease;
   }
 }
 

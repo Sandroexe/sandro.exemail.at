@@ -17,6 +17,10 @@ node_modules/
 tools/linkedin-export/
 tools/ausgabe/
 
+# ─── Automatisch erzeugte Galerie-Bilder (tools/bilder-optimieren.py) ─
+assets/img/galerie-web/
+_data/galerie_web.json
+
 # ─── Betriebssystem ─────────────────────────────────────────────────
 .DS_Store
 ._*

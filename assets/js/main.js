@@ -8,7 +8,7 @@
  *  4. Spam-Schutz: E-Mail & Telefon lesbar machen
  *  5. Scroll-Einblendungen
  *  6. Lebenslauf drucken / als PDF speichern
- *  7. Zertifikate: Filter & Detailansicht
+ *  7. Filter (Zertifikate, Galerie) & Detailansicht
  *  8. Social-Media-Impressum: Kanal per Direktlink öffnen & hervorheben
  * ═══════════════════════════════════════════════════════════════════════
  */
@@ -173,13 +173,17 @@
     });
   }
 
-  /* ─── 7. Zertifikate: Filter & Detailansicht ──────────────────────── */
+  /* ─── 7. Filter (Zertifikate, Galerie) & Detailansicht ────────────── */
 
-  function initCertificateFilter() {
+  function initFilter() {
     var buttons = document.querySelectorAll("[data-filter]");
     if (!buttons.length) return;
     var cards = document.querySelectorAll("[data-kategorie]");
     var status = document.querySelector("[data-filter-status]");
+    var empty = document.querySelector("[data-filter-leer]");
+    // Wort für die Ansage im Screenreader, z. B. "Foto,Fotos"
+    var bar = document.querySelector("[data-filter-einheit]");
+    var units = (bar ? bar.getAttribute("data-filter-einheit") : "Zertifikat,Zertifikate").split(",");
 
     buttons.forEach(function (btn) {
       btn.addEventListener("click", function () {
@@ -199,8 +203,9 @@
           }
         });
 
+        if (empty) empty.hidden = visible > 0;
         if (status) {
-          status.textContent = visible + (visible === 1 ? " Zertifikat" : " Zertifikate") + " angezeigt";
+          status.textContent = visible + " " + (visible === 1 ? units[0] : units[1]) + " angezeigt";
         }
       });
     });
@@ -279,7 +284,7 @@
   initContactProtection();
   initReveal();
   initPrint();
-  initCertificateFilter();
+  initFilter();
   initDialogs();
   initChannelSections();
 })();

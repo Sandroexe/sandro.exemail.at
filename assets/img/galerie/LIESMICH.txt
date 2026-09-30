@@ -1,0 +1,11 @@
+Hier legst du die ORIGINAL-Fotos für die Galerie ab (JPG, PNG oder WebP).
+Danach in _data/galerie.yml nur den Dateinamen eintragen, z. B.:
+    datei: "landtag-rede.jpg"
+
+Empfehlung: längste Seite mindestens 2000 Pixel, JPG, Dateiname klein und
+ohne Leer-/Sonderzeichen (z. B. "schulfest-2026.jpg").
+iPhone-Fotos (HEIC) vorher als JPG exportieren.
+
+Beim Veröffentlichen werden automatisch Vorschaubilder und eine große
+Version (WebP + JPG) erzeugt und Kamera-/GPS-Daten entfernt.
+Die Originale in diesem Ordner kommen NIE auf die Website.

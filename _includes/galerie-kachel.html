@@ -1,0 +1,33 @@
+{%- comment -%}
+  Ein Foto im Galerie-Raster (Seite /galerie/ und "Einblicke" auf der Startseite).
+  Parameter:
+    bild   – Eintrag aus site.data.galerie_liste (Pflicht)
+    link   – Ziel des Klicks; leer = große Version (öffnet mit JavaScript
+             die Lightbox, ohne JavaScript direkt das Bild)
+    index  – Position (für die gestaffelte Einblend-Animation)
+{%- endcomment -%}
+{%- assign _b = include.bild -%}
+{%- capture _datum %}{% if _b.datum != "" %}{% include datum.html wert=_b.datum format="lang" %}{% endif %}{% endcapture -%}
+{%- assign _meta = "" | split: "" -%}
+{%- assign _datum = _datum | strip_html | strip -%}
+{%- if _datum != "" %}{% assign _meta = _meta | push: _datum %}{% endif -%}
+{%- if _b.ort != "" %}{% assign _meta = _meta | push: _b.ort %}{% endif -%}
+<li class="galerie-raster__eintrag galerie-raster__eintrag--{{ _b.format }}" data-kategorie="{{ _b.kategorie | escape }}" data-reveal data-reveal-delay="{{ include.index | default: 0 | modulo: 4 }}">
+  <a class="galerie-kachel" id="{{ _b.id }}"
+    {%- if include.link %} href="{{ include.link | relative_url }}"
+    {%- else %} href="{{ _b.gross_jpg | relative_url }}" data-lightbox-bild
+      data-webp="{{ _b.gross_webp | relative_url }}"
+      data-breite="{{ _b.breite }}" data-hoehe="{{ _b.hoehe }}"
+      data-titel="{{ _b.titel | escape }}"
+      data-alt="{{ _b.alt_text | escape }}"
+      {%- if _b.beschreibung != "" %} data-beschreibung="{{ _b.beschreibung | escape }}"{% endif %}
+      {%- if _meta.size > 0 %} data-meta="{{ _meta | join: ' · ' | escape }}"{% endif %}
+      {%- if _b.fotograf != "" %} data-fotograf="{{ _b.fotograf | escape }}"{% endif %}
+    {%- endif %}>
+    <picture>
+      <source type="image/webp" srcset="{{ _b.klein_webp | relative_url }}">
+      <img src="{{ _b.klein_jpg | relative_url }}" alt="{{ _b.alt_text | escape }}" width="{{ _b.klein_breite }}" height="{{ _b.klein_hoehe }}" loading="lazy" decoding="async">
+    </picture>
+    <span class="galerie-kachel__titel">{{ _b.titel }}</span>
+  </a>
+</li>

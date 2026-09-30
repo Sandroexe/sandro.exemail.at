@@ -135,25 +135,6 @@ kontakt_aufruf:
   button_link: "/kontakt/"
 
 
-# ════════════════════════════ FOTOGALERIE (OPTIONAL) ═══════════════════════
-# anzeigen: true  → Galerie erscheint auf der Startseite
-# anzeigen: false → Galerie ist ausgeblendet
-
-galerie:
-  anzeigen: false
-  titel: "Einblicke"
-  bilder:
-    - datei: "pc-setup.jpg"         # Dateiname in assets/img/
-      webp: "pc-setup.webp"         # Optional: WebP-Version
-      alt: "Der Arbeitsplatz mit dem selbst zusammengestellten Rechner"
-      bildunterschrift: "Mein Arbeitsplatz"   # Optional: Text unter dem Bild
-      breite: 1200
-      hoehe: 900
-
-# ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
-#    - datei: "galerie-2.jpg"
-#      webp: "galerie-2.webp"
-#      alt: "Beschreibung des Fotos"
-#      bildunterschrift: "Bildunterschrift"
-#      breite: 1200
-#      hoehe: 900
+# ════════════════════════════ FOTOGALERIE ══════════════════════════════════
+# Die Fotos (auch die "Einblicke" auf der Startseite) stehen jetzt in
+# _data/galerie.yml.

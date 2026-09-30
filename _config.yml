@@ -120,6 +120,9 @@ exclude:
   - .jekyll-cache/
   - .github/
   - "**/LIESMICH.txt"
+  # Original-Fotos der Galerie (evtl. mit GPS-Daten) – veröffentlicht werden
+  # nur die bereinigten Versionen aus assets/img/galerie-web/
+  - "assets/img/galerie/"
 
 # Standardwerte für alle Seiten
 defaults:

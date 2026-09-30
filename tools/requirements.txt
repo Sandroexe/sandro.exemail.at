@@ -1,0 +1,2 @@
+# Python-Pakete für tools/bilder-optimieren.py (Galerie-Fotos fürs Web aufbereiten)
+Pillow>=10.4,<13

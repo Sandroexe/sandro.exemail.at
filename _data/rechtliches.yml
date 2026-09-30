@@ -97,7 +97,9 @@ unternehmen:
 haftung_links_anzeigen: true        # (O) Haftungshinweis für externe Links
 urheberrecht_anzeigen: true         # (O) Urheberrechtshinweis
 
-# (O) Bildnachweise – nur nötig, wenn du fremde Fotos/Grafiken verwendest
+# (O) Bildnachweise – nur nötig, wenn du fremde Fotos/Grafiken verwendest.
+#     Fotografen der GALERIE hier NICHT eintragen – sie kommen automatisch aus
+#     _data/galerie.yml (Feld "fotograf") dazu.
 bildnachweise: []
 
 # ─── Vorlage zum Kopieren (statt "[]" oben) ───────────────────────────────

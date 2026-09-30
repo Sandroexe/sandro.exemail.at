@@ -54,3 +54,18 @@ Ergebnis liegt in: …/tools/ausgabe
    - Bei laufender Ausbildung `voraussichtlich: true` setzen.
 4. Genauso mit `zertifikate.import.yml` → `_data/zertifikate.yml` (Kategorie anpassen!).
 5. Lokale Vorschau prüfen, danach `tools/ausgabe/` und `tools/linkedin-export/` löschen.
+
+---
+
+# Galerie-Fotos aufbereiten (`bilder-optimieren.py`)
+
+Läuft **automatisch** bei jeder Veröffentlichung (GitHub Actions) – du musst nichts tun.
+Es erzeugt aus jedem Original in `assets/img/galerie/` ein Vorschaubild, eine große Version (WebP + JPG) und ein Social-Media-Bild, entfernt alle Metadaten (inkl. GPS) und warnt, wenn ein Original noch einen Standort enthält.
+
+Nur für die **lokale Vorschau** nötig:
+
+```bash
+python3 -m pip install -r tools/requirements.txt   # einmalig
+python3 tools/bilder-optimieren.py                 # nach neuen Fotos
+```
+

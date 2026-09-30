@@ -343,4 +343,16 @@
     font-family: var(--font-mono);
     font-weight: var(--fw-bold);
   }
+
+  // Als Kasten im Inhalt statt als Balken ganz oben
+  &--block {
+    margin-bottom: 2rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    text-align: left;
+
+    ul {
+      margin: 0.5rem 0 0;
+    }
+  }
 }

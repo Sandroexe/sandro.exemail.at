@@ -39,13 +39,14 @@ Lokal: `bundle exec jekyll serve` (Ruby ≥ 3.1). Vor jedem Merge: `JEKYLL_ENV=p
 ## Wo was liegt
 
 ```
-_data/        Inhalte (person, social, lebenslauf, zertifikate, rechtliches, …)
+_data/        Inhalte (person, social, lebenslauf, zertifikate, galerie, rechtliches, …)
 _includes/    Bausteine – hier lebt die Logik
 _layouts/     default → page / legal; weiterleitung für alte Adressen
-_plugins/     seiten-generator.rb: Weiterleitungen + /social-impressum/<id>/
+_plugins/     seiten-generator.rb: Weiterleitungen + /social-impressum/<id>/; galerie.rb: Galerie-Daten
 _sass/        _theme.scss = zentrale Design-Datei, Rest technisch
 assets/       css, js, fonts, icons (einzelne SVGs → sprite.svg automatisch), img
-tools/        linkedin-import.py
+              (img/galerie/ = Originale, nie veröffentlicht; img/galerie-web/ erzeugt der Build)
+tools/        linkedin-import.py, bilder-optimieren.py (läuft im Workflow vor Jekyll)
 ```
 
 Anleitungen für Sandro: `README.md` (Bearbeiten), `DEPLOYMENT.md` (Online stellen), `RECHTLICHES.md` (Rechtstexte).

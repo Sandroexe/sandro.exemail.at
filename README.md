@@ -36,7 +36,8 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 | meinen Namen, Titel oder Vorstellungstext ändern   | `_data/person.yml`            | NAME & TITEL                               |
 | das Profilfoto tauschen                            | `_data/person.yml`            | PROFILFOTO (+ Bild in `assets/img/`)       |
 | die Karten „Auf einen Blick" ändern                | `_data/person.yml`            | HIGHLIGHTS                                 |
-| die Fotogalerie ein-/ausblenden                    | `_data/person.yml`            | FOTOGALERIE → `anzeigen: true/false`       |
+| ein Foto in die Galerie stellen                    | `_data/galerie.yml`           | FOTOS (+ Bild in `assets/img/galerie/`), siehe [5.11](#511-galerie-bild-hinzufügen) |
+| die „Einblicke" auf der Startseite ein-/ausblenden | `_data/galerie.yml`           | HIGHLIGHTS AUF DER STARTSEITE              |
 | den Kasten „Lust auf ein Gespräch?" ändern         | `_data/person.yml`            | KONTAKT-AUFRUF                             |
 | eine neue Station im Lebenslauf eintragen          | `_data/lebenslauf.yml`        | BERUFSERFAHRUNG / PRAKTIKA / AUSBILDUNG …  |
 | Skills oder Sprachen ändern                        | `_data/lebenslauf.yml`        | SKILLS / SPRACHEN                          |
@@ -75,7 +76,8 @@ sandro/
 ├── Gemfile / Gemfile.lock      Ruby-Pakete (Jekyll)
 │
 ├── _data/                   ✏️ HIER BEARBEITEST DU DEINE INHALTE
-│   ├── person.yml              Name, Titel, Foto, Wohnort, Highlights, Galerie
+│   ├── person.yml              Name, Titel, Foto, Wohnort, Highlights
+│   ├── galerie.yml             Fotos der Galerie & „Einblicke" auf der Startseite
 │   ├── social.yml              LinkedIn, Instagram, Facebook (Seite + Profil), TikTok, Telefon, E-Mail
 │   ├── navigation.yml          Hauptmenü
 │   ├── lebenslauf.yml          Berufserfahrung, Praktika, Ausbildung, Skills …
@@ -96,6 +98,7 @@ sandro/
 ├── index.html                  Startseite
 ├── lebenslauf.html             /lebenslauf/
 ├── zertifikate.html            /zertifikate/
+├── galerie.html                /galerie/
 ├── kontakt.html                /kontakt/
 ├── impressum.html              /impressum/
 ├── datenschutz.html            /datenschutz/
@@ -107,16 +110,19 @@ sandro/
 │
 ├── assets/
 │   ├── css/main.scss           Bindet alle Stile zusammen
-│   ├── js/                     theme-init.js, main.js, hero-canvas.js
+│   ├── js/                     theme-init.js, main.js, hero-canvas.js, galerie.js (Lightbox)
 │   ├── fonts/                  Inter & JetBrains Mono (lokal, woff2)
 │   ├── icons/                  SVG-Icons (+ automatisch erzeugte sprite.svg)
-│   ├── img/                 ✏️ Deine Fotos, Favicon, Vorschaubild
+│   ├── img/                 ✏️ Profilfoto, Favicon, Vorschaubild
+│   │   ├── galerie/         ✏️ Original-Fotos der Galerie (kommen nie direkt online)
+│   │   └── galerie-web/        automatisch erzeugt (nicht im Repository)
 │   ├── zertifikate/         ✏️ Zertifikat-PDFs und -Bilder
 │   └── lebenslauf/          ✏️ Optional: eigenes Lebenslauf-PDF
 │
 ├── tools/
 │   ├── linkedin-import.py      LinkedIn-CSV → YAML
 │   ├── indexnow.py             Meldet Änderungen an Bing & Co. (läuft automatisch)
+│   ├── bilder-optimieren.py    Galerie-Fotos verkleinern, WebP, GPS entfernen (läuft automatisch)
 │   └── LIESMICH.md             Anleitung dazu
 │
 └── .github/workflows/deploy.yml   Baut & veröffentlicht automatisch
@@ -207,7 +213,7 @@ Datei im Repository öffnen → Stift-Symbol ✏️ → ändern → **Commit cha
    ```
 5. **Social-Media-Vorschaubild** (`assets/img/og-image.png`, 1200 × 630): kannst du jederzeit durch ein eigenes Bild mit gleichem Namen ersetzen.
 
-**Fotogalerie:** In `person.yml` unter `galerie` → `anzeigen: true` setzen und Bilder nach Vorlage eintragen.
+**Fotogalerie:** siehe [5.11](#511-galerie-bild-hinzufügen).
 
 ### 5.2 Neues Zertifikat hinzufügen
 
@@ -356,6 +362,48 @@ Jeder Social-Media-Kanal hat im Impressum einen **eigenen Bereich** (Offenlegung
 
 **Kanal aus dem Impressum entfernen:** `impressum_anzeigen: false` – Bereich, Button und Unterseite verschwinden komplett.
 
+### 5.11 Galerie: Bild hinzufügen
+
+> ⚖️ **Vorher: Recht am eigenen Bild.** Sind auf dem Foto **andere Personen erkennbar**, brauchst du **deren Zustimmung** (bei Minderjährigen im Zweifel auch die der Eltern). Hat **jemand anderes fotografiert**, brauchst du die **Erlaubnis des Fotografen** und nennst ihn unter `fotograf`. Details: [RECHTLICHES.md, Abschnitt 7](RECHTLICHES.md#7-fotos-in-der-galerie--recht-am-eigenen-bild--urheberrecht).
+
+**Welches Foto?** JPG (auch PNG/WebP), längste Seite **mindestens 2000 Pixel**, Hoch- oder Querformat egal. Dateiname klein, ohne Leer- und Sonderzeichen, z. B. `schulfest-2026.jpg`. iPhone-Fotos (HEIC) vorher als JPG exportieren. Verkleinern musst du nichts – das passiert automatisch.
+
+**📍 Standort entfernen (wichtig!):** Das Original liegt im öffentlichen GitHub-Repository. Auf der Website werden GPS-Daten automatisch entfernt, im Original bleiben sie aber stehen.
+- iPhone: Foto → **Teilen** → oben **Optionen** → **Ort** ausschalten → „In Dateien sichern".
+- Mac: Foto in **Vorschau** öffnen → **Werkzeuge → Informationen** → Reiter **GPS** → **Ortsinformationen entfernen**.
+- Vergessen? Der Build zeigt unter **Actions** eine gelbe Warnung „… enthält GPS-Standortdaten".
+
+**Schritt für Schritt auf github.com:**
+1. Repository öffnen → Ordner **`assets/img/galerie/`** anklicken.
+2. Oben rechts **Add file → Upload files** → Foto hineinziehen → unten **Commit changes**.
+3. Zurück zur Startseite des Repositorys → **`_data/galerie.yml`** öffnen → Stift-Symbol ✏️.
+4. Ganz unten die **Vorlage** markieren, kopieren und direkt **über** der Zeile `# ─── Vorlage zum Kopieren` einfügen. Bei den eingefügten Zeilen **nur** das `#` am Zeilenanfang entfernen (die zwei Leerzeichen vor `- datei` bleiben!).
+5. Ausfüllen:
+   ```yaml
+     - datei: "schulfest-2026.jpg"        # genau wie die hochgeladene Datei
+       titel: "Schulfest an der HTL"
+       alt_text: "Sandro Exenberger mit Mitschülern am Stand des Makerspace"
+       beschreibung: "Ein bis zwei Sätze."  # oder ""
+       datum: "2026-06-12"                  # oder "2026-06" oder ""
+       ort: "Innsbruck"                     # oder ""
+       kategorie: "Veranstaltungen"         # Veranstaltungen, Projekte, Schule oder Arbeit
+       fotograf: ""                         # leer = du selbst
+       erlaubnis_eingeholt: true            # nur für dich, nie öffentlich
+       anzeigen: true
+       hervorgehoben: false                 # true = auch auf der Startseite
+   ```
+6. **Commit changes** → nach 1–2 Minuten ist das Foto online.
+
+**Gut zu wissen:**
+- **Reihenfolge:** automatisch nach Datum, neueste zuerst. Fotos ohne Datum stehen am Ende.
+- **`alt_text`** beschreibt für blinde Besucher, was zu sehen ist (nicht nur den Titel wiederholen). Pflichtfeld – ohne ihn wird das Foto übersprungen.
+- **Bildnachweis:** Alles, was unter `fotograf` steht, erscheint automatisch im Impressum. Nicht zusätzlich in `rechtliches.yml` eintragen.
+- **Neue Kategorie:** oben unter `kategorien:` ergänzen – der Filter-Button erscheint automatisch, sobald ein Foto sie nutzt.
+- **Startseite:** zeigt höchstens `anzahl` Fotos mit `hervorgehoben: true`; ganz ausschalten mit `startseite → anzeigen: false`.
+- **Foto entfernen:** `anzeigen: false` (bleibt gespeichert) oder Eintrag löschen **und** Datei in `assets/img/galerie/` löschen.
+- **Foto erscheint nicht?** GitHub → **Actions** → letzter Lauf → gelbe Warnung „Galerie: …" nennt den Grund (Datei fehlt, Tippfehler im Namen, Pflichtfeld leer).
+- **Lokale Vorschau:** Die Web-Versionen erzeugt der Build auf GitHub. Lokal einmalig `python3 -m pip install -r tools/requirements.txt`, dann vor `bundle exec jekyll serve` jeweils `python3 tools/bilder-optimieren.py` ausführen.
+
 ---
 
 ## 6. YAML-Spickzettel
@@ -395,6 +443,9 @@ Kurz dokumentiert, damit du (oder jemand anderes) später versteht, warum etwas 
 | **Dark-Mode-Auswahl in localStorage** – nur nach Klick | Kein Cookie; nach § 165 Abs. 3 TKG 2021 ohne Einwilligung zulässig. |
 | **E-Mail/Telefon verschlüsselt im HTML** | Schutz vor einfachen Spam-Bots; im Browser ganz normal klickbar, ohne JavaScript als „name [at] domain [punkt] at" lesbar. |
 | **Detailansicht mit `<dialog>`** | Natives, barrierefreies Element (Fokus, Escape-Taste) ohne Bibliothek. |
+| **Galerie-Lightbox selbst gebaut** (`assets/js/galerie.js`) | Keine externe Bibliothek/kein CDN (Datenschutz, CSP). Ohne JavaScript öffnet der Klick einfach die große Bilddatei. |
+| **Galerie-Bilder werden im Build erzeugt** (`tools/bilder-optimieren.py`, Pillow) | Du lädst nur das Original hoch; Vorschaubild, große Version (WebP + JPG) und Social-Media-Bild entstehen automatisch, ohne Metadaten/GPS. Die Originale werden nicht veröffentlicht (`exclude` in `_config.yml`). |
+| **Gleichmäßiges Raster statt Masonry** | Hochformate belegen zwei Zellen übereinander. So bleibt die Reihenfolge „neueste zuerst" von links nach rechts lesbar, und die Seite springt beim Laden nicht (feste Seitenverhältnisse). |
 | **Druck-Layout statt PDF-Bibliothek** | „Als PDF speichern" im Browser liefert ein sauberes A4-PDF ohne zusätzliche Abhängigkeiten. |
 | **Leiterbahn-Animation per Canvas** | Leicht (ein Zwischenspeicher, wenige Signale), pausiert außerhalb des Sichtbereichs, aus bei „Bewegung reduzieren". |
 | **Keine Farbe im `theme-color`-Meta-Tag** | Würde eine zweite Farbangabe außerhalb von `_theme.scss` erfordern. |
@@ -411,7 +462,7 @@ Kurz dokumentiert, damit du (oder jemand anderes) später versteht, warum etwas 
 | **Änderung nicht sichtbar** | 1–2 Minuten warten, dann Browser-Cache umgehen: `Cmd + Shift + R`. |
 | **Lokale Vorschau startet nicht** | `bundle install` erneut ausführen; prüfen, ob `ruby -v` Version 3.x zeigt. |
 | **Icon wird nicht angezeigt** | Stimmt der Name in der YAML-Datei exakt mit dem Dateinamen in `assets/icons/` überein (ohne `.svg`)? |
-| **Bild wird nicht angezeigt** | Groß-/Kleinschreibung prüfen: `Profil.JPG` ≠ `profil.jpg`. |
+| **Bild wird nicht angezeigt** | Groß-/Kleinschreibung prüfen: `Profil.JPG` ≠ `profil.jpg`. Galerie: gelbe Warnung „Galerie: …" im Actions-Log lesen. |
 | **Datum erscheint als Text** | Format `"JJJJ-MM"` in Anführungszeichen verwenden. |
 
 ---
@@ -519,5 +570,5 @@ Diese Dateien und Einträge sind für Domain, Druckmedien, Profile oder Suchmasc
 | `verifizierung` in `_config.yml` sowie künftige Dateien wie `google*.html` oder `BingSiteAuth.xml` | Bestätigung bei Google/Bing |
 | **DNS-TXT-Eintrag `google-site-verification=…` bei `exemail.at` in Cloudflare** | Bestätigt die Google-Search-Console-Property (liegt nicht im Repository!) |
 | `README.md`, `DEPLOYMENT.md`, `RECHTLICHES.md`, `CLAUDE.md`, `.gitignore`, `tools/` | Anleitungen und Werkzeuge |
-| Alle Fotos/PDFs, die in `_data/` eingetragen sind | Werden auf der Website angezeigt |
+| Alle Fotos/PDFs, die in `_data/` eingetragen sind (inkl. `assets/img/galerie/`) | Werden auf der Website angezeigt |
 
