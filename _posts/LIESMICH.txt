@@ -1,0 +1,4 @@
+Hier liegen deine eigenen News-Beiträge – je Beitrag eine Datei.
+Dateiname:  JJJJ-MM-TT-titel-in-kleinbuchstaben.md   (z. B. 2026-10-15-mein-erster-beitrag.md)
+Vorlage zum Kopieren:  _vorlagen/news-beitrag.md
+Anleitung: README.md → Abschnitt 5.12

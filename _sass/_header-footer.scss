@@ -3,6 +3,9 @@
 // ─────────────────────────────────────────────────────────────────────────
 
 $nav-breakpoint: 56em;
+// Ab dieser Breite passen Menü UND Social-Icons nebeneinander in den Header.
+// Darunter (aber über $nav-breakpoint) stehen die Icons nur im Footer.
+$nav-social-breakpoint: 80em;
 
 // ═══ HEADER ═══════════════════════════════════════════════════════════════
 
@@ -180,7 +183,15 @@ $nav-breakpoint: 56em;
     &__social {
       padding-left: 1rem;
       border-left: 1px solid var(--c-border);
+
+      @media (max-width: #{$nav-social-breakpoint - 0.01em}) {
+        display: none;
+      }
     }
+  }
+
+  .brand {
+    white-space: nowrap;
   }
 
   .site-header__actions {

@@ -36,6 +36,9 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 | meinen Namen, Titel oder Vorstellungstext ändern   | `_data/person.yml`            | NAME & TITEL                               |
 | das Profilfoto tauschen                            | `_data/person.yml`            | PROFILFOTO (+ Bild in `assets/img/`)       |
 | die Karten „Auf einen Blick" ändern                | `_data/person.yml`            | HIGHLIGHTS                                 |
+| einen eigenen News-Beitrag schreiben              | neue Datei in `_posts/`       | Vorlage `_vorlagen/news-beitrag.md`, siehe [5.12](#512-news--presse) |
+| einen Presseartikel über mich verlinken            | neue Datei in `_presse/`      | Vorlage `_vorlagen/presse-eintrag.md`, siehe [5.12](#512-news--presse) |
+| News-Einstellungen (Startseite, Anzahl, Kategorien) | `_data/news.yml`             | BEREICH / ÜBERSICHT / AKTUELLES            |
 | ein Foto in die Galerie stellen                    | `_data/galerie.yml`           | FOTOS (+ Bild in `assets/img/galerie/`), siehe [5.11](#511-galerie-bild-hinzufügen) |
 | die „Einblicke" auf der Startseite ein-/ausblenden | `_data/galerie.yml`           | HIGHLIGHTS AUF DER STARTSEITE              |
 | den Kasten „Lust auf ein Gespräch?" ändern         | `_data/person.yml`            | KONTAKT-AUFRUF                             |
@@ -78,6 +81,7 @@ sandro/
 ├── _data/                   ✏️ HIER BEARBEITEST DU DEINE INHALTE
 │   ├── person.yml              Name, Titel, Foto, Wohnort, Highlights
 │   ├── galerie.yml             Fotos der Galerie & „Einblicke" auf der Startseite
+│   ├── news.yml                Einstellungen für News & „Aktuelles" auf der Startseite
 │   ├── social.yml              LinkedIn, Instagram, Facebook (Seite + Profil), TikTok, Telefon, E-Mail
 │   ├── navigation.yml          Hauptmenü
 │   ├── lebenslauf.yml          Berufserfahrung, Praktika, Ausbildung, Skills …
@@ -85,6 +89,10 @@ sandro/
 │   ├── rechtliches.yml         Impressum, Offenlegung, Datenschutz
 │   ├── footer.yml              Footer-Texte und -Links
 │   └── weiterleitungen.yml     Alte Adressen → neue Adressen
+│
+├── _posts/                  ✏️ Eigene News-Beiträge (eine .md-Datei pro Beitrag)
+├── _presse/                 ✏️ Presse-Links „Ich in den Medien" (eine .md-Datei pro Artikel)
+├── _vorlagen/               ✏️ Vorlagen zum Kopieren: news-beitrag.md, presse-eintrag.md
 │
 ├── _sass/
 │   ├── _theme.scss          ✏️ ZENTRALE DESIGN-DATEI
@@ -99,6 +107,7 @@ sandro/
 ├── lebenslauf.html             /lebenslauf/
 ├── zertifikate.html            /zertifikate/
 ├── galerie.html                /galerie/
+├── news.html                   /news/ (+ /news/<beitrag>/ automatisch, Feed /feed.xml)
 ├── kontakt.html                /kontakt/
 ├── impressum.html              /impressum/
 ├── datenschutz.html            /datenschutz/
@@ -110,7 +119,7 @@ sandro/
 │
 ├── assets/
 │   ├── css/main.scss           Bindet alle Stile zusammen
-│   ├── js/                     theme-init.js, main.js, hero-canvas.js, galerie.js (Lightbox)
+│   ├── js/                     theme-init.js, main.js, hero-canvas.js, galerie.js (Lightbox), news.js
 │   ├── fonts/                  Inter & JetBrains Mono (lokal, woff2)
 │   ├── icons/                  SVG-Icons (+ automatisch erzeugte sprite.svg)
 │   ├── img/                 ✏️ Profilfoto, Favicon, Vorschaubild
@@ -404,6 +413,58 @@ Jeder Social-Media-Kanal hat im Impressum einen **eigenen Bereich** (Offenlegung
 - **Foto erscheint nicht?** GitHub → **Actions** → letzter Lauf → gelbe Warnung „Galerie: …" nennt den Grund (Datei fehlt, Tippfehler im Namen, Pflichtfeld leer).
 - **Lokale Vorschau:** Die Web-Versionen erzeugt der Build auf GitHub. Lokal einmalig `python3 -m pip install -r tools/requirements.txt`, dann vor `bundle exec jekyll serve` jeweils `python3 tools/bilder-optimieren.py` ausführen.
 
+### 5.12 News & Presse
+
+Auf **/news/** stehen zwei Arten von News gemischt, neueste zuerst. Die neuesten erscheinen automatisch auch auf der Startseite unter „Aktuelles“.
+
+| Art | Wo | Ergebnis |
+| --- | --- | --- |
+| **Eigener Beitrag** (Blog) | eine Datei pro Beitrag in `_posts/` | Karte auf /news/ + eigene Seite `/news/<titel>/` + RSS-Feed |
+| **Presse-Link** („Ich in den Medien“) | eine Datei pro Artikel in `_presse/` | Karte mit deiner Zusammenfassung und Button „Artikel lesen auf …“ |
+
+**Neuen Beitrag schreiben (auf github.com):**
+1. Repository öffnen → Ordner **`_vorlagen`** → **`news-beitrag.md`** → rechts oben **Copy raw file** (Symbol mit zwei Blättern).
+2. Zurück → Ordner **`_posts`** → **Add file → Create new file**.
+3. Dateiname: **`JJJJ-MM-TT-titel-in-kleinbuchstaben.md`**, z. B. `2026-10-15-besuch-im-landtag.md`. Das Datum ist das Veröffentlichungsdatum, der Rest wird zur Adresse (`/news/besuch-im-landtag/`). Nur `a–z`, `0–9` und `-`, keine Umlaute oder Leerzeichen.
+4. Vorlage einfügen, oben die Felder ausfüllen (jede Zeile ist kommentiert), unter dem zweiten `---` deinen Text schreiben.
+5. **Titelbild (optional):** Foto nach `assets/img/galerie/` hochladen (vorher Standort entfernen, siehe 5.11) und bei `titelbild:` nur den Dateinamen eintragen. Es muss nicht in der Galerie erscheinen.
+6. **Commit changes** → nach 1–2 Minuten online, auf der Startseite und im Feed. Suchmaschinen werden automatisch informiert.
+
+**Neuen Presse-Link hinzufügen:**
+1. Vorlage **`_vorlagen/presse-eintrag.md`** kopieren (wie oben), in **`_presse/`** als `JJJJ-MM-TT-medium-stichwort.md` anlegen.
+2. `titel` (wie beim Medium), `medium`, `datum`, `link` und **`eigene_zusammenfassung`** ausfüllen.
+3. ⚖️ **Zusammenfassung in eigenen Worten**, keine Sätze abschreiben. **Keine Fotos oder Logos** des Mediums verwenden – höchstens ein eigenes Foto (`bild:`), sonst erscheint ein neutrales Zeitungs-Symbol. Details: [RECHTLICHES.md, Abschnitt 8](RECHTLICHES.md#8-news--presse).
+
+**Ausblenden:**
+| Ich will … | So geht's |
+| --- | --- |
+| einen Beitrag/Presse-Link ganz ausblenden (Entwurf) | `veroeffentlicht: false` |
+| ihn nur von der Startseite nehmen | `auf_startseite: false` |
+| „Aktuelles“ auf der Startseite ausschalten | `_data/news.yml` → `startseite` → `anzeigen: false` |
+| den ganzen News-Bereich ausschalten | `_data/news.yml` → `anzeigen: false` (Menüpunkt verschwindet automatisch) |
+| endgültig löschen | Datei in `_posts/` bzw. `_presse/` löschen |
+
+**Markdown-Spickzettel** (für den Text unter dem zweiten `---`):
+
+| Was | So schreibst du es |
+| --- | --- |
+| Zwischenüberschrift | `## Meine Überschrift` (zwei Rauten + Leerzeichen) |
+| fett / kursiv | `**fett**` / `*kursiv*` |
+| Link | `[Linktext](https://example.com)` |
+| Bild im Text | `![Beschreibung des Bildes](/assets/img/galerie-web/DATEINAME-gross.jpg)` – Foto vorher nach `assets/img/galerie/` hochladen, `DATEINAME` ohne Endung |
+| Aufzählung | jede Zeile mit `- ` beginnen |
+| nummerierte Liste | `1. `, `2. ` … |
+| Zitat | Zeile mit `> ` beginnen |
+| neuer Absatz | eine Leerzeile dazwischen |
+
+**Gut zu wissen:**
+- **Teilen-Buttons** (LinkedIn, WhatsApp, E-Mail, Link kopieren) sind einfache Links – kein Tracking, keine eingebetteten Widgets. Ein-/ausschalten in `news.yml → teilen`. Kommentare gibt es bewusst nicht.
+- **Kategorien** stehen in `news.yml`. Filter-Buttons ohne Einträge werden automatisch ausgeblendet.
+- **Seitennummern** erscheinen automatisch ab `pro_seite` Einträgen (Standard 9).
+- **Bildnachweis:** `fotograf` eines Titelbilds erscheint unter dem Bild und automatisch im Impressum.
+- **Fehler?** GitHub → **Actions** → gelbe Warnung „News: …“ nennt Datei und Grund (z. B. fehlende `kurzbeschreibung`, Bild nicht gefunden).
+- **Presse-Einträge haben keine eigene Seite.** Eine Seite mit nur 2–3 Sätzen würde Google als „dünnen Inhalt“ werten. Zum Teilen gibt es einen Direktlink: `https://sandro.exemail.at/news/#presse-<dateiname-ohne-.md>`.
+
 ---
 
 ## 6. YAML-Spickzettel
@@ -445,6 +506,8 @@ Kurz dokumentiert, damit du (oder jemand anderes) später versteht, warum etwas 
 | **Detailansicht mit `<dialog>`** | Natives, barrierefreies Element (Fokus, Escape-Taste) ohne Bibliothek. |
 | **Galerie-Lightbox selbst gebaut** (`assets/js/galerie.js`) | Keine externe Bibliothek/kein CDN (Datenschutz, CSP). Ohne JavaScript öffnet der Klick einfach die große Bilddatei. |
 | **Galerie-Bilder werden im Build erzeugt** (`tools/bilder-optimieren.py`, Pillow) | Du lädst nur das Original hoch; Vorschaubild, große Version (WebP + JPG) und Social-Media-Bild entstehen automatisch, ohne Metadaten/GPS. Die Originale werden nicht veröffentlicht (`exclude` in `_config.yml`). |
+| **Eigene Beiträge als Jekyll-Posts, Presse als Sammlung ohne eigene Seiten** | Datum aus dem Dateinamen, vorheriger/nächster Beitrag und RSS-Feed (`jekyll-feed`) gibt es fertig. Presse-Einträge sind nur Karten mit Link – kein Duplicate Content zum Originalartikel. |
+| **Seitennummern auf /news/ im Browser** (`assets/js/news.js`) | Damit der Filter über alle Einträge wirkt und nicht nur über eine Seite. Ohne JavaScript sind alle News sichtbar. |
 | **Gleichmäßiges Raster statt Masonry** | Hochformate belegen zwei Zellen übereinander. So bleibt die Reihenfolge „neueste zuerst" von links nach rechts lesbar, und die Seite springt beim Laden nicht (feste Seitenverhältnisse). |
 | **Druck-Layout statt PDF-Bibliothek** | „Als PDF speichern" im Browser liefert ein sauberes A4-PDF ohne zusätzliche Abhängigkeiten. |
 | **Leiterbahn-Animation per Canvas** | Leicht (ein Zwischenspeicher, wenige Signale), pausiert außerhalb des Sichtbereichs, aus bei „Bewegung reduzieren". |
@@ -473,7 +536,7 @@ Kurz dokumentiert, damit du (oder jemand anderes) später versteht, warum etwas 
 
 | Was | Schema | Beispiel |
 | --- | --- | --- |
-| Arbeitsbranch | `<typ>/<JJJJ-MM-TT>-<beschreibung>` (typ: `feat`, `fix`, `chore`, `docs`) | `feat/2026-10-05-projekte-seite` |
+| Arbeitsbranch | `<typ>/<JJJJ-MM-TT>-<beschreibung>` (typ: `feat`/`feature`, `fix`, `chore`, `docs`, `content`) | `feature/2026-10-01-news-bereich` |
 | Backup (bevorzugt) | Git-Tag `stand-JJJJ-MM-TT-<beschreibung>` | `stand-2026-09-29-vor-aufraeumen` |
 | Backup, das weiterbearbeitet wird | Branch `backup/JJJJ-MM-TT-<beschreibung>` | `backup/2026-10-01-alte-farben` |
 
@@ -487,7 +550,9 @@ git rm -r -q . && git checkout stand-2026-09-29-vor-aufraeumen -- .
 git commit -m "Zurück auf stand-2026-09-29-vor-aufraeumen" && git push
 ```
 
-Nach 1–2 Minuten ist der alte Stand online. Ausnahme: Die ganz alte Website (`stand-2026-09-29-vor-umstellung-neue-seite`) wurde noch ohne GitHub Actions veröffentlicht – dafür zusätzlich unter **Settings → Pages → Source** wieder „Deploy from a branch" (`main`) wählen.
+Nach 1–2 Minuten ist der alte Stand online.
+
+**Stand vor dem News-Bereich zurückholen** (Tag `stand-2026-10-01-vor-news`): Befehle oben mit diesem Tag-Namen ausführen. Ohne Terminal: GitHub → **Code → Tags → stand-2026-10-01-vor-news** → ansehen oder als ZIP herunterladen – oder Claude bitten: „Setz die Website auf stand-2026-10-01-vor-news zurück.“ Ausnahme: Die ganz alte Website (`stand-2026-09-29-vor-umstellung-neue-seite`) wurde noch ohne GitHub Actions veröffentlicht – dafür zusätzlich unter **Settings → Pages → Source** wieder „Deploy from a branch" (`main`) wählen.
 
 ---
 
@@ -498,7 +563,8 @@ Nach 1–2 Minuten ist der alte Stand online. Ausnahme: Die ganz alte Website (`
 | Was | Wie |
 | --- | --- |
 | **Sitemap** `sandro.exemail.at/sitemap.xml` | Wird bei jedem Build neu erzeugt. Jede Seite bekommt ihr echtes Änderungsdatum (`lastmod`) aus der Git-Historie – inklusive der Datendatei, aus der ihr Inhalt stammt (Front-Matter-Feld `abhaengig_von`). |
-| **Nicht in der Sitemap** | `/links/` (Weiterleitung, noindex), 404-Seite, vCard, PDFs, alle Weiterleitungen, IndexNow-Schlüssel |
+| **Nicht in der Sitemap** | `/links/` (Weiterleitung, noindex), 404-Seite, vCard, PDFs, alle Weiterleitungen, IndexNow-Schlüssel, Feed |
+| **News** | Jeder neue Beitrag landet automatisch in der Sitemap (mit Änderungsdatum aus Git) und wird nach dem Deploy per IndexNow gemeldet. Strukturierte Daten „BlogPosting" und eigenes Vorschaubild pro Beitrag. Feed: `https://sandro.exemail.at/feed.xml` |
 | **robots.txt** | Erlaubt alles und verweist auf die Sitemap |
 | **Canonical-Tags** | Jede Seite zeigt auf ihre eindeutige Adresse `https://sandro.exemail.at/…/` (immer https, immer mit `/` am Ende) |
 | **Alte Adressen** | Leiten auf die neue Seite weiter (`_data/weiterleitungen.yml`, Tabelle unten) |

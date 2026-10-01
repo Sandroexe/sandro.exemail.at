@@ -10,6 +10,7 @@ abhaengig_von:
   - _includes/offenlegung.html
   - _includes/ecg-angaben.html
   - _data/galerie.yml
+  - _posts
 ---
 {%- assign r = site.data.rechtliches -%}
 {%- assign m = r.medieninhaber -%}
@@ -61,7 +62,7 @@ abhaengig_von:
 </p>
 {%- endif %}
 
-{%- assign _fotografen = site.data.galerie_fotografen -%}
+{%- assign _fotografen = site.data.bildnachweise_auto -%}
 {%- if r.bildnachweise.size > 0 or _fotografen.size > 0 %}
 <h2>Bildnachweise</h2>
 <ul>
@@ -70,11 +71,9 @@ abhaengig_von:
     {{ b.beschreibung }}: {% if b.link and b.link != "" %}<a href="{{ b.link }}" target="_blank" rel="noopener noreferrer">{{ b.urheber }}</a>{% else %}{{ b.urheber }}{% endif %}
   </li>
   {%- endfor %}
-  {%- comment -%} Automatisch aus _data/galerie.yml (Feld "fotograf") {%- endcomment -%}
+  {%- comment -%} Automatisch aus _data/galerie.yml und _posts/ (Feld "fotograf") {%- endcomment -%}
   {%- for f in _fotografen %}
-  <li>
-    Galerie – {% for t in f.titel %}„{{ t }}“{% unless forloop.last %}, {% endunless %}{% endfor %}: {{ f.name }}
-  </li>
+  <li>{{ f.wo | join: ", " }}: {{ f.name }}</li>
   {%- endfor %}
 </ul>
 {%- endif %}

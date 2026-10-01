@@ -9,6 +9,7 @@ gem "webrick", "~> 1.9"
 
 group :jekyll_plugins do
   gem "jekyll-sitemap", "~> 1.4"
+  gem "jekyll-feed", "~> 0.17"
 end
 
 # Nur unter Windows nötig (Zeitzonen & Dateiüberwachung)

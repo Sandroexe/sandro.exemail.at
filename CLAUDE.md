@@ -39,10 +39,11 @@ Lokal: `bundle exec jekyll serve` (Ruby ≥ 3.1). Vor jedem Merge: `JEKYLL_ENV=p
 ## Wo was liegt
 
 ```
-_data/        Inhalte (person, social, lebenslauf, zertifikate, galerie, rechtliches, …)
+_data/        Inhalte (person, social, lebenslauf, zertifikate, galerie, news, rechtliches, …)
+_posts/       eigene News-Beiträge (Markdown), _presse/ Presse-Links, _vorlagen/ Kopiervorlagen
 _includes/    Bausteine – hier lebt die Logik
 _layouts/     default → page / legal; weiterleitung für alte Adressen
-_plugins/     seiten-generator.rb: Weiterleitungen + /social-impressum/<id>/; galerie.rb: Galerie-Daten
+_plugins/     seiten-generator.rb: Weiterleitungen + /social-impressum/<id>/; galerie.rb: Galerie-Daten; news.rb: News-Liste, Feldnamen-Übersetzung, Bildnachweise
 _sass/        _theme.scss = zentrale Design-Datei, Rest technisch
 assets/       css, js, fonts, icons (einzelne SVGs → sprite.svg automatisch), img
               (img/galerie/ = Originale, nie veröffentlicht; img/galerie-web/ erzeugt der Build)

@@ -27,8 +27,9 @@ module LetzteAenderung
       @cache = {}
       return unless git_verfuegbar?
 
-      site.pages.each do |seite|
-        next unless seite.html?
+      # Seiten und eigene News-Beiträge (_posts/)
+      (site.pages + site.posts.docs).each do |seite|
+        next if seite.respond_to?(:html?) && !seite.html?
 
         dateien = []
         dateien << seite.relative_path if seite.respond_to?(:relative_path) && datei?(seite.relative_path)

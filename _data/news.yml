@@ -1,0 +1,71 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  ✏️  news.yml – EINSTELLUNGEN FÜR NEWS & PRESSE                           ║
+# ╠══════════════════════════════════════════════════════════════════════════╣
+# ║  Was ist diese Datei?                                                    ║
+# ║    Die Schalter für die Seite /news/ und den Bereich "Aktuelles" auf     ║
+# ║    der Startseite. Die News selbst stehen NICHT hier, sondern:           ║
+# ║      • eigene Beiträge  → je eine Datei in  _posts/                      ║
+# ║      • Presse-Links     → je eine Datei in  _presse/                     ║
+# ║    Vorlagen zum Kopieren:  _vorlagen/news-beitrag.md                     ║
+# ║                            _vorlagen/presse-eintrag.md                   ║
+# ║    Anleitung: README.md → Abschnitt 5.12 "News & Presse"                 ║
+# ║                                                                          ║
+# ║  Was darf ich ändern?                                                    ║
+# ║    Alle Werte.                                                           ║
+# ║                                                                          ║
+# ║  Was sollte ich NICHT ändern?                                            ║
+# ║    Die Feldnamen und die Einrückung.                                     ║
+# ║                                                                          ║
+# ║  Beispiel – News-Bereich komplett ausblenden:                            ║
+# ║    anzeigen: false                                                       ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+
+
+# ═══════════════════════════════ BEREICH ═══════════════════════════════════
+# false = Seite /news/, Menüpunkt, Startseiten-Bereich und alle Beiträge
+#         verschwinden von der Website (die Dateien bleiben gespeichert).
+
+anzeigen: true
+
+
+# ═══════════════════════════════ SEITENTEXT ════════════════════════════════
+
+titel: "News"
+einleitung: >-
+  Eigene Beiträge und Berichte aus den Medien – neueste zuerst.
+
+
+# ═══════════════════════════════ ÜBERSICHT /news/ ══════════════════════════
+
+pro_seite: 9              # so viele News pro Seite, danach Seitennummern
+
+
+# ═══════════════════════════════ KATEGORIEN ════════════════════════════════
+# Reihenfolge der Kategorie-Filter. Jede News braucht eine davon.
+# Kategorien ohne News werden automatisch ausgeblendet.
+
+kategorien:
+  - "Politik"
+  - "Schule"
+  - "Technik"
+  - "Persönliches"
+
+
+# ═══════════════════════════ AKTUELLES AUF DER STARTSEITE ══════════════════
+# Zeigt automatisch die neuesten News mit  auf_startseite: true
+
+startseite:
+  anzeigen: true          # true = Bereich "Aktuelles" auf der Startseite zeigen
+  titel: "Aktuelles"      # Überschrift des Bereichs
+  anzahl: 3               # so viele News höchstens
+
+
+# ═══════════════════════════════ TEILEN-BUTTONS ════════════════════════════
+# Unter jedem eigenen Beitrag. Das sind EINFACHE LINKS – beim Seitenaufruf
+# wird nichts an LinkedIn, WhatsApp & Co. übertragen, erst beim Klick.
+
+teilen:
+  linkedin: true
+  whatsapp: true
+  email: true
+  link_kopieren: true     # "Link kopieren" und am Handy "Teilen …" (nur mit JavaScript)

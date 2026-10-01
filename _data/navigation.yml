@@ -38,6 +38,10 @@ hauptmenue:
     url: "/lebenslauf/"
     anzeigen: true
 
+  - titel: "News"
+    url: "/news/"
+    anzeigen: true
+
   - titel: "Zertifikate"
     url: "/zertifikate/"
     anzeigen: true

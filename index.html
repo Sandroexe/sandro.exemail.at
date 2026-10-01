@@ -9,6 +9,9 @@ abhaengig_von:
   - _data/person.yml
   - _data/social.yml
   - _data/galerie.yml
+  - _data/news.yml
+  - _presse
+  - _posts
 ---
 {%- assign p = site.data.person -%}
 
@@ -87,6 +90,28 @@ abhaengig_von:
       </li>
       {%- endfor %}
     </ul>
+  </div>
+</section>
+{%- endif %}
+
+<!-- ═══ AKTUELLES (aus _posts/ und _presse/, Einstellungen in _data/news.yml) ═══ -->
+{%- assign _ns = site.data.news.startseite -%}
+{%- assign _news = site.data.news_liste | where: "auf_startseite", true -%}
+{%- if site.data.news.anzeigen and _ns.anzeigen and _news.size > 0 %}
+<section class="section section--tight" aria-labelledby="news-titel">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">News</p>
+      <h2 id="news-titel">{{ _ns.titel }}</h2>
+    </div>
+    <ul class="news-liste news-liste--startseite">
+      {%- for e in _news limit: _ns.anzahl %}
+      {% include news-karte.html eintrag=e index=forloop.index0 ebene=3 %}
+      {%- endfor %}
+    </ul>
+    <p class="galerie-mehr" data-reveal>
+      <a class="btn btn--sekundaer" href="{{ '/news/' | relative_url }}">Alle News ansehen {% include icon.html name="arrow-right" %}</a>
+    </p>
   </div>
 </section>
 {%- endif %}

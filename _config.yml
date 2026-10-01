@@ -100,6 +100,17 @@ permalink: pretty
 
 plugins:
   - jekyll-sitemap
+  - jekyll-feed
+
+# News: eigene Beiträge = _posts/, Presse-Links = _presse/ (ohne eigene Seiten)
+# Einstellungen für Besucher (Anzahl, Kategorien …) stehen in _data/news.yml
+collections:
+  presse:
+    output: false
+
+# RSS/Atom-Feed der eigenen Beiträge: /feed.xml
+feed:
+  path: feed.xml
 
 sass:
   sass_dir: _sass
@@ -131,6 +142,15 @@ defaults:
     values:
       layout: "page"
   # Zertifikat- und Lebenslauf-PDFs nicht in die Sitemap
+  # Eigene News-Beiträge: Adresse /news/<titel-aus-dem-dateinamen>/
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "beitrag"
+      permalink: /news/:title/
+      skripte:
+        - news.js
   - scope:
       path: "assets/zertifikate"
     values:

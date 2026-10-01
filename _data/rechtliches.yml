@@ -36,7 +36,7 @@ modus: "privat"
 # Wann hast du die Rechtstexte zuletzt geprüft? Format "JJJJ-MM-TT".
 # Bei jeder inhaltlichen Änderung aktualisieren.
 
-stand: "2026-09-29"
+stand: "2026-10-01"
 
 
 # ═════════════════════ MEDIENINHABER / VERANTWORTLICHER ════════════════════
@@ -98,8 +98,8 @@ haftung_links_anzeigen: true        # (O) Haftungshinweis für externe Links
 urheberrecht_anzeigen: true         # (O) Urheberrechtshinweis
 
 # (O) Bildnachweise – nur nötig, wenn du fremde Fotos/Grafiken verwendest.
-#     Fotografen der GALERIE hier NICHT eintragen – sie kommen automatisch aus
-#     _data/galerie.yml (Feld "fotograf") dazu.
+#     Fotografen der GALERIE und der NEWS-BEITRÄGE hier NICHT eintragen – sie
+#     kommen automatisch aus _data/galerie.yml bzw. _posts/ (Feld "fotograf") dazu.
 bildnachweise: []
 
 # ─── Vorlage zum Kopieren (statt "[]" oben) ───────────────────────────────

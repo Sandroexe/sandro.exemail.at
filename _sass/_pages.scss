@@ -1,6 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────
 //  Seitenspezifische Stile: Startseite, Lebenslauf, Zertifikate, Galerie,
-//  Kontakt, Rechtstexte, 404
+//  News, Kontakt, Rechtstexte, 404
 // ─────────────────────────────────────────────────────────────────────────
 @use "tokens";
 
@@ -1020,6 +1020,312 @@
 @media (prefers-reduced-motion: no-preference) {
   .lightbox[open] {
     animation: einblenden 250ms ease;
+  }
+}
+
+// ═══ NEWS ═════════════════════════════════════════════════════════════════
+
+.news-liste {
+  scroll-margin-top: calc(var(--header-h) + 1.5rem); // nach Seitenwechsel nicht unter dem Header
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(19rem, 100%), 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__eintrag {
+    min-width: 0;
+  }
+}
+
+.news-karte {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+
+  // Bild oder neutrales Symbol – gleiche Fläche wie bei den Zertifikaten
+  &__media {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    background:
+      linear-gradient(var(--c-border) 1px, transparent 1px) 0 0 / 22px 22px,
+      linear-gradient(90deg, var(--c-border) 1px, transparent 1px) 0 0 / 22px 22px,
+      var(--c-surface-2);
+    border-bottom: 1px solid var(--c-border);
+    color: var(--c-primary);
+
+    > .icon {
+      width: 3rem;
+      height: 3rem;
+      padding: 0.6rem;
+      border-radius: 0.9rem;
+      background: var(--c-surface);
+      box-shadow: var(--shadow);
+      box-sizing: content-box;
+    }
+
+    picture,
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      object-fit: cover;
+      object-position: center 30%;
+      transition: transform 600ms var(--ease);
+    }
+  }
+
+  &.card--interaktiv:hover &__media img {
+    transform: scale(1.04);
+  }
+
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem 1.4rem 1.4rem;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.75rem;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--c-text-muted);
+
+    .tag {
+      font-family: var(--font-text);
+    }
+  }
+
+  &__titel {
+    margin: 0.2rem 0 0;
+    font-size: 1.15rem;
+    line-height: 1.35;
+  }
+
+  &__text {
+    margin: 0;
+    color: var(--c-text-muted);
+    font-size: 0.975rem;
+  }
+
+  &__zitat {
+    margin: 0.25rem 0 0;
+    padding-left: 0.9rem;
+    border-left: 3px solid var(--c-primary);
+    font-style: italic;
+    font-size: 0.95rem;
+
+    cite {
+      display: block;
+      margin-top: 0.25rem;
+      font-style: normal;
+      font-size: 0.85rem;
+      color: var(--c-text-muted);
+    }
+  }
+
+  &__aktion {
+    margin: auto 0 0;
+    padding-top: 0.75rem;
+  }
+
+  // Direktlink /news/#presse-…: kurz hervorheben
+  &.is-hervorgehoben {
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 3px var(--c-primary-soft), var(--shadow-hover);
+  }
+}
+
+.tag--presse {
+  font-weight: var(--fw-medium);
+}
+
+// Seitennummern
+.pagination {
+  margin-top: 2rem;
+
+  &__liste {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__btn {
+    min-width: 2.75rem;
+    height: 2.75rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-sm);
+    background: var(--c-surface);
+    color: var(--c-text);
+    font-family: var(--font-mono);
+    transition: all var(--tempo) ease;
+
+    &:hover {
+      border-color: var(--c-primary);
+      color: var(--c-primary);
+    }
+
+    &[aria-current="page"] {
+      background: var(--c-primary);
+      border-color: var(--c-primary);
+      color: var(--c-on-primary);
+    }
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.news-feed {
+  margin: 2.5rem 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+// ─── Einzelner Beitrag (Lese-Layout) ────────────────────────────────────
+
+.beitrag {
+  &__container {
+    max-width: calc(48rem + 2 * var(--gutter));
+  }
+
+  &__kopf .eyebrow a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--c-primary-hover);
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.6rem;
+    margin: 1rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--c-text-muted);
+  }
+
+  &__tags {
+    margin-top: 1rem;
+  }
+
+  &__bild {
+    margin: 0 0 2.25rem;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 34rem;
+      object-fit: cover;
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+    }
+
+    figcaption {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--c-text-muted);
+    }
+  }
+
+  &__text {
+    font-size: 1.075rem;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+    }
+  }
+
+  &__nav {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+    margin-top: 2.5rem;
+  }
+
+  &__nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    color: inherit;
+    text-decoration: none;
+
+    &--weiter {
+      text-align: right;
+      align-items: flex-end;
+    }
+  }
+
+  &__nav-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--c-text-muted);
+  }
+
+  &__nav-titel {
+    font-weight: var(--fw-bold);
+  }
+
+  &__zurueck {
+    margin: 2.5rem 0 0;
+  }
+}
+
+// Teilen-Buttons
+.teilen {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--c-border);
+
+  &__titel {
+    margin: 0 0 0.75rem;
+    font-weight: var(--fw-bold);
+  }
+
+  &__liste {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li[hidden] {
+      display: none;
+    }
   }
 }
 

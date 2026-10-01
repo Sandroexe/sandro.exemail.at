@@ -254,3 +254,26 @@ Sobald du etwas Neues einbaust, das Daten verarbeitet: eingebettete Videos, Kart
 - **[RECHTLICH PRÜFEN]** Fotos, die der **Landtag, eine Partei oder die Schule** gemacht hat (z. B. „Rede im Tiroler Landtag"): Oft gibt es Nutzungsbedingungen (nur redaktionelle Nutzung, Pflicht-Bildnachweis). Vor der Veröffentlichung bei der Pressestelle nachfragen und den geforderten Bildnachweis unter `fotograf` eintragen.
 - **[RECHTLICH PRÜFEN]** Fotos von **öffentlichen Veranstaltungen** mit vielen Menschen im Hintergrund: Personen, die nur „Beiwerk" sind, müssen meist nicht einzeln zustimmen – die Grenze ist aber Einzelfallfrage. Deutlich erkennbare Einzelpersonen lieber fragen.
 
+---
+
+## 8. News & Presse
+
+**Offenlegung (§ 25 Mediengesetz):** Die Website ist schon seit dem politischen Engagement keine „kleine Website“ mehr (`kleine_website: false`, siehe Abschnitt 1) – die **volle Offenlegung inklusive grundlegender Richtung** steht daher bereits im Impressum. Mit dem News-Bereich (eigene, auch politische Beiträge) bestätigt sich das: Er ist eindeutig geeignet, die öffentliche Meinung zu beeinflussen. Die grundlegende Richtung muss deshalb auch die News nennen → Text in `rechtliches.yml` → `grundlegende_richtung`.
+
+**Social-Media-Impressum:** Jeder Kanal hat bereits eine eigene grundlegende Richtung (in `social.yml`, Block `rechtliches`), die das politische Engagement nennt. Durch die Website-News ändert sich dort nichts.
+
+**Presse-Links – was erlaubt ist:**
+- **Verlinken** frei zugänglicher Artikel ist zulässig (EuGH, *Svensson*, C-466/12). Bezahlschranken nicht umgehen (keine Links auf „Gratis-Kopien“).
+- **Eigene Zusammenfassung** ist erlaubt – Fakten sind nicht urheberrechtlich geschützt, die Formulierung des Journalisten schon. Deshalb nichts abschreiben.
+- **Titel des Artikels** und **Name des Mediums** als Text sind unproblematisch. **Fotos und Logos** des Mediums sind geschützt (Urheber- bzw. Markenrecht) → nie übernehmen.
+- **Kurzes Zitat** nur, wenn nötig, gekennzeichnet und mit Quelle (Zitatrecht, § 42f UrhG).
+- **Kein iframe/keine Einbettung:** würde beim Seitenaufruf IP-Adressen an das Medium (und dessen Tracking) übertragen – das bräuchte eine Einwilligung (Cookie-Banner). Deshalb gibt es nur lokal erzeugte Karten.
+
+**Teilen-Buttons:** einfache Links; Daten gehen erst beim Klick an LinkedIn/WhatsApp. In der Datenschutzerklärung (Abschnitt 7) ergänzt. Keine Kommentarfunktion → keine Moderations- oder Löschpflichten für fremde Kommentare.
+
+**Bildnachweise:** `fotograf` eines Titelbilds erscheint automatisch im Impressum.
+
+**Stellen, bei denen ich mir rechtlich nicht sicher bin:**
+- **[RECHTLICH PRÜFEN]** Politische Beiträge **im Wahlkampf** (Landtagswahl 2027): Für Privatpersonen gibt es keine eigene Kennzeichnungspflicht. Bezahlt oder organisiert die Partei Inhalte auf der Website, kann das aber parteienrechtlich relevant sein (Parteiengesetz, Wahlwerbungskosten). Vor dem Wahlkampf kurz mit der Partei klären.
+- **[RECHTLICH PRÜFEN]** Ob die Website als „wiederkehrendes elektronisches Medium“ zusätzlich eine Impressumspflicht nach § 24 MedienG auslöst, ist bei Blogs umstritten. Die vorhandene Offenlegung nach § 25 enthält aber ohnehin alle dort verlangten Angaben (Name, Wohnort).
+

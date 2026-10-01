@@ -1,0 +1,76 @@
+---
+layout: default
+---
+{%- comment -%}
+  Lese-Layout für eigene News-Beiträge (_posts/).
+  Felder siehe _vorlagen/news-beitrag.md; aufbereitet von _plugins/news.rb
+  (title, description, bild, lesezeit …).
+{%- endcomment -%}
+{%- assign _datum = page.date | date: "%Y-%m-%d" -%}
+<article class="beitrag">
+  <header class="page-hero beitrag__kopf">
+    <div class="container beitrag__container">
+      <p class="eyebrow"><a href="{{ '/news/' | relative_url }}">{% include icon.html name="arrow-left" %} Alle News</a></p>
+      <h1>{{ page.title }}</h1>
+      <p class="beitrag__meta">
+        {% include datum.html wert=_datum format="lang" %}
+        <span aria-hidden="true">·</span>
+        <span>{% include icon.html name="clock" %} {{ page.lesezeit }} Min. Lesezeit</span>
+        {%- if page.kategorie and page.kategorie != "" %}
+        <span aria-hidden="true">·</span>
+        <span>{{ page.kategorie }}</span>
+        {%- endif %}
+      </p>
+      {%- if page.tags.size > 0 %}
+      <ul class="tag-list beitrag__tags" aria-label="Schlagwörter">
+        {%- for t in page.tags %}
+        <li><span class="tag">{{ t }}</span></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+  </header>
+
+  <div class="section section--tight">
+    <div class="container beitrag__container">
+      {%- if page.bild %}
+      <figure class="beitrag__bild">
+        <picture>
+          <source type="image/webp" srcset="{{ page.bild.gross_webp | relative_url }}">
+          <img src="{{ page.bild.gross_jpg | relative_url }}" alt="{{ page.bild_alt | escape }}" width="{{ page.bild.breite }}" height="{{ page.bild.hoehe }}" fetchpriority="high">
+        </picture>
+        {%- if page.fotograf and page.fotograf != "" %}
+        <figcaption>Foto: {{ page.fotograf }}</figcaption>
+        {%- endif %}
+      </figure>
+      {%- endif %}
+
+      <div class="prose beitrag__text">
+        {{ content }}
+      </div>
+
+      {% include teilen.html %}
+
+      {%- if page.previous or page.next %}
+      <nav class="beitrag__nav" aria-label="Weitere Beiträge">
+        {%- if page.previous %}
+        <a class="card card--interaktiv beitrag__nav-link" href="{{ page.previous.url | relative_url }}" rel="prev">
+          <span class="beitrag__nav-label">{% include icon.html name="arrow-left" %} Älterer Beitrag</span>
+          <span class="beitrag__nav-titel">{{ page.previous.title }}</span>
+        </a>
+        {%- endif %}
+        {%- if page.next %}
+        <a class="card card--interaktiv beitrag__nav-link beitrag__nav-link--weiter" href="{{ page.next.url | relative_url }}" rel="next">
+          <span class="beitrag__nav-label">Neuerer Beitrag {% include icon.html name="arrow-right" %}</span>
+          <span class="beitrag__nav-titel">{{ page.next.title }}</span>
+        </a>
+        {%- endif %}
+      </nav>
+      {%- endif %}
+
+      <p class="beitrag__zurueck">
+        <a class="btn btn--sekundaer" href="{{ '/news/' | relative_url }}">{% include icon.html name="arrow-left" %} Zurück zu allen News</a>
+      </p>
+    </div>
+  </div>
+</article>

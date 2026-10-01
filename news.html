@@ -1,0 +1,63 @@
+---
+# News – eigene Beiträge (_posts/) und Presse-Links (_presse/), gemischt.
+# Einstellungen: _data/news.yml, aufbereitet von _plugins/news.rb
+title: "News"
+description: "Neuigkeiten von Sandro Exenberger: eigene Beiträge sowie Medienberichte zu Politik, Schule und Technik."
+permalink: /news/
+hero: false
+skripte:
+  - news.js
+# Für das Änderungsdatum in der Sitemap: Dateien, aus denen der Inhalt stammt
+abhaengig_von:
+  - _data/news.yml
+  - _presse
+  - _posts
+---
+{%- assign n = site.data.news -%}
+{%- assign liste = site.data.news_liste -%}
+
+<header class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Aktuelles</p>
+    <h1>{{ n.titel }}</h1>
+    {%- if n.einleitung and n.einleitung != "" %}
+    <p class="page-hero__lead">{{ n.einleitung }}</p>
+    {%- endif %}
+  </div>
+</header>
+
+<div class="section section--tight">
+  <div class="container">
+    {%- if liste.size == 0 %}
+    <p class="empty-state">Hier erscheinen bald die ersten News.</p>
+    {%- else %}
+
+    <!-- Filter (nur mit JavaScript) -->
+    {%- if site.data.news_filter.size > 1 %}
+    <ul class="filter-bar js-only" aria-label="News filtern">
+      <li><button type="button" class="filter-btn" data-news-filter="alle" aria-pressed="true">Alle<span class="filter-btn__count">{{ liste.size }}</span></button></li>
+      {%- for f in site.data.news_filter %}
+      <li><button type="button" class="filter-btn{% if f.kategorie %} filter-btn--kategorie{% endif %}" data-news-filter="{{ f.wert | escape }}" data-news-filter-art="{% if f.kategorie %}kategorie{% else %}typ{% endif %}" aria-pressed="false">{{ f.name }}<span class="filter-btn__count">{{ f.anzahl }}</span></button></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+    <p class="visually-hidden" aria-live="polite" data-news-status></p>
+
+    <ul class="news-liste" data-news-liste data-pro-seite="{{ n.pro_seite | default: 9 }}">
+      {%- for e in liste %}
+      {% include news-karte.html eintrag=e index=forloop.index0 ebene=2 %}
+      {%- endfor %}
+    </ul>
+    <p class="empty-state" data-news-leer hidden>Hier gibt es dazu noch keine News.</p>
+
+    <!-- Seitennummern (werden von assets/js/news.js erzeugt, nur bei Bedarf) -->
+    <nav class="pagination js-only" aria-label="Seiten" data-news-seiten hidden></nav>
+    {%- endif %}
+
+    {%- if site.posts.size > 0 %}
+    <p class="news-feed">
+      <a href="{{ '/feed.xml' | relative_url }}">RSS-Feed der Beiträge abonnieren</a>
+    </p>
+    {%- endif %}
+  </div>
+</div>

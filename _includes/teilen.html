@@ -1,0 +1,34 @@
+{%- comment -%}
+  Teilen-Buttons unter einem Beitrag – einstellbar in _data/news.yml → teilen.
+  Nur EINFACHE LINKS: Beim Seitenaufruf wird nichts von LinkedIn, WhatsApp &
+  Co. geladen, keine Widgets, kein Tracking. Daten fließen erst, wenn jemand
+  aktiv auf einen Link klickt.
+  "Link kopieren" und "Teilen …" (Web Share API am Handy) brauchen JavaScript
+  (assets/js/news.js) und sind sonst ausgeblendet.
+{%- endcomment -%}
+{%- assign _t = site.data.news.teilen -%}
+{%- assign _url = page.url | absolute_url -%}
+{%- assign _url_enc = _url | url_encode -%}
+{%- assign _titel_enc = page.title | url_encode | replace: "+", "%20" -%}
+<div class="teilen">
+  <p class="teilen__titel">Beitrag teilen</p>
+  <ul class="teilen__liste">
+    {%- if _t.link_kopieren %}
+    <li class="js-only" hidden data-teilen-nativ-li>
+      <button type="button" class="btn btn--primaer btn--klein" data-teilen-nativ data-titel="{{ page.title | escape }}" data-url="{{ _url }}">{% include icon.html name="share-2" %} Teilen …</button>
+    </li>
+    {%- endif %}
+    {%- if _t.linkedin %}
+    <li><a class="btn btn--sekundaer btn--klein" href="https://www.linkedin.com/sharing/share-offsite/?url={{ _url_enc }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="linkedin" %} LinkedIn<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></li>
+    {%- endif %}
+    {%- if _t.whatsapp %}
+    <li><a class="btn btn--sekundaer btn--klein" href="https://wa.me/?text={{ _titel_enc }}%20{{ _url_enc }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="message-circle" %} WhatsApp<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></li>
+    {%- endif %}
+    {%- if _t.email %}
+    <li><a class="btn btn--sekundaer btn--klein" href="mailto:?subject={{ _titel_enc }}&amp;body={{ _url_enc }}">{% include icon.html name="mail" %} E-Mail</a></li>
+    {%- endif %}
+    {%- if _t.link_kopieren %}
+    <li class="js-only"><button type="button" class="btn btn--sekundaer btn--klein" data-teilen-kopieren="{{ _url }}">{% include icon.html name="link" %} <span data-teilen-text>Link kopieren</span></button></li>
+    {%- endif %}
+  </ul>
+</div>
