@@ -420,7 +420,7 @@ Auf **/news/** stehen zwei Arten von News gemischt, neueste zuerst. Die neuesten
 | Art | Wo | Ergebnis |
 | --- | --- | --- |
 | **Eigener Beitrag** (Blog) | eine Datei pro Beitrag in `_posts/` | Karte auf /news/ + eigene Seite `/news/<titel>/` + RSS-Feed |
-| **Presse-Link** („Ich in den Medien“) | eine Datei pro Artikel in `_presse/` | Karte mit deiner Zusammenfassung und Button „Artikel lesen auf …“ |
+| **Presse-Link** („Ich in den Medien“) | eine Datei pro Artikel in `_presse/` | Karte: Schlagzeile als Zitat mit Quelle, dein Satz, Button „Ganzen Artikel auf … lesen“ |
 
 **Neuen Beitrag schreiben (auf github.com):**
 1. Repository öffnen → Ordner **`_vorlagen`** → **`news-beitrag.md`** → rechts oben **Copy raw file** (Symbol mit zwei Blättern).
@@ -432,8 +432,8 @@ Auf **/news/** stehen zwei Arten von News gemischt, neueste zuerst. Die neuesten
 
 **Neuen Presse-Link hinzufügen:**
 1. Vorlage **`_vorlagen/presse-eintrag.md`** kopieren (wie oben), in **`_presse/`** als `JJJJ-MM-TT-medium-stichwort.md` anlegen.
-2. `titel` (wie beim Medium), `medium`, `datum`, `link` und **`eigene_zusammenfassung`** ausfüllen.
-3. ⚖️ **Zusammenfassung in eigenen Worten**, keine Sätze abschreiben. **Keine Fotos oder Logos** des Mediums verwenden – höchstens ein eigenes Foto (`bild:`), sonst erscheint ein neutrales Zeitungs-Symbol. Details: [RECHTLICHES.md, Abschnitt 8](RECHTLICHES.md#8-news--presse).
+2. `titel` (Original-Schlagzeile, erscheint als Zitat mit Quelle), `medium`, `datum`, `link` und **`eigene_zusammenfassung`** (1–2 eigene Sätze) ausfüllen. Optional `button_text`, `bild`, `fotograf`.
+3. ⚖️ **Außer der Schlagzeile nichts aus dem Artikel übernehmen**, dein Satz in eigenen Worten und nur mit Angaben, die wirklich im Artikel stehen. **Keine Fotos oder Logos** des Mediums verwenden – höchstens ein eigenes Foto (`bild:`), sonst erscheint ein neutrales Zeitungs-Symbol. Details: [RECHTLICHES.md, Abschnitt 8](RECHTLICHES.md#8-news--presse).
 
 **Ausblenden:**
 | Ich will … | So geht's |

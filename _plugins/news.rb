@@ -42,7 +42,7 @@ module News
 
       site.data["news_liste"] = liste
       site.data["news_filter"] = filter(liste)
-      site.data["bildnachweise_auto"] = bildnachweise(posts)
+      site.data["bildnachweise_auto"] = bildnachweise(posts, liste)
     end
 
     private
@@ -64,7 +64,7 @@ module News
       end
       @site.data["news_liste"] = []
       @site.data["news_filter"] = []
-      @site.data["bildnachweise_auto"] = bildnachweise([])
+      @site.data["bildnachweise_auto"] = bildnachweise([], [])
     end
 
     # Titelbild aus assets/img/galerie/ (aufbereitet von bilder-optimieren.py)
@@ -111,7 +111,7 @@ module News
         end
       end
       d["tags"] = Array(d["tags"]).map(&:to_s)
-      d["fotograf"] = d["fotograf"].to_s.strip.start_with?("[") ? "" : d["fotograf"].to_s.strip
+      d["fotograf"] = fotograf(d["fotograf"], wo)
 
       b = bild(d["titelbild"], wo)
       d["bild"] = b
@@ -132,6 +132,15 @@ module News
         "lesezeit" => d["lesezeit"],
         "auf_startseite" => ja?(d.fetch("auf_startseite", true))
       }
+    end
+
+    # "[BITTE AUSFÜLLEN]" nie öffentlich zeigen – nur warnen
+    def fotograf(wert, wo)
+      name = wert.to_s.strip
+      return name unless name.start_with?("[")
+
+      warnen("#{wo}: Fotograf fehlt noch (#{name}) – Bildnachweis erscheint, sobald er eingetragen ist")
+      ""
     end
 
     def presse_eintrag(doc)
@@ -157,7 +166,8 @@ module News
         "medium" => d["medium"].to_s.strip,
         "link" => d["link"].to_s.strip,
         "kurz" => d["eigene_zusammenfassung"].to_s.strip,
-        "zitat" => d["zitat"].to_s.strip,
+        "button_text" => d["button_text"].to_s.strip.empty? ? "Ganzen Artikel auf #{d['medium'].to_s.strip} lesen" : d["button_text"].to_s.strip,
+        "fotograf" => fotograf(d["fotograf"], wo),
         "kategorie" => d["kategorie"].to_s.strip,
         "bild" => bild(d["bild"], wo),
         "bild_alt" => d["bild_alt"].to_s.strip,
@@ -178,8 +188,9 @@ module News
       (arten + kategorien).select { |f| f["anzahl"].positive? }
     end
 
-    # Galerie-Fotografen (aus galerie.rb) + Fotografen der Beitrags-Titelbilder
-    def bildnachweise(posts)
+    # Galerie-Fotografen (aus galerie.rb) + Fotografen der Beitrags- und
+    # Presse-Bilder
+    def bildnachweise(posts, liste)
       gruppen = {}
       Array(@site.data["galerie_fotografen"]).each do |g|
         g["titel"].each { |t| (gruppen[g["name"]] ||= []) << "Galerie – „#{t}“" }
@@ -189,6 +200,11 @@ module News
         next if name.empty? || !p.data["bild"]
 
         (gruppen[name] ||= []) << "News – „#{p.data['title']}“"
+      end
+      liste.each do |e|
+        next unless e["typ"] == "presse" && e["bild"] && !e["fotograf"].empty?
+
+        (gruppen[e["fotograf"]] ||= []) << "News – Foto zum Presse-Eintrag „#{e['titel']}“"
       end
       gruppen.map { |name, wo| { "name" => name, "wo" => wo } }
     end

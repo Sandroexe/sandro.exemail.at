@@ -21,7 +21,7 @@
 {%- assign _unterseite = "/social-impressum/" | append: k.id | append: "/" -%}
 {%- assign _rechte_link = kr.rechte_link_plattform | default: kr.datenschutz_link_plattform -%}
 
-{%- capture _inhalt -%}
+{%- capture _kanal_info -%}
   <h3>Kanal</h3>
   <dl class="facts">
     <dt>Plattform</dt>
@@ -36,7 +36,10 @@
     {%- endif %}
   </dl>
 
-  <h3>Impressum / Offenlegung</h3>
+{%- endcapture -%}
+
+{%- capture _offenlegung -%}
+  <h3>Impressum / Offenlegung gemäß § 25 Mediengesetz</h3>
   <p>Offenlegung gemäß § 25 Mediengesetz für den {{ k.name }}-Kanal <strong>{{ _handle }}</strong>:</p>
   {% include offenlegung.html richtung=_richtung ebene=4 %}
   {%- if r.modus == "unternehmen" %}
@@ -54,6 +57,9 @@
   </p>
   {%- endif %}
 
+{%- endcapture -%}
+
+{%- capture _datenschutz -%}
   <h3>Datenschutzhinweise für {{ k.name }}</h3>
 
   <h4>Verantwortlichkeit</h4>
@@ -180,15 +186,21 @@
   {%- endif %}
 {%- endcapture -%}
 
+{%- comment -%}
+  Eigene Unterseite (Aufruf meist am Handy über den Bio-Link): Offenlegung
+  zuerst, damit ohne Scrollen erkennbar ist, wer den Kanal betreibt.
+  Übersichtsseite: Kanal-Infos zuerst.
+{%- endcomment -%}
+{%- if include.ansicht == "seite" -%}
+  {%- assign _inhalt = _offenlegung | append: _kanal_info | append: _datenschutz -%}
+{%- else -%}
+  {%- assign _inhalt = _kanal_info | append: _offenlegung | append: _datenschutz -%}
+{%- endif -%}
+
 {%- if include.ansicht == "seite" %}
-<section class="channel-page" aria-labelledby="kanal-{{ k.id }}-titel">
-  <header class="channel-page__head">
-    <span class="icon-badge">{% include icon.html name=k.icon %}</span>
-    <div>
-      <h2 id="kanal-{{ k.id }}-titel">{{ k.name }}</h2>
-      <p class="channel-section__handle">{{ _handle }}</p>
-    </div>
-  </header>
+{%- comment -%} Eigene Seite: kein Kanal-Kopf → Überschriften eine Ebene höher {%- endcomment -%}
+{%- assign _inhalt = _inhalt | replace: "<h3", "<h2" | replace: "</h3>", "</h2>" | replace: "<h4", "<h3" | replace: "</h4>", "</h3>" -%}
+<section class="channel-page">
   {{ _inhalt }}
 </section>
 {%- else %}

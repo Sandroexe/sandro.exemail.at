@@ -1,11 +1,20 @@
 {%- comment -%}
   Inhalt einer Kanal-Unterseite /social-impressum/<id>/ – die Seite selbst
   wird automatisch von _plugins/seiten-generator.rb erzeugt.
+  Ganz oben steht, wer den Kanal betreibt (wichtig für den Aufruf über den
+  Bio-Link am Handy), danach sofort die Offenlegung.
 {%- endcomment -%}
 {%- assign _kanal = site.data.social.kanaele | where: "id", page.kanal_id | first -%}
-<p>
-  Impressum und Datenschutzhinweise für meinen {{ _kanal.name }}-Kanal. Alle Kanäle auf einen
-  Blick: <a href="{{ '/social-impressum/' | relative_url }}">Social-Media-Impressum</a>.
+{%- assign _m = site.data.rechtliches.medieninhaber -%}
+{%- assign _u = site.data.rechtliches.unternehmen -%}
+<p class="channel-betreiber">
+  {%- include icon.html name=_kanal.icon %}
+  <span>Dieser {{ _kanal.name }}-Kanal wird betrieben von
+  <strong>{% if site.data.rechtliches.modus == "unternehmen" %}{{ _u.firmenname }} ({{ _m.name }}){% else %}{{ _m.name }}{% endif %}</strong>,
+  {% if _m.plz != "" %}{{ _m.plz }} {% endif %}{{ _m.ort }}, {{ _m.land }}.</span>
 </p>
 {% include social-kanal.html kanal=_kanal ansicht="seite" %}
 {% include social-allgemein.html %}
+<p>
+  Alle Kanäle auf einen Blick: <a href="{{ '/social-impressum/' | relative_url }}">Impressum Social Media</a>.
+</p>

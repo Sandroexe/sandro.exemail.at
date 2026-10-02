@@ -47,9 +47,9 @@ links:
     url: "/datenschutz/"
     anzeigen: true                    # PFLICHT – bitte true lassen
 
-  - titel: "Social-Media-Impressum"
+  - titel: "Impressum Social Media"
     url: "/social-impressum/"
-    anzeigen: true
+    anzeigen: true                    # PFLICHT – zentrale Offenlegung aller Kanäle
 
 # ─── Vorlage zum Kopieren ─────────────────────────────────────────────────
 #  - titel: "Barrierefreiheit"

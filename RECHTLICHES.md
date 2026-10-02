@@ -26,11 +26,11 @@ Seit dem Abschnitt **„Politisches Engagement"** im Lebenslauf (u. a. FPÖ-Kand
 - **grundlegende Richtung (Blattlinie) ist PFLICHT** und nennt das politische Engagement – für die Website (`rechtliches.yml` → `grundlegende_richtung`) **und** für jeden Social-Media-Kanal (`social.yml` → `rechtliches` → `grundlegende_richtung`)
 - Schalter `kleine_website: false` in `rechtliches.yml` – der Hinweissatz „kleine Website" im Impressum ist damit ausgeblendet
 
-Solltest du die politischen Einträge wieder entfernen, kannst du `kleine_website: true` setzen.
+Die Website ist außerdem die **Impressum-Zentrale aller Social-Media-Kanäle**, und es gibt den News-Bereich mit eigenen Beiträgen. `kleine_website` bleibt daher dauerhaft `false`. Die grundlegende Richtung ist für Website und Kanäle technisch erzwungen: Fehlt sie, bricht der Build ab, und die bisherige (vollständige) Version bleibt online.
 
-### „Kleine Website" nach § 25 Abs. 5 MedienG
+### „Kleine Website" nach § 25 Abs. 5 MedienG (trifft hier NICHT zu)
 
-Diese Website ist eine sogenannte **„kleine Website"**: Sie stellt nur dich persönlich vor und enthält keine Inhalte, die darüber hinaus die öffentliche Meinung beeinflussen sollen (keine politischen Kommentare, kein Blog mit Meinungsbeiträgen). Dann genügt eine **verkürzte Offenlegung**: Name, Wohnort (bzw. bei Unternehmen: Firma, Unternehmensgegenstand, Sitz). Eine „grundlegende Richtung" (Blattlinie) ist **nicht** Pflicht.
+Zur Erklärung: Eine **„kleine Website"** stellt nur die Person vor und enthält keine Inhalte, die darüber hinaus die öffentliche Meinung beeinflussen sollen (keine politischen Kommentare, kein Blog mit Meinungsbeiträgen). Dann genügt eine **verkürzte Offenlegung**: Name, Wohnort (bzw. bei Unternehmen: Firma, Unternehmensgegenstand, Sitz). Eine „grundlegende Richtung" (Blattlinie) ist **nicht** Pflicht.
 
 > Wenn du später einen Blog mit Meinungsbeiträgen startest, ändert sich die Einstufung: Dann ist u. a. die **grundlegende Richtung verpflichtend**.
 
@@ -97,6 +97,8 @@ Auch deine **Social-Media-Profile** sind Medien im Sinne des MedienG und brauche
 
 ### Aufbau
 
+- **Kanal-Unterseiten sind fürs Handy optimiert** (Aufruf meist über den Bio-Link): kompakter Kopf, darunter sofort „Dieser Kanal wird betrieben von …“ und die Offenlegung inklusive grundlegender Richtung. Kanal-Infos und Datenschutzhinweise folgen darunter.
+- **Footer jeder Seite:** „Impressum“ und „Impressum Social Media“.
 - **Übersicht:** `sandro.exemail.at/social-impressum/` – Einleitung, Sprung-Buttons, pro Kanal ein aufklappbarer Bereich, am Ende „Für alle Kanäle" (Betroffenenrechte, Beschwerderecht, Link zur Datenschutzerklärung).
 - **Eigene Unterseite pro Kanal** (automatisch erzeugt): `sandro.exemail.at/social-impressum/instagram/`, `…/linkedin/`
 - **Sprungmarke auf der Übersicht:** `…/social-impressum/#instagram` öffnet den Kanal, scrollt hin und hebt ihn kurz hervor.
@@ -175,7 +177,7 @@ TikTok zeigt das anklickbare **Website-Feld** (Profil bearbeiten → **Website**
 | `drittland_text` | **Pflicht**, sobald die Plattform Daten in die USA übermittelt | Art. 13 Abs. 1 lit. f DSGVO |
 | `datenschutz_link_plattform` | dringend empfohlen | – |
 | `gemeinsame_verantwortung` + `vereinbarung_link` | **Pflicht nur** bei Unternehmens-/Fanseiten mit Seitenstatistik | Art. 26 DSGVO |
-| `grundlegende_richtung` | freiwillig (bei „kleiner Website"/persönlichem Profil) | § 25 Abs. 5 MedienG |
+| `grundlegende_richtung` | **Pflicht** – die Kanäle enthalten politische, meinungsbildende Inhalte. Fehlt sie bei einem Kanal (und gibt es keinen Rückfallwert in `rechtliches.yml`), bricht der Build ab. | § 25 Abs. 4 MedienG |
 | `insights_…`, `einstellungen_link_plattform`, `rechte_link_plattform`, `zusaetzliche_hinweise` | freiwillig (Transparenz) | – |
 | § 5 ECG | erst im Modus `unternehmen` | ECG |
 
@@ -265,8 +267,8 @@ Sobald du etwas Neues einbaust, das Daten verarbeitet: eingebettete Videos, Kart
 **Presse-Links – was erlaubt ist:**
 - **Verlinken** frei zugänglicher Artikel ist zulässig (EuGH, *Svensson*, C-466/12). Bezahlschranken nicht umgehen (keine Links auf „Gratis-Kopien“).
 - **Eigene Zusammenfassung** ist erlaubt – Fakten sind nicht urheberrechtlich geschützt, die Formulierung des Journalisten schon. Deshalb nichts abschreiben.
-- **Titel des Artikels** und **Name des Mediums** als Text sind unproblematisch. **Fotos und Logos** des Mediums sind geschützt (Urheber- bzw. Markenrecht) → nie übernehmen.
-- **Kurzes Zitat** nur, wenn nötig, gekennzeichnet und mit Quelle (Zitatrecht, § 42f UrhG).
+- **Schlagzeile** des Artikels als gekennzeichnetes Zitat mit Quelle (Medium, Datum) und **Name des Mediums** als Text sind unproblematisch – Schlagzeilen sind in der Regel zu kurz für Urheberrechtsschutz, und das Zitat ist belegt (§ 42f UrhG). **Fotos und Logos** des Mediums sind geschützt (Urheber- bzw. Markenrecht) → nie übernehmen.
+- **Darüber hinaus keine Textpassagen** aus dem Artikel – die Karte enthält nur Schlagzeile, Quelle und einen eigenen Satz.
 - **Kein iframe/keine Einbettung:** würde beim Seitenaufruf IP-Adressen an das Medium (und dessen Tracking) übertragen – das bräuchte eine Einwilligung (Cookie-Banner). Deshalb gibt es nur lokal erzeugte Karten.
 
 **Teilen-Buttons:** einfache Links; Daten gehen erst beim Klick an LinkedIn/WhatsApp. In der Datenschutzerklärung (Abschnitt 7) ergänzt. Keine Kommentarfunktion → keine Moderations- oder Löschpflichten für fremde Kommentare.

@@ -60,8 +60,9 @@
 #    einstellungen_link_plattform  Datenschutz-Einstellungen der Plattform    (freiwillig)
 #    rechte_link_plattform       Wo man Betroffenenrechte direkt beim Betreiber
 #                                geltend macht (leer = Datenschutzerklärung)  (freiwillig)
-#    grundlegende_richtung       Blattlinie nur für diesen Kanal (leer = die
-#                                allgemeine aus rechtliches.yml)              (freiwillig)
+#    grundlegende_richtung       Blattlinie dieses Kanals (leer = die allgemeine
+#                                aus rechtliches.yml). Eine davon ist PFLICHT,
+#                                da die Kanäle politische Inhalte haben       (PFLICHT)
 #    insights_genutzt            true = die Plattform zeigt dir Statistiken an
 #                                (z. B. Profilaufrufe, Business-/Creator-Konto)
 #    insights_bezeichnung        Wie heißen diese Statistiken? (wird angezeigt)

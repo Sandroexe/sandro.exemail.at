@@ -53,15 +53,18 @@ medieninhaber:
 
 
 # ═══════════════════════ GRUNDLEGENDE RICHTUNG (BLATTLINIE) ════════════════
-# kleine_website:
-#   true  = die Website stellt nur die Person vor, ohne Inhalte, die die
-#           öffentliche Meinung beeinflussen können (§ 25 Abs. 5 MedienG) →
-#           verkürzte Offenlegung, Blattlinie freiwillig, Hinweissatz im Impressum
-#   false = es gibt z. B. politische Inhalte → volle Offenlegung,
-#           Blattlinie ist PFLICHT (aktuell wegen "Politisches Engagement")
+# Die Website ist die Impressum-Zentrale für ALLE Social-Media-Kanäle, und
+# Website wie Kanäle enthalten politische, meinungsbildende Inhalte (News,
+# politisches Engagement). Deshalb gilt die VOLLE Offenlegung nach § 25
+# MedienG inklusive grundlegender Richtung – für die Website und jeden Kanal.
+#
+# kleine_website: bitte auf false lassen.
+#   (true wäre nur für eine reine Selbstdarstellung ohne meinungsbildende
+#   Inhalte zulässig, § 25 Abs. 5 MedienG – trifft hier nicht zu.)
 kleine_website: false
 
-# (P) solange kleine_website: false – muss auch die politische Ausrichtung nennen
+# (P) PFLICHT – grundlegende Richtung der Website. Muss auch die politische
+#     Ausrichtung und die News nennen. Leer = der Build bricht ab (Absicht).
 grundlegende_richtung: >-
   Persönliche Website von Sandro Exenberger mit Informationen über Ausbildung,
   beruflichen Werdegang, Qualifikationen und Projekte in Elektronik, IT und
@@ -162,7 +165,10 @@ social_impressum:
   einleitung: >-
     Impressum und Datenschutzhinweise für meine Social-Media-Kanäle. Jeder Kanal
     hat einen eigenen Bereich – ein Klick auf den Namen klappt ihn auf.
-  # (O) Blattlinie für ALLE Kanäle gemeinsam. Leer = die allgemeine von oben.
+  # (P) Blattlinie für ALLE Kanäle gemeinsam (Rückfall, wenn ein Kanal in
+  #     social.yml keine eigene hat). Leer = die allgemeine von oben.
+  #     Jeder Kanal MUSS am Ende eine grundlegende Richtung haben – sonst
+  #     bricht der Build ab.
   #     Pro Kanal abweichend? → in social.yml beim Kanal unter
   #     rechtliches → grundlegende_richtung.
   #     Alle weiteren Angaben pro Kanal (Betreiber, Datenschutz, Statistik …)

@@ -5,8 +5,9 @@
     index   – Position (für die gestaffelte Einblend-Animation)
     ebene   – Überschriftenebene des Titels (Standard 2)
   Eigene Beiträge: ganze Karte führt zum Beitrag.
-  Presse: nur der Button führt zum Medium (neuer Tab) – nichts davon wird
-  beim Seitenaufruf von fremden Servern geladen.
+  Presse: Schlagzeile des Artikels als Zitat mit Quelle, darunter ein
+  eigener Satz; nur der Button führt zum Medium (neuer Tab). Nichts davon
+  wird beim Seitenaufruf von fremden Servern geladen.
 {%- endcomment -%}
 {%- assign _e = include.eintrag -%}
 {%- assign _h = include.ebene | default: 2 -%}
@@ -16,7 +17,7 @@
       {%- if _e.bild %}
       <picture>
         <source type="image/webp" srcset="{{ _e.bild.klein_webp | relative_url }}">
-        <img src="{{ _e.bild.klein_jpg | relative_url }}" alt="" width="{{ _e.bild.klein_breite }}" height="{{ _e.bild.klein_hoehe }}" loading="lazy" decoding="async">
+        <img src="{{ _e.bild.klein_jpg | relative_url }}" alt="{{ _e.bild_alt | escape }}" width="{{ _e.bild.klein_breite }}" height="{{ _e.bild.klein_hoehe }}" loading="lazy" decoding="async">
       </picture>
       {%- elsif _e.typ == "presse" %}
       {% include icon.html name="newspaper" %}
@@ -27,28 +28,25 @@
     <div class="news-karte__body">
       <p class="news-karte__meta">
         <span class="tag {% if _e.typ == 'presse' %}tag--presse{% else %}tag--akzent{% endif %}">{% if _e.typ == "presse" %}Presse{% else %}Beitrag{% endif %}</span>
+        {%- if _e.typ == "beitrag" %}
         <span>{% include datum.html wert=_e.datum format="lang" %}</span>
-        {%- if _e.typ == "presse" %}
-        <span>{{ _e.medium }}</span>
-        {%- else %}
         <span>{{ _e.lesezeit }} Min. Lesezeit</span>
         {%- endif %}
       </p>
+      {%- if _e.typ == "beitrag" %}
       <h{{ _h }} class="news-karte__titel">
-        {%- if _e.typ == "beitrag" -%}
         <a class="card__link-overlay" href="{{ _e.url | relative_url }}">{{ _e.titel }}</a>
-        {%- else -%}
-        {{ _e.titel }}
-        {%- endif -%}
       </h{{ _h }}>
       <p class="news-karte__text">{{ _e.kurz }}</p>
-      {%- if _e.typ == "presse" and _e.zitat != "" %}
-      <blockquote class="news-karte__zitat">„{{ _e.zitat }}“<cite>– {{ _e.medium }}</cite></blockquote>
-      {%- endif %}
-      {%- if _e.typ == "presse" %}
+      {%- else %}
+      <blockquote class="news-karte__schlagzeile" cite="{{ _e.link }}">
+        <h{{ _h }} class="news-karte__titel"><span class="visually-hidden">Schlagzeile, Zitat: </span>„{{ _e.titel }}“</h{{ _h }}>
+        <p class="news-karte__quelle">– <cite>{{ _e.medium }}</cite>, {% include datum.html wert=_e.datum format="lang" %}</p>
+      </blockquote>
+      <p class="news-karte__text">{{ _e.kurz }}</p>
       <p class="news-karte__aktion">
         <a class="btn btn--sekundaer btn--klein" href="{{ _e.link }}" target="_blank" rel="noopener noreferrer">
-          Artikel lesen auf {{ _e.medium }} {% include icon.html name="external-link" %}<span class="visually-hidden"> (öffnet in neuem Tab)</span>
+          {{ _e.button_text }} {% include icon.html name="external-link" %}<span class="visually-hidden"> (öffnet in neuem Tab)</span>
         </a>
       </p>
       {%- endif %}

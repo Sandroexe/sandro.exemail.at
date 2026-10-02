@@ -11,6 +11,10 @@
 #     /social-impressum/<id>/ für jeden Kanal mit
 #     rechtliches → impressum_anzeigen: true
 #
+#     Pflicht: Jeder Kanal UND die Website brauchen eine "grundlegende
+#     Richtung" (§ 25 MedienG, die Kanäle sind politisch/meinungsbildend).
+#     Fehlt sie, bricht der Build ab – die bisherige Website bleibt online.
+#
 #  3. IndexNow-Schlüsseldatei   aus _config.yml (indexnow → schluessel)
 #     /<schluessel>.txt im Wurzelverzeichnis – ⚠ nie löschen
 #
@@ -125,6 +129,8 @@ module SeitenGenerator
 
     def generate(site)
       kanaele = site.data.dig("social", "kanaele") || []
+      r = site.data["rechtliches"] || {}
+      richtung_pruefen("Website (rechtliches.yml → grundlegende_richtung)", r["grundlegende_richtung"])
 
       kanaele.each do |k|
         rechtliches = k["rechtliches"]
@@ -136,20 +142,37 @@ module SeitenGenerator
           next
         end
 
+        richtung_pruefen(
+          "Kanal \"#{k['name']}\" (social.yml → rechtliches → grundlegende_richtung)",
+          rechtliches["grundlegende_richtung"].to_s.strip.empty? ? (r.dig("social_impressum", "grundlegende_richtung").to_s.strip.empty? ? r["grundlegende_richtung"] : r.dig("social_impressum", "grundlegende_richtung")) : rechtliches["grundlegende_richtung"]
+        )
+
         site.pages << DatenSeite.new(
           site, "/social-impressum/#{id}/",
           {
             "layout" => "legal",
-            "title" => "#{k['name']} – Impressum & Datenschutz",
+            "title" => "Impressum #{k['name']}",
+            "kompakt" => true,
             "description" => "Offenlegung gemäß § 25 Mediengesetz und Datenschutzhinweise für den #{k['name']}-Kanal von Sandro Exenberger.",
             "kanal_id" => id,
             # Für das Änderungsdatum in der Sitemap (_plugins/letzte-aenderung.rb)
             "abhaengig_von" => ["_data/social.yml", "_data/rechtliches.yml",
-                                "_includes/social-kanal.html", "_includes/social-allgemein.html"]
+                                "_includes/social-kanal.html", "_includes/social-allgemein.html",
+                                "_includes/social-kanal-seite.html", "_includes/offenlegung.html"]
           },
           "{% include social-kanal-seite.html %}"
         )
       end
+    end
+
+    private
+
+    def richtung_pruefen(wo, text)
+      t = text.to_s.strip
+      return unless t.empty? || t.start_with?("[")
+
+      raise Jekyll::Errors::FatalException,
+            "Grundlegende Richtung fehlt: #{wo}. Sie ist Pflicht (§ 25 MedienG) – bitte eintragen."
     end
   end
 end

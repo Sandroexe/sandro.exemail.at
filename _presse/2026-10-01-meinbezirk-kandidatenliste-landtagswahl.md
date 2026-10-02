@@ -5,14 +5,13 @@ medium: "MeinBezirk Kufstein"
 datum: "2026-10-01"
 link: "https://www.meinbezirk.at/kufstein/c-politik/kandidatenliste-fuer-die-landtagswahl-2027-steht-fest_a8927565"
 eigene_zusammenfassung: >-
-  MeinBezirk berichtet über die Kandidatenliste der FPÖ im Bezirk Kufstein für
-  die Tiroler Landtagswahl 2027, die am 27. September in Kramsach einstimmig
-  beschlossen wurde. Angeführt wird sie von Bezirksparteiobmann LAbg. Andreas
-  Gang – ich kandidiere auf Platz 8 der Liste.
-zitat: ""
+  Ich freue mich, auf der Wahlkreisliste der FPÖ Bezirk Kufstein für die
+  Tiroler Landtagswahl 2027 dabei zu sein – auf dem achten Listenplatz.
+button_text: "Ganzen Artikel auf MeinBezirk lesen"
 kategorie: "Politik"
-bild: ""
-bild_alt: ""
+bild: "landtag-rede.jpg"
+bild_alt: "Sandro Exenberger bei einer Rede im Tiroler Landtag"
+fotograf: "[BITTE AUSFÜLLEN]"
 veroeffentlicht: true
 auf_startseite: true
 ---

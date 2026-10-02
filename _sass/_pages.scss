@@ -1051,6 +1051,8 @@
   &__media {
     display: grid;
     place-items: center;
+    position: relative;
+    overflow: hidden;
     aspect-ratio: 16 / 9;
     background:
       linear-gradient(var(--c-border) 1px, transparent 1px) 0 0 / 22px 22px,
@@ -1069,14 +1071,16 @@
       box-sizing: content-box;
     }
 
-    picture,
+    // Bild füllt das 16:9-Feld, egal ob Hoch- oder Querformat
+    picture {
+      position: absolute;
+      inset: 0;
+    }
+
     img {
       display: block;
       width: 100%;
       height: 100%;
-    }
-
-    img {
       object-fit: cover;
       object-position: center 30%;
       transition: transform 600ms var(--ease);
@@ -1122,19 +1126,26 @@
     font-size: 0.975rem;
   }
 
-  &__zitat {
-    margin: 0.25rem 0 0;
+  // Presse: Original-Schlagzeile als Zitat mit Quelle
+  &__schlagzeile {
+    margin: 0.15rem 0 0;
     padding-left: 0.9rem;
     border-left: 3px solid var(--c-primary);
-    font-style: italic;
-    font-size: 0.95rem;
+
+    .news-karte__titel {
+      margin: 0;
+    }
+  }
+
+  &__quelle {
+    margin: 0.35rem 0 0;
+    font-size: 0.85rem;
+    color: var(--c-text-muted);
 
     cite {
-      display: block;
-      margin-top: 0.25rem;
       font-style: normal;
-      font-size: 0.85rem;
-      color: var(--c-text-muted);
+      font-weight: var(--fw-medium);
+      color: var(--c-text);
     }
   }
 
@@ -1598,6 +1609,42 @@
 }
 
 // ═══ SOCIAL-MEDIA-IMPRESSUM (pro Kanal) ═══════════════════════════════════
+
+// Kompakter Kopf: Offenlegung soll am Handy ohne Scrollen sichtbar sein
+.page-hero--kompakt {
+  padding-top: clamp(1.5rem, 1rem + 2vw, 3rem);
+  padding-bottom: 0;
+
+  h1 {
+    font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.6rem);
+  }
+
+  + .section--tight {
+    padding-top: 1.25rem;
+  }
+}
+
+// "Dieser Kanal wird betrieben von …" ganz oben
+.prose .channel-betreiber,
+.channel-betreiber {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid color-mix(in srgb, var(--c-primary) 35%, var(--c-border));
+  border-radius: var(--radius);
+  background: var(--c-primary-soft);
+
+  > .icon {
+    margin-top: 0.15rem;
+    color: var(--c-primary);
+  }
+}
+
+.channel-page > h2:first-child {
+  margin-top: 0;
+}
 
 .prose .channel-jump,
 .channel-jump {

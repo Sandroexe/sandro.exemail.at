@@ -4,8 +4,9 @@ layout: default
 {%- comment -%}
   Layout für Rechtstexte (Impressum, Datenschutz, Social-Media-Impressum).
   Das Stand-Datum kommt aus _data/rechtliches.yml.
+  kompakt: true → kleiner Seitenkopf (Kanal-Impressen, Aufruf am Handy).
 {%- endcomment -%}
-<header class="page-hero">
+<header class="page-hero{% if page.kompakt %} page-hero--kompakt{% endif %}">
   <div class="container">
     <p class="eyebrow">Rechtliches</p>
     <h1>{{ page.title }}</h1>
