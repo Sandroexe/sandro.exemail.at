@@ -57,7 +57,8 @@ standort:
 
 # ═══════════════════════════════ PROFILFOTO ════════════════════════════════
 # So tauschst du das Foto:
-#   1. Foto quadratisch zuschneiden (ideal: 800 × 800 Pixel).
+#   1. Foto quadratisch zuschneiden (mindestens 1000 × 1000 Pixel – Google
+#      verwendet es als Hauptbild/Vorschaubild der Website).
 #   2. Als JPG nach  assets/img/  kopieren, z. B. "profil.jpg".
 #   3. Optional zusätzlich als WebP speichern ("profil.webp") – lädt schneller.
 #      (Kostenlos z. B. mit https://squoosh.app – läuft komplett im Browser.)
@@ -66,9 +67,13 @@ standort:
 foto:
   datei: "profil.jpg"               # Dateiname in assets/img/ (JPG, PNG oder SVG)
   webp: "profil.webp"               # Optional: WebP-Version, z. B. "profil.webp"
-  alt: "Porträtfoto von Sandro Exenberger"   # Beschreibung für Screenreader
-  breite: 1000                      # Bildbreite in Pixel
+  alt: "Porträtfoto von Sandro Exenberger am Rednerpult"   # Beschreibung für Screenreader und Google
+  breite: 1000                      # Bildbreite in Pixel (mind. 1000 – Google nutzt das Foto als Hauptbild)
   hoehe: 1000                       # Bildhöhe in Pixel
+  # Kleinere Version fürs Handy (optional, lädt schneller). Gleiches Motiv!
+  klein: "profil-600.jpg"
+  klein_webp: "profil-600.webp"
+  klein_breite: 600
 
 
 # ════════════════════════════ BUTTONS (STARTSEITE) ═════════════════════════

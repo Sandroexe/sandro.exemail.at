@@ -4,6 +4,9 @@
   Pro Seite steuerbar über das Front Matter: title, description, image, noindex
   Eigene News-Beiträge (_posts/) bekommen zusätzlich og:type "article" und
   strukturierte Daten vom Typ BlogPosting (Felder setzt _plugins/news.rb).
+  Startseite: WebSite + ProfilePage + Person mit dem Profilfoto als Hauptbild
+  (damit Google das Foto statt einer Grafik als Vorschaubild verwendet).
+  Vorschaubild für alle Seiten ohne eigenes Bild: _config.yml → og_image.
 {%- endcomment -%}
 {%- assign _ist_beitrag = false -%}
 {%- if page.collection == "posts" %}{% assign _ist_beitrag = true %}{% endif -%}
@@ -17,6 +20,14 @@
 {%- assign _beschr = page.description | default: site.description | strip_newlines | strip -%}
 {%- assign _url = page.url | replace: "index.html", "" | absolute_url -%}
 {%- assign _bild = page.image | default: site.og_image | absolute_url -%}
+{%- if page.image -%}
+  {%- assign _bild_b = 1200 -%}{%- assign _bild_h = 630 -%}
+  {%- assign _bild_alt = page.bild_alt | default: page.title -%}
+{%- else -%}
+  {%- assign _bild_b = site.og_image_breite | default: 1200 -%}{%- assign _bild_h = site.og_image_hoehe | default: 630 -%}
+  {%- assign _bild_alt = site.og_image_alt | default: _name -%}
+{%- endif -%}
+{%- assign _foto = "/assets/img/" | append: _p.foto.datei | absolute_url -%}
 <title>{{ _titel | escape }}</title>
 <meta name="description" content="{{ _beschr | escape }}">
 <meta name="author" content="{{ _name | escape }}">
@@ -29,6 +40,8 @@
 {%- endif %}
 {%- if page.noindex %}
 <meta name="robots" content="noindex, follow">
+{%- else %}
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 {%- endif %}
 
 <meta property="og:type" content="{% if page.url == '/' %}profile{% elsif _ist_beitrag %}article{% else %}website{% endif %}">
@@ -38,9 +51,16 @@
 <meta property="og:description" content="{{ _beschr | escape }}">
 <meta property="og:url" content="{{ _url }}">
 <meta property="og:image" content="{{ _bild }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="{% if page.bild and page.bild_alt and page.bild_alt != '' %}{{ page.bild_alt | escape }}{% else %}{{ _name | escape }} – {{ _p.kurztitel | escape }}{% endif %}">
+<meta property="og:image:secure_url" content="{{ _bild }}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="{{ _bild_b }}">
+<meta property="og:image:height" content="{{ _bild_h }}">
+<meta property="og:image:alt" content="{{ _bild_alt | escape }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ _titel | escape }}">
+<meta name="twitter:description" content="{{ _beschr | escape }}">
+<meta name="twitter:image" content="{{ _bild }}">
+<meta name="twitter:image:alt" content="{{ _bild_alt | escape }}">
 {%- if _ist_beitrag %}
 <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
 {%- if page.last_modified_at %}
@@ -80,29 +100,68 @@
 {%- endfor -%}
 {%- assign _job = site.data.lebenslauf.berufserfahrung.eintraege | where: "bis", "" | first -%}
 {%- assign _schule = site.data.lebenslauf.ausbildung.eintraege | first -%}
-{%- assign _foto = "/assets/img/" | append: _p.foto.datei | absolute_url %}
+{%- assign _start = "/" | absolute_url -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": {{ _name | jsonify }},
-  "givenName": {{ _p.vorname | jsonify }},
-  "familyName": {{ _p.nachname | jsonify }},
-  "url": {{ "/" | absolute_url | jsonify }},
-  "image": {{ _foto | jsonify }},
-  "jobTitle": {{ _p.berufsbezeichnung | jsonify }},
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": {{ _p.standort.ort | jsonify }},
-    "addressCountry": "AT"
-  },
-  {%- if _job %}
-  "worksFor": { "@type": "Organization", "name": {{ _job.unternehmen | jsonify }} },
-  {%- endif %}
-  {%- if _schule %}
-  "affiliation": { "@type": "EducationalOrganization", "name": {{ _schule.schule | jsonify }} },
-  {%- endif %}
-  "sameAs": {{ _same | jsonify }}
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": {{ _start | append: "#website" | jsonify }},
+      "url": {{ _start | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "alternateName": {{ site.url | remove: "https://" | remove: "http://" | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }},
+      "publisher": { "@id": {{ _start | append: "#person" | jsonify }} }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": {{ _start | append: "#profilseite" | jsonify }},
+      "url": {{ _start | jsonify }},
+      "name": {{ _titel | jsonify }},
+      "description": {{ _beschr | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }},
+      "isPartOf": { "@id": {{ _start | append: "#website" | jsonify }} },
+      "mainEntity": { "@id": {{ _start | append: "#person" | jsonify }} },
+      "primaryImageOfPage": { "@id": {{ _start | append: "#profilfoto" | jsonify }} },
+      "image": { "@id": {{ _start | append: "#profilfoto" | jsonify }} }
+      {%- if page.last_modified_at %},
+      "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }}
+      {%- endif %}
+    },
+    {
+      "@type": "ImageObject",
+      "@id": {{ _start | append: "#profilfoto" | jsonify }},
+      "url": {{ _foto | jsonify }},
+      "contentUrl": {{ _foto | jsonify }},
+      "width": {{ _p.foto.breite | jsonify }},
+      "height": {{ _p.foto.hoehe | jsonify }},
+      "caption": {{ _p.foto.alt | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }}
+    },
+    {
+      "@type": "Person",
+      "@id": {{ _start | append: "#person" | jsonify }},
+      "name": {{ _name | jsonify }},
+      "givenName": {{ _p.vorname | jsonify }},
+      "familyName": {{ _p.nachname | jsonify }},
+      "url": {{ _start | jsonify }},
+      "image": { "@id": {{ _start | append: "#profilfoto" | jsonify }} },
+      "jobTitle": {{ _p.berufsbezeichnung | jsonify }},
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": {{ _p.standort.ort | jsonify }},
+        "addressCountry": "AT"
+      },
+      {%- if _job %}
+      "worksFor": { "@type": "Organization", "name": {{ _job.unternehmen | jsonify }} },
+      {%- endif %}
+      {%- if _schule %}
+      "affiliation": { "@type": "EducationalOrganization", "name": {{ _schule.schule | jsonify }} },
+      {%- endif %}
+      "sameAs": {{ _same | jsonify }}
+    }
+  ]
 }
 </script>
 {%- endif %}

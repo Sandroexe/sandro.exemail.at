@@ -51,7 +51,7 @@ abhaengig_von:
 
     <div class="hero__media" data-hero-in="1">
       <div class="profile-photo">
-        {% include bild.html datei=p.foto.datei webp=p.foto.webp alt=p.foto.alt breite=p.foto.breite hoehe=p.foto.hoehe eager=true %}
+        {% include bild.html datei=p.foto.datei webp=p.foto.webp alt=p.foto.alt breite=p.foto.breite hoehe=p.foto.hoehe klein=p.foto.klein klein_webp=p.foto.klein_webp klein_breite=p.foto.klein_breite sizes="(min-width: 52em) 21rem, 62vw" eager=true %}
         {%- if p.standort.ort and p.standort.ort != "" %}
         <span class="profile-photo__badge">
           {% include icon.html name="map-pin" %}

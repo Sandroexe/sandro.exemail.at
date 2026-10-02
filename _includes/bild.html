@@ -8,13 +8,21 @@
     pfad    – Ordner (Standard: /assets/img/)
     klasse  – CSS-Klasse für das <img>
     eager   – true = sofort laden (nur für Bilder ganz oben)
+    klein, klein_webp, klein_breite – optionale kleinere Version (srcset)
+    sizes   – Anzeigebreite für srcset, z. B. "(min-width: 52em) 420px, 80vw"
 {%- endcomment -%}
 {%- assign _bild_pfad = include.pfad | default: "/assets/img/" -%}
+{%- assign _set_jpg = false -%}
+{%- assign _set_webp = false -%}
 <picture>
-  {%- if include.webp and include.webp != "" %}
-  <source type="image/webp" srcset="{{ _bild_pfad | append: include.webp | relative_url }}">
+  {%- if include.klein and include.klein != "" and include.breite %}
+  {%- capture _set_jpg %}{{ _bild_pfad | append: include.klein | relative_url }} {{ include.klein_breite }}w, {{ _bild_pfad | append: include.datei | relative_url }} {{ include.breite }}w{% endcapture %}
+  {%- capture _set_webp %}{{ _bild_pfad | append: include.klein_webp | relative_url }} {{ include.klein_breite }}w, {{ _bild_pfad | append: include.webp | relative_url }} {{ include.breite }}w{% endcapture %}
   {%- endif %}
-  <img src="{{ _bild_pfad | append: include.datei | relative_url }}" alt="{{ include.alt | escape }}"
+  {%- if include.webp and include.webp != "" %}
+  <source type="image/webp" srcset="{% if _set_webp %}{{ _set_webp }}{% else %}{{ _bild_pfad | append: include.webp | relative_url }}{% endif %}"{% if _set_webp and include.sizes %} sizes="{{ include.sizes }}"{% endif %}>
+  {%- endif %}
+  <img src="{{ _bild_pfad | append: include.datei | relative_url }}"{% if _set_jpg %} srcset="{{ _set_jpg }}"{% if include.sizes %} sizes="{{ include.sizes }}"{% endif %}{% endif %} alt="{{ include.alt | escape }}"
     {%- if include.breite %} width="{{ include.breite }}"{% endif %}
     {%- if include.hoehe %} height="{{ include.hoehe }}"{% endif %}
     {%- if include.eager %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async"

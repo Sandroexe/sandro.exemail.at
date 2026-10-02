@@ -44,8 +44,13 @@ lang: "de-AT"
 # Sprache für Social-Media-Vorschauen (Unterstrich statt Bindestrich!)
 locale: "de_AT"
 
-# Standard-Vorschaubild für Social Media (1200 × 630 Pixel, JPG oder PNG)
-og_image: "/assets/img/og-image.png"
+# Vorschaubild für Google, LinkedIn, WhatsApp & Co. (1200 × 630 Pixel, JPG)
+# Gilt für alle Seiten ohne eigenes Bild. Das Gesicht sollte in der MITTE
+# stehen – Google schneidet für kleine Vorschaubilder oft quadratisch zu.
+og_image: "/assets/img/vorschaubild.jpg"
+og_image_breite: 1200
+og_image_hoehe: 630
+og_image_alt: "Sandro Exenberger – Porträtfoto mit Name und Schwerpunkten Elektronik, IT, Netzwerke und Webentwicklung"
 
 # Zeitzone (für Datumsangaben)
 timezone: "Europe/Vienna"

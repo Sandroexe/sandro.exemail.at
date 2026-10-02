@@ -208,7 +208,7 @@ Datei im Repository öffnen → Stift-Symbol ✏️ → ändern → **Commit cha
 
 ### 5.1 Foto austauschen
 
-1. Foto **quadratisch** zuschneiden, ideal 800 × 800 Pixel.
+1. Foto **quadratisch** zuschneiden, **mindestens 1000 × 1000 Pixel** (Google verwendet es als Vorschaubild).
 2. Als `profil.jpg` in den Ordner `assets/img/` legen.
 3. Optional (schneller): zusätzlich als `profil.webp` speichern, z. B. kostenlos mit [squoosh.app](https://squoosh.app) (läuft nur im Browser, lädt nichts hoch).
 4. In `_data/person.yml`:
@@ -216,11 +216,15 @@ Datei im Repository öffnen → Stift-Symbol ✏️ → ändern → **Commit cha
    foto:
      datei: "profil.jpg"
      webp: "profil.webp"      # oder "" wenn keine WebP-Datei
-     alt: "Porträtfoto von Sandro Exenberger"
-     breite: 800
-     hoehe: 800
+     alt: "Porträtfoto von Sandro Exenberger am Rednerpult"
+     breite: 1000
+     hoehe: 1000
+     klein: "profil-600.jpg"  # optional, gleiches Motiv in 600 × 600
+     klein_webp: "profil-600.webp"
+     klein_breite: 600
    ```
-5. **Social-Media-Vorschaubild** (`assets/img/og-image.png`, 1200 × 630): kannst du jederzeit durch ein eigenes Bild mit gleichem Namen ersetzen.
+5. **Google-/Social-Media-Vorschaubild** (`assets/img/vorschaubild.jpg`, 1200 × 630, eingestellt in `_config.yml` → `og_image`): dein Foto randlos, Gesicht in der **Mitte** (Google schneidet oft quadratisch zu), Name dezent links. Neues Foto? Claude bitten: „Erzeuge das Vorschaubild neu aus profil.jpg.“ Danach Startseite in der Google Search Console neu indexieren lassen (Abschnitt 10) und bei LinkedIn den [Post Inspector](https://www.linkedin.com/post-inspector/) aufrufen.
+6. Das **Profilfoto** auf der Startseite ist auch das Hauptbild für Google (strukturierte Daten „ProfilePage“ + „Person“). Mindestens 1000 × 1000 Pixel, quadratisch; zusätzlich eine 600-px-Version (`klein` in `person.yml`) für Handys.
 
 **Fotogalerie:** siehe [5.11](#511-galerie-bild-hinzufügen).
 
@@ -511,6 +515,7 @@ Kurz dokumentiert, damit du (oder jemand anderes) später versteht, warum etwas 
 | **Gleichmäßiges Raster statt Masonry** | Hochformate belegen zwei Zellen übereinander. So bleibt die Reihenfolge „neueste zuerst" von links nach rechts lesbar, und die Seite springt beim Laden nicht (feste Seitenverhältnisse). |
 | **Druck-Layout statt PDF-Bibliothek** | „Als PDF speichern" im Browser liefert ein sauberes A4-PDF ohne zusätzliche Abhängigkeiten. |
 | **Leiterbahn-Animation per Canvas** | Leicht (ein Zwischenspeicher, wenige Signale), pausiert außerhalb des Sichtbereichs, aus bei „Bewegung reduzieren". |
+| **Vorschaubild mit Foto statt Textgrafik** | Google zeigt bei Personen-Suchen bevorzugt ein Gesicht. Strukturierte Daten (WebSite, ProfilePage mit `primaryImageOfPage`, Person) und `max-image-preview:large` machen das Profilfoto zum klaren Hauptbild. |
 | **Keine Farbe im `theme-color`-Meta-Tag** | Würde eine zweite Farbangabe außerhalb von `_theme.scss` erfordern. |
 
 **Sicherheits-Header:** GitHub Pages erlaubt keine eigenen HTTP-Header. Die Content-Security-Policy wird daher per `<meta>`-Tag gesetzt (wirksam für Skripte, Styles, Bilder, Formulare). Nicht per Meta möglich sind `frame-ancestors` und `X-Frame-Options` – das ist für eine statische Portfolio-Seite ein vertretbares Restrisiko.

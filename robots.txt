@@ -2,8 +2,12 @@
 layout: null
 sitemap: false
 ---
-# Suchmaschinen dürfen die ganze Website lesen.
+# Suchmaschinen dürfen die ganze Website lesen – auch alle Bilder
+# (Google soll das Profilfoto als Vorschaubild verwenden können).
 User-agent: *
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 Sitemap: {{ '/sitemap.xml' | absolute_url }}
