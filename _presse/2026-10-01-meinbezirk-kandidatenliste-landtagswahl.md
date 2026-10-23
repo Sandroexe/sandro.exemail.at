@@ -9,8 +9,8 @@ eigene_zusammenfassung: >-
   Tiroler Landtagswahl 2027 dabei zu sein – auf dem achten Listenplatz.
 button_text: "Ganzen Artikel auf MeinBezirk lesen"
 kategorie: "Politik"
-bild: "landtag-rede.jpg"
-bild_alt: "Sandro Exenberger bei einer Rede im Tiroler Landtag"
+bild: "fpoe-bezirk-kufstein-landtagsliste-2027.png"
+bild_alt: "Gruppenfoto: Sandro Exenberger (ganz links) mit acht weiteren Personen vor einem alten Bauernhaus"
 fotograf: "[BITTE AUSFÜLLEN]"
 veroeffentlicht: true
 auf_startseite: true

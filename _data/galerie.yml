@@ -68,7 +68,31 @@ startseite:
 
 bilder:
 
-  - datei: "landtag-rede.jpg"            # (Pflicht) Dateiname in assets/img/galerie/
+  - datei: "fpoe-bezirk-kufstein-landtagsliste-2027.png"
+    titel: "Mit der FPÖ Bezirk Kufstein – Landtagsliste 2027"
+    alt_text: "Gruppenfoto auf einer Wiese vor einem alten Holzbauernhaus mit Steindach: Sandro Exenberger (ganz links, im blauen Poloshirt) mit acht weiteren Personen, die meisten in Lederhose und Trachtengilet, im Hintergrund Wald und Berge"
+    beschreibung: "Ich bin auf dem achten Listenplatz der Wahlkreisliste der FPÖ Bezirk Kufstein für die Tiroler Landtagswahl 2027."
+    datum: ""
+    ort: ""
+    kategorie: "Veranstaltungen"
+    fotograf: "[BITTE AUSFÜLLEN]"
+    erlaubnis_eingeholt: false
+    anzeigen: true
+    hervorgehoben: false
+
+  - datei: "schulfoto-2026.jpg"
+    titel: "Schulfoto 2026"
+    alt_text: "Porträtfoto von Sandro Exenberger in dunklem Sakko, weißem Hemd und blau-schwarz-weiß gestreifter Krawatte mit Anstecknadel vor grauem Hintergrund"
+    beschreibung: ""
+    datum: "2026-09-30"                  # aus den Kameradaten
+    ort: "HTBLVA Innsbruck Anichstraße"
+    kategorie: "Schule"
+    fotograf: "[BITTE AUSFÜLLEN]"
+    erlaubnis_eingeholt: false
+    anzeigen: true
+    hervorgehoben: false
+
+  - datei: "landtag-rede.jpg"           # (Pflicht) Dateiname in assets/img/galerie/
     titel: "Rede beim Tiroler Schülerinnen- und Schülerparlament"     # (Pflicht) Überschrift in der Großansicht
     alt_text: "Sandro Exenberger spricht am Rednerpult mit der Aufschrift „Tiroler Landtag“ und unterstreicht seine Worte mit einer Handbewegung"   # (Pflicht) Was ist zu sehen? Für blinde Besucher
     beschreibung: ""                     # (optional) 1–2 Sätze
