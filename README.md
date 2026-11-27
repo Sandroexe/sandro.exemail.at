@@ -26,6 +26,7 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 9. [Branches, Backups & Notfall](#9-branches-backups--notfall)
 10. [Suchmaschinen](#10-suchmaschinen)
 11. [NIEMALS löschen](#11-niemals-löschen)
+12. [Online-Editor (Pages CMS)](#12-online-editor-pages-cms)
 
 ---
 
@@ -644,6 +645,26 @@ Diese Dateien und Einträge sind für Domain, Druckmedien, Profile oder Suchmasc
 | `indexnow` → `schluessel` in `_config.yml` (erzeugt `/47c07f7ba9589a1160b2a52814ca828d.txt`) | IndexNow lehnt Meldungen sonst ab |
 | `verifizierung` in `_config.yml` sowie künftige Dateien wie `google*.html` oder `BingSiteAuth.xml` | Bestätigung bei Google/Bing |
 | **DNS-TXT-Eintrag `google-site-verification=…` bei `exemail.at` in Cloudflare** | Bestätigt die Google-Search-Console-Property (liegt nicht im Repository!) |
-| `README.md`, `DEPLOYMENT.md`, `RECHTLICHES.md`, `CLAUDE.md`, `.gitignore`, `tools/` | Anleitungen und Werkzeuge |
+| `README.md`, `DEPLOYMENT.md`, `RECHTLICHES.md`, `CLAUDE.md`, `.gitignore`, `.pages.yml`, `tools/` | Anleitungen und Werkzeuge |
 | Alle Fotos/PDFs, die in `_data/` eingetragen sind (inkl. `assets/img/galerie/`) | Werden auf der Website angezeigt |
 
+---
+
+## 12. Online-Editor (Pages CMS)
+
+Statt Dateien von Hand zu bearbeiten, kannst du die meisten Inhalte im Browser über Formulare ändern – auch am Handy.
+
+**Einmalig einrichten**
+1. <https://app.pagescms.org> öffnen → **Sign in with GitHub**.
+2. Die **Pages-CMS-GitHub-App** installieren und **nur** das Repository `sandro.exemail.at` freigeben.
+3. Repository öffnen, Branch **main** wählen. Die Formulare kommen aus der Datei `.pages.yml`.
+
+**Was du dort bearbeiten kannst:** News (eigene Beiträge und Presseartikel), Projekte, Lebenslauf, Zertifikate, Galerie und die Texte der Startseite.
+**Bewusst nicht dabei:** Impressum/Datenschutz, Social-Media-Kanäle, Weiterleitungen, Design – dort hängt Rechtliches oder Technik dran.
+
+**Wichtig zu wissen**
+- **Speichern = veröffentlichen.** Jedes Speichern auf `main` geht nach ca. 1–2 Minuten live (GitHub → Actions zeigt den Fortschritt). Bei einem Fehler bleibt die alte Version online.
+- **Fotos:** Vor dem Hochladen den **Standort (GPS)** entfernen – das Original liegt öffentlich auf GitHub. Am einfachsten in der Kamera-App das Speichern des Standorts ausschalten, oder am iPhone beim Teilen unter „Optionen“ den Standort weglassen. Der Build warnt außerdem, wenn ein Foto noch GPS-Daten enthält.
+- Die Erklär-Kommentare in den YAML-Dateien können beim Speichern über den Editor verschwinden. Die Erklärungen stehen dafür direkt im Formular.
+- Neue Kategorie (News, Zertifikate, Galerie)? Zuerst in den Einstellungen der jeweiligen Seite unter „Kategorien“ eintragen, dann beim Eintrag genau so schreiben.
+- Neues Icon? SVG nach `assets/icons/` legen **und** in `.pages.yml` bei `icon` → `values` ergänzen.

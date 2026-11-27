@@ -45,11 +45,14 @@ abhaengig_von:
 
     <ul class="cert-grid">
       {%- for c in certs %}
+      {%- comment -%} Nur der Dateiname zählt (Pages CMS speichert den ganzen Pfad) {%- endcomment -%}
+      {%- assign _bild = c.bild | split: "/" | last -%}
+      {%- assign _datei = c.datei | split: "/" | last -%}
       {%- assign _id = "zertifikat-" | append: forloop.index %}
       <li class="card card--interaktiv cert-card{% if c.hervorgehoben %} cert-card--schwerpunkt{% endif %}" data-kategorie="{{ c.kategorie | escape }}" data-reveal data-reveal-delay="{{ forloop.index0 | modulo: 3 }}">
         {%- if c.bild and c.bild != "" %}
         <div class="cert-card__media">
-          {% include bild.html pfad="/assets/zertifikate/" datei=c.bild alt="" %}
+          {% include bild.html pfad="/assets/zertifikate/" datei=_bild alt="" %}
         </div>
         {%- endif %}
         <div class="cert-card__body">
@@ -84,7 +87,7 @@ abhaengig_von:
           <div class="cert-dialog__body">
             {%- if c.bild and c.bild != "" %}
             <div class="cert-dialog__media">
-              {% include bild.html pfad="/assets/zertifikate/" datei=c.bild alt=c.bild_alt %}
+              {% include bild.html pfad="/assets/zertifikate/" datei=_bild alt=c.bild_alt %}
             </div>
             {%- endif %}
             {%- if c.beschreibung and c.beschreibung != "" %}
@@ -109,7 +112,7 @@ abhaengig_von:
             {%- if c.datei != "" or c.verifizierung_link != "" %}
             <div class="btn-group">
               {%- if c.datei and c.datei != "" %}
-              <a class="btn btn--primaer btn--klein" href="{{ '/assets/zertifikate/' | append: c.datei | relative_url }}" target="_blank" rel="noopener">
+              <a class="btn btn--primaer btn--klein" href="{{ '/assets/zertifikate/' | append: _datei | relative_url }}" target="_blank" rel="noopener">
                 {% include icon.html name="file-text" %} Zertifikat öffnen<span class="visually-hidden"> (öffnet in neuem Tab)</span>
               </a>
               {%- endif %}

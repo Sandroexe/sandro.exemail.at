@@ -1,0 +1,397 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  .pages.yml – Formulare für den Online-Editor „Pages CMS“ (app.pagescms.org)
+#
+#  Diese Datei legt fest, welche Formulare der Editor zeigt. Die Inhalte
+#  selbst stehen weiterhin in _data/, _posts/ und _presse/ – der Editor
+#  schreibt nur in diese Dateien. Jedes Speichern ist ein Commit auf dem
+#  gewählten Branch; auf "main" geht die Änderung nach ca. 1–2 Minuten live.
+#
+#  Nicht im Editor (bewusst): Impressum/Datenschutz (rechtliches.yml),
+#  Social-Media-Kanäle (social.yml), Weiterleitungen, Design, _config.yml –
+#  dort hängt Rechtliches oder Technik dran.
+#
+#  Neues Icon? SVG nach assets/icons/ legen UND unten bei "icon" eintragen.
+#  Anleitung: README.md → Abschnitt 12 „Online-Editor“.
+# ═══════════════════════════════════════════════════════════════════════════
+
+settings:
+  # Felder, die hier nicht vorkommen, bleiben beim Speichern erhalten
+  content: true
+
+media:
+  - name: galerie
+    label: Fotos (Galerie & News)
+    input: assets/img/galerie
+    output: /assets/img/galerie
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+  - name: zertifikate
+    label: Zertifikate
+    input: assets/zertifikate
+    output: /assets/zertifikate
+    extensions: [pdf, jpg, jpeg, png, webp]
+    rename: safe
+  - name: lebenslauf
+    label: Lebenslauf-PDF
+    input: assets/lebenslauf
+    output: /assets/lebenslauf
+    extensions: [pdf]
+    rename: safe
+
+components:
+  icon:
+    type: select
+    label: Icon
+    description: Kleines Symbol aus assets/icons/
+    options:
+      values: [award, badge-check, briefcase, clock, code, cpu, download, file-text, globe, graduation-cap, landmark, link, mail, map-pin, message-circle, network, newspaper, pen-line, phone, play, refresh-cw, send, share-2, shield-check, star, users, wrench, zap]
+
+  monat:
+    type: string
+    pattern:
+      regex: "^(\\d{4}-\\d{2})?$"
+      message: "Format JJJJ-MM, z. B. 2025-09 – oder leer lassen"
+
+  anzeigen:
+    type: boolean
+    label: Auf der Website zeigen
+    default: true
+
+  fotograf:
+    type: string
+    label: Fotograf
+    description: Wer hat das Foto gemacht? Leer = du selbst. Erscheint im Impressum unter „Bildnachweise“.
+
+  # Ein Eintrag im Lebenslauf (Berufserfahrung und Praktika)
+  station:
+    type: object
+    label: Eintrag
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{fields.von} – {fields.position}, {fields.unternehmen}"
+    fields:
+      - { name: position, label: Position / Jobtitel, type: string, required: true }
+      - { name: unternehmen, label: Firma, type: string, required: true }
+      - { name: unternehmen_link, label: Website der Firma (optional), type: string }
+      - { name: ort, label: Ort, type: string }
+      - { name: art, label: Art, type: string, description: "z. B. Vollzeit, Teilzeit, Sommerpraktikum 4 Wochen" }
+      - { name: von, label: Von, component: monat, required: true }
+      - { name: bis, label: Bis, component: monat, description: "leer = heute" }
+      - { name: beschreibung, label: Beschreibung, type: text }
+      - { name: aufgaben, label: Aufgaben (Stichpunkte), type: string, list: true }
+      - { name: anzeigen, component: anzeigen }
+
+  # Engagement und Politik
+  rolle:
+    type: object
+    label: Eintrag
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{fields.von} – {fields.rolle}, {fields.organisation}"
+    fields:
+      - { name: rolle, label: Funktion, type: string, required: true }
+      - { name: organisation, label: Organisation, type: string, required: true }
+      - { name: organisation_link, label: Website (optional), type: string }
+      - { name: bereich, label: Bereich, type: string, description: "z. B. Bildung" }
+      - { name: von, label: Von, component: monat, required: true }
+      - { name: bis, label: Bis, component: monat, description: "leer = heute" }
+      - { name: beschreibung, label: Beschreibung, type: text }
+      - { name: anzeigen, component: anzeigen }
+
+content:
+
+  # ─── News ────────────────────────────────────────────────────────────────
+  - name: beitraege
+    label: News – eigene Beiträge
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    exclude: [LIESMICH.txt]
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      primary: titel
+      fields: [titel, kategorie, veroeffentlicht]
+      default: { sort: titel }
+    fields:
+      - { name: titel, label: Titel, type: string, required: true, description: Überschrift – auch für Google und Social Media }
+      - { name: kurzbeschreibung, label: Kurzbeschreibung, type: text, required: true, description: "1–2 Sätze (max. ca. 155 Zeichen) für Vorschau, Startseite und Google" }
+      - { name: kategorie, label: Kategorie, type: string, required: true, description: "Politik, Schule, Technik oder Persönliches (Liste in „News – Einstellungen“)" }
+      - { name: tags, label: Schlagwörter, type: string, list: true }
+      - { name: titelbild, label: Titelbild, type: image, options: { media: galerie } }
+      - { name: bild_alt, label: Was ist auf dem Titelbild zu sehen?, type: string, description: "Pflicht, wenn es ein Titelbild gibt" }
+      - { name: fotograf, component: fotograf }
+      - { name: veroeffentlicht, label: Veröffentlicht, type: boolean, default: true, description: "Aus = Entwurf, nirgends sichtbar" }
+      - { name: auf_startseite, label: Auf der Startseite unter „Aktuelles“, type: boolean, default: true }
+      - { name: body, label: Text, type: rich-text, options: { format: markdown, media: false }, description: "Bilder bitte als Titelbild einfügen, nicht im Text" }
+
+  - name: presse
+    label: News – Presseartikel
+    type: collection
+    path: _presse
+    format: yaml-frontmatter
+    exclude: [LIESMICH.txt]
+    filename: "{fields.datum}-{primary}.md"
+    view:
+      primary: titel
+      fields: [titel, medium, datum]
+      default: { sort: datum, order: desc }
+    fields:
+      - { name: titel, label: Schlagzeile, type: string, required: true, description: "Original-Schlagzeile, Wort für Wort" }
+      - { name: medium, label: Zeitung / Website, type: string, required: true }
+      - { name: datum, label: Erscheinungsdatum, type: date, required: true, options: { format: yyyy-MM-dd } }
+      - { name: link, label: Link zum Artikel, type: string, required: true }
+      - { name: eigene_zusammenfassung, label: Deine Zusammenfassung, type: text, required: true, description: "1–2 Sätze in DEINEN Worten" }
+      - { name: button_text, label: Button-Beschriftung, type: string, description: "leer = „Ganzen Artikel auf <Medium> lesen“" }
+      - { name: kategorie, label: Kategorie, type: string, required: true, description: "Politik, Schule, Technik oder Persönliches" }
+      - { name: bild, label: Eigenes Foto, type: image, options: { media: galerie }, description: Nie das Foto des Mediums verwenden }
+      - { name: bild_alt, label: Was ist auf dem Foto zu sehen?, type: string }
+      - { name: fotograf, component: fotograf }
+      - { name: veroeffentlicht, label: Veröffentlicht, type: boolean, default: true }
+      - { name: auf_startseite, label: Auf der Startseite unter „Aktuelles“, type: boolean, default: true }
+
+  - name: news-einstellungen
+    label: News – Einstellungen
+    type: file
+    path: _data/news.yml
+    format: yaml
+    fields:
+      - { name: anzeigen, label: News-Bereich einschalten, type: boolean }
+      - { name: titel, label: Seitentitel, type: string }
+      - { name: einleitung, label: Einleitung, type: text }
+      - { name: pro_seite, label: News pro Seite, type: number, options: { min: 3, max: 30 } }
+      - { name: kategorien, label: Kategorien, type: string, list: true }
+      - name: startseite
+        label: Startseite „Aktuelles“
+        type: object
+        fields:
+          - { name: anzeigen, label: Auf der Startseite zeigen, type: boolean }
+          - { name: titel, label: Überschrift, type: string }
+          - { name: anzahl, label: Höchstens so viele, type: number, options: { min: 1, max: 6 } }
+
+  # ─── Projekte ────────────────────────────────────────────────────────────
+  - name: projekte
+    label: Projekte
+    type: file
+    path: _data/projekte.yml
+    format: yaml
+    fields:
+      - { name: anzeigen, label: Projekte-Seite einschalten, type: boolean }
+      - { name: titel, label: Seitentitel, type: string }
+      - { name: einleitung, label: Einleitung, type: text }
+      - name: startseite
+        label: Startseite
+        type: object
+        fields:
+          - { name: anzeigen, label: Auf der Startseite zeigen, type: boolean }
+          - { name: titel, label: Überschrift, type: string }
+          - { name: anzahl, label: Höchstens so viele, type: number, options: { min: 1, max: 6 } }
+      - name: projekte
+        label: Projekte (Reihenfolge = Reihenfolge auf der Website)
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{fields.titel}" }
+        fields:
+          - { name: titel, label: Titel, type: string, required: true }
+          - { name: untertitel, label: Untertitel, type: string, description: Kurze Zeile über dem Titel }
+          - { name: icon, component: icon }
+          - { name: beschreibung, label: Beschreibung, type: text, description: "Keine internen IP-Adressen, Ports oder Passwörter!" }
+          - { name: tags, label: Technik-Schlagwörter, type: string, list: true }
+          - { name: link, label: Link (optional), type: string }
+          - { name: link_text, label: Link-Beschriftung, type: string }
+          - { name: hervorgehoben, label: Auf der Startseite zeigen, type: boolean, default: false }
+          - { name: anzeigen, component: anzeigen }
+
+  # ─── Lebenslauf ──────────────────────────────────────────────────────────
+  - name: lebenslauf
+    label: Lebenslauf
+    type: file
+    path: _data/lebenslauf.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Seitentitel, type: string }
+      - { name: einleitung, label: Einleitung, type: text }
+      - { name: pdf_datei, label: Eigenes Lebenslauf-PDF (optional), type: file, options: { media: lebenslauf }, description: Leer = Button öffnet den Druckdialog }
+      - { name: download_text, label: Text des Download-Buttons, type: string }
+      - name: berufserfahrung
+        label: Berufserfahrung
+        type: object
+        fields:
+          - { name: titel, label: Überschrift, type: string }
+          - { name: icon, component: icon }
+          - { name: eintraege, label: Einträge, component: station }
+      - name: praktika
+        label: Praktika
+        type: object
+        fields:
+          - { name: titel, label: Überschrift, type: string }
+          - { name: icon, component: icon }
+          - { name: eintraege, label: Einträge, component: station }
+      - name: ausbildung
+        label: Ausbildung
+        type: object
+        fields:
+          - { name: titel, label: Überschrift, type: string }
+          - { name: icon, component: icon }
+          - name: eintraege
+            label: Einträge
+            type: object
+            list:
+              collapsible: { collapsed: true, summary: "{fields.von} – {fields.schule}" }
+            fields:
+              - { name: schule, label: Schule, type: string, required: true }
+              - { name: schule_link, label: Website der Schule (optional), type: string }
+              - { name: abschluss, label: Abschluss, type: string }
+              - { name: fachrichtung, label: Fachrichtung, type: string }
+              - { name: ort, label: Ort, type: string }
+              - { name: von, label: Von, component: monat, required: true }
+              - { name: bis, label: Bis, component: monat }
+              - { name: voraussichtlich, label: Enddatum ist „voraussichtlich“, type: boolean, default: false }
+              - { name: beschreibung, label: Beschreibung, type: text }
+              - { name: aktivitaeten, label: Aktivitäten, type: string }
+              - { name: anzeigen, component: anzeigen }
+      - name: engagement
+        label: Engagement
+        type: object
+        fields:
+          - { name: titel, label: Überschrift, type: string }
+          - { name: icon, component: icon }
+          - { name: eintraege, label: Einträge, component: rolle }
+      - name: politik
+        label: Politisches Engagement
+        type: object
+        fields:
+          - { name: titel, label: Überschrift, type: string }
+          - { name: icon, component: icon }
+          - { name: eintraege, label: Einträge, component: rolle }
+      - name: skills
+        label: Kenntnisse
+        type: object
+        fields:
+          - { name: titel, label: Überschrift, type: string }
+          - name: gruppen
+            label: Gruppen
+            type: object
+            list:
+              collapsible: { collapsed: true, summary: "{fields.gruppe}" }
+            fields:
+              - { name: gruppe, label: Gruppe, type: string, required: true }
+              - { name: icon, component: icon }
+              - { name: eintraege, label: Kenntnisse, type: string, list: true }
+      - name: sprachen
+        label: Sprachen
+        type: object
+        fields:
+          - { name: titel, label: Überschrift, type: string }
+          - name: eintraege
+            label: Sprachen
+            type: object
+            list: true
+            fields:
+              - { name: sprache, label: Sprache, type: string, required: true }
+              - { name: niveau, label: Niveau, type: string, description: "z. B. B2 – gute Kenntnisse" }
+              - { name: stufe, label: Balken (1–5), type: number, options: { min: 1, max: 5 } }
+
+  # ─── Zertifikate ─────────────────────────────────────────────────────────
+  - name: zertifikate
+    label: Zertifikate
+    type: file
+    path: _data/zertifikate.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Seitentitel, type: string }
+      - { name: einleitung, label: Einleitung, type: text }
+      - { name: kategorien, label: Kategorien (Filter-Buttons), type: string, list: true }
+      - name: zertifikate
+        label: Zertifikate (Reihenfolge = Reihenfolge auf der Website)
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{fields.name}" }
+        fields:
+          - { name: name, label: Name des Zertifikats, type: string, required: true }
+          - { name: aussteller, label: Aussteller, type: string, required: true }
+          - { name: kategorie, label: Kategorie, type: string, required: true, description: Genau eine der Kategorien oben }
+          - { name: ausgestellt, label: Ausgestellt, component: monat }
+          - { name: ablauf, label: Gültig bis (optional), component: monat }
+          - { name: credential_id, label: Zertifikats-ID (optional), type: string }
+          - { name: verifizierung_link, label: Link zur Online-Prüfung (optional), type: string }
+          - { name: beschreibung, label: Beschreibung, type: text }
+          - { name: bild, label: Bild/Logo (optional), type: image, options: { media: zertifikate } }
+          - { name: bild_alt, label: Was ist auf dem Bild zu sehen?, type: string }
+          - { name: datei, label: PDF (optional), type: file, options: { media: zertifikate }, description: "Persönliche Daten (Geburtsdatum, Adresse) vorher schwärzen!" }
+          - { name: hervorgehoben, label: Als „Schwerpunkt“ ganz oben, type: boolean, default: false }
+          - { name: anzeigen, component: anzeigen }
+
+  # ─── Galerie ─────────────────────────────────────────────────────────────
+  - name: galerie
+    label: Galerie
+    type: file
+    path: _data/galerie.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Seitentitel, type: string }
+      - { name: einleitung, label: Einleitung, type: text }
+      - { name: kategorien, label: Kategorien (Filter-Buttons), type: string, list: true }
+      - name: startseite
+        label: Startseite „Einblicke“
+        type: object
+        fields:
+          - { name: anzeigen, label: Auf der Startseite zeigen, type: boolean }
+          - { name: titel, label: Überschrift, type: string }
+          - { name: anzahl, label: Höchstens so viele, type: number, options: { min: 1, max: 8 } }
+      - name: bilder
+        label: Fotos
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{fields.titel}" }
+        fields:
+          - { name: datei, label: Foto, type: image, required: true, options: { media: galerie }, description: "⚠ Vorher den Standort (GPS) aus dem Foto entfernen – das Original ist öffentlich auf GitHub" }
+          - { name: titel, label: Titel, type: string, required: true }
+          - { name: alt_text, label: Was ist zu sehen? (für blinde Besucher und Google), type: text, required: true }
+          - { name: beschreibung, label: Beschreibung (optional), type: text }
+          - { name: datum, label: Datum, type: string, pattern: { regex: "^(\\d{4}-\\d{2}(-\\d{2})?)?$", message: "JJJJ-MM oder JJJJ-MM-TT – oder leer" } }
+          - { name: ort, label: Ort, type: string }
+          - { name: kategorie, label: Kategorie, type: string, required: true, description: Eine der Kategorien oben }
+          - { name: fotograf, component: fotograf }
+          - { name: erlaubnis_eingeholt, label: "Erlaubnis eingeholt (nur Merkhilfe, nie öffentlich)", type: boolean, default: false }
+          - { name: anzeigen, component: anzeigen }
+          - { name: hervorgehoben, label: Auf der Startseite zeigen, type: boolean, default: false }
+
+  # ─── Startseite ──────────────────────────────────────────────────────────
+  - name: person
+    label: Startseite & Vorstellung
+    type: file
+    path: _data/person.yml
+    format: yaml
+    fields:
+      - { name: kurztitel, label: Kurztitel unter dem Namen, type: string }
+      - { name: begruessung, label: Begrüßung über dem Namen, type: string }
+      - { name: vorstellung, label: Vorstellungstext, type: text }
+      - name: standort
+        label: Standort
+        type: object
+        fields:
+          - { name: ort, label: Ort, type: string }
+          - { name: region, label: Zusatz, type: string }
+          - { name: land, label: Land, type: string }
+      - { name: highlights_titel, label: Überschrift „Auf einen Blick“, type: string }
+      - name: highlights
+        label: Karten „Auf einen Blick“
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{fields.titel}" }
+        fields:
+          - { name: icon, component: icon }
+          - { name: titel, label: Titel, type: string, required: true }
+          - { name: text, label: Text, type: text }
+          - { name: link, label: Link (optional), type: string, description: "z. B. /lebenslauf/" }
+      - name: kontakt_aufruf
+        label: Kasten „Lust auf ein Gespräch?“
+        type: object
+        fields:
+          - { name: anzeigen, label: Anzeigen, type: boolean }
+          - { name: titel, label: Überschrift, type: string }
+          - { name: text, label: Text, type: text }
+          - { name: button_text, label: Button-Text, type: string }
+          - { name: button_link, label: Button-Link, type: string }

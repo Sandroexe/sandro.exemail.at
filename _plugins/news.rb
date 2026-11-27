@@ -69,7 +69,8 @@ module News
 
     # Titelbild aus assets/img/galerie/ (aufbereitet von bilder-optimieren.py)
     def bild(datei, wo)
-      datei = datei.to_s.strip
+      # Nur der Dateiname zählt (Pages CMS speichert den ganzen Pfad)
+      datei = File.basename(datei.to_s.strip)
       return nil if datei.empty?
 
       info = @web[datei]

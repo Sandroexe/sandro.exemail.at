@@ -34,7 +34,10 @@ module Galerie
       Array(daten["bilder"]).each_with_index do |b, index|
         next unless b.is_a?(Hash) && ja?(b.fetch("anzeigen", true))
 
-        datei = b["datei"].to_s.strip
+        # Nur der Dateiname zählt – der Online-Editor (Pages CMS) speichert
+        # "/assets/img/galerie/foto.jpg", von Hand steht meist "foto.jpg".
+        b = b.merge("datei" => File.basename(b["datei"].to_s.strip))
+        datei = b["datei"]
         leer = PFLICHT.keys.select { |f| b[f].to_s.strip.empty? }
         unless leer.empty?
           melden(fehlend, datei, "Pflichtfeld fehlt: #{leer.map { |f| PFLICHT[f] }.join(', ')}")

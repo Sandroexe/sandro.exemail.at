@@ -21,7 +21,8 @@ abhaengig_von:
     {%- endif %}
     <div class="page-hero__actions">
       {%- if cv.pdf_datei and cv.pdf_datei != "" %}
-      <a class="btn btn--primaer" href="{{ '/assets/lebenslauf/' | append: cv.pdf_datei | relative_url }}" download>
+      {%- assign _pdf = cv.pdf_datei | split: "/" | last %}
+      <a class="btn btn--primaer" href="{{ '/assets/lebenslauf/' | append: _pdf | relative_url }}" download>
         {% include icon.html name="download" %}
         {{ cv.download_text }}<span class="visually-hidden"> (PDF)</span>
       </a>
