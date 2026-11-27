@@ -6,6 +6,18 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 > **Grundprinzip:** Jeder Inhalt steht an **genau einer** Stelle. Du änderst ihn dort, und die ganze Website passt sich automatisch an.
 > Alle Dateien, die du bearbeiten sollst, sind unten mit ✏️ markiert und haben oben eine eigene Anleitung.
 
+## ✏️ Inhalte ändern – der schnelle Weg
+
+1. **<https://app.pagescms.org>** öffnen und mit GitHub anmelden.
+2. Repository **sandro.exemail.at** wählen, Branch **main**.
+3. Links den Bereich wählen (News, Projekte, Lebenslauf, Zertifikate, Galerie, Startseite), ändern, **Speichern**.
+4. Fertig: GitHub baut die Website automatisch neu, nach **ca. 1–2 Minuten** ist die Änderung auf <https://sandro.exemail.at> online. Den Fortschritt siehst du im Repository unter **Actions** (grüner Haken = online). Geht etwas schief, bleibt einfach die alte Version online.
+
+Details und Tipps (Fotos, Kategorien, was nicht im Editor ist): [Abschnitt 12](#12-online-editor-pages-cms).
+Alles andere (Design, Rechtliches, neue Seiten) geht wie unten beschrieben direkt in den Dateien.
+
+---
+
 📄 Weitere Anleitungen:
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** – Website zum ersten Mal online stellen (GitHub, Cloudflare-DNS, HTTPS)
 - **[RECHTLICHES.md](RECHTLICHES.md)** – welche Angaben im Impressum Pflicht sind, Social-Media-Impressum einrichten
@@ -658,6 +670,7 @@ Statt Dateien von Hand zu bearbeiten, kannst du die meisten Inhalte im Browser �
 1. <https://app.pagescms.org> öffnen → **Sign in with GitHub**.
 2. Die **Pages-CMS-GitHub-App** installieren und **nur** das Repository `sandro.exemail.at` freigeben.
 3. Repository öffnen, Branch **main** wählen. Die Formulare kommen aus der Datei `.pages.yml`.
+   (Andere Branches wie `claude/…` sind nur Testversionen und gehen nicht online.)
 
 **Was du dort bearbeiten kannst:** News (eigene Beiträge und Presseartikel), Projekte, Lebenslauf, Zertifikate, Galerie und die Texte der Startseite.
 **Bewusst nicht dabei:** Impressum/Datenschutz, Social-Media-Kanäle, Weiterleitungen, Design – dort hängt Rechtliches oder Technik dran.
