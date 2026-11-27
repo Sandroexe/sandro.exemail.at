@@ -254,6 +254,7 @@ Sobald du etwas Neues einbaust, das Daten verarbeitet: eingebettete Videos, Kart
 **Stellen, bei denen ich mir rechtlich nicht sicher bin:**
 - **[RECHTLICH PRÜFEN]** Fotos mit **Minderjährigen** (z. B. Mitschüler): Bis 14 entscheiden die Eltern; bei 14- bis 17-Jährigen ist unklar, ob ihre eigene Zustimmung allein reicht. Im Zweifel Zustimmung von Schüler **und** Eltern einholen oder nur Fotos ohne erkennbare Mitschüler verwenden.
 - **[RECHTLICH PRÜFEN]** Fotos, die der **Landtag, eine Partei oder die Schule** gemacht hat (z. B. „Rede im Tiroler Landtag"): Oft gibt es Nutzungsbedingungen (nur redaktionelle Nutzung, Pflicht-Bildnachweis). Vor der Veröffentlichung bei der Pressestelle nachfragen und den geforderten Bildnachweis unter `fotograf` eintragen.
+- **[RECHTLICH PRÜFEN]** Gruppenfoto **FPÖ Bezirk Kufstein – Landtagsliste 2027** (Galerie und Presse-Eintrag): Das Foto hat jemand von der FPÖ gemacht und an MeinBezirk geschickt; es wurde von MeinBezirk heruntergeladen. Bildnachweis vorerst „FPÖ Bezirk Kufstein". Beim Bezirk kurz nachfragen, ob die Nutzung auf der Website passt und welcher Name genannt werden soll – und dass die anderen acht Personen einverstanden sind.
 - **[RECHTLICH PRÜFEN]** Fotos von **öffentlichen Veranstaltungen** mit vielen Menschen im Hintergrund: Personen, die nur „Beiwerk" sind, müssen meist nicht einzeln zustimmen – die Grenze ist aber Einzelfallfrage. Deutlich erkennbare Einzelpersonen lieber fragen.
 
 ---

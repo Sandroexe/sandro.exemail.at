@@ -104,7 +104,10 @@ urheberrecht_anzeigen: true         # (O) Urheberrechtshinweis
 # (O) Bildnachweise – nur nötig, wenn du fremde Fotos/Grafiken verwendest.
 #     Fotografen der GALERIE und der NEWS-BEITRÄGE hier NICHT eintragen – sie
 #     kommen automatisch aus _data/galerie.yml bzw. _posts/ (Feld "fotograf") dazu.
-bildnachweise: []
+bildnachweise:
+  - beschreibung: "Profilfoto"
+    urheber: "Landesschülervertretung Tirol"   # Ausschnitt aus der Rede beim Schülerinnen- und Schülerparlament
+    link: ""
 
 # ─── Vorlage zum Kopieren (statt "[]" oben) ───────────────────────────────
 # bildnachweise:

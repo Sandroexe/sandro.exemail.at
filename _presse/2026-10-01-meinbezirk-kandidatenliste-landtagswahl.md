@@ -11,7 +11,7 @@ button_text: "Ganzen Artikel auf MeinBezirk lesen"
 kategorie: "Politik"
 bild: "fpoe-bezirk-kufstein-landtagsliste-2027.png"
 bild_alt: "Gruppenfoto: Sandro Exenberger (ganz links) mit acht weiteren Personen vor einem alten Bauernhaus"
-fotograf: "[BITTE AUSFÜLLEN]"
+fotograf: "FPÖ Bezirk Kufstein"   # [RECHTLICH PRÜFEN] siehe _data/galerie.yml
 veroeffentlicht: true
 auf_startseite: true
 ---

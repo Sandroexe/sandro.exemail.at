@@ -206,7 +206,8 @@ module News
 
         (gruppen[e["fotograf"]] ||= []) << "News – Foto zum Presse-Eintrag „#{e['titel']}“"
       end
-      gruppen.map { |name, wo| { "name" => name, "wo" => wo } }
+      # Mehrere Fotos mit gleichem Titel nur einmal nennen
+      gruppen.map { |name, wo| { "name" => name, "wo" => wo.uniq } }
     end
   end
 end

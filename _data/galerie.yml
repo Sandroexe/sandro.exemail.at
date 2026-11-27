@@ -75,7 +75,7 @@ bilder:
     datum: ""
     ort: ""
     kategorie: "Veranstaltungen"
-    fotograf: "[BITTE AUSFÜLLEN]"
+    fotograf: "FPÖ Bezirk Kufstein"   # [RECHTLICH PRÜFEN] Foto von der FPÖ an MeinBezirk geschickt, von dort heruntergeladen – Erlaubnis/Wortlaut beim Bezirk erfragen
     erlaubnis_eingeholt: false
     anzeigen: true
     hervorgehoben: false
@@ -87,7 +87,7 @@ bilder:
     datum: "2026-09-30"                  # aus den Kameradaten
     ort: "HTBLVA Innsbruck Anichstraße"
     kategorie: "Schule"
-    fotograf: "[BITTE AUSFÜLLEN]"
+    fotograf: "Schulfotograf"   # genauer: Firmenname des Schulfotografen, falls bekannt
     erlaubnis_eingeholt: false
     anzeigen: true
     hervorgehoben: false
@@ -99,7 +99,7 @@ bilder:
     datum: "2025-11-10"                  # (optional) "JJJJ-MM" oder "JJJJ-MM-TT" – hier aus den Kameradaten
     ort: "Tiroler Landtag, Innsbruck"    # (optional)
     kategorie: "Veranstaltungen"         # eine der Kategorien oben
-    fotograf: "[BITTE AUSFÜLLEN]"        # (optional) wer hat fotografiert? Leer = du selbst. Erscheint im Bildnachweis im Impressum.
+    fotograf: "Landesschülervertretung Tirol"
     erlaubnis_eingeholt: false           # Merkhilfe NUR für dich (nie öffentlich): Erlaubnis von Fotograf und erkennbaren Personen?
     anzeigen: true                       # true = auf der Website zeigen, false = ausblenden
     hervorgehoben: true                  # true = zusätzlich auf der Startseite ("Einblicke")
@@ -111,7 +111,7 @@ bilder:
     datum: "2025-11-10"
     ort: "Tiroler Landtag, Innsbruck"
     kategorie: "Veranstaltungen"
-    fotograf: "[BITTE AUSFÜLLEN]"
+    fotograf: "Landesschülervertretung Tirol"
     erlaubnis_eingeholt: false
     anzeigen: true
     hervorgehoben: false
@@ -123,19 +123,19 @@ bilder:
     datum: "2025-11-10"
     ort: "Tiroler Landtag, Innsbruck"
     kategorie: "Veranstaltungen"
-    fotograf: "[BITTE AUSFÜLLEN]"
+    fotograf: "Landesschülervertretung Tirol"
     erlaubnis_eingeholt: false
     anzeigen: true
     hervorgehoben: false
 
   - datei: "portraet.jpg"
-    titel: "Porträt"
+    titel: "Schulfoto 2025"
     alt_text: "Porträtfoto von Sandro Exenberger in dunklem Sakko und weißem Hemd vor schwarzem Hintergrund"
     beschreibung: ""
     datum: ""
-    ort: ""
-    kategorie: "Porträts"
-    fotograf: "[BITTE AUSFÜLLEN]"
+    ort: "HTBLVA Innsbruck Anichstraße"
+    kategorie: "Schule"
+    fotograf: "Schulfotograf"
     erlaubnis_eingeholt: false
     anzeigen: true
     hervorgehoben: true
@@ -147,7 +147,7 @@ bilder:
     datum: ""
     ort: ""
     kategorie: "Porträts"
-    fotograf: "[BITTE AUSFÜLLEN]"
+    fotograf: ""   # leer = selbst fotografiert
     erlaubnis_eingeholt: false
     anzeigen: true
     hervorgehoben: true
