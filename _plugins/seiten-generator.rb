@@ -135,6 +135,7 @@ module SeitenGenerator
 
       kanaele.each do |k|
         rechtliches = k["rechtliches"]
+        rechtsteil_pruefen(k)
         next unless rechtliches.is_a?(Hash) && rechtliches["impressum_anzeigen"] == true
 
         id = k["id"].to_s.strip
@@ -172,6 +173,22 @@ module SeitenGenerator
     end
 
     private
+
+    # Schutz vor versehentlichem Löschen (z. B. beim Speichern im Online-
+    # Editor): Ein sichtbarer Social-Media-Kanal ohne Rechtsteil hätte kein
+    # Impressum mehr, und /social-impressum/<id>/ aus den Bios wäre weg.
+    # Dann lieber den Build stoppen – die bisherige Website bleibt online.
+    def rechtsteil_pruefen(k)
+      return unless k["typ"].to_s == "link" && k.fetch("anzeigen", true) == true
+
+      r = k["rechtliches"]
+      fehlt = !r.is_a?(Hash) || r["betreiber_name"].to_s.strip.empty? || r["impressum_anzeigen"] != true
+      return unless fehlt
+
+      raise Jekyll::Errors::FatalException,
+            "Kanal \"#{k['name']}\" (social.yml) ist sichtbar, aber der Rechtsteil (rechtliches) fehlt oder ist unvollständig. " \
+            "Ohne ihn fehlt das Social-Media-Impressum. Kanal auf anzeigen: false stellen oder den Rechtsteil ergänzen."
+    end
 
     def richtung_pruefen(wo, text)
       t = text.to_s.strip

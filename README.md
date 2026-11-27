@@ -675,7 +675,7 @@ Statt Dateien von Hand zu bearbeiten, kannst du die meisten Inhalte im Browser �
 **Was du dort bearbeiten kannst:** News (eigene Beiträge und Presseartikel), Projekte, Lebenslauf, Zertifikate, Galerie, Startseite (Texte, Foto im Kreis, Buttons, **Reihenfolge der Bereiche**), Kontakt & Social Media (Links, Texte, wo die Buttons erscheinen), Menü und Fußzeile.
 **Nur lesbar:** der Impressum-/Datenschutz-Teil jedes Social-Media-Kanals und die Pflicht-Links in der Fußzeile.
 **Bewusst nicht dabei:** Impressum/Datenschutz der Website, Weiterleitungen, Design – dort hängt Rechtliches oder Technik dran.
-**Neuer Social-Media-Kanal?** Button anlegen geht im Editor, für das Social-Media-Impressum braucht der Kanal aber noch den Rechtsteil – den bitte gemeinsam mit Claude ergänzen.
+**Neuer Social-Media-Kanal?** Im Editor zuerst mit „Auf der Website zeigen“ = **aus** anlegen, dann den Rechtsteil (Social-Media-Impressum) gemeinsam mit Claude ergänzen und erst danach einschalten. Ein sichtbarer Social-Media-Kanal ohne Rechtsteil stoppt absichtlich den Build – die bisherige Website bleibt dann einfach online.
 
 **Wichtig zu wissen**
 - **Speichern = veröffentlichen.** Jedes Speichern auf `main` geht nach ca. 1–2 Minuten live (GitHub → Actions zeigt den Fortschritt). Bei einem Fehler bleibt die alte Version online.
