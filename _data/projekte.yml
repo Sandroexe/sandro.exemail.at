@@ -1,138 +1,95 @@
-# ╔══════════════════════════════════════════════════════════════════════════╗
-# ║  ✏️  projekte.yml – MEINE PROJEKTE                                        ║
-# ╠══════════════════════════════════════════════════════════════════════════╣
-# ║  Was ist diese Datei?                                                    ║
-# ║    Alle Karten auf der Seite "Projekte" (/projekte/) und die Auswahl     ║
-# ║    im Bereich "Projekte" auf der Startseite.                             ║
-# ║                                                                          ║
-# ║  Was darf ich ändern?                                                    ║
-# ║    Alle Werte. Projekte hinzufügen, löschen, umsortieren                 ║
-# ║    (Reihenfolge hier = Reihenfolge auf der Website).                     ║
-# ║                                                                          ║
-# ║  Was sollte ich NICHT ändern?                                            ║
-# ║    Die Feldnamen und die Einrückung.                                     ║
-# ║                                                                          ║
-# ║  Icons: Name einer Datei aus assets/icons/ ohne ".svg",                  ║
-# ║    z. B. "globe", "server", "shield-check", "zap", "play", "mail".       ║
-# ║    Neues Icon = SVG-Datei dort ablegen (z. B. von lucide.dev).           ║
-# ║                                                                          ║
-# ║  ⚠️  Sicherheits-Tipp: Keine internen IP-Adressen, Ports, Hostnamen       ║
-# ║     oder Zugangsdaten in die Beschreibungen schreiben.                   ║
-# ║                                                                          ║
-# ║  Beispiel:                                                               ║
-# ║    - titel: "Wetterstation"                                              ║
-# ║      untertitel: "ESP32 & Sensoren"                                      ║
-# ║      icon: "cpu"                                                         ║
-# ║      beschreibung: >-                                                    ║
-# ║        Kurzer Text, was das Projekt macht und was ich dabei gelernt habe.║
-# ║      tags: ["ESP32", "C++", "MQTT"]                                      ║
-# ╚══════════════════════════════════════════════════════════════════════════╝
-
-
-# ═══════════════════════════════ BEREICH ═══════════════════════════════════
-# false = Seite /projekte/, Menüpunkt-Inhalt und Startseiten-Bereich
-#         verschwinden (die Einträge bleiben hier gespeichert).
-#         Den Menüpunkt selbst blendest du in _data/navigation.yml aus.
-
 anzeigen: true
-
-
-# ═══════════════════════════════ SEITENTEXT ════════════════════════════════
-
-titel: "Projekte"
-einleitung: >-
-  Was ich in meiner Freizeit baue und betreibe – vom eigenen Mailserver über
-  das Heimnetz bis zum Smart Home.
-
-
-# ═══════════════════════════════ STARTSEITE ════════════════════════════════
-# Zeigt die Projekte mit "hervorgehoben: true" auf der Startseite.
-
+titel: Projekte
+einleitung: Was ich in meiner Freizeit baue und betreibe – vom eigenen
+  Mailserver über das Heimnetz bis zum Smart Home.
 startseite:
-  anzeigen: true          # true = Bereich "Projekte" auf der Startseite zeigen
-  titel: "Woran ich baue" # Überschrift des Bereichs
-  anzahl: 3               # so viele Projekte höchstens
-
-
-# ═══════════════════════════════ PROJEKTE ══════════════════════════════════
-
+  anzeigen: true
+  titel: Woran ich baue
+  anzahl: 3
 projekte:
-
-  - titel: "Eigene Domain & Mailserver"          # (Pflicht) Name des Projekts
-    untertitel: "@exemail.at"                    # kurze Zeile über dem Titel
-    icon: "mail"                                 # Icon aus assets/icons/
-    beschreibung: >-
-      Aufbau und Betrieb einer eigenen Mail-Domain inklusive DNS-Verwaltung
-      sowie SPF-, DKIM- und DMARC-Einrichtung für zuverlässige Zustellung.
-    tags: ["DNS", "E-Mail", "SPF/DKIM/DMARC", "Self-Hosted"]
-    link: ""                                     # Optional: Link zum Projekt
-    link_text: ""                                # Beschriftung des Links
-    hervorgehoben: true                          # true = auch auf der Startseite
-    anzeigen: true                               # false = ausblenden
-
-  - titel: "AdGuard Home DNS"
-    untertitel: "Netzwerkweiter Filter"
-    icon: "shield-check"
-    beschreibung: >-
-      Privater DNS-Server für netzwerkweites Blockieren von Werbung und
-      Trackern. Erhöht die Privatsphäre aller Geräte im Haushalt, ohne dass
-      auf jedem einzelnen etwas installiert werden muss.
-    tags: ["DNS", "AdGuard", "Security", "Privacy"]
-    link: ""
-    link_text: ""
+  - titel: Eigene Domain & Mailserver
+    untertitel: "@exemail.at"
+    icon: mail
+    beschreibung: Aufbau und Betrieb einer eigenen Mail-Domain inklusive
+      DNS-Verwaltung sowie SPF-, DKIM- und DMARC-Einrichtung für zuverlässige
+      Zustellung.
+    tags:
+      - DNS
+      - E-Mail
+      - SPF/DKIM/DMARC
+      - Self-Hosted
     hervorgehoben: true
     anzeigen: true
-
-  - titel: "Home Assistant Energie-Dashboard"
-    untertitel: "Verbrauch sichtbar machen"
-    icon: "zap"
-    beschreibung: >-
-      Zentrales Smart-Home-Dashboard zur Überwachung und Optimierung des
-      Energieverbrauchs. Sensordaten laufen zusammen, Verbräuche werden über
-      die Zeit ausgewertet.
-    tags: ["Home Assistant", "Smart Home", "IoT", "Automation"]
-    link: ""
-    link_text: ""
+  - titel: AdGuard Home DNS
+    untertitel: Netzwerkweiter Filter
+    icon: shield-check
+    beschreibung: Privater DNS-Server für netzwerkweites Blockieren von Werbung und
+      Trackern. Erhöht die Privatsphäre aller Geräte im Haushalt, ohne dass auf
+      jedem einzelnen etwas installiert werden muss.
+    tags:
+      - DNS
+      - AdGuard
+      - Security
+      - Privacy
     hervorgehoben: true
     anzeigen: true
-
-  - titel: "Eigener DynDNS-Dienst"
-    untertitel: "In einem LXC-Container"
-    icon: "refresh-cw"
-    beschreibung: >-
-      Selbst gebauter Dynamic-DNS-Dienst, isoliert in einem LXC-Container auf
-      Proxmox. Hält den Fernzugriff auf das Heimnetz trotz wechselnder
-      IP-Adresse dauerhaft erreichbar – ohne Abhängigkeit von einem
+  - titel: Home Assistant Energie-Dashboard
+    untertitel: Verbrauch sichtbar machen
+    icon: zap
+    beschreibung: Zentrales Smart-Home-Dashboard zur Überwachung und Optimierung des
+      Energieverbrauchs. Sensordaten laufen zusammen, Verbräuche werden über die
+      Zeit ausgewertet.
+    tags:
+      - Home Assistant
+      - Smart Home
+      - IoT
+      - Automation
+    hervorgehoben: true
+    anzeigen: true
+  - titel: Eigener DynDNS-Dienst
+    untertitel: In einem LXC-Container
+    icon: refresh-cw
+    beschreibung: Selbst gebauter Dynamic-DNS-Dienst, isoliert in einem
+      LXC-Container auf Proxmox. Hält den Fernzugriff auf das Heimnetz trotz
+      wechselnder IP-Adresse dauerhaft erreichbar – ohne Abhängigkeit von einem
       kommerziellen Anbieter.
-    tags: ["LXC", "Proxmox", "Networking", "Bash"]
-    link: ""
-    link_text: ""
+    tags:
+      - LXC
+      - Proxmox
+      - Networking
+      - Bash
     hervorgehoben: false
     anzeigen: true
-
-  - titel: "Mediathek mit Jellyfin & Plex"
-    untertitel: "Eigenes Streaming"
-    icon: "play"
-    beschreibung: >-
-      Selbst betriebene Medienserver-Lösung mit Jellyfin und Plex für
-      Verwaltung und Streaming der eigenen Sammlung – inklusive Transcoding
-      und Zugriff von unterwegs.
-    tags: ["Jellyfin", "Plex", "Self-Hosted", "Docker"]
-    link: ""
-    link_text: ""
+  - titel: Mediathek mit Jellyfin & Plex
+    untertitel: Eigenes Streaming
+    icon: play
+    beschreibung: Selbst betriebene Medienserver-Lösung mit Jellyfin und Plex für
+      Verwaltung und Streaming der eigenen Sammlung – inklusive Transcoding und
+      Zugriff von unterwegs.
+    tags:
+      - Jellyfin
+      - Plex
+      - Self-Hosted
+      - Docker
     hervorgehoben: false
     anzeigen: true
-
-  - titel: "sandro.exemail.at"
-    untertitel: "Diese Website"
-    icon: "globe"
-    beschreibung: >-
-      Datengetriebenes Portfolio auf Jekyll, automatisch gebaut und
-      veröffentlicht über GitHub Actions. Jede Information steht genau einmal
-      in einer YAML-Datei. Ohne externe Dienste, ohne Tracking, mit Hell- und
+  - titel: sandro.exemail.at
+    untertitel: Diese Website
+    icon: globe
+    beschreibung: Datengetriebenes Portfolio auf Jekyll, automatisch gebaut und
+      veröffentlicht über GitHub Actions. Jede Information steht genau einmal in
+      einer YAML-Datei. Ohne externe Dienste, ohne Tracking, mit Hell- und
       Dunkelmodus.
-    tags: ["Jekyll", "HTML", "SCSS", "JavaScript", "GitHub Actions"]
-    link: "https://github.com/Sandroexe/sandro.exemail.at"
-    link_text: "Quellcode auf GitHub"
+    tags:
+      - Jekyll
+      - HTML
+      - SCSS
+      - JavaScript
+      - GitHub Actions
+    link: https://github.com/Sandroexe/sandro.exemail.at
+    link_text: Quellcode auf GitHub
+    hervorgehoben: false
+    anzeigen: true
+  - titel: test
     hervorgehoben: false
     anzeigen: true
