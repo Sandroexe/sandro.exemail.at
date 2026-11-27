@@ -106,7 +106,7 @@ kanaele:
     beschreibung: "Beruflicher Werdegang und Vernetzung."
     icon: "linkedin"
     anzeigen: true
-    orte: [header, footer, startseite, kontakt]
+    orte: [header, footer, kontakt]
     rechtliches:
       impressum_anzeigen: true
       betreiber_name: "LinkedIn Ireland Unlimited Company"
@@ -148,7 +148,7 @@ kanaele:
     beschreibung: "Einblicke abseits vom Lebenslauf."
     icon: "instagram"
     anzeigen: true
-    orte: [header, footer, startseite, kontakt]
+    orte: [header, footer, kontakt]
     rechtliches:
       impressum_anzeigen: true
       betreiber_name: "Meta Platforms Ireland Limited"
@@ -189,7 +189,7 @@ kanaele:
     beschreibung: "Neuigkeiten und Einblicke auf meiner Facebook-Seite."
     icon: "facebook"
     anzeigen: true
-    orte: [header, footer, startseite, kontakt]
+    orte: [header, footer, kontakt]
     rechtliches:
       impressum_anzeigen: true
       betreiber_name: "Meta Platforms Ireland Limited"
@@ -233,7 +233,7 @@ kanaele:
     beschreibung: "Mein persönliches Facebook-Profil."
     icon: "facebook"
     anzeigen: true
-    orte: [header, footer, startseite, kontakt]
+    orte: [kontakt]               # nur auf der Kontaktseite: zwei gleiche Facebook-Symbole wären verwirrend
     rechtliches:
       impressum_anzeigen: true
       betreiber_name: "Meta Platforms Ireland Limited"
@@ -270,7 +270,7 @@ kanaele:
     beschreibung: "Kurze Videos rund um Technik, Schule und Alltag."
     icon: "tiktok"
     anzeigen: true
-    orte: [header, footer, startseite, kontakt]
+    orte: [header, footer, kontakt]
     rechtliches:
       impressum_anzeigen: true
       betreiber_name: "TikTok Technology Limited"
@@ -326,7 +326,7 @@ kanaele:
     beschreibung: "Der schnellste Weg zu mir."
     icon: "mail"
     anzeigen: true
-    orte: [header, footer, startseite, kontakt]
+    orte: [header, footer, kontakt]
 
 
 # ═══════════════════ VORLAGE – INAKTIV (wird NICHT angezeigt) ═══════════════

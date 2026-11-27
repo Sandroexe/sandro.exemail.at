@@ -1,0 +1,36 @@
+---
+# Projekte – Inhalte aus _data/projekte.yml
+title: "Projekte"
+description: "Projekte von Sandro Exenberger: eigener Mailserver, AdGuard-DNS, Home-Assistant-Energie-Dashboard, DynDNS, Medienserver und diese Website."
+permalink: /projekte/
+hero: false
+# Für das Änderungsdatum in der Sitemap: Datei, aus der der Inhalt stammt
+abhaengig_von:
+  - _data/projekte.yml
+---
+{%- assign pj = site.data.projekte -%}
+{%- assign liste = pj.projekte | where_exp: "x", "x.anzeigen != false" -%}
+
+<header class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Praxis</p>
+    <h1>{{ pj.titel }}</h1>
+    {%- if pj.einleitung and pj.einleitung != "" %}
+    <p class="page-hero__lead">{{ pj.einleitung }}</p>
+    {%- endif %}
+  </div>
+</header>
+
+<div class="section section--tight">
+  <div class="container">
+    {%- if pj.anzeigen == false or liste.size == 0 %}
+    <p class="empty-state">Hier erscheinen bald die ersten Projekte.</p>
+    {%- else %}
+    <ul class="projekt-raster">
+      {%- for x in liste %}
+      {% include projekt-karte.html projekt=x ebene=2 index=forloop.index0 %}
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</div>

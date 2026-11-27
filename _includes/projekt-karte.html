@@ -1,0 +1,38 @@
+{%- comment -%}
+  Eine Projekt-Karte (Seite /projekte/ und Startseite).
+  Parameter:
+    projekt – Eintrag aus _data/projekte.yml (Pflicht)
+    ebene   – Überschriften-Ebene des Titels (Standard: 2)
+    index   – Position in der Liste (für die gestaffelte Einblendung)
+{%- endcomment -%}
+{%- assign _p = include.projekt -%}
+{%- assign _h = include.ebene | default: 2 -%}
+{%- assign _icon = _p.icon | default: "code" -%}
+<li data-reveal data-reveal-delay="{{ include.index | default: 0 | modulo: 3 }}">
+  <article class="card projekt-karte">
+    <div class="projekt-karte__kopf">
+      <span class="icon-badge">{% include icon.html name=_icon %}</span>
+      {%- if _p.untertitel and _p.untertitel != "" %}
+      <p class="projekt-karte__untertitel">{{ _p.untertitel }}</p>
+      {%- endif %}
+    </div>
+    <h{{ _h }} class="projekt-karte__titel">{{ _p.titel }}</h{{ _h }}>
+    {%- if _p.beschreibung and _p.beschreibung != "" %}
+    <p class="projekt-karte__text">{{ _p.beschreibung }}</p>
+    {%- endif %}
+    {%- if _p.tags.size > 0 %}
+    <ul class="tag-list projekt-karte__tags" aria-label="Technik">
+      {%- for t in _p.tags %}
+      <li class="tag">{{ t }}</li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- if _p.link and _p.link != "" %}
+    <p class="projekt-karte__link">
+      <a class="btn btn--sekundaer btn--klein" href="{{ _p.link }}" target="_blank" rel="noopener noreferrer">
+        {{ _p.link_text | default: "Zum Projekt" }} {% include icon.html name="external-link" %}<span class="visually-hidden"> (öffnet in neuem Tab)</span>
+      </a>
+    </p>
+    {%- endif %}
+  </article>
+</li>

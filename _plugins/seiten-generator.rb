@@ -113,6 +113,7 @@ module SeitenGenerator
       lv = d["lebenslauf"] || {}
       %w[berufserfahrung praktika ausbildung engagement politik].each { |a| namen << lv.dig(a, "icon") }
       namen.concat((lv.dig("skills", "gruppen") || []).map { |g| g["icon"] })
+      namen.concat((d.dig("projekte", "projekte") || []).map { |x| x["icon"] })
 
       namen.compact.map(&:to_s).reject(&:empty?).uniq.each do |name|
         next if File.exist?(File.join(site.source, "assets", "icons", "#{name}.svg"))
@@ -155,6 +156,11 @@ module SeitenGenerator
             "kompakt" => true,
             "description" => "Offenlegung gemäß § 25 Mediengesetz und Datenschutzhinweise für den #{k['name']}-Kanal von Sandro Exenberger.",
             "kanal_id" => id,
+            # Erreichbar (Bio-Links, Impressumspflicht), aber nicht in Google:
+            # fünf fast gleiche, kurze Seiten würden als "dünner Inhalt" gelten.
+            # Die Übersicht /social-impressum/ bleibt indexiert.
+            "noindex" => true,
+            "sitemap" => false,
             # Für das Änderungsdatum in der Sitemap (_plugins/letzte-aenderung.rb)
             "abhaengig_von" => ["_data/social.yml", "_data/rechtliches.yml",
                                 "_includes/social-kanal.html", "_includes/social-allgemein.html",

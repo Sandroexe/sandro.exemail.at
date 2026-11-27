@@ -62,6 +62,7 @@ zertifikate:
     bild: ""                                           # Optional: Logo/Bild in assets/zertifikate/
     bild_alt: ""                                       # Beschreibung des Bildes
     datei: ""                                          # Optional: PDF in assets/zertifikate/
+    hervorgehoben: true                                # true = als "Schwerpunkt" ganz oben hervorheben
     anzeigen: true                                     # false = ausblenden
 
   - name: "Linux-Installation und -Paketverwaltung (LPIC-1 101)"
@@ -77,6 +78,7 @@ zertifikate:
     bild: ""
     bild_alt: ""
     datei: ""
+    hervorgehoben: true
     anzeigen: true
 
   - name: "Einführung und Einstieg in Linux"

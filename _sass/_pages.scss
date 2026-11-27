@@ -239,6 +239,63 @@
   }
 }
 
+// ═══ PROJEKTE ═════════════════════════════════════════════════════════════
+
+.projekt-raster {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(19rem, 100%), 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.projekt-karte {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+
+  &__kopf {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &__untertitel {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--c-primary);
+  }
+
+  &__titel {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+
+  &__text {
+    margin: 0;
+    color: var(--c-text-muted);
+    font-size: 0.975rem;
+  }
+
+  &__tags {
+    margin-top: auto;
+    padding-top: 0.6rem;
+
+    .tag {
+      font-size: 0.78rem;
+      padding: 0.2rem 0.6rem;
+    }
+  }
+
+  &__link {
+    margin: 0.4rem 0 0;
+  }
+}
+
 // ═══ LEBENSLAUF ═══════════════════════════════════════════════════════════
 
 .cv-layout {
@@ -572,6 +629,39 @@
     flex: 1;
     gap: 0.35rem;
     padding: 1.25rem 1.4rem 1.4rem;
+  }
+
+  // Icon + Kategorie + ggf. "Schwerpunkt" in einer Zeile
+  &__kopf {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding-right: 2.5rem; // Platz für das Lupen-Symbol rechts oben
+  }
+
+  &__icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.65rem;
+
+    .icon {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+  }
+
+  &__schwerpunkt {
+    font-size: 0.78rem;
+    font-weight: var(--fw-medium);
+  }
+
+  // Wichtigste Nachweise: Akzent-Rahmen und leichter Verlauf
+  &--schwerpunkt {
+    border-color: color-mix(in srgb, var(--c-primary) 55%, var(--c-border));
+    background:
+      radial-gradient(circle at 100% 0%, var(--c-primary-soft), transparent 60%),
+      var(--c-surface);
   }
 
   &__title {

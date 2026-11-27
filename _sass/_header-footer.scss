@@ -181,8 +181,14 @@ $nav-social-breakpoint: 80em;
     margin-left: auto;
 
     &__social {
+      flex-shrink: 0;
       padding-left: 1rem;
       border-left: 1px solid var(--c-border);
+
+      // Icons immer in einer Reihe (sonst bricht das Mail-Symbol um)
+      .social-list {
+        flex-wrap: nowrap;
+      }
 
       @media (max-width: #{$nav-social-breakpoint - 0.01em}) {
         display: none;

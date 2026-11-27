@@ -46,6 +46,9 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 | Skills oder Sprachen ändern                        | `_data/lebenslauf.yml`        | SKILLS / SPRACHEN                          |
 | ein eigenes Lebenslauf-PDF anbieten                | `_data/lebenslauf.yml`        | PDF-DOWNLOAD (+ PDF in `assets/lebenslauf/`) |
 | ein Zertifikat hinzufügen                          | `_data/zertifikate.yml`       | ZERTIFIKATE (+ Datei in `assets/zertifikate/`) |
+| ein Zertifikat als „Schwerpunkt“ ganz oben zeigen  | `_data/zertifikate.yml`       | beim Zertifikat `hervorgehoben: true`      |
+| ein Projekt hinzufügen oder ändern                 | `_data/projekte.yml`          | PROJEKTE                                   |
+| ein Projekt auf der Startseite zeigen              | `_data/projekte.yml`          | beim Projekt `hervorgehoben: true`, Anzahl unter STARTSEITE |
 | E-Mail, Telefon oder Social-Media-Links ändern     | `_data/social.yml`            | KONTAKT / SOCIAL MEDIA                     |
 | einen Social-Media-Button ausblenden               | `_data/social.yml`            | beim Kanal `anzeigen: false`               |
 | einen Menüpunkt umbenennen/ausblenden/hinzufügen   | `_data/navigation.yml`        | HAUPTMENÜ                                  |
@@ -60,7 +63,7 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 | die Hintergrund-Animation abschalten               | `_sass/_theme.scss`           | ANIMATIONEN → `$hintergrund-animation: false;` |
 | Website-Titel oder Google-Beschreibung ändern      | `_config.yml`                 | WEBSITE                                    |
 | das Kontaktformular einschalten                    | `_config.yml`                 | KONTAKTFORMULAR                            |
-| eine ganz neue Seite anlegen (z. B. Projekte)      | neue `.md`-Datei + `_data/navigation.yml` | siehe [5.8](#58-neue-seite-anlegen-z-b-projekte) |
+| eine ganz neue Seite anlegen (z. B. Projekte)    | neue `.md`-Datei + `_data/navigation.yml` | siehe [5.8](#58-neue-seite-anlegen-z-b-projekte) |
 
 **Nicht anfassen musst du:** `_includes/`, `_layouts/`, alle anderen Dateien in `_sass/`, `assets/js/`, `.github/`.
 
@@ -86,6 +89,7 @@ sandro/
 │   ├── navigation.yml          Hauptmenü
 │   ├── lebenslauf.yml          Berufserfahrung, Praktika, Ausbildung, Skills …
 │   ├── zertifikate.yml         Zertifikate & Kategorien
+│   ├── projekte.yml            Projekte (Seite /projekte/ + Startseite)
 │   ├── rechtliches.yml         Impressum, Offenlegung, Datenschutz
 │   ├── footer.yml              Footer-Texte und -Links
 │   └── weiterleitungen.yml     Alte Adressen → neue Adressen

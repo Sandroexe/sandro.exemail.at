@@ -9,7 +9,11 @@ abhaengig_von:
   - _data/zertifikate.yml
 ---
 {%- assign z = site.data.zertifikate -%}
-{%- assign certs = z.zertifikate | where_exp: "c", "c.anzeigen != false" -%}
+{%- assign _alle = z.zertifikate | where_exp: "c", "c.anzeigen != false" -%}
+{%- comment -%} Schwerpunkt-Zertifikate (hervorgehoben: true) stehen zuerst {%- endcomment -%}
+{%- assign _schwerpunkt = _alle | where: "hervorgehoben", true -%}
+{%- assign _weitere = _alle | where_exp: "c", "c.hervorgehoben != true" -%}
+{%- assign certs = _schwerpunkt | concat: _weitere -%}
 
 <header class="page-hero">
   <div class="container">
@@ -42,16 +46,22 @@ abhaengig_von:
     <ul class="cert-grid">
       {%- for c in certs %}
       {%- assign _id = "zertifikat-" | append: forloop.index %}
-      <li class="card card--interaktiv cert-card" data-kategorie="{{ c.kategorie | escape }}" data-reveal data-reveal-delay="{{ forloop.index0 | modulo: 3 }}">
+      <li class="card card--interaktiv cert-card{% if c.hervorgehoben %} cert-card--schwerpunkt{% endif %}" data-kategorie="{{ c.kategorie | escape }}" data-reveal data-reveal-delay="{{ forloop.index0 | modulo: 3 }}">
+        {%- if c.bild and c.bild != "" %}
         <div class="cert-card__media">
-          {%- if c.bild and c.bild != "" %}
           {% include bild.html pfad="/assets/zertifikate/" datei=c.bild alt="" %}
-          {%- else %}
-          {% include icon.html name="award" %}
-          {%- endif %}
         </div>
+        {%- endif %}
         <div class="cert-card__body">
-          <span><span class="tag tag--akzent">{{ c.kategorie }}</span></span>
+          <div class="cert-card__kopf">
+            {%- unless c.bild and c.bild != "" %}
+            <span class="icon-badge cert-card__icon">{% if c.hervorgehoben %}{% include icon.html name="star" %}{% else %}{% include icon.html name="award" %}{% endif %}</span>
+            {%- endunless %}
+            <span class="tag tag--akzent">{{ c.kategorie }}</span>
+            {%- if c.hervorgehoben %}
+            <span class="tag cert-card__schwerpunkt">Schwerpunkt</span>
+            {%- endif %}
+          </div>
           <h2 class="cert-card__title">
             <button type="button" class="cert-card__open" data-dialog-open="{{ _id }}" aria-haspopup="dialog">{{ c.name }}</button>
           </h2>
