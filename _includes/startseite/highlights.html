@@ -1,0 +1,32 @@
+{%- comment -%} Startseiten-Bereich – Reihenfolge: _data/person.yml → startseite_reihenfolge {%- endcomment -%}
+{%- assign p = site.data.person -%}
+<!-- ═══ HIGHLIGHTS ═══ -->
+{%- if p.highlights.size > 0 %}
+<section class="section section--tight" aria-labelledby="highlights-titel">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Überblick</p>
+      <h2 id="highlights-titel">{{ p.highlights_titel }}</h2>
+    </div>
+    <ul class="highlight-grid">
+      {%- for h in p.highlights %}
+      {%- assign _hat_link = false -%}
+      {%- if h.link and h.link != "" -%}{%- assign _hat_link = true -%}{%- endif %}
+      <li data-reveal data-reveal-delay="{{ forloop.index0 | modulo: 4 }}">
+        <article class="card highlight-card{% if _hat_link %} card--interaktiv{% endif %}">
+          <span class="icon-badge">{% include icon.html name=h.icon %}</span>
+          <h3>
+            {%- if _hat_link -%}
+            <a class="card__link-overlay" href="{{ h.link | relative_url }}">{{ h.titel }}</a>
+            {%- else -%}
+            {{ h.titel }}
+            {%- endif -%}
+          </h3>
+          <p>{{ h.text }}</p>
+        </article>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}

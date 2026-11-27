@@ -6,9 +6,9 @@
 #  schreibt nur in diese Dateien. Jedes Speichern ist ein Commit auf dem
 #  gewählten Branch; auf "main" geht die Änderung nach ca. 1–2 Minuten live.
 #
-#  Nicht im Editor (bewusst): Impressum/Datenschutz (rechtliches.yml),
-#  Social-Media-Kanäle (social.yml), Weiterleitungen, Design, _config.yml –
-#  dort hängt Rechtliches oder Technik dran.
+#  Nicht im Editor (bewusst): Impressum/Datenschutz (rechtliches.yml), der
+#  Rechtsteil der Social-Media-Kanäle (nur lesbar), Weiterleitungen, Design,
+#  _config.yml – dort hängt Rechtliches oder Technik dran.
 #
 #  Neues Icon? SVG nach assets/icons/ legen UND unten bei "icon" eintragen.
 #  Anleitung: README.md → Abschnitt 12 „Online-Editor“.
@@ -368,6 +368,54 @@ content:
       - { name: kurztitel, label: Kurztitel unter dem Namen, type: string }
       - { name: begruessung, label: Begrüßung über dem Namen, type: string }
       - { name: vorstellung, label: Vorstellungstext, type: text }
+      - name: foto
+        label: Foto oben (im Kreis)
+        type: object
+        fields:
+          - { name: aus_galerie, label: Foto aus der Galerie, type: image, options: { media: galerie }, description: "Leer = bisheriges Profilfoto. Ein neu hochgeladenes Foto bitte auch in der Galerie eintragen (Bildnachweis!). Das Google-Vorschaubild bleibt das Profilfoto." }
+          - name: ausschnitt
+            label: Sichtbarer Ausschnitt im Kreis
+            type: select
+            options:
+              values:
+                - { name: oben, label: Oben (Kopf) }
+                - { name: mitte, label: Mitte }
+                - { name: unten, label: Unten }
+          - { name: datei, type: string, hidden: true }
+          - { name: webp, type: string, hidden: true }
+          - { name: alt, label: Beschreibung des Profilfotos, type: string }
+          - { name: breite, type: number, hidden: true }
+          - { name: hoehe, type: number, hidden: true }
+          - { name: klein, type: string, hidden: true }
+          - { name: klein_webp, type: string, hidden: true }
+          - { name: klein_breite, type: number, hidden: true }
+      - name: startseite_reihenfolge
+        label: Bereiche der Startseite (Reihenfolge, weglassen = ausblenden)
+        type: select
+        list: true
+        options:
+          values:
+            - { name: highlights, label: Auf einen Blick }
+            - { name: projekte, label: Projekte }
+            - { name: galerie, label: Einblicke (Galerie) }
+            - { name: news, label: Aktuelles (News) }
+            - { name: kontakt, label: Lust auf ein Gespräch? }
+      - name: buttons
+        label: Buttons unter dem Vorstellungstext
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{fields.text}" }
+        fields:
+          - { name: text, label: Text, type: string, required: true }
+          - { name: link, label: Link, type: string, required: true, description: "z. B. /lebenslauf/" }
+          - { name: icon, component: icon }
+          - name: stil
+            label: Stil
+            type: select
+            options:
+              values:
+                - { name: primaer, label: Gefüllt (Hauptbutton) }
+                - { name: sekundaer, label: Nur Rahmen }
       - name: standort
         label: Standort
         type: object
@@ -395,3 +443,112 @@ content:
           - { name: text, label: Text, type: text }
           - { name: button_text, label: Button-Text, type: string }
           - { name: button_link, label: Button-Link, type: string }
+
+  # ─── Kontakt & Social Media ──────────────────────────────────────────────
+  - name: social
+    label: Kontakt & Social Media
+    type: file
+    path: _data/social.yml
+    format: yaml
+    fields:
+      - name: kontaktseite
+        label: Kontaktseite
+        type: object
+        fields:
+          - { name: titel, label: Seitentitel, type: string }
+          - { name: einleitung, label: Einleitung, type: text }
+          - { name: vcard_anzeigen, label: vCard-Button zeigen, type: boolean }
+          - { name: vcard_text, label: Text des vCard-Buttons, type: string }
+          - { name: vcard_datei, type: string, hidden: true }
+      - name: kanaele
+        label: Kanäle (Reihenfolge = Reihenfolge der Buttons)
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{fields.name}" }
+        fields:
+          - { name: id, label: Kurzname, type: string, required: true, pattern: { regex: "^[a-z0-9-]+$", message: "Nur Kleinbuchstaben, Ziffern und Bindestrich" }, description: "⚠ Bei bestehenden Kanälen NIE ändern – steht als /social-impressum/<kurzname>/ in deinen Bios." }
+          - { name: name, label: Name, type: string, required: true }
+          - name: typ
+            label: Art
+            type: select
+            options:
+              values:
+                - { name: link, label: Link (Social Media / Website) }
+                - { name: email, label: E-Mail }
+                - { name: telefon, label: Telefon }
+          - { name: wert, label: Adresse / Nummer, type: string, required: true, description: "Profil-Link, E-Mail-Adresse oder Telefonnummer" }
+          - { name: anzeigetext, label: Angezeigter Text, type: string, description: "z. B. @sandro.exenberger – leer = Adresse" }
+          - { name: beschreibung, label: Kurzer Satz auf der Kontaktseite, type: string }
+          - name: icon
+            label: Icon
+            type: select
+            options:
+              values: [linkedin, instagram, facebook, tiktok, mail, phone, globe, link, message-circle]
+          - { name: anzeigen, component: anzeigen }
+          - name: orte
+            label: Wo erscheint der Button?
+            type: select
+            options:
+              multiple: true
+              values:
+                - { name: header, label: Kopfzeile }
+                - { name: footer, label: Fußzeile }
+                - { name: startseite, label: Startseite (unter dem Text) }
+                - { name: kontakt, label: Kontaktseite }
+          - name: rechtliches
+            label: "Impressum & Datenschutz (nur lesen – Änderungen bitte über Claude, rechtlich heikel)"
+            type: object
+            readonly: true
+            fields:
+              - { name: impressum_anzeigen, label: Eigenes Impressum, type: boolean }
+              - { name: betreiber_name, label: Betreiber, type: string }
+              - { name: betreiber_anschrift, label: Anschrift Betreiber, type: string }
+              - { name: datenschutz_link_plattform, label: Datenschutz der Plattform, type: string }
+              - { name: einstellungen_link_plattform, label: Einstellungen der Plattform, type: string }
+              - { name: rechte_link_plattform, label: Betroffenenrechte, type: string }
+              - { name: grundlegende_richtung, label: Grundlegende Richtung, type: text }
+              - { name: insights_genutzt, label: Statistiken, type: boolean }
+              - { name: insights_bezeichnung, label: Bezeichnung Statistiken, type: string }
+              - { name: insights_hinweis, label: Hinweis Statistiken, type: text }
+              - { name: gemeinsame_verantwortung, label: Gemeinsame Verantwortung, type: boolean }
+              - { name: vereinbarung_link, label: Vereinbarung, type: string }
+              - { name: drittland_text, label: Drittland, type: text }
+              - { name: zusaetzliche_hinweise, label: Zusätzliche Hinweise, type: text }
+
+  # ─── Menü & Fußzeile ─────────────────────────────────────────────────────
+  - name: navigation
+    label: Menü
+    type: file
+    path: _data/navigation.yml
+    format: yaml
+    fields:
+      - name: hauptmenue
+        label: Menüpunkte (Reihenfolge = Reihenfolge im Menü)
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{fields.titel}" }
+        fields:
+          - { name: titel, label: Beschriftung, type: string, required: true }
+          - { name: url, label: Adresse, type: string, required: true, description: "z. B. /projekte/" }
+          - { name: anzeigen, component: anzeigen }
+
+  - name: footer
+    label: Fußzeile
+    type: file
+    path: _data/footer.yml
+    format: yaml
+    fields:
+      - { name: kurztext, label: Kurzer Text unter dem Namen, type: string }
+      - { name: copyright_name, label: Name im Copyright, type: string, description: Leer = dein Name }
+      - { name: copyright_ab, label: Copyright seit (Jahr), type: string }
+      - { name: copyright_zusatz, label: Copyright-Zusatz, type: string }
+      - { name: nach_oben_anzeigen, label: Link „Nach oben“ zeigen, type: boolean }
+      - name: links
+        label: "Pflicht-Links (nur lesen – Impressum & Datenschutz müssen bleiben)"
+        type: object
+        list: true
+        readonly: true
+        fields:
+          - { name: titel, label: Beschriftung, type: string }
+          - { name: url, label: Adresse, type: string }
+          - { name: anzeigen, label: Anzeigen, type: boolean }

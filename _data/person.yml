@@ -75,6 +75,27 @@ foto:
   klein_webp: "profil-600.webp"
   klein_breite: 600
 
+  # Statt des Profilfotos oben ein Foto aus der Galerie verwenden?
+  # Dateiname wie in _data/galerie.yml, z. B. "portraet.jpg". Leer = Profilfoto oben.
+  # Hinweis: Das Vorschaubild für Google/Social Media bleibt das Profilfoto.
+  aus_galerie: ""
+  # Welcher Teil des Fotos im Kreis zu sehen ist: "oben", "mitte" oder "unten"
+  ausschnitt: "mitte"
+
+
+# ═══════════════════════════ STARTSEITE – REIHENFOLGE ══════════════════════
+# Welche Bereiche unter dem Foto erscheinen und in welcher Reihenfolge.
+# Erlaubt: highlights (Auf einen Blick), projekte, galerie (Einblicke),
+#          news (Aktuelles), kontakt (Lust auf ein Gespräch?)
+# Bereich weglassen = ausgeblendet.
+
+startseite_reihenfolge:
+  - highlights
+  - projekte
+  - galerie
+  - news
+  - kontakt
+
 
 # ════════════════════════════ BUTTONS (STARTSEITE) ═════════════════════════
 # stil: "primaer" (gefüllt) oder "sekundaer" (nur Rahmen)

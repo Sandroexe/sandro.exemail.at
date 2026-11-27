@@ -1,0 +1,19 @@
+{%- comment -%} Startseiten-Bereich – Reihenfolge: _data/person.yml → startseite_reihenfolge {%- endcomment -%}
+{%- assign p = site.data.person -%}
+<!-- ═══ KONTAKT-AUFRUF ═══ -->
+{%- if p.kontakt_aufruf.anzeigen %}
+<section class="section section--tight" aria-labelledby="cta-titel">
+  <div class="container">
+    <div class="cta" data-reveal>
+      <div>
+        <h2 id="cta-titel">{{ p.kontakt_aufruf.titel }}</h2>
+        <p>{{ p.kontakt_aufruf.text }}</p>
+      </div>
+      <a class="btn btn--primaer" href="{{ p.kontakt_aufruf.button_link | relative_url }}">
+        {% include icon.html name="send" %}
+        {{ p.kontakt_aufruf.button_text }}
+      </a>
+    </div>
+  </div>
+</section>
+{%- endif %}

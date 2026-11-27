@@ -1,0 +1,26 @@
+{%- comment -%} Startseiten-Bereich – Reihenfolge: _data/person.yml → startseite_reihenfolge {%- endcomment -%}
+{%- assign p = site.data.person -%}
+<!-- ═══ GALERIE-HIGHLIGHTS (aus _data/galerie.yml: hervorgehoben: true) ═══ -->
+{%- assign _gs = site.data.galerie.startseite -%}
+{%- assign _highlights = site.data.galerie_liste | where: "hervorgehoben", true -%}
+{%- if _gs.anzeigen and _highlights.size > 0 %}
+<section class="section section--tight" aria-labelledby="galerie-titel">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Galerie</p>
+      <h2 id="galerie-titel">{{ _gs.titel }}</h2>
+    </div>
+    <div class="galerie">
+      <ul class="galerie-raster galerie-raster--startseite">
+        {%- for b in _highlights limit: _gs.anzahl %}
+        {%- assign _ziel = "/galerie/#" | append: b.id %}
+        {% include galerie-kachel.html bild=b link=_ziel index=forloop.index0 %}
+        {%- endfor %}
+      </ul>
+    </div>
+    <p class="galerie-mehr" data-reveal>
+      <a class="btn btn--sekundaer" href="{{ '/galerie/' | relative_url }}">Alle Fotos ansehen {% include icon.html name="arrow-right" %}</a>
+    </p>
+  </div>
+</section>
+{%- endif %}

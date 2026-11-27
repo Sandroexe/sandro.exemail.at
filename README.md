@@ -10,7 +10,7 @@ Gebaut mit **Jekyll 4**, gehostet auf **GitHub Pages**. Keine Cookies, kein Trac
 
 1. **<https://app.pagescms.org>** öffnen und mit GitHub anmelden.
 2. Repository **sandro.exemail.at** wählen, Branch **main**.
-3. Links den Bereich wählen (News, Projekte, Lebenslauf, Zertifikate, Galerie, Startseite), ändern, **Speichern**.
+3. Links den Bereich wählen (News, Projekte, Lebenslauf, Zertifikate, Galerie, Startseite, Social Media, Menü …), ändern, **Speichern**.
 4. Fertig: GitHub baut die Website automatisch neu, nach **ca. 1–2 Minuten** ist die Änderung auf <https://sandro.exemail.at> online. Den Fortschritt siehst du im Repository unter **Actions** (grüner Haken = online). Geht etwas schief, bleibt einfach die alte Version online.
 
 Details und Tipps (Fotos, Kategorien, was nicht im Editor ist): [Abschnitt 12](#12-online-editor-pages-cms).
@@ -672,8 +672,10 @@ Statt Dateien von Hand zu bearbeiten, kannst du die meisten Inhalte im Browser �
 3. Repository öffnen, Branch **main** wählen. Die Formulare kommen aus der Datei `.pages.yml`.
    (Andere Branches wie `claude/…` sind nur Testversionen und gehen nicht online.)
 
-**Was du dort bearbeiten kannst:** News (eigene Beiträge und Presseartikel), Projekte, Lebenslauf, Zertifikate, Galerie und die Texte der Startseite.
-**Bewusst nicht dabei:** Impressum/Datenschutz, Social-Media-Kanäle, Weiterleitungen, Design – dort hängt Rechtliches oder Technik dran.
+**Was du dort bearbeiten kannst:** News (eigene Beiträge und Presseartikel), Projekte, Lebenslauf, Zertifikate, Galerie, Startseite (Texte, Foto im Kreis, Buttons, **Reihenfolge der Bereiche**), Kontakt & Social Media (Links, Texte, wo die Buttons erscheinen), Menü und Fußzeile.
+**Nur lesbar:** der Impressum-/Datenschutz-Teil jedes Social-Media-Kanals und die Pflicht-Links in der Fußzeile.
+**Bewusst nicht dabei:** Impressum/Datenschutz der Website, Weiterleitungen, Design – dort hängt Rechtliches oder Technik dran.
+**Neuer Social-Media-Kanal?** Button anlegen geht im Editor, für das Social-Media-Impressum braucht der Kanal aber noch den Rechtsteil – den bitte gemeinsam mit Claude ergänzen.
 
 **Wichtig zu wissen**
 - **Speichern = veröffentlichen.** Jedes Speichern auf `main` geht nach ca. 1–2 Minuten live (GitHub → Actions zeigt den Fortschritt). Bei einem Fehler bleibt die alte Version online.

@@ -130,6 +130,11 @@
     background: var(--c-surface-2);
   }
 
+  // Welcher Teil des Fotos im Kreis sichtbar ist (person.yml → foto → ausschnitt)
+  &--oben img { object-position: 50% 15%; }
+  &--mitte img { object-position: 50% 50%; }
+  &--unten img { object-position: 50% 85%; }
+
   &__badge {
     position: absolute;
     left: -0.5rem;

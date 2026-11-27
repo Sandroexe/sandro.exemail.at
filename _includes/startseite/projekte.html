@@ -1,0 +1,24 @@
+{%- comment -%} Startseiten-Bereich – Reihenfolge: _data/person.yml → startseite_reihenfolge {%- endcomment -%}
+{%- assign p = site.data.person -%}
+<!-- ═══ PROJEKTE (aus _data/projekte.yml: hervorgehoben: true) ═══ -->
+{%- assign _pj = site.data.projekte -%}
+{%- assign _pjs = _pj.startseite -%}
+{%- assign _pj_liste = _pj.projekte | where: "hervorgehoben", true | where_exp: "x", "x.anzeigen != false" -%}
+{%- if _pj.anzeigen and _pjs.anzeigen and _pj_liste.size > 0 %}
+<section class="section section--tight" aria-labelledby="projekte-titel">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Projekte</p>
+      <h2 id="projekte-titel">{{ _pjs.titel }}</h2>
+    </div>
+    <ul class="projekt-raster">
+      {%- for x in _pj_liste limit: _pjs.anzahl %}
+      {% include projekt-karte.html projekt=x ebene=3 index=forloop.index0 %}
+      {%- endfor %}
+    </ul>
+    <p class="galerie-mehr" data-reveal>
+      <a class="btn btn--sekundaer" href="{{ '/projekte/' | relative_url }}">Alle Projekte ansehen {% include icon.html name="arrow-right" %}</a>
+    </p>
+  </div>
+</section>
+{%- endif %}

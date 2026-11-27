@@ -51,8 +51,25 @@ abhaengig_von:
     </div>
 
     <div class="hero__media" data-hero-in="1">
-      <div class="profile-photo">
+      {%- comment -%}
+        Foto: entweder ein Galerie-Foto (foto → aus_galerie) oder das
+        eigene Profilfoto aus assets/img/ (foto → datei).
+      {%- endcomment -%}
+      {%- assign _gf = p.foto.aus_galerie | default: "" | split: "/" | last | default: "" -%}
+      {%- assign _gw = nil -%}
+      {%- if _gf != "" %}{% assign _gw = site.data.galerie_web[_gf] %}{% endif -%}
+      <div class="profile-photo profile-photo--{{ p.foto.ausschnitt | default: 'mitte' }}">
+        {%- if _gw %}
+        {%- assign _ge = site.data.galerie.bilder | where_exp: "b", "b.datei contains _gf" | first -%}
+        {%- assign _g_gross = _gw.name | append: "-gross.jpg" -%}
+        {%- assign _g_gross_webp = _gw.name | append: "-gross.webp" -%}
+        {%- assign _g_klein = _gw.name | append: "-klein.jpg" -%}
+        {%- assign _g_klein_webp = _gw.name | append: "-klein.webp" -%}
+        {%- assign _g_alt = _ge.alt_text | default: p.foto.alt -%}
+        {% include bild.html pfad="/assets/img/galerie-web/" datei=_g_gross webp=_g_gross_webp alt=_g_alt breite=_gw.breite hoehe=_gw.hoehe klein=_g_klein klein_webp=_g_klein_webp klein_breite=_gw.klein_breite sizes="(min-width: 52em) 21rem, 62vw" eager=true %}
+        {%- else %}
         {% include bild.html datei=p.foto.datei webp=p.foto.webp alt=p.foto.alt breite=p.foto.breite hoehe=p.foto.hoehe klein=p.foto.klein klein_webp=p.foto.klein_webp klein_breite=p.foto.klein_breite sizes="(min-width: 52em) 21rem, 62vw" eager=true %}
+        {%- endif %}
         {%- if p.standort.ort and p.standort.ort != "" %}
         <span class="profile-photo__badge">
           {% include icon.html name="map-pin" %}
@@ -64,121 +81,13 @@ abhaengig_von:
   </div>
 </section>
 
-<!-- ═══ HIGHLIGHTS ═══ -->
-{%- if p.highlights.size > 0 %}
-<section class="section section--tight" aria-labelledby="highlights-titel">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <p class="eyebrow">Überblick</p>
-      <h2 id="highlights-titel">{{ p.highlights_titel }}</h2>
-    </div>
-    <ul class="highlight-grid">
-      {%- for h in p.highlights %}
-      {%- assign _hat_link = false -%}
-      {%- if h.link and h.link != "" -%}{%- assign _hat_link = true -%}{%- endif %}
-      <li data-reveal data-reveal-delay="{{ forloop.index0 | modulo: 4 }}">
-        <article class="card highlight-card{% if _hat_link %} card--interaktiv{% endif %}">
-          <span class="icon-badge">{% include icon.html name=h.icon %}</span>
-          <h3>
-            {%- if _hat_link -%}
-            <a class="card__link-overlay" href="{{ h.link | relative_url }}">{{ h.titel }}</a>
-            {%- else -%}
-            {{ h.titel }}
-            {%- endif -%}
-          </h3>
-          <p>{{ h.text }}</p>
-        </article>
-      </li>
-      {%- endfor %}
-    </ul>
-  </div>
-</section>
-{%- endif %}
-
-<!-- ═══ PROJEKTE (aus _data/projekte.yml: hervorgehoben: true) ═══ -->
-{%- assign _pj = site.data.projekte -%}
-{%- assign _pjs = _pj.startseite -%}
-{%- assign _pj_liste = _pj.projekte | where: "hervorgehoben", true | where_exp: "x", "x.anzeigen != false" -%}
-{%- if _pj.anzeigen and _pjs.anzeigen and _pj_liste.size > 0 %}
-<section class="section section--tight" aria-labelledby="projekte-titel">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <p class="eyebrow">Projekte</p>
-      <h2 id="projekte-titel">{{ _pjs.titel }}</h2>
-    </div>
-    <ul class="projekt-raster">
-      {%- for x in _pj_liste limit: _pjs.anzahl %}
-      {% include projekt-karte.html projekt=x ebene=3 index=forloop.index0 %}
-      {%- endfor %}
-    </ul>
-    <p class="galerie-mehr" data-reveal>
-      <a class="btn btn--sekundaer" href="{{ '/projekte/' | relative_url }}">Alle Projekte ansehen {% include icon.html name="arrow-right" %}</a>
-    </p>
-  </div>
-</section>
-{%- endif %}
-
-<!-- ═══ GALERIE-HIGHLIGHTS (aus _data/galerie.yml: hervorgehoben: true) ═══ -->
-{%- assign _gs = site.data.galerie.startseite -%}
-{%- assign _highlights = site.data.galerie_liste | where: "hervorgehoben", true -%}
-{%- if _gs.anzeigen and _highlights.size > 0 %}
-<section class="section section--tight" aria-labelledby="galerie-titel">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <p class="eyebrow">Galerie</p>
-      <h2 id="galerie-titel">{{ _gs.titel }}</h2>
-    </div>
-    <div class="galerie">
-      <ul class="galerie-raster galerie-raster--startseite">
-        {%- for b in _highlights limit: _gs.anzahl %}
-        {%- assign _ziel = "/galerie/#" | append: b.id %}
-        {% include galerie-kachel.html bild=b link=_ziel index=forloop.index0 %}
-        {%- endfor %}
-      </ul>
-    </div>
-    <p class="galerie-mehr" data-reveal>
-      <a class="btn btn--sekundaer" href="{{ '/galerie/' | relative_url }}">Alle Fotos ansehen {% include icon.html name="arrow-right" %}</a>
-    </p>
-  </div>
-</section>
-{%- endif %}
-
-<!-- ═══ AKTUELLES (aus _posts/ und _presse/, Einstellungen in _data/news.yml) ═══ -->
-{%- assign _ns = site.data.news.startseite -%}
-{%- assign _news = site.data.news_liste | where: "auf_startseite", true -%}
-{%- if site.data.news.anzeigen and _ns.anzeigen and _news.size > 0 %}
-<section class="section section--tight" aria-labelledby="news-titel">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <p class="eyebrow">News</p>
-      <h2 id="news-titel">{{ _ns.titel }}</h2>
-    </div>
-    <ul class="news-liste news-liste--startseite">
-      {%- for e in _news limit: _ns.anzahl %}
-      {% include news-karte.html eintrag=e index=forloop.index0 ebene=3 %}
-      {%- endfor %}
-    </ul>
-    <p class="galerie-mehr" data-reveal>
-      <a class="btn btn--sekundaer" href="{{ '/news/' | relative_url }}">Alle News ansehen {% include icon.html name="arrow-right" %}</a>
-    </p>
-  </div>
-</section>
-{%- endif %}
-
-<!-- ═══ KONTAKT-AUFRUF ═══ -->
-{%- if p.kontakt_aufruf.anzeigen %}
-<section class="section section--tight" aria-labelledby="cta-titel">
-  <div class="container">
-    <div class="cta" data-reveal>
-      <div>
-        <h2 id="cta-titel">{{ p.kontakt_aufruf.titel }}</h2>
-        <p>{{ p.kontakt_aufruf.text }}</p>
-      </div>
-      <a class="btn btn--primaer" href="{{ p.kontakt_aufruf.button_link | relative_url }}">
-        {% include icon.html name="send" %}
-        {{ p.kontakt_aufruf.button_text }}
-      </a>
-    </div>
-  </div>
-</section>
-{%- endif %}
+<!-- ═══ BEREICHE – Reihenfolge aus _data/person.yml (startseite_reihenfolge) ═══ -->
+{%- for _bereich in p.startseite_reihenfolge %}
+{%- case _bereich %}
+{%- when "highlights" %}{% include startseite/highlights.html %}
+{%- when "projekte" %}{% include startseite/projekte.html %}
+{%- when "galerie" %}{% include startseite/galerie.html %}
+{%- when "news" %}{% include startseite/news.html %}
+{%- when "kontakt" %}{% include startseite/kontakt.html %}
+{%- endcase %}
+{%- endfor %}
